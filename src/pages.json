@@ -62,12 +62,20 @@
       }
     },
     {
+      "path": "pages/forum/index",
+      "type": "page"
+    },
+    {
       "path": "pages/login/index",
       "type": "page",
       "style": {
         "navigationBarTitleText": "登录",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/message/index",
+      "type": "page"
     },
     {
       "path": "pages/mine/index",
