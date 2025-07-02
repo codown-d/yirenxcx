@@ -7,11 +7,15 @@
   padding-top: 4px;
   color: red;
 }
+.wd-tabs__nav-item.is-active {
+  color: #248069 !important;
+}
 
 :root,
 page {
   // 修改按主题色
   --wot-color-theme: #248069;
+  --wot-tabs-nav-line-bg-color: #248069;
   --wot-button-success-bg-color: #248069;
 
   // 修改按钮背景色

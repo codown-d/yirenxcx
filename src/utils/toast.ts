@@ -1,9 +1,11 @@
+import { useToast } from 'wot-design-uni'
+
+// const wdToast = useToast()
 /**
  * toast 弹窗组件
  * 支持 success/error/warning/info 四种状态
  * 可配置 duration, position 等参数
  */
-
 type ToastType = 'success' | 'error' | 'warning' | 'info'
 
 interface ToastOptions {
@@ -43,6 +45,16 @@ export function showToast(options: ToastOptions | string) {
     info: 'none',
   }
 
+  console.log('mergedOptions', mergedOptions)
+  // if (mergedOptions.type === 'success') {
+  //   return wdToast.success(mergedOptions.message)
+  // } else if (mergedOptions.type === 'error') {
+  //   return wdToast.error(mergedOptions.message)
+  // } else if (mergedOptions.type === 'warning') {
+  //   return wdToast.warning(mergedOptions.message)
+  // } else if (mergedOptions.type === 'info') {
+  //   return wdToast.info(mergedOptions.message)
+  // }
   // 调用uni.showToast显示提示
   uni.showToast({
     title: mergedOptions.message,
@@ -52,7 +64,6 @@ export function showToast(options: ToastOptions | string) {
     mask: true,
   })
 }
-
 export const toast = {
   success: (message: string, options?: Omit<ToastOptions, 'type'>) =>
     showToast({ ...options, type: 'success', message }),

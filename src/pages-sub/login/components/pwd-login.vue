@@ -1,129 +1,107 @@
 <template>
-  <view class="bg-white rounded-t-8 px-12 mt-auto min-h-60vh">
-    <wd-tabs v-model="currentTab">
-      <block v-for="tab in LOGIN_TABS" :key="tab.key">
-        <wd-tab :title="`${tab.label}`" @click="switchTab(tab.key)">
-          <view v-if="currentTab === 'password'" class="space-y-8">
-            <view class="mb-8">
-              <wd-input
-                v-model="loginForm.phone"
-                :placeholder="FORM_CONFIG.phonePlaceholder"
-                type="number"
-                :maxlength="11"
-                clearable
-                class="h-22 bg-gray-50 rounded-3 px-6"
-              >
-                <template #prefix>
-                  <wd-icon name="phone" size="16px" color="#999" />
-                </template>
-              </wd-input>
-            </view>
+  <view class="px-12">
+    <view class="pt-20 mb-7">
+      <view class="text-5 font-bold mb-2 drop-shadow-sm">{{ LOGIN_CONFIG.title }}</view>
+    </view>
+    <wd-tabs>
+      <wd-tab title="密码登录">
+        <view class="space-y-6 mt-8">
+          <wd-input
+            v-model="loginForm.phone"
+            :placeholder="FORM_CONFIG.phonePlaceholder"
+            type="number"
+            :maxlength="11"
+            clearable
+            class="h-22 bg-gray-50 rounded-3 px-6"
+          >
+            <template #prefix>
+              <wd-icon name="phone" size="16px" color="#999" />
+            </template>
+          </wd-input>
+          <wd-input
+            v-model="loginForm.password"
+            :placeholder="FORM_CONFIG.passwordPlaceholder"
+            type="text"
+            show-password
+            clearable
+            class="h-22 bg-gray-50 rounded-3 px-6"
+          >
+            <template #prefix>
+              <wd-icon name="secured" size="16px" color="#999" />
+            </template>
+          </wd-input>
+        </view>
+      </wd-tab>
+      <wd-tab title="验证码登录">
+        <view class="space-y-6 mt-8">
+          <wd-input
+            v-model="loginForm.phone"
+            :placeholder="FORM_CONFIG.phonePlaceholder"
+            type="number"
+            :maxlength="11"
+            clearable
+            class="h-22 bg-gray-50 rounded-3 px-6"
+          >
+            <template #prefix>
+              <wd-icon name="phone" size="16px" color="#999" />
+            </template>
+          </wd-input>
 
-            <view class="mb-8">
-              <wd-input
-                v-model="loginForm.password"
-                :placeholder="FORM_CONFIG.passwordPlaceholder"
-                type="text"
-                show-password
-                clearable
-                class="h-22 bg-gray-50 rounded-3 px-6"
-              >
-                <template #prefix>
-                  <wd-icon name="lock-on" size="16px" color="#999" />
-                </template>
-              </wd-input>
-            </view>
-
-            <view class="flex justify-between items-center mb-12 text-6">
-              <view class="text-primary p-2" @click="handleForgotPassword">
-                {{ FORM_CONFIG.forgotPasswordText }}
-              </view>
-              <view class="text-primary p-2" @click="handleRegister">
-                {{ FORM_CONFIG.registerText }}
-              </view>
-            </view>
+          <view class="flex gap-4 items-center">
+            <wd-input
+              v-model="loginForm.smsCode"
+              :placeholder="FORM_CONFIG.smsCodePlaceholder"
+              type="number"
+              :maxlength="6"
+              clearable
+              class="flex-1 h-22 bg-gray-50 rounded-3 px-6"
+            >
+              <template #prefix>
+                <wd-icon name="secured" size="16px" color="#999" />
+              </template>
+            </wd-input>
+            <wd-button
+              :disabled="smsCountdown > 0"
+              @click="sendSmsCode"
+              size="small"
+              type="primary"
+              plain
+              custom-class="w-20"
+            >
+              {{ smsCountdown > 0 ? `${smsCountdown}s` : FORM_CONFIG.sendSmsText }}
+            </wd-button>
           </view>
-          <!-- 验证码登录表单 -->
-          <view v-else class="space-y-8">
-            <view class="mb-8">
-              <wd-input
-                v-model="loginForm.phone"
-                :placeholder="FORM_CONFIG.phonePlaceholder"
-                type="number"
-                :maxlength="11"
-                clearable
-                class="h-22 bg-gray-50 rounded-3 px-6"
-              >
-                <template #prefix>
-                  <wd-icon name="phone" size="16px" color="#999" />
-                </template>
-              </wd-input>
-            </view>
-
-            <view class="flex gap-4 mb-8">
-              <wd-input
-                v-model="loginForm.smsCode"
-                :placeholder="FORM_CONFIG.smsCodePlaceholder"
-                type="number"
-                :maxlength="6"
-                clearable
-                class="flex-1 h-22 bg-gray-50 rounded-3 px-6"
-              >
-                <template #prefix>
-                  <wd-icon name="secured" size="16px" color="#999" />
-                </template>
-              </wd-input>
-              <wd-button
-                :disabled="smsCountdown > 0"
-                @click="sendSmsCode"
-                size="small"
-                type="primary"
-                plain
-                class="w-40 h-22 rounded-3"
-              >
-                {{ smsCountdown > 0 ? `${smsCountdown}s` : FORM_CONFIG.sendSmsText }}
-              </wd-button>
-            </view>
-
-            <view class="flex justify-end mb-12 text-6">
-              <view class="text-primary p-2" @click="handleRegister">
-                {{ FORM_CONFIG.registerText }}
-              </view>
-            </view>
-          </view>
-        </wd-tab>
-      </block>
+        </view>
+      </wd-tab>
     </wd-tabs>
     <!-- 登录按钮 -->
-    <wd-button
-      size="large"
-      block
-      @click="handleLogin"
-      :loading="loginLoading"
-      class="text-8 font-medium mt-6"
-    >
-      {{ LOGIN_CONFIG.loginButtonText }}
-    </wd-button>
+
+    <view class="text-8 font-medium">
+      <view class="flex justify-between items-center mt-4 mb-11 text-3">
+        <view class="flex-1">
+          <text>还没有账户？</text>
+          <text class="text-primary pl-2" @click="handleRegister">
+            {{ FORM_CONFIG.registerText }}
+          </text>
+        </view>
+        <view class="text-primary">忘记密码？</view>
+      </view>
+      <wd-button block @click="handleLogin" :round="false" :loading="loginLoading" type="primary">
+        {{ LOGIN_CONFIG.loginButtonText }}
+      </wd-button>
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  LOGIN_CONFIG,
-  LOGIN_TABS,
-  FORM_CONFIG,
-  ROLE_CONFIG,
-  PRIVACY_CONFIG,
-} from '@/constant/login'
+import { LOGIN_CONFIG, FORM_CONFIG } from '@/constant/login'
 
 // 页面状态
 const showLoginForm = ref(false)
 const showRoleSelection = ref(false)
 const currentTab = ref<'password' | 'sms'>('password')
-const selectedRole = ref('')
-const agreePrivacy = ref(false)
 const loginLoading = ref(false)
 const smsCountdown = ref(0)
 
@@ -133,52 +111,16 @@ const loginForm = ref({
   password: '',
   smsCode: '',
 })
-
+let props = defineProps({
+  agreePrivacy: {
+    type: Boolean,
+    default: false,
+  },
+})
 // 页面加载完毕时触发
 onLoad((option: any) => {
   console.log('登录页面加载', option)
 })
-
-// 返回上一页
-const goBack = () => {
-  uni.navigateBack()
-}
-
-// 微信授权登录
-const handleWechatAuth = async () => {
-  if (!agreePrivacy.value) {
-    toast.error('请先阅读并同意用户协议和隐私政策')
-    return
-  }
-
-  try {
-    // 模拟微信授权登录
-    toast.loading('微信授权中...')
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    toast.success('授权成功')
-
-    // 显示身份选择
-    showRoleSelection.value = true
-  } catch (error) {
-    toast.error('授权失败，请重试')
-  }
-}
-
-// 手机号登录
-const handlePhoneLogin = () => {
-  showLoginForm.value = true
-}
-
-// 切换登录方式
-const switchTab = (tab: 'password' | 'sms') => {
-  currentTab.value = tab
-  // 清空表单
-  loginForm.value = {
-    phone: '',
-    password: '',
-    smsCode: '',
-  }
-}
 
 // 发送短信验证码
 const sendSmsCode = async () => {
@@ -259,42 +201,9 @@ const handleLogin = async () => {
   }
 }
 
-// 忘记密码
-const handleForgotPassword = () => {
-  toast.info('请联系客服重置密码')
-}
-
+let agreePrivacy = computed(() => props.agreePrivacy)
 // 注册
 const handleRegister = () => {
   toast.info('请联系客服注册账号')
-}
-
-// 选择身份
-const selectRole = (roleKey: string) => {
-  selectedRole.value = roleKey
-}
-
-// 确认身份
-const confirmRole = () => {
-  if (!selectedRole.value) {
-    toast.error('请选择身份')
-    return
-  }
-
-  toast.success('身份选择成功')
-
-  // 跳转到首页
-  setTimeout(() => {
-    uni.switchTab({
-      url: '/pages/index/index',
-    })
-  }, 1000)
-}
-
-// 查看协议
-const viewAgreement = (type: 'user' | 'privacy') => {
-  const title = type === 'user' ? '用户协议' : '隐私政策'
-  toast.info(`查看${title}`)
-  // 实际项目中可以跳转到对应的协议页面
 }
 </script>

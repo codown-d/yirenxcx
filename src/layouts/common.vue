@@ -1,7 +1,11 @@
 <template>
   <wd-config-provider :themeVars="theme">
     <scroll-view :scroll-y="true" class="h-[100%]" @scroll="handleScroll">
-      <view class="container" :style="`background-color:${style.backgroundColor}`">
+      <view
+        class="container"
+        :style="`background: linear-gradient(180deg, rgba(56, 200, 164, 0.25) 0%, rgba(56, 200, 164, 0) 10%);
+`"
+      >
         <wd-navbar
           :bordered="false"
           :title="title"
