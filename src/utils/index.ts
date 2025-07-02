@@ -1,5 +1,9 @@
 import pagesConfig from '@/pages.json'
 import { isMpWeixin } from './platform'
+import { debounce } from 'wot-design-uni/components/common/util'
+import { useUserStore } from '@/store'
+import dayjs from 'dayjs'
+export * from './system'
 
 const { pages, subPackages, tabBar = { list: [] } } = { ...pagesConfig }
 
@@ -197,4 +201,68 @@ export const getEnvBaseUploadUrl = () => {
   }
 
   return baseUploadUrl
+}
+
+export const timeFormat = (time: number, format = 'YYYY年MM月DD HH:mm:ss') => {
+  return dayjs(time).format(format)
+}
+
+export const switchTab = (url: string) => {
+  uni.switchTab({
+    url: `/pages${url}`,
+  })
+}
+export const reLaunch = (url: string) => {
+  uni.reLaunch({
+    url: `/pages${url}`,
+  })
+}
+
+export const redirectTo = (url: string, prefix = '/pages') => {
+  uni.redirectTo({ url: `${prefix}${url}` })
+}
+export const isLogined = () => {
+  const userStore = useUserStore()
+  return userStore.isLogined
+}
+
+export const goLogin = () => {
+  navigateToSub('/login/login')
+}
+export const navigateBack = () => {
+  uni.navigateBack()
+}
+export const navigateTo = (url: string, prefix = '/pages', callback?: (result: any) => void) => {
+  console.log(`${prefix}${url}`)
+  uni.navigateTo({
+    url: `${prefix}${url}`,
+    success: (res) => {
+      callback?.(res)
+    },
+  })
+}
+
+export const navigateToSub = (url: string) => {
+  navigateTo(url, '/pages-sub')
+}
+
+export function replacePhoneNumber(phoneNumber, model = '****') {
+  return (phoneNumber + '').replace(/(\d{3})(\d{4})(\d{4})/, `$1${model}$3`)
+}
+export const showToast = debounce((mag: string) => {
+  // 这里可以执行 API 请求
+  uni.showToast({
+    icon: 'none',
+    title: mag || '请求错误',
+  })
+}, 500)
+export function formatNumber(data: number, fixed = 2): { num: string; unit: string } {
+  const num = Number(data) || 0
+  if (num < 10000) {
+    return { num: num + '', unit: '' }
+  } else if (num < 100000000) {
+    return { num: (num / 10000).toFixed(fixed), unit: '万元' }
+  } else {
+    return { num: (num / 100000000).toFixed(fixed), unit: '亿元' }
+  }
 }

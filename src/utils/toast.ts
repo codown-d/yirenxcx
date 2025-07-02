@@ -62,4 +62,6 @@ export const toast = {
     showToast({ ...options, type: 'warning', message }),
   info: (message: string, options?: Omit<ToastOptions, 'type'>) =>
     showToast({ ...options, type: 'info', message }),
+  loading: (message: string, options?: Omit<ToastOptions, 'type'>) =>
+    showToast({ ...options, type: 'info', icon: 'loading', message }),
 }

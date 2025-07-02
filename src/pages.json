@@ -39,7 +39,7 @@
       {
         "iconPath": "static/tabbar/personal.png",
         "selectedIconPath": "static/tabbar/personalHL.png",
-        "pagePath": "pages/mine/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的"
       }
     ]
@@ -63,48 +63,69 @@
     },
     {
       "path": "pages/forum/index",
-      "type": "page"
-    },
-    {
-      "path": "pages/login/index",
       "type": "page",
       "style": {
-        "navigationBarTitleText": "登录",
+        "navigationBarTitleText": "论坛",
         "navigationStyle": "custom"
       }
     },
     {
       "path": "pages/message/index",
-      "type": "page"
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "消息",
+        "navigationStyle": "custom"
+      }
     },
     {
-      "path": "pages/mine/index",
+      "path": "pages/mine/mine",
       "type": "page",
       "style": {
         "navigationBarTitleText": "我的"
       }
     },
     {
-      "path": "pages/mine/about/index",
+      "path": "pages/test-login/index",
+      "type": "page"
+    },
+    {
+      "path": "pages/index/job-search/job-search",
       "type": "page",
       "style": {
-        "navigationBarTitleText": "关于我们"
+        "navigationBarTitleText": "求职",
+        "navigationStyle": "custom"
       }
     },
     {
-      "path": "pages/mine/info/index",
+      "path": "pages/index/recruitment/recruitment",
       "type": "page",
       "style": {
-        "navigationBarTitleText": "个人资料"
-      }
-    },
-    {
-      "path": "pages/mine/password/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "修改密码"
+        "navigationBarTitleText": "招聘",
+        "navigationStyle": "custom"
       }
     }
   ],
-  "subPackages": []
+  "subPackages": [
+    {
+      "root": "pages-sub",
+      "pages": [
+        {
+          "path": "demo/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "分包页面 标题"
+          }
+        },
+        {
+          "path": "login/login",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": " ",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    }
+  ]
 }

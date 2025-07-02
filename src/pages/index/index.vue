@@ -31,6 +31,7 @@
 </template>
 
 <script lang="ts" setup>
+import { navigateToSub } from '@/utils'
 import PLATFORM from '@/utils/platform'
 
 defineOptions({
