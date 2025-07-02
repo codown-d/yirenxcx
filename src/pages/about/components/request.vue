@@ -1,6 +1,6 @@
 <route lang="json5">
 {
-  layout: 'demo',
+  layout: 'common',
   style: {
     navigationBarTitleText: '请求',
   },

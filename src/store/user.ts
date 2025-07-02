@@ -88,6 +88,7 @@ export const useUserStore = defineStore(
       getUserInfo()
       return res
     }
+    let isLogined = computed(() => !!userInfo.value.token)
 
     return {
       userInfo,
@@ -95,6 +96,7 @@ export const useUserStore = defineStore(
       wxLogin,
       getUserInfo,
       logout,
+      isLogined: isLogined.value,
     }
   },
   {

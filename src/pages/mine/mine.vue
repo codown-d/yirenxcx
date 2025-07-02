@@ -91,6 +91,7 @@ import { useToast } from 'wot-design-uni'
 import { uploadFileUrl, useUpload } from '@/utils/uploadFile'
 import { storeToRefs } from 'pinia'
 import { IUploadSuccessInfo } from '@/api/login.typings'
+import { navigateToSub } from '@/utils'
 
 const userStore = useUserStore()
 
@@ -119,11 +120,11 @@ const handleLogin = async () => {
   // #ifdef MP-WEIXIN
 
   // 微信登录
-  await userStore.wxLogin()
-  hasLogin.value = true
+  navigateToSub('/login/login')
+  // await userStore.wxLogin()
+  // hasLogin.value = true
   // #endif
   // #ifndef MP-WEIXIN
-  uni.navigateTo({ url: '/pages/login/index' })
   // #endif
 }
 
