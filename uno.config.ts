@@ -50,7 +50,19 @@ export default defineConfig({
   theme: {
     colors: {
       /** 主题色，用法如: text-primary */
-      primary: '#248069',
+      primary: {
+        DEFAULT: '#248069',
+        50: '#e6f4f1',
+        100: '#cce9e3',
+        200: '#99d3c6',
+        300: '#66bda9',
+        400: '#33a78c',
+        500: '#248069', // 主色
+        600: '#1e6e5a',
+        700: '#185c4b',
+        800: '#124a3c',
+        900: '#0c382d',
+      },
     },
     fontSize: {
       /** 提供更小号的字体，用法如：text-2xs */

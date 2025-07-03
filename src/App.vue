@@ -56,4 +56,7 @@ image {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.wd-navbar__left .wd-navbar__text {
+  color: inherit;
+}
 </style>

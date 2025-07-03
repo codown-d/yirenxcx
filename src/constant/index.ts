@@ -9,6 +9,9 @@ export * from './login'
 export * from './images'
 export * from './themeVars'
 
+// 招聘相关常量
+export * from './recruitment'
+
 // 应用基础配置
 export const APP_CONFIG = {
   name: '意仁直聘',

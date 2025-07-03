@@ -48,10 +48,13 @@
     {
       "path": "pages/index/index",
       "type": "home",
+      "layout": "common",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
-      }
+        "navigationBarTitleText": "意仁直聘",
+        "leftTextClass": "font-bold text-primary"
+      },
+      "isTab": true
     },
     {
       "path": "pages/about/about",
