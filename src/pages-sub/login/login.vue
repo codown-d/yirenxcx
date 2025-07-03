@@ -5,6 +5,7 @@
     navigationBarTitleText: ' ',
     navigationStyle: 'custom',
   },
+  
 }
 </route>
 
