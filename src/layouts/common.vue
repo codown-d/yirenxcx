@@ -2,7 +2,7 @@
   <wd-config-provider :themeVars="theme">
     <view
       class="text-[#252525]"
-      :style="`background: linear-gradient(180deg, rgba(56, 200, 164, 0.25) 0%, rgba(56, 200, 164, 0) 20%,rgba(245, 246, 250, 1) 50%);`"
+      :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 20%,rgba(245, 246, 250, 1) 50%);'"
     >
       <scroll-view :scroll-y="true" class="h-100vh" @scroll="handleScroll">
         <wd-navbar

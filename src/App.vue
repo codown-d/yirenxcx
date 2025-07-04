@@ -59,4 +59,7 @@ image {
 .wd-navbar__left .wd-navbar__text {
   color: inherit;
 }
+.bg-linear {
+  background: linear-gradient(180deg, rgba(56, 200, 164, 0.25) 0%, rgba(56, 200, 164, 0) 20%);
+}
 </style>

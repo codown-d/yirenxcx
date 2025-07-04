@@ -57,6 +57,14 @@
       "isTab": true
     },
     {
+      "path": "pages/jobseeker",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "切换为招聘方",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/about/about",
       "type": "page",
       "style": {
@@ -83,12 +91,24 @@
     {
       "path": "pages/mine/mine",
       "type": "page",
+      "layout": "default",
       "style": {
-        "navigationBarTitleText": "我的"
-      }
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "意仁直聘",
+        "leftTextClass": "font-bold text-primary"
+      },
+      "isTab": true
     },
     {
       "path": "pages/test-login/index",
+      "type": "page"
+    },
+    {
+      "path": "pages/test-my-collections/index",
+      "type": "page"
+    },
+    {
+      "path": "pages/test-my-follows/index",
       "type": "page"
     },
     {
@@ -109,27 +129,6 @@
       "style": {
         "navigationBarTitleText": "招聘",
         "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/test-role-switch/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "角色切换测试"
-      }
-    },
-    {
-      "path": "pages/test-my-follows/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "我的关注测试"
-      }
-    },
-    {
-      "path": "pages/test-my-collections/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "我的收藏测试"
       }
     }
   ],
@@ -154,10 +153,10 @@
           }
         },
         {
-          "path": "role-switch/index",
+          "path": "my-collections/index",
           "type": "page",
           "style": {
-            "navigationBarTitleText": "切换身份",
+            "navigationBarTitleText": "我的收藏",
             "navigationStyle": "custom"
           }
         },
@@ -170,10 +169,10 @@
           }
         },
         {
-          "path": "my-collections/index",
+          "path": "role-switch/index",
           "type": "page",
           "style": {
-            "navigationBarTitleText": "我的收藏",
+            "navigationBarTitleText": "切换身份",
             "navigationStyle": "custom"
           }
         }

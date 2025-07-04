@@ -22,8 +22,8 @@
 
     <!-- 收藏列表 -->
     <view class="px-8 py-4">
-      <view 
-        v-for="(item, index) in collectionList" 
+      <view
+        v-for="(item, index) in collectionList"
         :key="item.id"
         class="bg-white rounded-4 p-6 mb-4 shadow-sm"
       >
@@ -34,8 +34,8 @@
               <text class="text-9 font-semibold text-gray-800 mr-3">{{ item.jobTitle }}</text>
               <!-- 职位标签 -->
               <view class="flex gap-2">
-                <text 
-                  v-for="tag in item.tags" 
+                <text
+                  v-for="tag in item.tags"
                   :key="tag"
                   class="px-2 py-1 text-3 rounded-1"
                   :class="getTagClass(tag)"
@@ -44,7 +44,7 @@
                 </text>
               </view>
             </view>
-            
+
             <!-- 公司信息 -->
             <view class="flex items-center mb-3">
               <wd-icon name="building" size="14px" class="text-gray-400 mr-2" />
@@ -52,11 +52,11 @@
               <wd-icon name="location" size="14px" class="text-gray-400 mr-2" />
               <text class="text-7 text-gray-600">{{ item.location }}</text>
             </view>
-            
+
             <!-- 收藏时间 -->
             <view class="text-5 text-gray-400">{{ item.collectionTime }}收藏</view>
           </view>
-          
+
           <!-- 薪资和申请按钮 -->
           <view class="flex flex-col items-end">
             <text class="text-9 font-bold text-green-600 mb-4">{{ item.salary }}</text>
@@ -74,20 +74,18 @@
     </view>
 
     <!-- 空状态 -->
-    <view v-if="collectionList.length === 0" class="flex flex-col items-center justify-center py-32">
-      <image 
-        src="/static/images/empty-collection.png" 
-        mode="aspectFit" 
+    <view
+      v-if="collectionList.length === 0"
+      class="flex flex-col items-center justify-center py-32"
+    >
+      <image
+        src="/static/images/empty-collection.png"
+        mode="aspectFit"
         class="w-32 h-32 mb-6 opacity-60"
       />
       <text class="text-7 text-gray-500 mb-4">暂无收藏的职位</text>
       <text class="text-6 text-gray-400">去发现更多心仪职位吧</text>
-      <wd-button
-        type="primary"
-        size="medium"
-        @click="goToJobList"
-        class="mt-8 h-10 px-8 rounded-3"
-      >
+      <wd-button type="primary" size="medium" @click="goToJobList" class="mt-8 h-10 px-8 rounded-3">
         去找工作
       </wd-button>
     </view>
@@ -116,7 +114,7 @@
       v-model="showUnCollectConfirm"
       type="confirm"
       title="取消收藏"
-      :content="`确定要取消收藏"${selectedJob?.jobTitle}"吗？`"
+      :content="'确定要取消收藏吗？'"
       confirm-button-text="确认"
       cancel-button-text="取消"
       @confirm="handleUnCollect"
@@ -152,31 +150,30 @@ const goBack = () => {
 // 加载收藏列表
 const loadCollectionList = async (isLoadMore = false) => {
   if (loading.value) return
-  
+
   try {
     loading.value = true
-    
+
     // 模拟API请求
-    await new Promise(resolve => setTimeout(resolve, 800))
-    
+    await new Promise((resolve) => setTimeout(resolve, 800))
+
     // 模拟分页数据
     const startIndex = (currentPage.value - 1) * pageSize
     const endIndex = startIndex + pageSize
     const newData = MOCK_COLLECTION_DATA.slice(startIndex, endIndex)
-    
+
     if (isLoadMore) {
       collectionList.value = [...collectionList.value, ...newData]
     } else {
       collectionList.value = newData
     }
-    
+
     // 判断是否还有更多数据
     hasMore.value = endIndex < MOCK_COLLECTION_DATA.length
-    
+
     if (newData.length > 0) {
       currentPage.value++
     }
-    
   } catch (error) {
     toast.error('加载失败，请重试')
   } finally {
@@ -216,14 +213,14 @@ const showUnCollectDialog = (job: any) => {
 // 处理取消收藏
 const handleUnCollect = () => {
   if (!selectedJob.value) return
-  
+
   // 从列表中移除
-  const index = collectionList.value.findIndex(item => item.id === selectedJob.value.id)
+  const index = collectionList.value.findIndex((item) => item.id === selectedJob.value.id)
   if (index > -1) {
     collectionList.value.splice(index, 1)
     toast.success('已取消收藏')
   }
-  
+
   showUnCollectConfirm.value = false
   selectedJob.value = null
 }
@@ -231,12 +228,12 @@ const handleUnCollect = () => {
 // 获取标签样式
 const getTagClass = (tag: string) => {
   const tagStyles: Record<string, string> = {
-    '急招': 'bg-red-100 text-red-600',
-    '企业': 'bg-blue-100 text-blue-600',
-    '五险一金': 'bg-green-100 text-green-600',
-    '双休': 'bg-purple-100 text-purple-600',
-    '包住': 'bg-orange-100 text-orange-600',
-    '年终奖': 'bg-yellow-100 text-yellow-600'
+    急招: 'bg-red-100 text-red-600',
+    企业: 'bg-blue-100 text-blue-600',
+    五险一金: 'bg-green-100 text-green-600',
+    双休: 'bg-purple-100 text-purple-600',
+    包住: 'bg-orange-100 text-orange-600',
+    年终奖: 'bg-yellow-100 text-yellow-600',
   }
   return tagStyles[tag] || 'bg-gray-100 text-gray-600'
 }

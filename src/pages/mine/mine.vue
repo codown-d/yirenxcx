@@ -1,87 +1,17 @@
 <route lang="json5">
 {
+  layout: 'default',
   style: {
-    navigationBarTitleText: '我的',
+    navigationStyle: 'custom',
+    navigationBarTitleText: '意仁直聘',
+    leftTextClass: 'font-bold text-primary',
   },
+  isTab: true,
 }
 </route>
-
 <template>
-  <view class="profile-container">
-    {{ JSON.stringify(userStore.userInfo) }}
-    <!-- 用户信息区域 -->
-    <view class="user-info-section">
-      <!-- #ifdef MP-WEIXIN -->
-      <button class="avatar-button" open-type="chooseAvatar" @chooseavatar="onChooseAvatar">
-        <wd-img :src="userStore.userInfo.avatar" width="80px" height="80px" radius="50%"></wd-img>
-      </button>
-      <!-- #endif -->
-      <!-- #ifndef MP-WEIXIN -->
-      <view class="avatar-wrapper" @click="run">
-        <wd-img :src="userStore.userInfo.avatar" width="100%" height="100%" radius="50%"></wd-img>
-      </view>
-      <!-- #endif -->
-      <view class="user-details">
-        <!-- #ifdef MP-WEIXIN -->
-        <input
-          type="nickname"
-          class="weui-input"
-          placeholder="请输入昵称"
-          v-model="userStore.userInfo.username"
-        />
-        <!-- #endif -->
-        <!-- #ifndef MP-WEIXIN -->
-        <view class="username">{{ userStore.userInfo.username }}</view>
-        <!-- #endif -->
-        <view class="user-id">ID: {{ userStore.userInfo.id }}</view>
-      </view>
-    </view>
-
-    <!-- 功能区块 -->
-    <view class="function-section">
-      <view class="cell-group">
-        <view class="group-title">账号管理</view>
-        <wd-cell title="个人资料" is-link @click="handleProfileInfo">
-          <template #icon>
-            <wd-icon name="user" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-        <wd-cell title="账号安全" is-link @click="handlePassword">
-          <template #icon>
-            <wd-icon name="lock-on" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-      </view>
-
-      <view class="cell-group">
-        <view class="group-title">通用设置</view>
-        <wd-cell title="消息通知" is-link @click="handleInform">
-          <template #icon>
-            <wd-icon name="notification" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-        <wd-cell title="清理缓存" is-link @click="handleClearCache">
-          <template #icon>
-            <wd-icon name="clear" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-        <wd-cell title="应用更新" is-link @click="handleAppUpdate">
-          <template #icon>
-            <wd-icon name="refresh1" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-        <wd-cell title="关于我们" is-link @click="handleAbout">
-          <template #icon>
-            <wd-icon name="info-circle" size="20px"></wd-icon>
-          </template>
-        </wd-cell>
-      </view>
-
-      <view class="logout-button-wrapper">
-        <wd-button type="error" v-if="hasLogin" block @click="handleLogout">退出登录</wd-button>
-        <wd-button type="primary" v-else block @click="handleLogin">登录</wd-button>
-      </view>
-    </view>
+  <view>
+    <jobseeker></jobseeker>
   </view>
 </template>
 
@@ -92,6 +22,7 @@ import { uploadFileUrl, useUpload } from '@/utils/uploadFile'
 import { storeToRefs } from 'pinia'
 import { IUploadSuccessInfo } from '@/api/login.typings'
 import { navigateToSub } from '@/utils'
+import jobseeker from './components/jobseeker.vue'
 
 const userStore = useUserStore()
 
@@ -252,117 +183,3 @@ const handleLogout = () => {
   })
 }
 </script>
-
-<style lang="scss" scoped>
-/* 基础样式 */
-.profile-container {
-  overflow: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-  background-color: #f7f8fa;
-}
-/* 用户信息区域 */
-.user-info-section {
-  display: flex;
-  align-items: center;
-  padding: 40rpx;
-  margin: 30rpx 30rpx 20rpx;
-  background-color: #fff;
-  border-radius: 24rpx;
-  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
-
-.avatar-wrapper {
-  width: 160rpx;
-  height: 160rpx;
-  margin-right: 40rpx;
-  overflow: hidden;
-  border: 4rpx solid #f5f5f5;
-  border-radius: 50%;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
-}
-.avatar-button {
-  height: 160rpx;
-  padding: 0;
-  margin-right: 40rpx;
-  overflow: hidden;
-  border: 4rpx solid #f5f5f5;
-  border-radius: 50%;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
-}
-.user-details {
-  flex: 1;
-}
-
-.username {
-  margin-bottom: 12rpx;
-  font-size: 38rpx;
-  font-weight: 600;
-  color: #333;
-  letter-spacing: 0.5rpx;
-}
-
-.user-id {
-  font-size: 28rpx;
-  color: #666;
-}
-
-.user-created {
-  margin-top: 8rpx;
-  font-size: 24rpx;
-  color: #999;
-}
-/* 功能区块 */
-.function-section {
-  padding: 0 20rpx;
-  margin-top: 20rpx;
-}
-
-.cell-group {
-  margin-bottom: 20rpx;
-  overflow: hidden;
-  background-color: #fff;
-  border-radius: 16rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
-}
-
-.group-title {
-  padding: 24rpx 30rpx 16rpx;
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #999;
-  background-color: #fafafa;
-}
-
-:deep(.wd-cell) {
-  border-bottom: 1rpx solid #f5f5f5;
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  .wd-cell__title {
-    margin-left: 5px;
-    font-size: 32rpx;
-    color: #333;
-  }
-
-  .cell-icon {
-    margin-right: 20rpx;
-    font-size: 36rpx;
-  }
-}
-/* 退出登录按钮 */
-.logout-button-wrapper {
-  padding: 40rpx 30rpx;
-}
-
-:deep(.wd-button--danger) {
-  height: 88rpx;
-  font-size: 32rpx;
-  line-height: 88rpx;
-  color: #fff;
-  background-color: #f53f3f;
-  border-radius: 44rpx;
-}
-</style>
