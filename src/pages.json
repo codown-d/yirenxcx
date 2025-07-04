@@ -92,6 +92,10 @@
       "type": "page"
     },
     {
+      "path": "pages/test-role-switch/index",
+      "type": "page"
+    },
+    {
       "path": "pages/index/job-search/job-search",
       "type": "page",
       "style": {
@@ -105,6 +109,27 @@
       "style": {
         "navigationBarTitleText": "招聘",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/test-role-switch/index",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "角色切换测试"
+      }
+    },
+    {
+      "path": "pages/test-my-follows/index",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "我的关注测试"
+      }
+    },
+    {
+      "path": "pages/test-my-collections/index",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "我的收藏测试"
       }
     }
   ],
@@ -125,6 +150,30 @@
           "layout": "common",
           "style": {
             "navigationBarTitleText": " ",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "role-switch/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "切换身份",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "my-follows/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "我的关注",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "my-collections/index",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "我的收藏",
             "navigationStyle": "custom"
           }
         }

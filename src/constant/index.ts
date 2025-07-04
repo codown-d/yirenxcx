@@ -7,6 +7,15 @@ export * from './login'
 
 // 图片资源常量
 export * from './images'
+
+// 角色切换相关常量
+export * from './role-switch'
+
+// 我的关注相关常量
+export * from './my-follows'
+
+// 我的收藏相关常量
+export * from './my-collections'
 export * from './themeVars'
 
 // 招聘相关常量
@@ -22,8 +31,7 @@ export const APP_CONFIG = {
 
 // API 相关常量
 export const API_CONFIG = {
-  baseURL:
-    process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.yiren.com',
+  baseURL: import.meta.env.DEV ? 'http://localhost:3000' : 'https://api.yiren.com',
   timeout: 10000,
   retryTimes: 3,
 }
