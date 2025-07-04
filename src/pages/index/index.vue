@@ -33,13 +33,7 @@
 
     <!-- 招聘横幅 -->
     <view class="relative my-3 rounded-3 overflow-hidden h-40">
-      <view class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500"></view>
-      <view
-        class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-30"
-      >
-        <text class="text-8 font-bold text-white mb-2 tracking-wider">JOIN US</text>
-        <text class="text-4 text-white opacity-90">加入我们</text>
-      </view>
+      <wd-swiper :list="swiperList" autoplay @click="handleClick"></wd-swiper>
     </view>
 
     <!-- 筛选标签 -->
@@ -49,7 +43,7 @@
           <view
             v-for="tag in filterTags"
             :key="tag.id"
-            class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white whitespace-nowrap transition-all duration-200"
+            class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
             :class="{
               '!bg-primary-100 text-primary': activeFilterTag === tag.id,
               'text-gray-600': activeFilterTag !== tag.id,
@@ -117,7 +111,16 @@ const filteredJobs = computed(() => {
   // 这里可以根据不同的筛选条件进行过滤
   return jobList.value
 })
-
+const swiperList = ref([
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/redpanda.jpg',
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/panda.jpg',
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/moon.jpg',
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/meng.jpg',
+])
+function handleClick(e) {
+  console.log(e)
+}
 // 方法
 const handleSearch = () => {
   if (!searchKeyword.value.trim()) {
