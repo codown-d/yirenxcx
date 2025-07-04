@@ -6,13 +6,14 @@
           :bordered="false"
           :left-arrow="!isTab"
           :left-text="title"
-          :custom-class="` ${style.leftTextClass}`"
+          :custom-class="` ${style.className}`"
           fixed
           @click-left="handleClickLeft"
           safeAreaInsetTop
           :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
         ></wd-navbar>
         <view
+          class="bg-transparent"
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',
           }"

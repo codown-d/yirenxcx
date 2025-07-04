@@ -11,7 +11,7 @@
 }
 </route>
 <template>
-  <view class="min-h-screen pb-4 px-4">
+  <view class="min-h-screen px-4">
     <!-- 搜索栏 -->
     <view class="mt-2">
       <view
@@ -43,31 +43,29 @@
     </view>
 
     <!-- 筛选标签 -->
-    <view class="mb-2">
-      <scroll-view class="whitespace-nowrap" scroll-x>
-        <view class="flex items-center justify-between px-4">
-          <view class="flex gap-3">
-            <view
-              v-for="tag in filterTags"
-              :key="tag.id"
-              class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white whitespace-nowrap transition-all duration-200"
-              :class="{
-                '!bg-primary-100 text-primary': activeFilterTag === tag.id,
-                'text-gray-600': activeFilterTag !== tag.id,
-              }"
-              @click="handleFilterChange(tag.id)"
-            >
-              <wd-icon name="camera" size="22px"></wd-icon>
-              <text class="text-sm">{{ tag.label }}</text>
-            </view>
-          </view>
-          <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
-            <wd-icon name="filter" size="22px"></wd-icon>
-            <text class="text-sm">筛选</text>
+    <scroll-view class="whitespace-nowrap" scroll-x>
+      <view class="flex items-center justify-between">
+        <view class="flex gap-3">
+          <view
+            v-for="tag in filterTags"
+            :key="tag.id"
+            class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white whitespace-nowrap transition-all duration-200"
+            :class="{
+              '!bg-primary-100 text-primary': activeFilterTag === tag.id,
+              'text-gray-600': activeFilterTag !== tag.id,
+            }"
+            @click="handleFilterChange(tag.id)"
+          >
+            <wd-icon name="camera" size="22px"></wd-icon>
+            <text class="text-sm">{{ tag.label }}</text>
           </view>
         </view>
-      </scroll-view>
-    </view>
+        <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
+          <wd-icon name="filter" size="22px"></wd-icon>
+          <text class="text-sm">筛选</text>
+        </view>
+      </view>
+    </scroll-view>
     <!-- 推荐招聘职位标题 -->
     <view class="py-4">
       <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
@@ -82,6 +80,8 @@
         @favorite="handleJobFavorite"
       />
     </view>
+    <!-- 底部安全区域 -->
+    <view class="pb-safe"></view>
   </view>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <view class="min-h-screen">
+  <view>
     <!-- 用户信息卡片 -->
-    <view class="mx-3 mt-2 rounded-4 p-4 shadow-sm bg-linear">
+    <view class="mx-3 mt-2 mb-3 rounded-2 p-4 shadow-sm bg-linear">
       <view class="flex items-center mb-4">
         <image :src="userInfo.avatar" mode="aspectFill" class="mr-4 w-20 h-20 rounded-full" />
         <view class="flex-1">
@@ -26,7 +26,7 @@
         <view class="flex flex-wrap gap-2 mb-3 mt-2">
           <wd-tag
             v-for="(tag, index) in userInfo.skills"
-            custom-class="!text-4 !text-[#555555] !px-2"
+            custom-class="!text-3 !text-[#555555] !px-2 !py-1"
             bg-color="#F5F6FA"
             :key="index"
           >
@@ -36,18 +36,18 @@
       </view>
 
       <!-- 基本信息 -->
-      <view class="flex items-center text-3 text-gray-500 space-x-6">
+      <view class="flex items-center text-gray-500 justify-between">
         <view class="flex items-center">
-          <wd-icon name="time" size="20px" class="mr-1" />
-          <text>{{ userInfo.experience }}</text>
+          <wd-icon name="time" custom-class="mr-1 text-4"></wd-icon>
+          <text class="text-3">{{ userInfo.experience }}</text>
         </view>
         <view class="flex items-center">
-          <wd-icon name="school" size="20px" class="mr-1" />
-          <text>{{ userInfo.education }}</text>
+          <wd-icon name="school" custom-class="mr-1 text-4"></wd-icon>
+          <text class="text-3">{{ userInfo.education }}</text>
         </view>
         <view class="flex items-center">
-          <wd-icon name="location" size="20px" class="mr-1" />
-          <text>{{ userInfo.location }}</text>
+          <wd-icon name="location" custom-class="mr-1 text-4"></wd-icon>
+          <text class="text-3">{{ userInfo.location }}</text>
         </view>
       </view>
       <wd-divider custom-class="!mx-0 !px-0"></wd-divider>
@@ -55,116 +55,109 @@
       <view class="flex justify-between">
         <view class="text-center flex-1">
           <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.browsed }}</text>
-          <text class="text-4 text-gray-500">简历浏览</text>
+          <text class="text-3 text-gray-500">简历浏览</text>
         </view>
         <view class="text-center flex-1">
           <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.followed }}</text>
-          <text class="text-4 text-gray-500">获得关注</text>
+          <text class="text-3 text-gray-500">获得关注</text>
         </view>
         <view class="text-center flex-1">
           <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.applied }}</text>
-          <text class="text-4 text-gray-500">投递简历</text>
+          <text class="text-3 text-gray-500">投递简历</text>
         </view>
         <view class="text-center flex-1">
           <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.interviewed }}</text>
-          <text class="text-4 text-gray-500">面试邀请</text>
+          <text class="text-3 text-gray-500">面试邀请</text>
         </view>
       </view>
     </view>
 
     <!-- 快捷功能 -->
-    <view class="mx-8 mb-6">
-      <view class="flex items-center mb-4">
-        <wd-icon name="heart" size="16px" class="text-gray-600 mr-2" />
-        <text class="text-7 font-medium text-gray-600">我的关注</text>
+    <view class="mx-3 mb-3 flex items-center justify-between bg-white rounded-2 px-4 py-4">
+      <view class="flex items-center gap-2 flex-col" @click="goToMyFollows">
+        <wd-icon name="heart" custom-class="text-gray-600 text-7" />
+        <text class="text-4 font-medium text-gray-600">我的关注</text>
       </view>
-      <view class="flex items-center mb-4">
-        <wd-icon name="star" size="16px" class="text-gray-600 mr-2" />
-        <text class="text-7 font-medium text-gray-600">我的收藏</text>
+      <wd-divider vertical></wd-divider>
+      <view class="flex items-center gap-2 flex-col" @click="goToMyCollections">
+        <wd-icon name="star" custom-class="text-gray-600 text-7" />
+        <text class="text-4 font-medium text-gray-600">我的收藏</text>
       </view>
-      <view class="flex items-center">
-        <wd-icon name="share" size="16px" class="text-gray-600 mr-2" />
-        <text class="text-7 font-medium text-gray-600">我的足迹</text>
+
+      <wd-divider vertical></wd-divider>
+      <view class="flex items-center gap-2 flex-col">
+        <wd-icon name="share" custom-class="text-gray-600 text-7" />
+        <text class="text-4 font-medium text-gray-600">我的足迹</text>
       </view>
     </view>
 
     <!-- VIP会员服务 -->
     <view
-      class="mx-8 mb-6 bg-gradient-to-r from-gray-800 to-gray-600 rounded-6 p-6 text-white relative overflow-hidden"
+      class="mx-3 mb-3 bg-gradient-to-r from-gray-800 to-gray-600 rounded-2 p-4 text-white relative overflow-hidden"
+      :style="`background: linear-gradient(90deg, #38342b 0%, #1f1b18 100%)`"
     >
-      <!-- 背景装饰 -->
       <view
         class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-16 -mt-16"
       ></view>
-
-      <view class="flex items-center justify-between">
-        <view class="flex-1">
-          <text class="text-8 font-bold block mb-2">VIP会员服务</text>
-          <text class="text-6 opacity-80">
-            专享权益：简历置顶-查看谁看过我-优先沟通-专属职位推荐
-          </text>
+      <view class="">
+        <view class="flex items-center justify-between">
+          <text class="text-4 font-bold block mb-2 text-[#F2E6D4]">VIP会员服务</text>
+          <wd-button
+            size="small"
+            @click="upgradeVip"
+            custom-class="!text-3 !h-6  !bg-[#F3D799] !text-[#543509] !bg-gradient-to-r !from-[#FEEDCD]  !to-[#F3D799]"
+          >
+            去升级
+          </wd-button>
         </view>
-        <wd-button
-          type="warning"
-          size="small"
-          @click="upgradeVip"
-          class="h-8 px-4 text-6 rounded-3 bg-orange-400 border-orange-400"
-        >
-          去升级
-        </wd-button>
+        <text class="text-3 text-[#DBD6D3]">
+          专享权益：简历置顶-查看谁看过我-优先沟通-专属职位推荐
+        </text>
       </view>
     </view>
 
     <!-- 功能按钮 -->
-    <view class="mx-8 mb-6">
-      <view class="flex justify-between">
-        <view class="flex-1 mr-4">
-          <wd-button
-            type="success"
-            size="large"
-            block
-            @click="previewResume"
-            class="h-12 rounded-4 text-7 bg-teal-500 border-teal-500"
-          >
-            <wd-icon name="file-text" size="16px" class="mr-2" />
-            预览简历
-          </wd-button>
+    <view class="mx-3 mb-3">
+      <view class="flex justify-between gap-2">
+        <view
+          @click="previewResume"
+          class="flex-1 flex justify-center items-center bg-linear-100 h-14 rounded-2 text-4 gap-3"
+        >
+          <wd-icon name="file-text" custom-class="mr-2" />
+          <text>预览简历</text>
         </view>
-        <view class="flex-1">
-          <wd-button
-            type="success"
-            size="large"
-            block
-            @click="publishJob"
-            class="h-12 rounded-4 text-7 bg-green-500 border-green-500"
-          >
-            <wd-icon name="arrow-up" size="16px" class="mr-2" />
-            发布求职
-          </wd-button>
+        <view
+          @click="publishJob"
+          class="flex-1 flex justify-center items-center bg-linear-100 h-14 rounded-2 text-4 gap-3"
+        >
+          <wd-icon name="arrow-up" custom-class="mr-2" />
+          <text>发布求职</text>
         </view>
       </view>
     </view>
 
     <!-- 其他功能 -->
-    <view class="mx-8 mb-6 bg-white rounded-6 shadow-sm">
-      <text class="text-7 font-medium text-gray-800 block p-6 pb-4">其他功能</text>
-
-      <view class="flex justify-between px-6 pb-6">
-        <view class="text-center flex-1" @click="goToMyFollows">
-          <wd-icon name="heart" size="24px" class="text-gray-600 mb-2" />
-          <text class="text-6 text-gray-600 block">我的关注</text>
+    <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
+      <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
+      <view class="flex justify-between">
+        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToMyFollows">
+          <wd-icon name="heart" custom-class="text-gray-600 text-7" />
+          <text class="text-[28rpx] text-gray-600 block">我的关注</text>
         </view>
-        <view class="text-center flex-1" @click="goToContract">
-          <wd-icon name="file-text" size="24px" class="text-gray-600 mb-2" />
-          <text class="text-6 text-gray-600 block">违约公示</text>
+        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToContract">
+          <wd-icon name="setting" custom-class="text-gray-600 text-7" />
+          <text class="text-[28rpx] text-gray-600 block">违约公示</text>
         </view>
-        <view class="text-center flex-1" @click="goToSettings">
-          <wd-icon name="setting" size="24px" class="text-gray-600 mb-2" />
-          <text class="text-6 text-gray-600 block">设置</text>
+        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToSettings">
+          <wd-icon name="setting" custom-class="text-gray-600 text-7" />
+          <text class="text-[28rpx] text-gray-600 block">设置</text>
         </view>
-        <view class="text-center flex-1" @click="contactService">
-          <wd-icon name="customer-service" size="24px" class="text-gray-600 mb-2" />
-          <text class="text-6 text-gray-600 block">联系客服</text>
+        <view
+          class="flex items-center justify-center flex-col flex-1 gap-2"
+          @click="contactService"
+        >
+          <wd-icon name="phone" custom-class="text-gray-600 text-7" />
+          <text class="text-[28rpx] text-gray-600 block">联系客服</text>
         </view>
       </view>
     </view>
@@ -178,6 +171,7 @@
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
+import { navigateToSub } from '@/utils'
 
 // 用户信息
 const userInfo = ref({
@@ -229,9 +223,10 @@ const publishJob = () => {
 
 // 跳转到我的关注
 const goToMyFollows = () => {
-  uni.navigateTo({
-    url: '/pages-sub/my-follows/index',
-  })
+  navigateToSub('/my-follows/my-follows')
+}
+const goToMyCollections = () => {
+  navigateToSub('/my-collections/my-collections')
 }
 
 // 违约公示

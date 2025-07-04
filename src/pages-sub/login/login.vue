@@ -5,7 +5,6 @@
     navigationBarTitleText: ' ',
     navigationStyle: 'custom',
   },
-  
 }
 </route>
 
@@ -36,6 +35,8 @@
         </view>
       </wd-checkbox>
     </view>
+    <!-- 底部安全区域 -->
+    <view class="pb-safe"></view>
   </view>
   <privacy-user
     :title="privacyInfo.title"

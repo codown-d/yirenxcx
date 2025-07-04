@@ -1,16 +1,23 @@
 <route lang="json5">
 {
-  layout: 'default',
+  layout: 'mine',
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '意仁直聘',
-    leftTextClass: 'font-bold text-primary',
+    navigationBarTitleText: '意仁直聘23',
   },
   isTab: true,
 }
 </route>
 <template>
-  <view>
+  <view class="h-full" style="background: rgba(245, 246, 250, 1)">
+    <wd-navbar :bordered="false" fixed safeAreaInsetTop>
+      <template #capsule>
+        <wd-button plain hairline size="small" @click="changeRole">
+          <wd-icon name="translate-bold" size="22px"></wd-icon>
+          切换为招聘方
+        </wd-button>
+      </template>
+    </wd-navbar>
     <jobseeker></jobseeker>
   </view>
 </template>
@@ -19,7 +26,6 @@
 import { useUserStore } from '@/store'
 import { useToast } from 'wot-design-uni'
 import { uploadFileUrl, useUpload } from '@/utils/uploadFile'
-import { storeToRefs } from 'pinia'
 import { IUploadSuccessInfo } from '@/api/login.typings'
 import { navigateToSub } from '@/utils'
 import jobseeker from './components/jobseeker.vue'
@@ -29,6 +35,9 @@ const userStore = useUserStore()
 const toast = useToast()
 const hasLogin = ref(false)
 
+const changeRole = () => {
+  navigateToSub('/role-switch/role-switch')
+}
 onShow((options) => {
   hasLogin.value = !!uni.getStorageSync('token')
   console.log('个人中心onShow', hasLogin.value, options)

@@ -57,14 +57,6 @@
       "isTab": true
     },
     {
-      "path": "pages/jobseeker",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "切换为招聘方",
-        "navigationStyle": "custom"
-      }
-    },
-    {
       "path": "pages/about/about",
       "type": "page",
       "style": {
@@ -91,29 +83,12 @@
     {
       "path": "pages/mine/mine",
       "type": "page",
-      "layout": "default",
+      "layout": "mine",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "意仁直聘",
-        "leftTextClass": "font-bold text-primary"
+        "navigationBarTitleText": "意仁直聘23"
       },
       "isTab": true
-    },
-    {
-      "path": "pages/test-login/index",
-      "type": "page"
-    },
-    {
-      "path": "pages/test-my-collections/index",
-      "type": "page"
-    },
-    {
-      "path": "pages/test-my-follows/index",
-      "type": "page"
-    },
-    {
-      "path": "pages/test-role-switch/index",
-      "type": "page"
     },
     {
       "path": "pages/index/job-search/job-search",
@@ -137,13 +112,6 @@
       "root": "pages-sub",
       "pages": [
         {
-          "path": "demo/index",
-          "type": "page",
-          "style": {
-            "navigationBarTitleText": "分包页面 标题"
-          }
-        },
-        {
           "path": "login/login",
           "type": "page",
           "layout": "common",
@@ -153,26 +121,29 @@
           }
         },
         {
-          "path": "my-collections/index",
+          "path": "my-collections/my-collections",
           "type": "page",
+          "layout": "common",
           "style": {
             "navigationBarTitleText": "我的收藏",
             "navigationStyle": "custom"
           }
         },
         {
-          "path": "my-follows/index",
+          "path": "my-follows/my-follows",
           "type": "page",
+          "layout": "common",
           "style": {
-            "navigationBarTitleText": "我的关注",
-            "navigationStyle": "custom"
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "我的关注"
           }
         },
         {
-          "path": "role-switch/index",
+          "path": "role-switch/role-switch",
           "type": "page",
+          "layout": "common",
           "style": {
-            "navigationBarTitleText": "切换身份",
+            "navigationBarTitleText": " ",
             "navigationStyle": "custom"
           }
         }
