@@ -13,24 +13,7 @@
 <template>
   <view class="min-h-screen px-4">
     <!-- 搜索栏 -->
-    <view class="mt-2">
-      <view
-        class="flex items-center bg-white rounded-2 px-2 py-1 gap-2 border border-primary/50 border-opacity-50 border-solid"
-      >
-        <wd-icon name="search" size="22px"></wd-icon>
-        <wd-input
-          custom-class="flex-1 text-sm text-gray-800 bg-transparent outline-none"
-          placeholder="搜索求职，专业"
-          v-model="searchKeyword"
-          no-border
-          @confirm="handleSearch"
-        />
-        <wd-button :round="false" size="small" custom-class="!rounded-1" @click="handleSearch">
-          搜索
-        </wd-button>
-      </view>
-    </view>
-
+    <search placeholder="请输入职位名称" class-name="mt-2" />
     <!-- 招聘横幅 -->
     <view class="relative my-3 rounded-3 overflow-hidden h-40">
       <wd-swiper :list="swiperList" autoplay @click="handleClick"></wd-swiper>
@@ -88,6 +71,7 @@ import {
   type JobPosition,
   type FilterTag,
 } from '@/constant/recruitment'
+import { navigateToSub } from '@/utils'
 
 defineOptions({
   name: 'RecruitmentHome',
@@ -120,23 +104,6 @@ const swiperList = ref([
 ])
 function handleClick(e) {
   console.log(e)
-}
-// 方法
-const handleSearch = () => {
-  if (!searchKeyword.value.trim()) {
-    uni.showToast({
-      title: '请输入搜索关键词',
-      icon: 'none',
-    })
-    return
-  }
-
-  // 执行搜索逻辑
-  console.log('搜索关键词:', searchKeyword.value)
-  uni.showToast({
-    title: `搜索: ${searchKeyword.value}`,
-    icon: 'none',
-  })
 }
 
 const handleFilterChange = (tagId: string) => {
@@ -183,19 +150,9 @@ const handleTabChange = (tabId: string) => {
       break
   }
 }
-
-const getTabIcon = (tabId: string) => {
-  const iconMap: Record<string, string> = {
-    recruit: 'staff',
-    message: 'chat',
-    forum: 'chatbubble',
-    mine: 'person',
-  }
-  return iconMap[tabId] || 'home'
-}
-
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
+  navigateToSub('/violation-notice/violation-notice')
 })
 </script>

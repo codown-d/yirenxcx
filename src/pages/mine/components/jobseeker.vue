@@ -5,14 +5,16 @@
       <view class="flex items-center mb-4">
         <image :src="userInfo.avatar" mode="aspectFill" class="mr-4 w-20 h-20 rounded-full" />
         <view class="flex-1">
-          <view class="flex items-center justify-between mb-2">
+          <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
             <view class="flex items-center">
               <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
               <view class="bg-[#FFDD7E] text-[#B16D00] text-[20rpx] px-2 py-1 rounded-full">
                 实名认证
               </view>
             </view>
-            <wd-icon name="arrow-right" size="22px"></wd-icon>
+            <view class="flex items-center gap-2">
+              <wd-icon name="arrow-right" size="22px"></wd-icon>
+            </view>
           </view>
           <text class="text-[22rpx] text-gray-500 block mb-1">
             资料完整度{{ userInfo.completeness }}%，完善资料获得更多机会
@@ -36,7 +38,7 @@
       </view>
 
       <!-- 基本信息 -->
-      <view class="flex items-center text-gray-500 justify-between">
+      <view class="flex items-center text-gray-500 justify-between mb-4">
         <view class="flex items-center">
           <wd-icon name="time" custom-class="mr-1 text-4"></wd-icon>
           <text class="text-3">{{ userInfo.experience }}</text>
@@ -50,9 +52,9 @@
           <text class="text-3">{{ userInfo.location }}</text>
         </view>
       </view>
-      <wd-divider custom-class="!mx-0 !px-0"></wd-divider>
+      <wd-divider></wd-divider>
       <!-- 统计数据 -->
-      <view class="flex justify-between">
+      <view class="flex justify-between mt-4">
         <view class="text-center flex-1">
           <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.browsed }}</text>
           <text class="text-3 text-gray-500">简历浏览</text>
@@ -119,18 +121,15 @@
     <!-- 功能按钮 -->
     <view class="mx-3 mb-3">
       <view class="flex justify-between gap-2">
-        <view
-          @click="previewResume"
-          class="flex-1 flex justify-center items-center bg-linear-100 h-14 rounded-2 text-4 gap-3"
-        >
-          <wd-icon name="file-text" custom-class="mr-2" />
-          <text>预览简历</text>
+        <view class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5">
+          <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
+          <text>简历预览</text>
         </view>
         <view
           @click="publishJob"
-          class="flex-1 flex justify-center items-center bg-linear-100 h-14 rounded-2 text-4 gap-3"
+          class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
         >
-          <wd-icon name="arrow-up" custom-class="mr-2" />
+          <image src="/static/images/fbqz.png" mode="scaleToFill" class="w-7 h-7" />
           <text>发布求职</text>
         </view>
       </view>
@@ -161,9 +160,6 @@
         </view>
       </view>
     </view>
-
-    <!-- 底部安全区域 -->
-    <view class="pb-safe"></view>
   </view>
 </template>
 
@@ -211,6 +207,11 @@ const upgradeVip = () => {
   toast.info('跳转到VIP升级页面')
 }
 
+// 跳转到在线简历
+const goToOnlineResume = () => {
+  navigateToSub('/online-resume/online-resume')
+}
+
 // 预览简历
 const previewResume = () => {
   toast.info('预览简历')
@@ -231,7 +232,7 @@ const goToMyCollections = () => {
 
 // 违约公示
 const goToContract = () => {
-  toast.info('违约公示')
+  navigateToSub('/violation-notice/violation-notice')
 }
 
 // 设置

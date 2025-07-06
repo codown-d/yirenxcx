@@ -139,11 +139,38 @@
           }
         },
         {
+          "path": "online-resume/online-resume",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "在线简历",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "profile-edit/profile-edit",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "个人资料",
+            "navigationStyle": "custom"
+          }
+        },
+        {
           "path": "role-switch/role-switch",
           "type": "page",
           "layout": "common",
           "style": {
             "navigationBarTitleText": " ",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "violation-notice/violation-notice",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "违规公示",
             "navigationStyle": "custom"
           }
         }

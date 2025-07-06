@@ -73,4 +73,24 @@ image {
 .wd-tag__text {
   white-space: nowrap !important;
 }
+.wd-card {
+  .wd-cell {
+    padding-left: 0rpx !important;
+  }
+  .wd-textarea {
+    padding: 0 !important;
+  }
+  .wd-cell__wrapper {
+    padding-right: 0px !important;
+    padding: 0rpx !important;
+  }
+}
+.wd-cell {
+  .wd-cell__wrapper {
+    align-items: center !important;
+  }
+  .wd-picker__cell {
+    padding-right: 0rpx !important;
+  }
+}
 </style>

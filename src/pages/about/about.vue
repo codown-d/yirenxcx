@@ -2,7 +2,7 @@
 {
   style: {
     navigationBarTitleText: '关于',
-    navigationStyle: 'custom', // 开启自定义导航栏
+    navigationStyle: 'custom',
   },
 }
 </route>
@@ -19,7 +19,6 @@
         <text class="text-red-500">菲鸽</text>
       </view>
       <view class="test-css">测试 scss 样式</view>
-      <RequestComp />
       <UploadComp />
     </view>
   </view>

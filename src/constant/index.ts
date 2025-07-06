@@ -21,6 +21,9 @@ export * from './themeVars'
 // 招聘相关常量
 export * from './recruitment'
 
+// 简历相关常量
+export * from './resume'
+
 // 应用基础配置
 export const APP_CONFIG = {
   name: '意仁直聘',
@@ -51,6 +54,12 @@ export const PAGE_PATHS = {
   HOME: '/pages/index/index',
   MINE: '/pages/mine/index',
   ABOUT: '/pages/about/about',
+  ONLINE_RESUME: '/pages-sub/online-resume/online-resume',
+  PROFILE_EDIT: '/pages-sub/profile-edit/profile-edit',
+  VIOLATION_NOTICE: '/pages-sub/violation-notice/violation-notice',
+  MY_COLLECTIONS: '/pages-sub/my-collections/my-collections',
+  MY_FOLLOWS: '/pages-sub/my-follows/my-follows',
+  ROLE_SWITCH: '/pages-sub/role-switch/role-switch',
 }
 
 // 状态码常量
