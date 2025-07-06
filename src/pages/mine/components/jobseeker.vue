@@ -219,7 +219,7 @@ const previewResume = () => {
 
 // 发布求职
 const publishJob = () => {
-  toast.info('发布求职信息')
+  navigateToSub('/publish-job-seeking/publish-job-seeking')
 }
 
 // 跳转到我的关注
@@ -237,7 +237,7 @@ const goToContract = () => {
 
 // 设置
 const goToSettings = () => {
-  toast.info('设置')
+  navigateToSub('/profile-settings/profile-settings')
 }
 
 // 联系客服

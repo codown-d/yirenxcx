@@ -33,6 +33,12 @@
       {
         "iconPath": "static/tabbar/example.png",
         "selectedIconPath": "static/tabbar/exampleHL.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
+      },
+      {
+        "iconPath": "static/tabbar/example.png",
+        "selectedIconPath": "static/tabbar/exampleHL.png",
         "pagePath": "pages/about/about",
         "text": "关于"
       },
@@ -73,8 +79,9 @@
       }
     },
     {
-      "path": "pages/message/index",
+      "path": "pages/message/message",
       "type": "page",
+      "layout": "mine",
       "style": {
         "navigationBarTitleText": "消息",
         "navigationStyle": "custom"
@@ -111,6 +118,14 @@
     {
       "root": "pages-sub",
       "pages": [
+        {
+          "path": "chat/chat",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "消息",
+            "navigationStyle": "default"
+          }
+        },
         {
           "path": "login/login",
           "type": "page",
@@ -153,6 +168,24 @@
           "layout": "common",
           "style": {
             "navigationBarTitleText": "个人资料",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "profile-settings/profile-settings",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "个人资料",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "publish-job-seeking/publish-job-seeking",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "发布求职信息",
             "navigationStyle": "custom"
           }
         },

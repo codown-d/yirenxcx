@@ -71,7 +71,7 @@ import {
   type JobPosition,
   type FilterTag,
 } from '@/constant/recruitment'
-import { navigateToSub } from '@/utils'
+import { navigateTo, navigateToSub } from '@/utils'
 
 defineOptions({
   name: 'RecruitmentHome',
@@ -153,6 +153,6 @@ const handleTabChange = (tabId: string) => {
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/violation-notice/violation-notice')
+  navigateToSub('/publish-job-seeking/publish-job-seeking')
 })
 </script>

@@ -79,7 +79,7 @@
       </wd-button>
     </view>
     <view class="flex flex-col">
-      <view class="text-center mb-3">
+      <view class="text-center mb-2">
         <text class="text-sm text-gray-600">本月共处理违规案例 {{ monthlyStats.total }} 起</text>
       </view>
       <view class="text-center mb-4">
