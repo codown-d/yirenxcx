@@ -103,13 +103,13 @@
         <!-- 专业技能 -->
         <select-picker
           :columns="skillActions"
-          v-model="formData.skill"
+          v-model="formData.skills"
           title="专业技能"
         ></select-picker>
 
         <!-- 个人优势 -->
         <select-picker
-          v-model="formData.advantage"
+          v-model="formData.advantages"
           :columns="advantageActions"
           title="个人优势"
         ></select-picker>
@@ -194,8 +194,11 @@ const formData = reactive({
   education: '',
   contactInfo: '',
   isPublic: true,
-  skill: [],
-  advantage: [],
+  skills: [],
+  advantages: [],
+})
+watch(formData, (val) => {
+  console.log('表单数据变化', val)
 })
 
 // 表单验证规则
@@ -291,8 +294,8 @@ const publishJobSeekingInfo = async () => {
       availableTime: formData.availableTime,
       workExperience: formData.workExperience,
       education: formData.education,
-      skills: selectedSkills.value,
-      advantages: selectedAdvantages.value,
+      skills: formData.skills,
+      advantages: formData.advantages,
       contactInfo: formData.contactInfo,
       isPublic: formData.isPublic,
     }
