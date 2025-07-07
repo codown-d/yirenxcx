@@ -13,7 +13,7 @@
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">基本信息</text>
     </view>
-    <wd-form ref="formRef" :model="formData" :rules="rules">
+    <wd-form ref="formRef" :model="formData" :rules="rules" custom-class="mb-20">
       <!-- 基本信息 -->
       <wd-card>
         <!-- 求职标题 -->
@@ -101,92 +101,59 @@
         </wd-cell>
 
         <!-- 专业技能 -->
-        <wd-cell title="专业技能">
-          <wd-select-picker
-            v-model="formData.skill"
-            :columns="skillActions"
-            @change="onAdvantageSelect"
-          ></wd-select-picker>
-        </wd-cell>
-        <view class="flex flex-wrap gap-2">
-          <wd-tag
-            v-for="skill in selectedSkills"
-            :key="skill"
-            type="primary"
-            size="small"
-            closable
-            @close="removeSkill(skill)"
-          >
-            {{ skill }}
-          </wd-tag>
-        </view>
+        <select-picker
+          :columns="skillActions"
+          v-model="formData.skill"
+          title="专业技能"
+        ></select-picker>
+
         <!-- 个人优势 -->
-        <wd-cell title="个人优势">
-          <wd-picker
-            v-model="formData.advantage"
-            :columns="advantageActions"
-            placeholder="请选择个人优势"
-            prop="advantage"
-          />
-        </wd-cell>
-        <view class="flex flex-wrap gap-2">
-          <wd-tag
-            v-for="advantage in selectedAdvantages"
-            :key="advantage"
-            type="success"
-            size="small"
-            closable
-            @close="removeAdvantage(advantage)"
-          >
-            {{ advantage }}
-          </wd-tag>
-        </view>
+        <select-picker
+          v-model="formData.advantage"
+          :columns="advantageActions"
+          title="个人优势"
+        ></select-picker>
       </wd-card>
 
       <!-- 联系方式 -->
-      <view class="bg-white mb-3">
-        <view class="px-4 py-3 border-b border-gray-100">
-          <text class="text-base font-medium text-gray-900">联系方式</text>
-        </view>
-
+      <view class="px-3 py-3">
+        <text class="text-base font-bold text-gray-900">联系方式</text>
+      </view>
+      <wd-card>
         <!-- 联系方式 -->
-        <wd-cell-group>
+        <wd-cell title="联系方式" vertical>
           <wd-input
+            no-border
             v-model="formData.contactInfo"
-            label="联系方式"
             placeholder="请输入手机号/微信号"
             prop="contactInfo"
-            required
           />
-        </wd-cell-group>
-      </view>
+        </wd-cell>
+      </wd-card>
 
       <!-- 其他选项 -->
-      <view class="bg-white mb-6">
-        <view class="px-4 py-3 border-b border-gray-100">
-          <text class="text-base font-medium text-gray-900">其他选项</text>
-        </view>
-
-        <!-- 是否公开 -->
-        <wd-cell-group>
-          <wd-cell title="公开工作">
-            <wd-switch v-model="formData.isPublic" />
-          </wd-cell>
-        </wd-cell-group>
+      <view class="px-3 py-3">
+        <text class="text-base font-bold text-gray-900">其他选项</text>
       </view>
+      <wd-card>
+        <!-- 是否公开 -->
+        <wd-cell title="公开工作">
+          <wd-switch v-model="formData.isPublic" />
+        </wd-cell>
+      </wd-card>
     </wd-form>
 
     <!-- 底部按钮 -->
-    <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+    <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
       <view class="flex gap-3">
         <button
-          class="flex-1 bg-gray-100 text-gray-700 py-3 rounded-lg text-base font-medium active:bg-gray-200 transition-colors"
+          class="w-[33%] bg-gray-100 text-gray-700 py-3 rounded-2 text-base font-medium active:bg-gray-200 transition-colors"
           @click="saveDraft"
         >
           取消
         </button>
         <button
-          class="flex-1 bg-primary text-white py-3 rounded-lg text-base font-medium active:bg-primary-600 transition-colors"
+          class="flex-1 bg-primary text-white py-3 rounded-2 text-base font-medium active:bg-primary-600 transition-colors"
           :disabled="loading"
           @click="publishJobSeekingInfo"
         >
@@ -194,9 +161,6 @@
         </button>
       </view>
     </view>
-
-    <!-- 加载提示 -->
-    <wd-loading v-model="loading" type="circular" />
   </view>
 </template>
 
@@ -207,11 +171,17 @@ import {
   publishJobSeeking,
   getSkillOptions,
   getAdvantageOptions,
-  saveJobSeekingDraft,
   type PublishJobSeekingRequest,
-  type SkillOption,
-  type AdvantageOption,
 } from '@/service/index/jobSeeking'
+import {
+  educationColumns,
+  experienceColumns,
+  jobTypeColumns,
+  availableTimeColumns,
+  salaryColumns,
+  skillActions,
+  advantageActions,
+} from '@/constant/jobSeeking'
 
 // 表单数据
 const formData = reactive({
@@ -240,8 +210,6 @@ const rules = {
 // 响应式数据
 const formRef = ref()
 const loading = ref(false)
-const showSkillSheet = ref(false)
-const showAdvantageSheet = ref(false)
 const selectedSkills = ref<string[]>([])
 const selectedAdvantages = ref<string[]>([])
 
@@ -250,7 +218,6 @@ onMounted(() => {
   loadSkillOptions()
   loadAdvantageOptions()
 })
-
 // 加载技能选项
 const loadSkillOptions = async () => {
   try {
@@ -288,111 +255,6 @@ const loadAdvantageOptions = async () => {
     }
   } catch (error) {
     console.error('加载优势选项失败:', error)
-  }
-}
-
-// 选择器数据
-const salaryColumns = [
-  { label: '3-5K', value: '3-5K' },
-  { label: '5-8K', value: '5-8K' },
-  { label: '8-10K', value: '8-10K' },
-  { label: '10K以上', value: '10K以上' },
-  { label: '面议', value: '面议' },
-]
-
-const jobTypeColumns = [
-  { label: '全职', value: '全职' },
-  { label: '兼职', value: '兼职' },
-  { label: '实习', value: '实习' },
-  { label: '临时', value: '临时' },
-]
-
-const availableTimeColumns = [
-  { label: '随时到岗', value: '随时到岗' },
-  { label: '一周内到岗', value: '一周内到岗' },
-  { label: '一个月内到岗', value: '一个月内到岗' },
-  { label: '三个月内到岗', value: '三个月内到岗' },
-]
-
-const experienceColumns = [
-  { label: '应届生', value: '应届生' },
-  { label: '1年以下', value: '1年以下' },
-  { label: '1-3年', value: '1-3年' },
-  { label: '3-5年', value: '3-5年' },
-  { label: '5年以上', value: '5年以上' },
-]
-
-const educationColumns = [
-  { label: '高中', value: '高中' },
-  { label: '大专', value: '大专' },
-  { label: '本科', value: '本科' },
-  { label: '硕士', value: '硕士' },
-  { label: '博士', value: '博士' },
-]
-
-// 专业技能选项
-const skillActions = [
-  { label: '古典舞', value: '古典舞' },
-  { label: '民族舞', value: '民族舞' },
-  { label: '芭蕾舞', value: '芭蕾舞' },
-  { label: '现代舞', value: '现代舞' },
-  { label: '街舞', value: '街舞' },
-  { label: '拉丁舞', value: '拉丁舞' },
-  { label: '爵士舞', value: '爵士舞' },
-  { label: '声乐', value: '声乐' },
-  { label: '器乐', value: '器乐' },
-  { label: '表演', value: '表演' },
-]
-
-// 个人优势选项
-const advantageActions = [
-  { label: '形象气质佳', value: '形象气质佳' },
-  { label: '舞台经验丰富', value: '舞台经验丰富' },
-  { label: '专业技能过硬', value: '专业技能过硬' },
-  { label: '学习能力强', value: '学习能力强' },
-  { label: '团队协作能力强', value: '团队协作能力强' },
-  { label: '抗压能力强', value: '抗压能力强' },
-]
-
-// 显示专业技能选择器
-const showSkillPicker = () => {
-  showSkillSheet.value = true
-}
-
-// 显示个人优势选择器
-const showAdvantagesPicker = () => {
-  showAdvantageSheet.value = true
-}
-
-// 选择专业技能
-const onSkillSelect = (action: { name: string; value: string }) => {
-  if (!selectedSkills.value.includes(action.value)) {
-    selectedSkills.value.push(action.value)
-  }
-  showSkillSheet.value = false
-}
-
-// 选择个人优势
-const onAdvantageSelect = (action: { label: string; value: string }) => {
-  if (!selectedAdvantages.value.includes(action.value)) {
-    selectedAdvantages.value.push(action.value)
-  }
-  showAdvantageSheet.value = false
-}
-
-// 移除专业技能
-const removeSkill = (skill: string) => {
-  const index = selectedSkills.value.indexOf(skill)
-  if (index > -1) {
-    selectedSkills.value.splice(index, 1)
-  }
-}
-
-// 移除个人优势
-const removeAdvantage = (advantage: string) => {
-  const index = selectedAdvantages.value.indexOf(advantage)
-  if (index > -1) {
-    selectedAdvantages.value.splice(index, 1)
   }
 }
 
