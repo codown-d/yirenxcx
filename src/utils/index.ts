@@ -4,6 +4,7 @@ import { debounce } from 'wot-design-uni/components/common/util'
 import { useUserStore } from '@/store'
 import dayjs from 'dayjs'
 export * from './system'
+export * from './getLeafNodes'
 
 const { pages, subPackages, tabBar = { list: [] } } = { ...pagesConfig }
 

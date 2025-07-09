@@ -153,6 +153,6 @@ const handleTabChange = (tabId: string) => {
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/publish-job-seeking/publish-job-seeking')
+  navigateToSub('/job-category-select/job-category-select')
 })
 </script>

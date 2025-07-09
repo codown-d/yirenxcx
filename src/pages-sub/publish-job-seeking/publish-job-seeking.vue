@@ -146,19 +146,18 @@
     <!-- 底部按钮 -->
     <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
       <view class="flex gap-3">
-        <button
-          class="w-[33%] bg-gray-100 text-gray-700 py-3 rounded-2 text-base font-medium active:bg-gray-200 transition-colors"
-          @click="saveDraft"
-        >
+        <wd-button type="info" custom-class="w-[33%]" :round="false" @click="saveDraft">
           取消
-        </button>
-        <button
-          class="flex-1 bg-primary text-white py-3 rounded-2 text-base font-medium active:bg-primary-600 transition-colors"
+        </wd-button>
+        <wd-button
+          type="primary"
+          custom-class="flex-1"
+          :round="false"
           :disabled="loading"
           @click="publishJobSeekingInfo"
         >
           {{ loading ? '发布中...' : '发布' }}
-        </button>
+        </wd-button>
       </view>
     </view>
   </view>

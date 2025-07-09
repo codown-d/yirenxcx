@@ -127,6 +127,31 @@
           }
         },
         {
+          "path": "job-category-select/job-category-select",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "职业类别",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "job-filter/job-filter",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "筛选",
+            "navigationStyle": "default"
+          }
+        },
+        {
+          "path": "location-select/location-select",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "地区选择",
+            "navigationStyle": "default"
+          }
+        },
+        {
           "path": "login/login",
           "type": "page",
           "layout": "common",

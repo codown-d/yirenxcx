@@ -23,6 +23,7 @@ export * from './recruitment'
 
 // 简历相关常量
 export * from './resume'
+export * from './categories'
 
 // 应用基础配置
 export const APP_CONFIG = {
@@ -60,6 +61,9 @@ export const PAGE_PATHS = {
   VIOLATION_NOTICE: '/pages-sub/violation-notice/violation-notice',
   CHAT: '/pages-sub/chat/chat',
   PUBLISH_JOB_SEEKING: '/pages-sub/publish-job-seeking/publish-job-seeking',
+  JOB_FILTER: '/pages-sub/job-filter/job-filter',
+  LOCATION_SELECT: '/pages-sub/location-select/location-select',
+  JOB_CATEGORY_SELECT: '/pages-sub/job-category-select/job-category-select',
   MY_COLLECTIONS: '/pages-sub/my-collections/my-collections',
   MY_FOLLOWS: '/pages-sub/my-follows/my-follows',
   ROLE_SWITCH: '/pages-sub/role-switch/role-switch',
