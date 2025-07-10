@@ -36,6 +36,23 @@ export const educationColumns = [
   { label: '硕士', value: '硕士' },
   { label: '博士', value: '博士' },
 ]
+export const salaryOptions = [
+  { label: '不限', value: '不限' },
+  { label: '全职', value: '全职' },
+  { label: '兼职', value: '兼职' },
+  { label: '临时', value: '临时' },
+  { label: '合同制', value: '合同制' },
+]
+export const benefitsOptions = [
+  { label: '五险一金', value: '五险一金' },
+  { label: '工作补贴', value: '工作补贴' },
+  { label: '提供宿舍', value: '提供宿舍' },
+  { label: '培训机会', value: '培训机会' },
+  { label: '国内出差', value: '国内出差' },
+  { label: '国际出差', value: '国际出差' },
+  { label: '项目奖金', value: '项目奖金' },
+  { label: '灵活工作', value: '灵活工作' },
+]
 
 // 专业技能选项
 export const skillActions = [

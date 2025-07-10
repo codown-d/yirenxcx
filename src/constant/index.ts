@@ -24,6 +24,8 @@ export * from './recruitment'
 // 简历相关常量
 export * from './resume'
 export * from './categories'
+export * from './jobSeeking'
+export * from './locations'
 
 // 应用基础配置
 export const APP_CONFIG = {

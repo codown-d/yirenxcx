@@ -39,7 +39,7 @@
         </view>
         <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
           <wd-icon name="filter" size="22px"></wd-icon>
-          <text class="text-sm">筛选</text>
+          <text class="text-sm" @click="navigateToSub('/job-filter/job-filter')">筛选</text>
         </view>
       </view>
     </scroll-view>
@@ -153,6 +153,6 @@ const handleTabChange = (tabId: string) => {
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/job-category-select/job-category-select')
+  // navigateToSub('/job-category-select/job-category-select')
 })
 </script>

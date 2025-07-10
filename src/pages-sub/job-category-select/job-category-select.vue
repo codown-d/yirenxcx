@@ -50,21 +50,13 @@
     <!-- 底部按钮 -->
     <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
       <view class="pb-2 gap-1 flex-wrap flex">
-        <wd-tag
-          custom-class="!px-2 !py-1 !rounded-1 !bg-[#E9F7F4] !text-primary "
+        <tag
           v-for="item in selectedItems"
+          :label="item.label"
+          :value="item.value"
           :key="item.value"
-          type="primary"
-        >
-          <view class="flex gap-1 items-center">
-            <text class="text-[24rpx]">{{ item.label }}</text>
-            <wd-icon
-              name="close-normal"
-              custom-class="text-4"
-              @click="handleSelect(item.value)"
-            ></wd-icon>
-          </view>
-        </wd-tag>
+          @on-close="handleSelect"
+        ></tag>
       </view>
       <view class="flex gap-3">
         <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetSelection">
@@ -83,7 +75,8 @@ import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { categories } from '@/constant'
 import { getLeafNodes, navigateBack } from '@/utils'
-
+import { useCategoriesStore } from '@/store/categories'
+const { setCategory } = useCategoriesStore()
 // 响应式数据
 const active = ref('tq')
 const scrollTop = ref<number>(0)
@@ -96,20 +89,6 @@ const categoryList = computed(() => {
 const selectedItems = computed(() => {
   let result = getLeafNodes(categoriesRef.value).filter((item) =>
     selectedCategories.value.includes(item.value),
-  )
-
-  console.log(
-    result,
-    selectedCategories.value,
-    selectedCategories.value.map((item) => {
-      return categoriesRef.value.reduce((pre, item) => {
-        return pre.concat(
-          item.items.reduce((pre, item2) => {
-            return pre.concat(item2.items)
-          }, []),
-        )
-      }, [])
-    }),
   )
   return result
 })
@@ -136,5 +115,8 @@ const resetSelection = () => {
   toast.success('已重置选择')
 }
 
-const confirmSelection = () => {}
+const confirmSelection = () => {
+  setCategory(selectedItems.value)
+  navigateBack()
+}
 </script>
