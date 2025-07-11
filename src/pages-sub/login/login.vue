@@ -1,6 +1,6 @@
 <route lang="json5">
 {
-  layout: 'common',
+  layout: 'login',
   style: {
     navigationBarTitleText: ' ',
     navigationStyle: 'custom',
@@ -14,13 +14,35 @@
       v-if="showType === 'wechat'"
       @onChange="onChange"
       :agreePrivacy="agreePrivacy"
+      @register="handleShowRegister"
     ></wx-login>
     <!-- 登录表单（手机号登录时显示） -->
 
-    <pwd-login v-if="showType === 'pwd'" :agreePrivacy="agreePrivacy"></pwd-login>
+    <pwd-login
+      v-if="showType === 'pwd'"
+      :agreePrivacy="agreePrivacy"
+      @register="handleShowRegister"
+      @forgotPassword="handleShowForgotPassword"
+    ></pwd-login>
+
+    <!-- 注册表单 -->
+    <register-form
+      v-if="showType === 'register'"
+      :agreePrivacy="agreePrivacy"
+      @backToLogin="handleBackToLogin"
+      @registerSuccess="handleRegisterSuccess"
+    ></register-form>
+
+    <!-- 忘记密码表单 -->
+    <forgot-password-form
+      v-if="showType === 'forgot'"
+      :agreePrivacy="agreePrivacy"
+      @backToLogin="handleBackToLogin"
+      @resetSuccess="handleResetSuccess"
+    ></forgot-password-form>
 
     <!-- 隐私协议 -->
-    <view class="px-12 mt-4 bg-white/95 backdrop-blur-sm border-t border-gray-100">
+    <view class="px-12 mt-4 backdrop-blur-sm border-t border-gray-100">
       <wd-checkbox v-model="agreePrivacy" shape="square" class="flex items-start justify-center">
         <view class="text-3 leading-relaxed text-gray-600">
           {{ PRIVACY_CONFIG.agreeText }}
@@ -35,8 +57,6 @@
         </view>
       </wd-checkbox>
     </view>
-    <!-- 底部安全区域 -->
-    <view class="pb-safe"></view>
   </view>
   <privacy-user
     :title="privacyInfo.title"
@@ -52,11 +72,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { PRIVACY_CONFIG } from '@/constant/login'
+import { toast } from '@/utils/toast'
 import WxLogin from './components/wx-login.vue'
 import PwdLogin from './components/pwd-login.vue'
+import RegisterForm from './components/register.vue'
+import ForgotPasswordForm from './components/forgot-password.vue'
 
 // 页面状态
-const showType = ref('wechat')
+const showType = ref<'wechat' | 'pwd' | 'register' | 'forgot'>('wechat')
 const agreePrivacy = ref(false)
 let privacyInfo = ref({
   title: '用户隐私保护提示',
@@ -67,8 +90,47 @@ let privacyInfo = ref({
 })
 let showPopup = ref(false)
 
-let onChange = (type) => {
-  showType.value = type
+let onChange = (type: string) => {
+  showType.value = type as 'wechat' | 'pwd' | 'register' | 'forgot'
+}
+
+// 显示注册页面
+const handleShowRegister = () => {
+  showType.value = 'register'
+}
+
+// 返回登录页面
+const handleBackToLogin = () => {
+  showType.value = 'wechat'
+}
+
+// 注册成功处理
+const handleRegisterSuccess = (userInfo: { phone: string; realName: string }) => {
+  toast.success(`欢迎您，${userInfo.realName}！`)
+
+  // 注册成功后可以跳转到身份选择或直接登录
+  setTimeout(() => {
+    // 这里可以跳转到首页或身份选择页面
+    uni.switchTab({
+      url: '/pages/index/index',
+    })
+  }, 1500)
+}
+
+// 显示忘记密码页面
+const handleShowForgotPassword = () => {
+  showType.value = 'forgot'
+}
+
+// 重置密码成功处理
+const handleResetSuccess = (_resetInfo: { phone: string; message: string }) => {
+  toast.success('密码重置成功！')
+
+  // 重置成功后返回登录页面
+  setTimeout(() => {
+    showType.value = 'pwd'
+    toast.info('请使用新密码登录')
+  }, 1500)
 }
 
 // 查看协议
@@ -80,10 +142,12 @@ const viewAgreement = (type: 'user' | 'privacy') => {
   }
   showPopup.value = true
 }
+
 let onAgree = () => {
   agreePrivacy.value = true
   showPopup.value = false
 }
+
 let onDisagree = () => {
   agreePrivacy.value = false
   showPopup.value = false

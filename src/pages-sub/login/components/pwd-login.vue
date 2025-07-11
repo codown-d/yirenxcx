@@ -12,7 +12,7 @@
             type="number"
             :maxlength="11"
             clearable
-            class="h-22 bg-gray-50 rounded-3 px-6"
+            class="h-22 rounded-3 px-6"
           >
             <template #prefix>
               <wd-icon name="phone" size="16px" color="#999" />
@@ -24,7 +24,7 @@
             type="text"
             show-password
             clearable
-            class="h-22 bg-gray-50 rounded-3 px-6"
+            class="h-22 rounded-3 px-6"
           >
             <template #prefix>
               <wd-icon name="secured" size="16px" color="#999" />
@@ -40,7 +40,7 @@
             type="number"
             :maxlength="11"
             clearable
-            class="h-22 bg-gray-50 rounded-3 px-6"
+            class="h-22 rounded-3 px-6"
           >
             <template #prefix>
               <wd-icon name="phone" size="16px" color="#999" />
@@ -54,7 +54,7 @@
               type="number"
               :maxlength="6"
               clearable
-              class="flex-1 h-22 bg-gray-50 rounded-3 px-6"
+              class="flex-1 h-22 rounded-3 px-6"
             >
               <template #prefix>
                 <wd-icon name="secured" size="16px" color="#999" />
@@ -84,7 +84,7 @@
             {{ FORM_CONFIG.registerText }}
           </text>
         </view>
-        <view class="text-primary">忘记密码？</view>
+        <view class="text-primary" @click="handleForgotPassword">忘记密码？</view>
       </view>
       <wd-button block @click="handleLogin" :round="false" :loading="loginLoading" type="primary">
         {{ LOGIN_CONFIG.loginButtonText }}
@@ -111,12 +111,14 @@ const loginForm = ref({
   password: '',
   smsCode: '',
 })
-let props = defineProps({
+const props = defineProps({
   agreePrivacy: {
     type: Boolean,
     default: false,
   },
 })
+
+const emit = defineEmits(['register', 'forgotPassword'])
 // 页面加载完毕时触发
 onLoad((option: any) => {
   console.log('登录页面加载', option)
@@ -201,9 +203,15 @@ const handleLogin = async () => {
   }
 }
 
-let agreePrivacy = computed(() => props.agreePrivacy)
+const agreePrivacy = computed(() => props.agreePrivacy)
+
 // 注册
 const handleRegister = () => {
-  toast.info('请联系客服注册账号')
+  emit('register')
+}
+
+// 忘记密码
+const handleForgotPassword = () => {
+  emit('forgotPassword')
 }
 </script>

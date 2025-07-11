@@ -37,6 +37,28 @@ export const FORM_CONFIG = {
   registerText: '立即注册',
 }
 
+// 注册页面配置
+export const REGISTER_CONFIG = {
+  title: '欢迎注册意仁直聘！',
+  subtitle: '创建您的专属账户',
+  passwordPlaceholder: '请设置登录密码',
+  confirmPasswordPlaceholder: '请确认登录密码',
+  realNamePlaceholder: '请输入真实姓名',
+  inviteCodePlaceholder: '请输入邀请码（可选）',
+  registerButtonText: '立即注册',
+  backToLoginText: '立即登录',
+}
+
+// 忘记密码页面配置
+export const FORGOT_PASSWORD_CONFIG = {
+  title: '重置登录密码',
+  subtitle: '通过手机验证码重置密码',
+  newPasswordPlaceholder: '请输入新密码',
+  confirmPasswordPlaceholder: '请确认新密码',
+  resetButtonText: '重置密码',
+  backToLoginText: '立即登录',
+}
+
 // 身份选择配置
 export const ROLE_CONFIG = {
   title: '请选择您当前身份',
@@ -71,6 +93,24 @@ export interface LoginForm {
   phone: string
   password: string
   smsCode: string
+}
+
+// 注册表单类型定义
+export interface RegisterForm {
+  phone: string
+  smsCode: string
+  password: string
+  confirmPassword: string
+  realName: string
+  inviteCode: string
+}
+
+// 忘记密码表单类型定义
+export interface ForgotPasswordForm {
+  phone: string
+  smsCode: string
+  newPassword: string
+  confirmPassword: string
 }
 
 // 用户角色类型

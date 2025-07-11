@@ -1,24 +1,27 @@
 <template>
   <wd-config-provider :themeVars="theme">
-    <view class="text-[#252525]">
+    <view
+      class="text-[#252525]"
+      :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(255,255,255, 1) 50%);'"
+    >
       <scroll-view :scroll-y="true" class="h-100vh" @scroll="handleScroll">
         <wd-navbar
           :bordered="false"
           :left-arrow="!isTab"
           :left-text="title"
-          :custom-class="` ${style.className}`"
+          :custom-class="` ${style.leftTextClass}`"
           fixed
           @click-left="handleClickLeft"
           safeAreaInsetTop
           :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
         ></wd-navbar>
         <view
-          class="bg-transparent"
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',
           }"
         >
           <slot></slot>
+
           <view class="pb-safe"></view>
         </view>
       </scroll-view>
