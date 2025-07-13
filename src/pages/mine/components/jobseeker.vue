@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- 用户信息卡片 -->
-    <view class="mx-3 mt-2 mb-3 rounded-2 p-4 shadow-sm bg-linear">
+    <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
       <view class="flex items-center mb-4">
         <image :src="userInfo.avatar" mode="aspectFill" class="mr-4 w-20 h-20 rounded-full" />
         <view class="flex-1">

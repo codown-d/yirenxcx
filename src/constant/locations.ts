@@ -15412,3 +15412,202 @@ export const locations = [
     ],
   },
 ]
+
+// 位置数据类型定义
+export interface LocationItem {
+  label: string
+  value: string
+  children?: LocationItem[]
+}
+
+// 查找结果类型定义
+export interface LocationSearchResult {
+  province: LocationItem
+  city?: LocationItem
+  district?: LocationItem
+  fullPath: string
+  level: 'province' | 'city' | 'district'
+}
+
+/**
+ * 在位置数据中查找匹配的省市区
+ * @param keyword 搜索关键词
+ * @param locations 位置数据数组
+ * @returns 匹配的位置结果数组
+ */
+export function searchLocations(
+  keyword: string,
+  locationData: LocationItem[] = locations,
+): LocationSearchResult[] {
+  if (!keyword || !keyword.trim()) {
+    return []
+  }
+
+  const results: LocationSearchResult[] = []
+  const searchKeyword = keyword.trim().toLowerCase()
+
+  // 遍历省份
+  for (const province of locationData) {
+    // 检查省份名称是否匹配
+    if (province.label.toLowerCase().includes(searchKeyword)) {
+      results.push({
+        province,
+        fullPath: province.label,
+        level: 'province',
+      })
+    }
+
+    // 遍历城市
+    if (province.children) {
+      for (const city of province.children) {
+        // 检查城市名称是否匹配
+        if (city.label.toLowerCase().includes(searchKeyword)) {
+          results.push({
+            province,
+            city,
+            fullPath: `${province.label} / ${city.label}`,
+            level: 'city',
+          })
+        }
+
+        // 遍历区县
+        if (city.children) {
+          for (const district of city.children) {
+            // 检查区县名称是否匹配
+            if (district.label.toLowerCase().includes(searchKeyword)) {
+              results.push({
+                province,
+                city,
+                district,
+                fullPath: `${province.label} / ${city.label} / ${district.label}`,
+                level: 'district',
+              })
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return results
+}
+
+/**
+ * 根据value查找位置信息
+ * @param value 位置编码
+ * @param locations 位置数据数组
+ * @returns 匹配的位置结果或null
+ */
+export function findLocationByValue(
+  value: string,
+  locationData: LocationItem[] = locations,
+): LocationSearchResult | null {
+  if (!value) {
+    return null
+  }
+
+  // 遍历省份
+  for (const province of locationData) {
+    // 检查省份编码是否匹配
+    if (province.value === value) {
+      return {
+        province,
+        fullPath: province.label,
+        level: 'province',
+      }
+    }
+
+    // 遍历城市
+    if (province.children) {
+      for (const city of province.children) {
+        // 检查城市编码是否匹配
+        if (city.value === value) {
+          return {
+            province,
+            city,
+            fullPath: `${province.label} / ${city.label}`,
+            level: 'city',
+          }
+        }
+
+        // 遍历区县
+        if (city.children) {
+          for (const district of city.children) {
+            // 检查区县编码是否匹配
+            if (district.value === value) {
+              return {
+                province,
+                city,
+                district,
+                fullPath: `${province.label} / ${city.label} / ${district.label}`,
+                level: 'district',
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return null
+}
+
+/**
+ * 获取热门城市列表
+ * @returns 热门城市数组
+ */
+export function getHotCities(): LocationSearchResult[] {
+  const hotCityValues = [
+    '1101', // 北京
+    '3101', // 上海
+    '4401', // 广州
+    '4403', // 深圳
+    '3301', // 杭州
+    '3201', // 南京
+    '5101', // 成都
+    '4201', // 武汉
+    '6101', // 西安
+    '1201', // 天津
+  ]
+
+  const hotCities: LocationSearchResult[] = []
+
+  for (const value of hotCityValues) {
+    const location = findLocationByValue(value)
+    if (location) {
+      hotCities.push(location)
+    }
+  }
+
+  return hotCities
+}
+
+/**
+ * 模糊搜索位置（支持拼音首字母）
+ * @param keyword 搜索关键词
+ * @param limit 返回结果数量限制，默认10
+ * @returns 匹配的位置结果数组
+ */
+export function fuzzySearchLocations(keyword: string, limit: number = 10): LocationSearchResult[] {
+  const results = searchLocations(keyword)
+
+  // 按匹配度排序：完全匹配 > 开头匹配 > 包含匹配
+  results.sort((a, b) => {
+    const aLabel = a.district?.label || a.city?.label || a.province.label
+    const bLabel = b.district?.label || b.city?.label || b.province.label
+    const searchKeyword = keyword.toLowerCase()
+
+    // 完全匹配优先级最高
+    if (aLabel.toLowerCase() === searchKeyword) return -1
+    if (bLabel.toLowerCase() === searchKeyword) return 1
+
+    // 开头匹配优先级次之
+    if (aLabel.toLowerCase().startsWith(searchKeyword)) return -1
+    if (bLabel.toLowerCase().startsWith(searchKeyword)) return 1
+
+    // 其他按字母顺序排序
+    return aLabel.localeCompare(bLabel)
+  })
+
+  return results.slice(0, limit)
+}

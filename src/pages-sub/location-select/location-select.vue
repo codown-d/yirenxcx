@@ -10,64 +10,70 @@
 
 <template>
   <view class="pt-2">
-    <search class-name="mx-4"></search>
-    <view class="flex mt-2" style="height: calc(100vh - 460rpx)">
-      <wd-sidebar v-model="province">
+    <view class="flex mt-2 gap-1" style="height: calc(100vh - 460rpx)">
+      <wd-sidebar v-model="locationRef.province" @change="changeProvince">
         <wd-sidebar-item
           v-for="item in locations"
           :key="item.value"
           :value="item.value"
           :label="item.label"
+          custom-class="!py-2"
         />
       </wd-sidebar>
-      <scroll-view class="flex-1" scroll-y scroll-with-animation :throttle="false">
-        <view class="flex justify-between items-center flex-wrap gap-2 px-4 pb-4">
-          <wd-button
+      <scroll-view
+        class="flex-1"
+        style="border-right: 2rpx solid #eee"
+        scroll-y
+        :scroll-into-view="toCityView"
+        scroll-with-animation
+        :throttle="false"
+      >
+        <view class="flex justify-between items-center flex-wrap">
+          <view
             v-for="ite in citiesList"
+            :id="'city_' + ite.value"
             :key="ite.value"
-            type="info"
-            size="medium"
-            :round="false"
-            :custom-class="`${cities === ite.value ? '!bg-[#E9F7F4] !text-primary' : ''}`"
-            @click="cities = ite.value"
+            :class="`flex  items-center w-full h-[32px] !py-2 px-3 ${locationRef.city === ite.value ? ' !text-primary' : ''}`"
+            @click="changeValue('city', ite.value)"
           >
             {{ ite.label }}
-          </wd-button>
+          </view>
         </view>
       </scroll-view>
-      <scroll-view class="flex-1" scroll-y scroll-with-animation :throttle="false">
-        <view class="flex justify-between items-center flex-wrap gap-2 px-4 pb-4">
-          <wd-button
+      <scroll-view
+        class="flex-1"
+        scroll-y
+        scroll-with-animation
+        :throttle="false"
+        :scroll-into-view="toDistrictView"
+      >
+        <view class="flex justify-between items-center flex-wrap">
+          <view
             v-for="ite in areasList"
+            :id="'district_' + ite.value"
             :key="ite.value"
-            type="info"
-            size="medium"
-            :round="false"
-            :custom-class="`${areas === ite.value ? '!bg-[#E9F7F4] !text-primary' : ''}`"
-            @click="areas = ite.value"
+            :class="`flex items-center w-full h-[32px] !py-2 px-3 ${locationRef.district === ite.value ? ' !text-primary' : ''}`"
+            @click="changeValue('district', ite.value)"
           >
             {{ ite.label }}
-          </wd-button>
+          </view>
         </view>
       </scroll-view>
     </view>
 
     <!-- 底部按钮 -->
     <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
-      <view class="pb-2 gap-1 flex-wrap flex">
-        <tag
-          v-for="item in selectedItems"
-          :label="item.label"
-          :value="item.value"
-          :key="item.value"
-          @on-close="handleSelect"
-        ></tag>
-      </view>
       <view class="flex gap-3">
         <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetSelection">
           取消
         </wd-button>
-        <wd-button type="primary" custom-class="flex-1" :round="false" @click="confirmSelection">
+        <wd-button
+          type="primary"
+          custom-class="flex-1"
+          :round="false"
+          @click="confirmSelection"
+          :disabled="!locationRef.district"
+        >
           确定
         </wd-button>
       </view>
@@ -76,49 +82,82 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { toast } from '@/utils/toast'
-import { locations } from '@/constant'
-import { getLeafNodes, navigateBack } from '@/utils'
-import { useCategoriesStore } from '@/store/categories'
-const { setCategory } = useCategoriesStore()
+import { ref } from 'vue'
+import { locations, findLocationByValue } from '@/constant'
+import { useLocationStore } from '@/store'
+import { navigateBack } from '@/utils'
+const { curLocation, setLocation } = useLocationStore()
 // 响应式数据
-const province = ref()
-const cities = ref()
-const areas = ref()
+const locationRef = ref({
+  province: locations[0].value,
+  city: '',
+  district: '',
+})
+
 const categoriesRef = ref(locations)
-const selectedCategories = ref<string[]>([])
-const searchKeyword = ref('')
-const citiesList = computed(() => {
-  return locations.find((item) => item.value === province.value)?.children || []
-})
-const areasList = computed(() => {
-  return citiesList.value.find((item) => item.value === cities.value)?.children || []
-})
-
-const selectedItems = computed(() => {
-  let result = getLeafNodes(categoriesRef.value).filter((item) =>
-    selectedCategories.value.includes(item.value),
-  )
-  return result
-})
-
-const handleSelect = (value) => {
-  if (selectedCategories.value.includes(value)) {
-    selectedCategories.value = selectedCategories.value.filter((item) => item !== value)
+const citiesList = ref(locations[0].children || [])
+const areasList = ref([])
+const toCityView = ref('')
+const toDistrictView = ref('')
+const changeProvince = (val) => {
+  changeValue('province', val)
+}
+const changeValue = (type, val) => {
+  if (type === 'province') {
+    locationRef.value.province = val
+    locationRef.value.city = ''
+    locationRef.value.district = ''
+    citiesList.value =
+      categoriesRef.value.find((item) => item.value === locationRef.value.province)?.children || []
+    areasList.value = []
+  } else if (type === 'city') {
+    locationRef.value.city = val
+    locationRef.value.district = ''
+    areasList.value =
+      citiesList.value.find((item) => item.value === locationRef.value.city)?.children || []
   } else {
-    selectedCategories.value.push(value)
+    locationRef.value.district = val
   }
 }
+watch(
+  () => locationRef.value,
+  (val) => {
+    let { province, city, district } = val
+    citiesList.value = categoriesRef.value.find((item) => item.value === province)?.children || []
+    areasList.value = citiesList.value.find((item) => item.value === city)?.children || []
+    toCityView.value = 'city_' + val.city
+    toDistrictView.value = 'district_' + val.district
+  },
+  { deep: true },
+)
 
 // 重置选择
 const resetSelection = () => {
-  searchKeyword.value = ''
-  toast.success('已重置选择')
+  navigateBack()
 }
 
 const confirmSelection = () => {
-  setCategory(selectedItems.value)
+  let { province, city, district } = locationRef.value
+  let provinceStr = categoriesRef.value.find((item) => item.value === province)?.label
+  let cityStr = citiesList.value.find((item) => item.value === city)?.label
+  let districtStr = areasList.value.find((item) => item.value === district)?.label
+  setLocation([
+    {
+      label: `${provinceStr}-${cityStr}-${districtStr}`,
+      value: `${province}/${city}/${district}`,
+    },
+  ])
+
   navigateBack()
 }
+onLoad(() => {
+  let res = findLocationByValue(curLocation.adcode)
+  if (res) {
+    locationRef.value = {
+      province: res.province.value,
+      city: res.city.value,
+      district: res.district.value,
+    }
+  }
+})
 </script>

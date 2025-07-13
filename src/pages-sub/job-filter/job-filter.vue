@@ -113,11 +113,11 @@ import { useCategoriesStore } from '@/store/categories'
 import { salaryColumns, salaryOptions, benefitsOptions } from '@/constant'
 import { navigateBack } from '@/utils'
 
-interface ItemProps {
+export interface ItemProps {
   label: string
   value: string
 }
-const { locations, removeLocation, getLocation } = useLocationStore()
+const { getLocation, removeLocation, locations } = useLocationStore()
 const { categories, removeCategory, getCategory } = useCategoriesStore()
 // 响应式数据
 const salaryRange = ref('7-8K')

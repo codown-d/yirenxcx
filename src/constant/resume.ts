@@ -62,11 +62,23 @@ export interface JobIntention {
 
 // 技能分类
 export const SKILL_CATEGORIES = [
-  { id: 'dance', label: '舞蹈类型', skills: ['古典舞', '民族舞', '芭蕾', '现代舞', '爵士舞', '拉丁舞'] },
+  {
+    id: 'dance',
+    label: '舞蹈类型',
+    skills: ['古典舞', '民族舞', '芭蕾', '现代舞', '爵士舞', '拉丁舞'],
+  },
   { id: 'music', label: '音乐技能', skills: ['声乐', '钢琴', '古筝', '二胡', '小提琴', '吉他'] },
-  { id: 'performance', label: '表演技能', skills: ['话剧', '音乐剧', '相声', '小品', '主持', '配音'] },
+  {
+    id: 'performance',
+    label: '表演技能',
+    skills: ['话剧', '音乐剧', '相声', '小品', '主持', '配音'],
+  },
   { id: 'language', label: '语言能力', skills: ['普通话', '英语', '日语', '韩语', '法语', '德语'] },
-  { id: 'other', label: '其他技能', skills: ['编舞', '教学', '化妆', '服装设计', '摄影', '视频剪辑'] }
+  {
+    id: 'other',
+    label: '其他技能',
+    skills: ['编舞', '教学', '化妆', '服装设计', '摄影', '视频剪辑'],
+  },
 ]
 
 // 教育背景选项
@@ -80,18 +92,11 @@ export const EDUCATION_OPTIONS = [
   '艺术院校',
   '音乐学院',
   '舞蹈学院',
-  '戏剧学院'
+  '戏剧学院',
 ]
 
 // 工作经验选项
-export const EXPERIENCE_OPTIONS = [
-  '无经验',
-  '1年以下',
-  '1-3年',
-  '3-5年',
-  '5-10年',
-  '10年以上'
-]
+export const EXPERIENCE_OPTIONS = ['无经验', '1年以下', '1-3年', '3-5年', '5-10年', '10年以上']
 
 // 薪资范围选项
 export const SALARY_RANGES = [
@@ -102,7 +107,7 @@ export const SALARY_RANGES = [
   '12000-20000',
   '20000-30000',
   '30000以上',
-  '面议'
+  '面议',
 ]
 
 // 工作类型选项
@@ -110,7 +115,7 @@ export const WORK_TYPES = [
   { value: 'full-time', label: '全职' },
   { value: 'part-time', label: '兼职' },
   { value: 'internship', label: '实习' },
-  { value: 'freelance', label: '自由职业' }
+  { value: 'freelance', label: '自由职业' },
 ]
 
 // 城市选项（主要艺术类工作城市）
@@ -129,7 +134,7 @@ export const CITY_OPTIONS = [
   '苏州市',
   '长沙市',
   '青岛市',
-  '大连市'
+  '大连市',
 ]
 
 // 默认简历数据
@@ -150,19 +155,19 @@ export const DEFAULT_RESUME_DATA: UserResumeInfo = {
       count: '0个',
       description: '展示个人作品和表演片段',
       photos: [{ type: 'add', url: '' }],
-      category: 'personal'
-    }
+      category: 'personal',
+    },
   ],
   jobIntention: {
     position: '',
     salary: '面议',
     location: '北京市',
-    workType: 'full-time'
+    workType: 'full-time',
   },
   completeness: 0,
   status: 'draft',
   createdAt: '',
-  updatedAt: ''
+  updatedAt: '',
 }
 
 // 简历模板类型
@@ -171,25 +176,64 @@ export const RESUME_TEMPLATES = [
     id: 'classic',
     name: '经典模板',
     description: '简洁大方，适合各类职位',
-    preview: '/static/images/template-classic.jpg'
+    preview: '/static/images/template-classic.jpg',
   },
   {
     id: 'creative',
     name: '创意模板',
     description: '设计感强，适合艺术类职位',
-    preview: '/static/images/template-creative.jpg'
+    preview: '/static/images/template-creative.jpg',
   },
   {
     id: 'professional',
     name: '专业模板',
     description: '正式严谨，适合管理类职位',
-    preview: '/static/images/template-professional.jpg'
-  }
+    preview: '/static/images/template-professional.jpg',
+  },
 ]
 
 // 简历状态选项
 export const RESUME_STATUS_OPTIONS = [
   { value: 'draft', label: '草稿', color: '#999' },
   { value: 'published', label: '已发布', color: '#52c41a' },
-  { value: 'hidden', label: '已隐藏', color: '#faad14' }
+  { value: 'hidden', label: '已隐藏', color: '#faad14' },
 ]
+export const categoryActions = [
+  { label: '作品展示', value: '作品展示' },
+  { label: '技巧分享', value: '技巧分享' },
+  { label: '招聘信息', value: '招聘信息' },
+  { label: '生活日常', value: '生活日常' },
+  { label: '经验交流', value: '经验交流' },
+]
+
+export const visibilityActions = [
+  { label: '公开所有人可见', value: '公开所有人可见' },
+  { label: '仅关注我的人可见', value: '仅关注我的人可见' },
+  { label: '仅自己可见', value: '仅自己可见' },
+]
+// 可选数据
+export const availableTopics = ref([
+  '舞蹈技巧',
+  '招聘信息',
+  '武术交流',
+  '音乐分享',
+  '表演心得',
+  '服装搭配',
+  '化妆技巧',
+  '健身训练',
+  '生活日常',
+  '工作感悟',
+])
+
+export const availableMoods = ref([
+  '开心',
+  '兴奋',
+  '平静',
+  '感动',
+  '思考',
+  '期待',
+  '满足',
+  '放松',
+  '充实',
+  '感恩',
+])

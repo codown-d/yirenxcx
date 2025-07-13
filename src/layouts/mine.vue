@@ -10,7 +10,6 @@
           <slot></slot>
 
           <!-- 底部安全区域 -->
-          <view class="pb-safe"></view>
         </view>
       </scroll-view>
     </view>

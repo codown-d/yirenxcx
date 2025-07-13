@@ -15,6 +15,7 @@
     }
   },
   "tabBar": {
+    "custom": true,
     "color": "#999999",
     "selectedColor": "#018d71",
     "backgroundColor": "#F8F8F8",
@@ -25,26 +26,26 @@
     "spacing": "3px",
     "list": [
       {
-        "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/homeHL.png",
+        "iconPath": "static/tabbar/index.png",
+        "selectedIconPath": "static/tabbar/indexH.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "薏仁"
       },
       {
-        "iconPath": "static/tabbar/example.png",
-        "selectedIconPath": "static/tabbar/exampleHL.png",
+        "iconPath": "static/tabbar/msg.png",
+        "selectedIconPath": "static/tabbar/msgH.png",
         "pagePath": "pages/message/message",
         "text": "消息"
       },
       {
-        "iconPath": "static/tabbar/example.png",
-        "selectedIconPath": "static/tabbar/exampleHL.png",
-        "pagePath": "pages/about/about",
-        "text": "关于"
+        "iconPath": "static/tabbar/luntan.png",
+        "selectedIconPath": "static/tabbar/luntanH.png",
+        "pagePath": "pages/forum/forum",
+        "text": "论坛"
       },
       {
-        "iconPath": "static/tabbar/personal.png",
-        "selectedIconPath": "static/tabbar/personalHL.png",
+        "iconPath": "static/tabbar/mine.png",
+        "selectedIconPath": "static/tabbar/mineH.png",
         "pagePath": "pages/mine/mine",
         "text": "我的"
       }
@@ -61,19 +62,12 @@
       }
     },
     {
-      "path": "pages/about/about",
+      "path": "pages/forum/forum",
       "type": "page",
+      "layout": "blank",
       "style": {
-        "navigationBarTitleText": "关于",
-        "navigationStyle": "custom"
-      }
-    },
-    {
-      "path": "pages/forum/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "论坛",
-        "navigationStyle": "custom"
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "论坛"
       }
     },
     {
@@ -125,11 +119,37 @@
           }
         },
         {
+          "path": "forum-publish/forum-publish",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "发布动态",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "forum-topics/forum-topics",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "热门话题",
+            "navigationStyle": "custom"
+          }
+        },
+        {
           "path": "job-category-select/job-category-select",
           "type": "page",
           "layout": "common",
           "style": {
             "navigationBarTitleText": "职业类别",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "job-detail/job-detail",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "职位详情",
             "navigationStyle": "custom"
           }
         },

@@ -6,7 +6,7 @@
         v-if="closeable"
         name="close-normal"
         custom-class="text-4"
-        @click="handleSelect(value)"
+        @click.stop="handleSelect(value)"
       ></wd-icon>
     </view>
   </wd-tag>

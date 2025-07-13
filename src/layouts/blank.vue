@@ -1,7 +1,6 @@
 <template>
   <wd-config-provider :themeVars="theme">
     <slot></slot>
-    <view class="pb-safe"></view>
     <wd-toast />
     <wd-message-box />
   </wd-config-provider>

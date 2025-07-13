@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
+import { navigateTo } from './utils'
 
 onLaunch(() => {
   console.log('App Launch')
 })
 onShow(() => {
-  console.log('App Show')
+  // uni?.onTabBarMidButtonTap?.(() => {
+  //   navigateTo('/publish-info/publish-info')
+  // })
 })
 onHide(() => {
   console.log('App Hide')
 })
 </script>
 
+<custom-tab-bar v-if="isTabPage()" />
 <style lang="scss">
 /* stylelint-disable selector-type-no-unknown */
 button::after {
@@ -91,6 +95,12 @@ image {
   }
   .wd-picker__cell {
     padding-right: 0rpx !important;
+  }
+  &.is-small {
+    .wd-cell__wrapper {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 }
 </style>

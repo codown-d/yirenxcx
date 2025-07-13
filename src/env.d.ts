@@ -13,6 +13,9 @@ interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string
   /** 服务端口号 */
   readonly VITE_SERVER_PORT: string
+
+  readonly VITE_WX_TXMAP: string
+
   /** 后台接口地址 */
   readonly VITE_SERVER_BASEURL: string
   /** H5是否需要代理 */

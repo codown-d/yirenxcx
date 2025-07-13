@@ -1,6 +1,7 @@
 /**
  * 登录页面相关常量配置
  */
+import { ForumPost } from '@/service/index/forum'
 import { DEFAULT_AVATARS } from './images'
 
 // 登录页面基础配置
@@ -121,3 +122,123 @@ export type LoginType = 'wechat' | 'phone'
 
 // 登录选项卡类型
 export type LoginTab = 'password' | 'sms'
+// 分类数据
+export const tabCategory = ref([
+  { id: '1', label: '热门', value: 'hot', postCount: 0, isDefault: true },
+  { id: '2', label: '最新', value: 'latest', postCount: 0, isDefault: false },
+  { id: '3', label: '关注', value: 'follow', postCount: 0, isDefault: false },
+  { id: '4', label: '我的', value: 'mine', postCount: 0, isDefault: false },
+])
+// 热门话题数据
+export const hotTopics = [
+  { id: '1', name: '舞蹈技巧', description: '', count: 1233, isHot: true, isFollowed: false },
+  { id: '2', name: '招聘信息', description: '', count: 1233, isHot: true, isFollowed: false },
+  { id: '3', name: '招聘信息', description: '', count: 1233, isHot: true, isFollowed: false },
+  { id: '4', name: '武术交流', description: '', count: 1233, isHot: true, isFollowed: false },
+  {
+    id: '5',
+    name: '展示两排看看效果',
+    description: '',
+    count: 1233,
+    isHot: true,
+    isFollowed: false,
+  },
+] // 帖子列表数据
+export const postList: ForumPost[] = [
+  {
+    id: '1',
+    author: {
+      id: '1',
+      name: '舞蹈小王子',
+      title: '古典舞演员',
+      avatar: '/static/images/yiren.png',
+      level: 5,
+      isVerified: true,
+    },
+    content:
+      '刚刚结束了一场大型演出，分享一下我的心得体会。这次演出是《丝路花雨》的重排版，我担任主要舞者之一。排练了两个月，每天8小时的高强度训练，但看到观众的反响，一切都值得了一切都...',
+    images: ['/static/images/yiren.png', '/static/images/yiren.png', '/static/images/yiren.png'],
+    topics: ['舞蹈技巧', '备大家'],
+    publishTime: '2小时前',
+    likeCount: 12,
+    commentCount: 12,
+    shareCount: 12,
+    viewCount: 156,
+    isLiked: false,
+    isCollected: false,
+    status: 'published',
+    type: 'image',
+  },
+  {
+    id: '2',
+    author: {
+      id: '1',
+      name: '舞蹈小王子',
+      title: '古典舞演员',
+      avatar: '/static/images/yiren.png',
+      level: 5,
+      isVerified: true,
+    },
+    content:
+      '刚刚结束了一场大型演出，分享一下我的心得体会。这次演出是《丝路花雨》的重排版，我担任主要舞者之一。排练了两个月，每天8小时的高强度训练，但看到观众的反响，一切都值得了一切都...',
+    images: [],
+    topics: [],
+    publishTime: '2小时前',
+    likeCount: 8,
+    commentCount: 5,
+    shareCount: 3,
+    viewCount: 89,
+    isLiked: true,
+    isCollected: false,
+    status: 'published',
+    type: 'text',
+  },
+  {
+    id: '3',
+    author: {
+      id: '1',
+      name: '舞蹈小王子',
+      title: '古典舞演员',
+      avatar: '/static/images/yiren.png',
+      level: 5,
+      isVerified: true,
+    },
+    content:
+      '刚刚结束了一场大型演出，分享一下我的心得体会。这次演出是《丝路花雨》的重排版，我担任主要舞者之一。排练了两个月，每天8小时的高强度训练，但看到观众的反响，一切都值得了一切都...',
+    images: [],
+    topics: [],
+    publishTime: '2小时前',
+    likeCount: 8,
+    commentCount: 5,
+    shareCount: 3,
+    viewCount: 89,
+    isLiked: true,
+    isCollected: false,
+    status: 'published',
+    type: 'text',
+  },
+  {
+    id: '4',
+    author: {
+      id: '1',
+      name: '舞蹈小王子',
+      title: '古典舞演员',
+      avatar: '/static/images/yiren.png',
+      level: 5,
+      isVerified: true,
+    },
+    content:
+      '刚刚结束了一场大型演出，分享一下我的心得体会。这次演出是《丝路花雨》的重排版，我担任主要舞者之一。排练了两个月，每天8小时的高强度训练，但看到观众的反响，一切都值得了一切都...',
+    images: [],
+    topics: [],
+    publishTime: '2小时前',
+    likeCount: 8,
+    commentCount: 5,
+    shareCount: 3,
+    viewCount: 89,
+    isLiked: true,
+    isCollected: false,
+    status: 'published',
+    type: 'text',
+  },
+]

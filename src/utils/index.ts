@@ -213,6 +213,10 @@ export const switchTab = (url: string) => {
     url: `/pages${url}`,
   })
 }
+/**
+ * Re-launches the application to the specified page URL.
+ * @param url - The target page path (without '/pages' prefix)
+ */
 export const reLaunch = (url: string) => {
   uni.reLaunch({
     url: `/pages${url}`,
@@ -229,6 +233,12 @@ export const isLogined = () => {
 
 export const goLogin = () => {
   navigateToSub('/login/login')
+  /**
+   * Navigates to a specified page with optional prefix and callback.
+   * @param url - The target page path (without prefix)
+   * @param [prefix='/pages'] - Optional path prefix (defaults to '/pages')
+   * @param [callback] - Optional success callback function
+   */
 }
 export const navigateBack = () => {
   uni.navigateBack()

@@ -97,45 +97,6 @@ export const JOB_POSITIONS: JobPosition[] = [
   },
 ]
 
-// 底部导航数据
-export const TAB_BAR_LIST = [
-  {
-    id: 'recruit',
-    text: '招人',
-    iconPath: '/static/tabbar/recruit.png',
-    selectedIconPath: '/static/tabbar/recruit-active.png',
-    pagePath: '/pages/index/index',
-  },
-  {
-    id: 'message',
-    text: '消息',
-    iconPath: '/static/tabbar/message.png',
-    selectedIconPath: '/static/tabbar/message-active.png',
-    pagePath: '/pages/message/index',
-  },
-  {
-    id: 'add',
-    text: '',
-    iconPath: '/static/tabbar/add.png',
-    selectedIconPath: '/static/tabbar/add-active.png',
-    pagePath: '/pages/publish/index',
-  },
-  {
-    id: 'forum',
-    text: '论坛',
-    iconPath: '/static/tabbar/forum.png',
-    selectedIconPath: '/static/tabbar/forum-active.png',
-    pagePath: '/pages/forum/index',
-  },
-  {
-    id: 'mine',
-    text: '我的',
-    iconPath: '/static/tabbar/mine.png',
-    selectedIconPath: '/static/tabbar/mine-active.png',
-    pagePath: '/pages/mine/index',
-  },
-]
-
 // 搜索热门关键词
 export const HOT_SEARCH_KEYWORDS = [
   '表演',

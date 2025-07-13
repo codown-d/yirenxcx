@@ -19,7 +19,6 @@
           }"
         >
           <slot></slot>
-          <view class="pb-safe"></view>
         </view>
       </scroll-view>
     </view>

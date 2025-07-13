@@ -127,6 +127,8 @@
         </wd-button>
       </view>
     </view>
+
+    <yr-tab-bar :tab-index="1"></yr-tab-bar>
   </view>
 </template>
 

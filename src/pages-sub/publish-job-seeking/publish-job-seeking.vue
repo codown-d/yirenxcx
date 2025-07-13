@@ -37,6 +37,31 @@
             :auto-height="true"
           />
         </wd-cell>
+        <wd-cell
+          title="期望职位"
+          custom-class="mt-2"
+          is-link
+          to="/pages-sub/job-category-select/job-category-select"
+        ></wd-cell>
+        <view class="py-2 flex flex-wrap gap-2" v-if="selectedCategories.length">
+          <tag
+            v-for="category in selectedCategories"
+            :label="category?.label"
+            :value="category?.value"
+            :key="category?.value"
+            @on-remove="removeCategory(category.value)"
+          ></tag>
+        </view>
+        <wd-cell title="位置" is-link to="/pages-sub/location-select/location-select"></wd-cell>
+        <view class="py-2 flex flex-wrap gap-2" v-if="selectedLocations.length">
+          <tag
+            v-for="item in selectedLocations"
+            :label="item.label"
+            :value="item.value"
+            :key="item.value"
+            @on-remove="removeLocation(item.value)"
+          ></tag>
+        </view>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -181,6 +206,10 @@ import {
   skillActions,
   advantageActions,
 } from '@/constant/jobSeeking'
+import { ItemProps } from '../job-filter/job-filter.vue'
+import { useCategoriesStore, useLocationStore } from '@/store'
+const { getLocation, removeLocation, locations } = useLocationStore()
+const { categories, removeCategory, getCategory } = useCategoriesStore()
 
 // 表单数据
 const formData = reactive({
@@ -196,6 +225,9 @@ const formData = reactive({
   skills: [],
   advantages: [],
 })
+let selectedLocations = ref<ItemProps[]>(locations)
+let selectedCategories = ref<ItemProps[]>(categories)
+
 watch(formData, (val) => {
   console.log('表单数据变化', val)
 })
@@ -318,4 +350,8 @@ const publishJobSeekingInfo = async () => {
     loading.value = false
   }
 }
+onShow(() => {
+  selectedCategories.value = getCategory()
+  selectedLocations.value = getLocation()
+})
 </script>

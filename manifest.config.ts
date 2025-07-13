@@ -116,6 +116,12 @@ export default defineManifestConfig({
     },
     usingComponents: true,
     // __usePrivacyCheck__: true,
+    requiredPrivateInfos: ['getLocation'],
+    permission: {
+      'scope.userLocation': {
+        desc: '需要您的位置信息用于定位',
+      },
+    },
   },
   'mp-alipay': {
     usingComponents: true,

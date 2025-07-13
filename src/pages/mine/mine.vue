@@ -18,10 +18,13 @@
         </wd-button>
       </template>
     </wd-navbar>
+    <view class="bg-[#F5F6FA] h-2"></view>
     <jobseeker></jobseeker>
 
-    <!-- 底部安全区域 -->
     <view class="pb-safe"></view>
+
+    <yr-tab-bar :tab-index="4"></yr-tab-bar>
+    <!-- 底部安全区域 -->
   </view>
 </template>
 
@@ -145,10 +148,7 @@ const handleAppUpdate = () => {
   toast.success('功能开发中')
   // #endif
 }
-// 关于我们
-const handleAbout = () => {
-  uni.navigateTo({ url: `/pages/mine/about/index` })
-}
+
 // 清除缓存
 const handleClearCache = () => {
   uni.showModal({

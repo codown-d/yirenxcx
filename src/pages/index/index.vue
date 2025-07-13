@@ -9,7 +9,10 @@
 }
 </route>
 <template>
-  <view class="text-[#252525]">
+  <view
+    class="text-[#252525]"
+    :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'"
+  >
     <scroll-view
       :scroll-y="true"
       class="h-100vh"
@@ -26,7 +29,7 @@
         :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
       ></wd-navbar>
       <view
-        class="bg-transparent"
+        class="bg-transparent pb-4"
         :style="{
           paddingTop: safeAreaInsets?.top + 44 + 'px',
         }"
@@ -118,6 +121,7 @@
       </view>
     </view>
   </wd-popup>
+  <yr-tab-bar :tab-index="0"></yr-tab-bar>
 </template>
 
 <script lang="ts" setup>
@@ -125,11 +129,10 @@ import JobCard from '@/components/job-card/job-card.vue'
 import {
   JOB_POSITIONS,
   FILTER_TAGS,
-  TAB_BAR_LIST,
   type JobPosition,
   type FilterTag,
 } from '@/constant/recruitment'
-import { getSystemInfoSync, navigateTo, navigateToSub } from '@/utils'
+import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
 
 const { safeAreaInsets } = getSystemInfoSync()
 // 响应式数据
@@ -141,7 +144,6 @@ const activeFilterTag = ref('all')
 const activeTab = ref('recruit')
 const jobList = ref<JobPosition[]>(JOB_POSITIONS)
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
-const tabBarList = ref(TAB_BAR_LIST)
 
 // 计算属性
 const filteredJobs = computed(() => {
@@ -152,7 +154,7 @@ const filteredJobs = computed(() => {
   return jobList.value
 })
 const swiperList = ref([
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/redpanda.jpg',
+  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/panda.jpg',
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/moon.jpg',
@@ -224,6 +226,16 @@ const isShowPopup = ref(false)
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/login/login')
+  navigateToSub('/publish-job-seeking/publish-job-seeking')
+  // uni.setTabBarItem({
+  //   index: 0, // 第几个 tabBar 项，从 0 开始
+  //   text: '首页', // 修改显示文字
+  //   success(res) {
+  //     console.log('修改成功', res)
+  //   },
+  //   fail(err) {
+  //     console.error('修改失败', err)
+  //   },
+  // })
 })
 </script>
