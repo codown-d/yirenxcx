@@ -292,7 +292,7 @@ const publishPost = async () => {
   }
 }
 onShow(() => {
-  let item = getLocation()?.[0] || { label: '请选择', value: '' }
+  let item = getLocation()?.[0] || { label: '', value: '' }
   selectedLocation.value = item.label
 })
 </script>

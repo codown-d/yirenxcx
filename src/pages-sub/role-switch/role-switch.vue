@@ -57,36 +57,17 @@
         </wd-button>
       </view>
     </view>
-
-    <!-- 切换选项 -->
-
-    <!-- 说明文字 -->
-
-    <!-- 底部按钮区域 -->
-
-    <!-- 确认弹窗 -->
-    <wd-message-box
-      v-model="showConfirm"
-      type="confirm"
-      :title="confirmTitle"
-      :content="confirmContent"
-      confirm-button-text="确认切换"
-      cancel-button-text="取消"
-      @confirm="handleRoleSwitch"
-      @cancel="showConfirm = false"
-    />
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { toast } from '@/utils/toast'
 import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
+import { RoleEmu, useRoleStore } from '@/store'
+import { navigateBack, switchTab } from '@/utils'
+const { setRole, getRole } = useRoleStore()
 
-// 页面状态
-const showConfirm = ref(false)
-const currentUserRole = ref<'jobseeker' | 'employer'>('jobseeker')
-const selectedRole = ref<any>(null)
+const currentUserRole = ref<RoleEmu>(getRole())
 
 // 当前角色信息
 const currentRole = computed(() => {
@@ -103,71 +84,15 @@ const targetRole = computed(() => {
   return otherRoles.value[0] || null
 })
 
-// 确认弹窗标题和内容
-const confirmTitle = computed(() => {
-  return selectedRole.value ? `切换为${selectedRole.value.name}` : ''
-})
-
-const confirmContent = computed(() => {
-  return selectedRole.value
-    ? `确认要切换身份为"${selectedRole.value.name}"吗？切换后您将看到对应身份的功能和内容。`
-    : ''
-})
-
-// 页面加载时获取当前用户角色
-onMounted(() => {
-  // 从本地存储或路由参数获取当前角色
-  const pages = getCurrentPages()
-  const currentPage = pages[pages.length - 1]
-  const options = currentPage.options || {}
-
-  if (options.currentRole) {
-    currentUserRole.value = options.currentRole as 'jobseeker' | 'employer'
-  } else {
-    // 默认从本地存储获取
-    const storedRole = uni.getStorageSync('userRole')
-    if (storedRole) {
-      currentUserRole.value = storedRole
-    }
-  }
-})
-
 // 返回上一页
 const goBack = () => {
-  uni.navigateBack()
+  navigateBack()
 }
 
 // 显示切换确认
 const showSwitchConfirm = (role: any) => {
-  selectedRole.value = role
-  showConfirm.value = true
-}
-
-// 处理角色切换
-const handleRoleSwitch = async () => {
-  if (!selectedRole.value) return
-
-  try {
-    toast.loading('切换中...')
-
-    // 模拟切换过程
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    // 保存新角色到本地存储
-    uni.setStorageSync('userRole', selectedRole.value.key)
-    currentUserRole.value = selectedRole.value.key
-
-    toast.success(`已切换为${selectedRole.value.name}`)
-
-    // 延迟返回上一页
-    setTimeout(() => {
-      uni.navigateBack()
-    }, 1000)
-  } catch (error) {
-    toast.error('切换失败，请重试')
-  } finally {
-    showConfirm.value = false
-    selectedRole.value = null
-  }
+  setRole(currentUserRole.value === RoleEmu.seeking ? RoleEmu.employer : RoleEmu.seeking)
+  // switchTab('/index/index')
+  navigateBack()
 }
 </script>

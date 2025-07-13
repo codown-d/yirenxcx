@@ -19,8 +19,10 @@
 </template>
 
 <script lang="ts" setup>
+import { RoleEmu, useRoleStore } from '@/store'
 import { navigateToSub, switchTab } from '@/utils'
 
+let { role } = useRoleStore()
 const props = defineProps({
   tabIndex: {
     type: Number,
@@ -68,7 +70,9 @@ let tabList = ref([
 
 const change = ({ value }) => {
   if (value === 2) {
-    return navigateToSub('/publish-job-seeking/publish-job-seeking')
+    return role === RoleEmu.seeking
+      ? navigateToSub('/publish-job-seeking/publish-job-seeking')
+      : navigateToSub('/publish-recruitment/publish-recruitment')
   }
   let node = tabList.value[value].pagePath
   switchTab(node)

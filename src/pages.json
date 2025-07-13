@@ -235,6 +235,14 @@
           }
         },
         {
+          "path": "publish-recruitment/publish-recruitment",
+          "type": "page",
+          "style": {
+            "navigationBarTitleText": "发布招聘信息",
+            "navigationStyle": "custom"
+          }
+        },
+        {
           "path": "role-switch/role-switch",
           "type": "page",
           "layout": "common",

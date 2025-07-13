@@ -14,13 +14,12 @@
       <template #capsule>
         <wd-button plain hairline size="small" @click="changeRole">
           <wd-icon name="translate-bold" size="22px"></wd-icon>
-          切换为招聘方
+          切换为{{ roleLabel }}
         </wd-button>
       </template>
     </wd-navbar>
     <view class="bg-[#F5F6FA] h-2"></view>
-    <jobseeker></jobseeker>
-
+    <jobseeker v-if="role === RoleEmu.seeking"></jobseeker>
     <view class="pb-safe"></view>
 
     <yr-tab-bar :tab-index="4"></yr-tab-bar>
@@ -29,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from '@/store'
+import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import { useToast } from 'wot-design-uni'
 import { uploadFileUrl, useUpload } from '@/utils/uploadFile'
 import { IUploadSuccessInfo } from '@/api/login.typings'
@@ -37,6 +36,7 @@ import { navigateToSub } from '@/utils'
 import jobseeker from './components/jobseeker.vue'
 
 const userStore = useUserStore()
+const { role, getRole } = useRoleStore()
 
 const toast = useToast()
 const hasLogin = ref(false)
@@ -49,6 +49,9 @@ onShow((options) => {
   console.log('个人中心onShow', hasLogin.value, options)
 
   hasLogin.value && useUserStore().getUserInfo()
+})
+const roleLabel = computed(() => {
+  return getRole() === RoleEmu.seeking ? '招聘方' : '求职者'
 })
 // #ifndef MP-WEIXIN
 // 上传头像

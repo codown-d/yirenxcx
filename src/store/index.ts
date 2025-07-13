@@ -17,3 +17,4 @@ export default store
 export * from './user'
 export * from './categories'
 export * from './locations'
+export * from './role'

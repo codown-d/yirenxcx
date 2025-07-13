@@ -486,3 +486,218 @@ export async function deleteForumPost({
     ...(options || {}),
   })
 }
+
+// 招聘相关接口类型定义
+export interface RecruitmentJobRequest {
+  title: string
+  description: string
+  category: string
+  type: string
+  deadline: string
+  salary: {
+    range: string
+    location: string
+    skills: string[]
+  }
+  requirements: {
+    count: number
+    experience: string
+    education: string
+    others: string[]
+    skillRequirements: string[]
+  }
+  projects: {
+    title: string
+    date: string
+    location: string
+    image: string
+  }[]
+  options: {
+    urgent: boolean
+    pinned: boolean
+  }
+}
+
+export interface RecruitmentJobResponse {
+  code: number
+  data: {
+    jobId: string
+    status: 'published' | 'reviewing' | 'draft'
+  }
+  msg: string
+}
+
+export interface RecruitmentJob {
+  id: string
+  title: string
+  description: string
+  category: string
+  type: string
+  deadline: string
+  salary: {
+    range: string
+    location: string
+    skills: string[]
+  }
+  requirements: {
+    count: number
+    experience: string
+    education: string
+    others: string[]
+    skillRequirements: string[]
+  }
+  projects: {
+    title: string
+    date: string
+    location: string
+    image: string
+  }[]
+  options: {
+    urgent: boolean
+    pinned: boolean
+  }
+  publisher: {
+    id: string
+    name: string
+    avatar: string
+    company?: string
+  }
+  publishTime: string
+  viewCount: number
+  applyCount: number
+  status: 'published' | 'reviewing' | 'draft' | 'expired'
+}
+
+export interface RecruitmentJobListResponse {
+  code: number
+  data: {
+    jobs: RecruitmentJob[]
+    total: number
+    page: number
+    size: number
+    hasMore: boolean
+  }
+  msg: string
+}
+
+/** 发布招聘信息 POST /app-api/recruitment/job/publish */
+export async function publishRecruitmentJob({
+  body,
+  options,
+}: {
+  body: RecruitmentJobRequest
+  options?: CustomRequestOptions
+}): Promise<RecruitmentJobResponse> {
+  return request<RecruitmentJobResponse>('/app-api/recruitment/job/publish', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  })
+}
+
+/** 获取招聘信息列表 GET /app-api/recruitment/jobs */
+export async function getRecruitmentJobs({
+  params,
+  options,
+}: {
+  params?: {
+    category?: string
+    type?: string
+    location?: string
+    salaryRange?: string
+    page?: number
+    size?: number
+    sortBy?: 'latest' | 'salary' | 'urgent'
+  }
+  options?: CustomRequestOptions
+}): Promise<RecruitmentJobListResponse> {
+  return request<RecruitmentJobListResponse>('/app-api/recruitment/jobs', {
+    method: 'GET',
+    params,
+    ...(options || {}),
+  })
+}
+
+/** 获取招聘信息详情 GET /app-api/recruitment/job/detail */
+export async function getRecruitmentJobDetail({
+  params,
+  options,
+}: {
+  params: {
+    jobId: string
+  }
+  options?: CustomRequestOptions
+}): Promise<{
+  code: number
+  data: {
+    job: RecruitmentJob
+    relatedJobs: RecruitmentJob[]
+  }
+  msg: string
+}> {
+  return request('/app-api/recruitment/job/detail', {
+    method: 'GET',
+    params,
+    ...(options || {}),
+  })
+}
+
+/** 申请职位 POST /app-api/recruitment/job/apply */
+export async function applyRecruitmentJob({
+  body,
+  options,
+}: {
+  body: {
+    jobId: string
+    resumeId?: string
+    message?: string
+  }
+  options?: CustomRequestOptions
+}): Promise<{
+  code: number
+  data: {
+    success: boolean
+    applicationId: string
+  }
+  msg: string
+}> {
+  return request('/app-api/recruitment/job/apply', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  })
+}
+
+/** 收藏招聘信息 POST /app-api/recruitment/job/favorite */
+export async function favoriteRecruitmentJob({
+  body,
+  options,
+}: {
+  body: {
+    jobId: string
+    action: 'favorite' | 'unfavorite'
+  }
+  options?: CustomRequestOptions
+}): Promise<{
+  code: number
+  data: {
+    success: boolean
+    isFavorited: boolean
+  }
+  msg: string
+}> {
+  return request('/app-api/recruitment/job/favorite', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  })
+}
