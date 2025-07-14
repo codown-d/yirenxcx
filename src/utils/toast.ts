@@ -45,7 +45,6 @@ export function showToast(options: ToastOptions | string) {
     info: 'none',
   }
 
-  console.log('mergedOptions', mergedOptions)
   // if (mergedOptions.type === 'success') {
   //   return wdToast.success(mergedOptions.message)
   // } else if (mergedOptions.type === 'error') {

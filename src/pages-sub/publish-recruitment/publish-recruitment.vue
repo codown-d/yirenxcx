@@ -368,6 +368,8 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { getSystemInfoSync } from '@/utils'
+import { createJob } from '@/service/index/yirenzhipinguanlihoutaizhaopinzhiwei'
+import type { YRZPJobCreateReqVO } from '@/service/index/types'
 
 const { safeAreaInsets } = getSystemInfoSync()
 
@@ -730,19 +732,23 @@ const publishJob = async () => {
   try {
     publishing.value = true
 
-    const recruitmentData: RecruitmentJobRequest = {
-      title: jobInfo.value.title,
+    const recruitmentData: YRZPJobCreateReqVO = {
+      employerId: 1, // 默认招聘者ID，实际应从用户信息获取
+      companyId: 1, // 默认公司ID，实际应从用户信息获取
+      categoryId: 1, // 默认分类ID，实际应根据category转换
+      name: jobInfo.value.title,
       description: jobInfo.value.description,
-      category: jobInfo.value.category,
-      type: jobInfo.value.type,
-      deadline: jobInfo.value.deadline,
-      salary: salaryInfo.value,
-      requirements: requirements.value,
-      projects: projects.value,
-      options: otherOptions.value,
+      location: salaryInfo.value.location,
+      salaryMin: parseInt(salaryInfo.value.range.split('-')[0]) || 5000,
+      salaryMax: parseInt(salaryInfo.value.range.split('-')[1]) || 10000,
+      experienceRequirement: parseInt(requirements.value.experience) || 0,
+      educationRequirement: requirements.value.education,
+      headcount: requirements.value.count,
+      benefits: salaryInfo.value.skills.join(','),
+      status: 1, // 发布状态
     }
 
-    const res = await publishRecruitmentJob({
+    const res = await createJob({
       body: recruitmentData,
     })
 

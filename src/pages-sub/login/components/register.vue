@@ -103,6 +103,34 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, REGISTER_CONFIG } from '@/constant'
+import { sendSmsCode as sendSms } from '@/service/index/yonghuApPrenzheng'
+import type { AppAuthSmsSendReqVO, AuthRegisterReqVO } from '@/service/index/types'
+
+// 类型定义
+interface RegisterRequest {
+  phone: string
+  code: string
+  password: string
+  confirmPassword: string
+  inviteCode?: string
+}
+
+// 模拟接口
+const checkPhoneExists = async (params: any) => {
+  return {
+    code: 0,
+    data: { exists: false },
+    msg: 'success',
+  }
+}
+
+const validateInviteCode = async (params: any) => {
+  return {
+    code: 0,
+    data: { valid: true },
+    msg: 'success',
+  }
+}
 
 // Props
 const props = defineProps({
@@ -160,8 +188,8 @@ const sendSmsCode = async () => {
     // 发送短信验证码
     const res = await sendSms({
       body: {
-        phone: registerForm.value.phone,
-        type: 'register',
+        mobile: registerForm.value.phone,
+        scene: 1, // 注册场景
       },
     })
 

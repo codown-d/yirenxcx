@@ -103,6 +103,44 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, FORGOT_PASSWORD_CONFIG } from '@/constant'
+import { sendSmsCode as sendSms, validateSmsCode } from '@/service/index/yonghuApPrenzheng'
+import type { AppAuthSmsSendReqVO, AppAuthSmsValidateReqVO } from '@/service/index/types'
+
+// 类型定义
+interface ResetPasswordRequest {
+  phone: string
+  code: string
+  password: string
+  confirmPassword: string
+}
+
+// 模拟接口
+const checkPhoneExists = async (params: any) => {
+  return {
+    code: 0,
+    data: { exists: true },
+    msg: 'success',
+  }
+}
+
+const resetPassword = async (params: any) => {
+  return {
+    code: 0,
+    data: { success: true },
+    msg: 'success',
+  }
+}
+
+const verifySmsCode = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      valid: true,
+      token: 'verify_token_' + Date.now(),
+    },
+    msg: 'success',
+  }
+}
 
 // Props
 const props = defineProps({
@@ -158,8 +196,8 @@ const sendSmsCode = async () => {
     // 发送短信验证码
     const res = await sendSms({
       body: {
-        phone: resetForm.value.phone,
-        type: 'reset',
+        mobile: resetForm.value.phone,
+        scene: 2, // 重置密码场景
       },
     })
 

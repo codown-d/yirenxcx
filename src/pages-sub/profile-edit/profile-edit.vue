@@ -79,6 +79,8 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
+import { getUserInfo1 as getUserInfo, updateUserInfo } from '@/service/index/0Yonghu'
+import { uploadFile } from '@/service/index/yonghuAppwenjiancunchu'
 import type { OAuth2UserUpdateReqVO } from '@/service/index/types'
 import { useColPickerData } from '@/hooks/useColPickerData'
 

@@ -172,7 +172,78 @@ import { toast } from '@/utils/toast'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 
 import { tabCategory, hotTopics as hotList, postList as pl } from '@/constant'
-import { ForumPost, ForumTopic, getForumPosts, getHotTopics } from '@/types/forum'
+import { getForumPostPage, getForumPost } from '@/service/index/yirenzhipinApPluntantiezi'
+import type { YRZPForumPostRespAppVO } from '@/service/index/types'
+
+// 临时类型定义，应该从service中获取
+interface ForumTopic {
+  id: string
+  name: string
+  count: number
+  isFollowed?: boolean
+}
+
+interface ForumPost {
+  id: string
+  title: string
+  content: string
+  author: {
+    id: string
+    name: string
+    avatar: string
+  }
+  createTime: string
+  publishTime?: string
+  viewCount: number
+  likeCount: number
+  commentCount: number
+  isLiked?: boolean
+  images?: string[]
+  topics?: string[]
+  shareCount?: number
+}
+
+// 模拟接口方法
+const getHotTopics = async (params: any) => {
+  return {
+    code: 0,
+    data: hotList,
+    msg: 'success',
+  }
+}
+
+const getForumPosts = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      list: pl,
+      total: pl.length,
+      hasMore: false,
+    },
+    msg: 'success',
+  }
+}
+
+const togglePostLike = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      isLiked: params.body.action === 'like',
+      likeCount: Math.floor(Math.random() * 100),
+    },
+    msg: 'success',
+  }
+}
+
+const shareForumPost = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      shareCount: Math.floor(Math.random() * 50),
+    },
+    msg: 'success',
+  }
+}
 
 const { safeAreaInsets } = getSystemInfoSync()
 
@@ -219,8 +290,8 @@ const loadPostList = async (isRefresh = false) => {
     })
 
     if (res.code === 0) {
-      postList.value.push(...res.data.posts)
-      hasMore.value = pageSize.value < res.data.posts.length
+      postList.value.push(...res.data.list)
+      hasMore.value = res.data.hasMore
       if (hasMore.value) {
         currentPage.value++
       }

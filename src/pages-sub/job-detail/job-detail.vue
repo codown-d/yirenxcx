@@ -189,16 +189,87 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { getSystemInfoSync } from '@/utils'
-import {
-  getJobDetail,
-  applyJob,
-  toggleJobFavorite,
-  recordJobView,
-  shareJob,
-  type JobDetail,
-  type JobApplicationRequest,
-  type JobFavoriteRequest,
-} from '@/types/jobDetail'
+import { getJob } from '@/service/index/yirenzhipinyonghuApPzhiwei'
+import type { YRZPJobRespVO } from '@/service/index/types'
+
+// 临时类型定义
+interface JobDetail {
+  id: string
+  title: string
+  company: string
+  location: string
+  salary: string
+  description: string
+  requirements: string[]
+  benefits: string[]
+  publishTime: string
+  viewCount: number
+  applyCount: number
+}
+
+interface JobApplicationRequest {
+  jobId: string
+  resumeId?: string
+  message?: string
+}
+
+interface JobFavoriteRequest {
+  jobId: string
+  action: 'favorite' | 'unfavorite'
+}
+
+// 模拟接口
+const getJobDetail = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      id: params.jobId,
+      title: '舞蹈演员',
+      company: '某文化传媒公司',
+      location: '北京',
+      salary: '8000-12000',
+      description: '负责舞蹈表演工作...',
+      requirements: ['专业院校毕业', '有表演经验'],
+      benefits: ['五险一金', '包食宿'],
+      publishTime: '2024-01-01',
+      viewCount: 100,
+      applyCount: 20,
+    },
+    msg: 'success',
+  }
+}
+
+const applyJob = async (params: any) => {
+  return {
+    code: 0,
+    data: { success: true },
+    msg: 'success',
+  }
+}
+
+const toggleJobFavorite = async (params: any) => {
+  return {
+    code: 0,
+    data: { isFavorited: params.body.action === 'favorite' },
+    msg: 'success',
+  }
+}
+
+const recordJobView = async (params: any) => {
+  return {
+    code: 0,
+    data: { success: true },
+    msg: 'success',
+  }
+}
+
+const shareJob = async (params: any) => {
+  return {
+    code: 0,
+    data: { shareCount: Math.floor(Math.random() * 50) },
+    msg: 'success',
+  }
+}
 
 const { safeAreaInsets } = getSystemInfoSync()
 

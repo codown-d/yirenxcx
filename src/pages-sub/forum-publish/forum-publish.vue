@@ -172,7 +172,8 @@ import { toast } from '@/utils/toast'
 import { categoryActions, visibilityActions, availableTopics, availableMoods } from '@/constant'
 import { useLocationStore } from '@/store'
 import { navigateToSub } from '@/utils'
-import { publishForumPost } from '@/types/forum'
+import { createForumPost } from '@/service/index/yirenzhipinApPluntantiezi'
+import type { YRZPForumPostCreateAppReqVO } from '@/service/index/types'
 const { getLocation } = useLocationStore()
 
 // 页面状态
@@ -262,16 +263,12 @@ const publishPost = async () => {
   try {
     publishing.value = true
 
-    const postData = {
+    const postData: YRZPForumPostCreateAppReqVO = {
+      title: content.value.substring(0, 50) || '无标题', // 从内容中提取标题
       content: content.value,
-      images: uploadedImages.value,
-      topics: selectedTopics.value,
-      type: uploadedImages.value.length > 0 ? 'image' : 'text',
-      location: selectedLocation.value,
-      isAnonymous: false,
     }
 
-    const res = await publishForumPost({
+    const res = await createForumPost({
       body: postData,
     })
 

@@ -3,70 +3,99 @@
     class="relative bg-white rounded-3 p-4 mb-3 shadow-sm border border-gray-100 active:bg-gray-50 transition-colors duration-200"
     @click="handleCardClick"
   >
-    <!-- 紧急招聘标签 -->
-    <view
-      v-if="jobData.isUrgent"
-      class="absolute top-0 right-3 bg-gradient-to-b from-red-400 to-red-500 rounded-b-2 px-2 py-1"
-    >
-      <text class="text-white text-xs font-medium">急聘</text>
+    <!-- 顶部描述信息 -->
+    <view v-if="jobData.description" class="flex items-center mb-3">
+      <text class="text-orange-500 text-sm mr-2">🎭</text>
+      <text class="text-3 text-gray-600 flex-1">{{ jobData.description }}</text>
     </view>
 
-    <!-- 职位标题和薪资 -->
-    <view class="flex justify-between items-start mb-2">
-      <view class="text-base font-semibold text-gray-800 flex-1 mr-3">{{ jobData.title }}</view>
-      <view class="text-base font-semibold text-primary">{{ jobData.salary }}</view>
-    </view>
-
-    <!-- 公司和地点 -->
-    <view class="mb-3">
-      <view class="flex items-center gap-3">
-        <text class="text-sm text-gray-600">{{ jobData.company }}</text>
-        <text class="text-sm text-gray-400">📍{{ jobData.location }}</text>
+    <!-- 职位标题和急聘标签 -->
+    <view class="flex items-center justify-between mb-2">
+      <view class="flex items-center">
+        <text class="text-4 font-bold text-gray-900 mr-3">{{ jobData.title }}</text>
+        <view v-if="jobData.isUrgent" class="bg-red-500 text-white text-3 px-1 py-[4rpx] rounded-1">
+          急聘
+        </view>
       </view>
+      <text class="text-4 font-bold text-teal-600">{{ jobData.salary }}</text>
     </view>
 
     <!-- 标签列表 -->
-    <view class="flex flex-wrap gap-1.5 mb-3">
+    <view class="flex flex-wrap gap-2 mb-2">
       <view
         v-for="tag in jobData.tags"
         :key="tag"
-        class="bg-blue-50 text-blue-600 text-xs px-2 py-1 rounded-1 border border-blue-100"
+        class="bg-teal-50 text-teal-600 text-3 px-2 py-1 rounded-1"
       >
         {{ tag }}
       </view>
     </view>
-
-    <!-- 发布时间和收藏按钮 -->
-    <view class="flex justify-between items-center">
-      <text class="text-xs text-gray-400">{{ jobData.publishTime }}</text>
-      <view
-        class="p-1 active:opacity-70 transition-opacity duration-200"
-        @click.stop="handleFavorite"
-      >
-        <uni-icons
-          :type="isFavorited ? 'heart-filled' : 'heart'"
+    <view class="flex items-start justify-between gap-3 mb-2">
+      <view class="flex flex-wrap gap-2">
+        <view
+          v-for="tag in jobData.requirements"
+          :key="tag"
+          class="bg-[#F5F6FA] text-[#555555] text-3 px-2 py-1 rounded-1"
+        >
+          {{ tag }}
+        </view>
+      </view>
+      <!-- 收藏按钮 -->
+      <view class="active:opacity-70 transition-opacity duration-200" @click.stop="handleFavorite">
+        <wd-icon
+          :name="isFavorited ? 'heart-filled' : 'heart'"
           :color="isFavorited ? '#ff4757' : '#ddd'"
-          size="20"
+          custom-class="text-6"
         />
+      </view>
+    </view>
+    <!-- 底部信息：公司、地点、时间 -->
+    <view class="flex items-center justify-between">
+      <view class="flex items-center gap-4">
+        <view class="flex items-center">
+          <wd-icon name="evaluation" custom-class="text-4 mr-1"></wd-icon>
+          <text class="text-3 text-gray-600">{{ jobData.company }}</text>
+        </view>
+        <view class="flex items-center">
+          <wd-icon name="location" custom-class="text-4 mr-1"></wd-icon>
+          <text class="text-3 text-gray-600">{{ jobData.location }}</text>
+        </view>
+      </view>
+
+      <view class="flex items-center gap-3">
+        <text class="text-3 text-gray-400">{{ jobData.publishTime }}</text>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { ref, watch } from 'vue'
 import type { JobPosition } from '@/constant/recruitment'
 
 interface Props {
   jobData: JobPosition
+  favorited?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  favorited: false,
+})
+
 const emit = defineEmits<{
   click: [job: JobPosition]
   favorite: [job: JobPosition, isFavorited: boolean]
 }>()
 
-const isFavorited = ref(false)
+const isFavorited = ref(props.favorited)
+
+// 监听favorited属性变化
+watch(
+  () => props.favorited,
+  (newVal) => {
+    isFavorited.value = newVal
+  },
+)
 
 const handleCardClick = () => {
   emit('click', props.jobData)

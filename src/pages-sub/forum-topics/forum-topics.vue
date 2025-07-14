@@ -50,7 +50,42 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { ForumTopic, getHotTopics } from '@/types/forum'
+
+// 临时类型定义
+interface ForumTopic {
+  id: string
+  name: string
+  count: number
+  isFollowed?: boolean
+  description?: string
+  participantCount?: number
+  isHot?: boolean
+  avatar?: string
+  tags?: string[]
+}
+
+// 模拟接口
+const getHotTopics = async (params: any) => {
+  return {
+    code: 0,
+    data: [
+      { id: '1', name: '舞蹈', count: 1234, isFollowed: false },
+      { id: '2', name: '音乐', count: 987, isFollowed: true },
+      { id: '3', name: '戏剧', count: 654, isFollowed: false },
+    ],
+    msg: 'success',
+  }
+}
+
+const toggleTopicFollow = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      isFollowed: !params.body.isFollowed,
+    },
+    msg: 'success',
+  }
+}
 
 // 页面状态
 const loading = ref(false)

@@ -18,21 +18,21 @@
         <text>{{ subDesc }}</text>
       </view>
       <view class="wd-privacy-popup__footer">
-        <button
-          class="wd-privacy-popup__footer-disagree wd-button is-block is-round is-medium is-plain"
+        <wd-button
+          custom-class="wd-privacy-popup__footer-disagree wd-button is-block is-round is-medium is-plain"
           id="disagree-btn"
           @click="handleDisagree"
         >
           拒绝
-        </button>
-        <button
+        </wd-button>
+        <wd-button
           class="wd-privacy-popup__footer-agree wd-button is-primary is-block is-round is-medium"
           id="agree-btn"
           open-type="agreePrivacyAuthorization"
           @agreeprivacyauthorization="handleAgree"
         >
           同意
-        </button>
+        </wd-button>
       </view>
     </wd-popup>
   </view>

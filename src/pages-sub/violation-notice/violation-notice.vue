@@ -106,7 +106,106 @@
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 
+// 模拟接口
+const getViolationList = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      list: [
+        {
+          id: '1',
+          type: 'spam',
+          title: '垃圾信息举报',
+          description: '发布垃圾广告信息',
+          status: 'processed' as const,
+          createTime: '2024-01-01 10:00',
+          processTime: '2024-01-01 12:00',
+          result: '举报成功，已处理',
+        },
+      ],
+      total: 1,
+      hasMore: false,
+    },
+    msg: 'success',
+  }
+}
+
+const getViolationStats = async () => {
+  return {
+    code: 0,
+    data: {
+      total: 10,
+      processed: 8,
+      processing: 2,
+      pending: 0,
+      monthlyTotal: 5,
+    },
+    msg: 'success',
+  }
+}
+
+const getViolationTypes = async () => {
+  return {
+    code: 0,
+    data: [
+      { id: 'spam', name: '垃圾信息', description: '发布垃圾广告等' },
+      { id: 'harassment', name: '骚扰行为', description: '恶意骚扰他人' },
+      { id: 'fraud', name: '欺诈行为', description: '虚假信息欺诈' },
+    ],
+    msg: 'success',
+  }
+}
+
+const submitReport = async (params: any) => {
+  return {
+    code: 0,
+    data: {
+      reportId: 'report_' + Date.now(),
+      status: 'submitted',
+    },
+    msg: 'success',
+  }
+}
+
 // 数据类型定义
+interface ViolationRecord {
+  id: string
+  type: string
+  title: string
+  description: string
+  status: 'pending' | 'processing' | 'processed' | 'rejected'
+  createTime: string
+  processTime?: string
+  result?: string
+  reportedUser?: string
+  reportedContent?: string
+}
+
+interface ViolationTag {
+  id: string
+  name: string
+  description: string
+  label?: string
+  value?: string
+}
+
+interface ViolationListParams {
+  page?: number
+  pageSize?: number
+  keyword?: string
+  type?: string
+  status?: string
+  filter?: string
+}
+
+interface ReportRequest {
+  type: string
+  targetId: string
+  targetType: 'user' | 'post' | 'comment'
+  reason: string
+  description?: string
+  evidence?: string[]
+}
 interface MonthlyStats {
   total: number
   processed: number
@@ -226,7 +325,7 @@ const loadViolationList = async (reset = false) => {
         violationList.value.push(...newData)
       }
 
-      hasMore.value = newData.length === pageSize.value && currentPage.value < (res.data.pages || 1)
+      hasMore.value = res.data.hasMore
       currentPage.value++
       return
     } else {

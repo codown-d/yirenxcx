@@ -71,15 +71,13 @@
             <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
           </view>
           <!-- 职位列表 -->
-          <view class="">
-            <job-card
-              v-for="job in filteredJobs"
-              :key="job.id"
-              :job-data="job"
-              @click="handleJobClick"
-              @favorite="handleJobFavorite"
-            />
+
+          <job-card v-for="job in jobList" :key="job.id" :job-data="job" />
+          <!-- 推荐招聘职位标题 -->
+          <view class="py-4">
+            <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
           </view>
+          <job-seeker-card v-for="seeker in seekerList" :key="seeker.id" :seeker-data="seeker" />
         </view>
       </view>
     </scroll-view>
@@ -125,13 +123,9 @@
 </template>
 
 <script lang="ts" setup>
-import JobCard from '@/components/job-card/job-card.vue'
-import {
-  JOB_POSITIONS,
-  FILTER_TAGS,
-  type JobPosition,
-  type FilterTag,
-} from '@/constant/recruitment'
+import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/constant/recruitment'
+import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
+
 import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
 
 const { safeAreaInsets } = getSystemInfoSync()
@@ -139,10 +133,12 @@ const { safeAreaInsets } = getSystemInfoSync()
 const opacity = ref(0)
 
 const searchKeyword = ref('')
+
 const show = ref(false)
 const activeFilterTag = ref('all')
 const activeTab = ref('recruit')
 const jobList = ref<JobPosition[]>(JOB_POSITIONS)
+const seekerList = ref<JobSeeker[]>(JOB_SEEKERS)
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 
 // 计算属性
@@ -226,7 +222,7 @@ const isShowPopup = ref(false)
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/login/login')
+  // navigateToSub('/login/login')
   // uni.setTabBarItem({
   //   index: 0, // 第几个 tabBar 项，从 0 开始
   //   text: '首页', // 修改显示文字

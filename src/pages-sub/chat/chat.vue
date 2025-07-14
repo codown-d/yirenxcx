@@ -119,9 +119,9 @@
 
     <!-- 加载更多 -->
     <view v-if="hasMore" class="flex justify-center py-4">
-      <button class="text-primary text-sm" :disabled="loading" @click="loadMore">
+      <wd-button class="text-primary text-sm" :disabled="loading" @click="loadMore">
         {{ loading ? '加载中...' : '加载更多' }}
-      </button>
+      </wd-button>
     </view>
   </view>
 </template>
@@ -130,6 +130,129 @@
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import dayjs from 'dayjs'
+
+// 临时类型定义
+interface ChatItem {
+  id: string
+  name: string
+  avatar: string
+  lastMessage: string
+  lastTime: string
+  unreadCount: number
+  isOnline?: boolean
+  type: 'user' | 'group'
+  conversationId?: string
+  userId?: string
+}
+
+interface SystemNotification {
+  id: string
+  title: string
+  content: string
+  type:
+    | 'system'
+    | 'announcement'
+    | 'activity'
+    | 'job_recommendation'
+    | 'interview_invitation'
+    | 'application_update'
+    | 'system_update'
+    | 'promotion'
+  time: string
+  createTime?: string
+  isRead: boolean
+  icon?: string
+}
+
+interface ChatListParams {
+  page?: number
+  size?: number
+  pageSize?: number
+  type?: string
+  params?: any
+}
+
+interface NotificationListParams {
+  page?: number
+  size?: number
+  pageSize?: number
+  type?: string
+  params?: any
+}
+
+// 模拟接口
+const getChatList = async (params: ChatListParams) => {
+  return {
+    code: 0,
+    data: {
+      list: [
+        {
+          id: '1',
+          name: '张三',
+          avatar: '/static/images/avatar1.png',
+          lastMessage: '你好，请问这个职位还在招聘吗？',
+          lastTime: '10:30',
+          unreadCount: 2,
+          isOnline: true,
+          type: 'user' as const,
+        },
+      ],
+      total: 1,
+      hasMore: false,
+    },
+    msg: 'success',
+  }
+}
+
+const getNotificationList = async (params: NotificationListParams) => {
+  return {
+    code: 0,
+    data: {
+      list: [
+        {
+          id: '1',
+          title: '系统通知',
+          content: '您的简历已通过审核',
+          type: 'system' as const,
+          time: '2024-01-01 10:00',
+          isRead: false,
+          icon: 'bell',
+        },
+      ],
+      total: 1,
+      hasMore: false,
+    },
+    msg: 'success',
+  }
+}
+
+const markMessageAsRead = async (params: any) => {
+  return {
+    code: 0,
+    data: { success: true },
+    msg: 'success',
+  }
+}
+
+const markNotificationAsRead = async (params: any) => {
+  return {
+    code: 0,
+    data: { success: true },
+    msg: 'success',
+  }
+}
+
+const getUnreadCount = async () => {
+  return {
+    code: 0,
+    data: {
+      chatCount: 5,
+      notificationCount: 3,
+      total: 8,
+    },
+    msg: 'success',
+  }
+}
 
 // 响应式数据
 const activeTab = ref('chat')
@@ -185,7 +308,7 @@ const loadChatList = async (reset = false) => {
         chatList.value.push(...newData)
       }
 
-      hasMore.value = newData.length === pageSize.value && currentPage.value < (res.data.pages || 1)
+      hasMore.value = res.data.hasMore
       currentPage.value++
       return
     } else {

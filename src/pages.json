@@ -90,7 +90,7 @@
       "isTab": true
     },
     {
-      "path": "pages/index/job-search/job-search",
+      "path": "pages/index/job-seeking/job-seeking",
       "type": "page",
       "style": {
         "navigationBarTitleText": "求职",
@@ -117,6 +117,10 @@
             "navigationBarTitleText": "消息",
             "navigationStyle": "default"
           }
+        },
+        {
+          "path": "component-demo/component-demo",
+          "type": "page"
         },
         {
           "path": "forum-publish/forum-publish",
