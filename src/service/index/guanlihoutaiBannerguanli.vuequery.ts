@@ -8,7 +8,7 @@ import { CustomRequestOptions } from '@/interceptors/request';
 import * as apis from './guanlihoutaiBannerguanli';
 import * as API from './types';
 
-/** 创建Banner POST /admin-api/yirenzhipin/banner/create */
+/** 创建 Banner POST /admin-api/promotion/banner/create */
 export function useCreateBannerMutation(options?: {
   onSuccess?: (value?: API.CommonResultLong) => void;
   onError?: (error?: DefaultError) => void;
@@ -28,7 +28,7 @@ export function useCreateBannerMutation(options?: {
   return response;
 }
 
-/** 删除Banner DELETE /admin-api/yirenzhipin/banner/delete */
+/** 删除 Banner DELETE /admin-api/promotion/banner/delete */
 export function useDeleteBannerMutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
@@ -48,21 +48,7 @@ export function useDeleteBannerMutation(options?: {
   return response;
 }
 
-/** 导出Banner Excel GET /admin-api/yirenzhipin/banner/export-excel */
-export function exportBannerExcelQueryOptions(options: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.exportBannerExcelParams;
-  options?: CustomRequestOptions;
-}) {
-  return queryOptions({
-    queryFn: async ({ queryKey }) => {
-      return apis.exportBannerExcel(queryKey[1] as typeof options);
-    },
-    queryKey: ['exportBannerExcel', options],
-  });
-}
-
-/** 获得Banner GET /admin-api/yirenzhipin/banner/get */
+/** 获得 Banner GET /admin-api/promotion/banner/get */
 export function getBannerQueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
   params: API.getBannerParams;
@@ -76,21 +62,7 @@ export function getBannerQueryOptions(options: {
   });
 }
 
-/** 获得Banner列表 GET /admin-api/yirenzhipin/banner/list */
-export function getBannerList1QueryOptions(options: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getBannerList1Params;
-  options?: CustomRequestOptions;
-}) {
-  return queryOptions({
-    queryFn: async ({ queryKey }) => {
-      return apis.getBannerList1(queryKey[1] as typeof options);
-    },
-    queryKey: ['getBannerList1', options],
-  });
-}
-
-/** 获得Banner分页 GET /admin-api/yirenzhipin/banner/page */
+/** 获得 Banner 分页 GET /admin-api/promotion/banner/page */
 export function getBannerPageQueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
   params: API.getBannerPageParams;
@@ -104,7 +76,7 @@ export function getBannerPageQueryOptions(options: {
   });
 }
 
-/** 更新Banner PUT /admin-api/yirenzhipin/banner/update */
+/** 更新 Banner PUT /admin-api/promotion/banner/update */
 export function useUpdateBannerMutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;

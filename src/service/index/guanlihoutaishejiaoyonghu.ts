@@ -6,7 +6,7 @@ import { CustomRequestOptions } from '@/interceptors/request';
 import * as API from './types';
 
 /** 社交绑定，使用 code 授权码 POST /admin-api/system/social-user/bind */
-export async function socialBind({
+export async function socialBind1({
   body,
   options,
 }: {
@@ -27,12 +27,12 @@ export async function socialBind({
 }
 
 /** 获得社交用户 GET /admin-api/system/social-user/get */
-export async function getSocialUser({
+export async function getSocialUser1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getSocialUserParams;
+  params: API.getSocialUser1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultSocialUserRespVO>(
@@ -84,7 +84,7 @@ export async function getSocialUserPage({
 }
 
 /** 取消社交绑定 DELETE /admin-api/system/social-user/unbind */
-export async function socialUnbind({
+export async function socialUnbind1({
   body,
   options,
 }: {

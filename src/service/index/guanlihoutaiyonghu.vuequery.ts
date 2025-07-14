@@ -147,14 +147,14 @@ export function getSimpleUserList1QueryOptions(options: {
 }
 
 /** 修改用户 PUT /admin-api/system/user/update */
-export function useUpdateUserMutation(options?: {
+export function useUpdateUser1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateUser,
+    mutationFn: apis.updateUser1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },
@@ -167,14 +167,14 @@ export function useUpdateUserMutation(options?: {
 }
 
 /** 重置用户密码 PUT /admin-api/system/user/update-password */
-export function useUpdateUserPasswordMutation(options?: {
+export function useUpdateUserPassword1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateUserPassword,
+    mutationFn: apis.updateUserPassword1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

@@ -136,17 +136,6 @@
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import dayjs from 'dayjs'
-import {
-  getChatList,
-  getNotificationList,
-  markMessageAsRead,
-  markNotificationAsRead,
-  getUnreadCount,
-  type ChatItem,
-  type SystemNotification,
-  type ChatListParams,
-  type NotificationListParams,
-} from '@/service/index/chat'
 
 // 响应式数据
 const activeTab = ref('chat')

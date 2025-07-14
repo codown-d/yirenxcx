@@ -191,12 +191,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  publishJobSeeking,
-  getSkillOptions,
-  getAdvantageOptions,
-  type PublishJobSeekingRequest,
-} from '@/service/index/jobSeeking'
+
 import {
   educationColumns,
   experienceColumns,

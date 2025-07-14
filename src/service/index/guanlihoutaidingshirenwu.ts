@@ -101,12 +101,12 @@ export async function getJobNextTimes({
 }
 
 /** 获得定时任务分页 GET /admin-api/infra/job/page */
-export async function getJobPage1({
+export async function getJobPage2({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobPage1Params;
+  params: API.getJobPage2Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultPageResultJobRespVO>(

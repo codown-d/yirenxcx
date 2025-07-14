@@ -105,16 +105,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  getViolationList,
-  getViolationStats,
-  getViolationTypes,
-  submitReport,
-  type ViolationRecord,
-  type ViolationTag,
-  type ViolationListParams,
-  type ReportRequest,
-} from '@/service/index/violationNotice'
 
 // 数据类型定义
 interface MonthlyStats {

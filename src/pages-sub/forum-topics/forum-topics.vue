@@ -49,8 +49,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { getHotTopics, toggleTopicFollow, type ForumTopic } from '@/service/index/forum'
 import { navigateToSub } from '@/utils'
+import { ForumTopic, getHotTopics } from '@/types/forum'
 
 // 页面状态
 const loading = ref(false)

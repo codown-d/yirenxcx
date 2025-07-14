@@ -162,7 +162,7 @@ export async function getSimpleUserList1({
 }
 
 /** 修改用户 PUT /admin-api/system/user/update */
-export async function updateUser({
+export async function updateUser1({
   body,
   options,
 }: {
@@ -180,7 +180,7 @@ export async function updateUser({
 }
 
 /** 重置用户密码 PUT /admin-api/system/user/update-password */
-export async function updateUserPassword({
+export async function updateUserPassword1({
   body,
   options,
 }: {

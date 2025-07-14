@@ -6,7 +6,7 @@ import { CustomRequestOptions } from '@/interceptors/request';
 import * as API from './types';
 
 /** 获得用户基本信息 GET /admin-api/system/oauth2/user/get */
-export async function getUserInfo({
+export async function getUserInfo1({
   options,
 }: {
   options?: CustomRequestOptions;

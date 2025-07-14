@@ -63,14 +63,14 @@ export function getMailTemplateQueryOptions(options: {
 }
 
 /** 获得邮件模版精简列表 GET /admin-api/system/mail-template/list-all-simple */
-export function getSimpleTemplateListQueryOptions(options: {
+export function getSimpleTemplateList1QueryOptions(options: {
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getSimpleTemplateList(queryKey[1] as typeof options);
+      return apis.getSimpleTemplateList1(queryKey[1] as typeof options);
     },
-    queryKey: ['getSimpleTemplateList', options],
+    queryKey: ['getSimpleTemplateList1', options],
   });
 }
 
@@ -109,14 +109,14 @@ export function useSendMailMutation(options?: {
 }
 
 /** 获得邮件模版精简列表 GET /admin-api/system/mail-template/simple-list */
-export function getSimpleTemplateList1QueryOptions(options: {
+export function getSimpleTemplateList2QueryOptions(options: {
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getSimpleTemplateList1(queryKey[1] as typeof options);
+      return apis.getSimpleTemplateList2(queryKey[1] as typeof options);
     },
-    queryKey: ['getSimpleTemplateList1', options],
+    queryKey: ['getSimpleTemplateList2', options],
   });
 }
 

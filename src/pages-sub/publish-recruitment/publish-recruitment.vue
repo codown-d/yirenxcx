@@ -368,7 +368,6 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { getSystemInfoSync } from '@/utils'
-import { publishRecruitmentJob, type RecruitmentJobRequest } from '@/service/index/forum'
 
 const { safeAreaInsets } = getSystemInfoSync()
 

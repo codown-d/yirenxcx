@@ -226,7 +226,7 @@ const isShowPopup = ref(false)
 // 生命周期
 onLoad(() => {
   console.log('招聘页面加载完成')
-  navigateToSub('/publish-job-seeking/publish-job-seeking')
+  navigateToSub('/login/login')
   // uni.setTabBarItem({
   //   index: 0, // 第几个 tabBar 项，从 0 开始
   //   text: '首页', // 修改显示文字

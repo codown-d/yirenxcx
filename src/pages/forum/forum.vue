@@ -170,15 +170,9 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
-import {
-  getForumPosts,
-  getHotTopics,
-  togglePostLike,
-  shareForumPost,
-  type ForumPost,
-  type ForumTopic,
-} from '@/service/index/forum'
+
 import { tabCategory, hotTopics as hotList, postList as pl } from '@/constant'
+import { ForumPost, ForumTopic, getForumPosts, getHotTopics } from '@/types/forum'
 
 const { safeAreaInsets } = getSystemInfoSync()
 

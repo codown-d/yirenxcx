@@ -21,7 +21,7 @@ export async function getPermissionInfo({
 }
 
 /** 使用账号密码登录 POST /admin-api/system/auth/login */
-export async function login({
+export async function login1({
   body,
   options,
 }: {
@@ -42,7 +42,7 @@ export async function login({
 }
 
 /** 登出系统 POST /admin-api/system/auth/logout */
-export async function logout({ options }: { options?: CustomRequestOptions }) {
+export async function logout1({ options }: { options?: CustomRequestOptions }) {
   return request<API.CommonResultBoolean>('/admin-api/system/auth/logout', {
     method: 'POST',
     ...(options || {}),
@@ -50,12 +50,12 @@ export async function logout({ options }: { options?: CustomRequestOptions }) {
 }
 
 /** 刷新令牌 POST /admin-api/system/auth/refresh-token */
-export async function refreshToken({
+export async function refreshToken1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.refreshTokenParams;
+  params: API.refreshToken1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultAuthLoginRespVO>(
@@ -134,7 +134,7 @@ export async function sendLoginSmsCode({
 }
 
 /** 使用短信验证码登录 POST /admin-api/system/auth/sms-login */
-export async function smsLogin({
+export async function smsLogin1({
   body,
   options,
 }: {
@@ -155,12 +155,12 @@ export async function smsLogin({
 }
 
 /** 社交授权的跳转 GET /admin-api/system/auth/social-auth-redirect */
-export async function socialLogin({
+export async function socialLogin1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.socialLoginParams;
+  params: API.socialLogin1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultString>(

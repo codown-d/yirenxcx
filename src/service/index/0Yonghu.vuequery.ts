@@ -9,14 +9,14 @@ import * as apis from './0Yonghu';
 import * as API from './types';
 
 /** 获得用户基本信息 GET /admin-api/system/oauth2/user/get */
-export function getUserInfoQueryOptions(options: {
+export function getUserInfo1QueryOptions(options: {
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getUserInfo(queryKey[1] as typeof options);
+      return apis.getUserInfo1(queryKey[1] as typeof options);
     },
-    queryKey: ['getUserInfo', options],
+    queryKey: ['getUserInfo1', options],
   });
 }
 

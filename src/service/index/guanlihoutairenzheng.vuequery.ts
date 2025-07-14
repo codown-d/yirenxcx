@@ -21,14 +21,14 @@ export function getPermissionInfoQueryOptions(options: {
 }
 
 /** 使用账号密码登录 POST /admin-api/system/auth/login */
-export function useLoginMutation(options?: {
+export function useLogin1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultAuthLoginRespVO) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.login,
+    mutationFn: apis.login1,
     onSuccess(data: API.CommonResultAuthLoginRespVO) {
       onSuccess?.(data);
     },
@@ -41,14 +41,14 @@ export function useLoginMutation(options?: {
 }
 
 /** 登出系统 POST /admin-api/system/auth/logout */
-export function useLogoutMutation(options?: {
+export function useLogout1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.logout,
+    mutationFn: apis.logout1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },
@@ -61,14 +61,14 @@ export function useLogoutMutation(options?: {
 }
 
 /** 刷新令牌 POST /admin-api/system/auth/refresh-token */
-export function useRefreshTokenMutation(options?: {
+export function useRefreshToken1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultAuthLoginRespVO) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.refreshToken,
+    mutationFn: apis.refreshToken1,
     onSuccess(data: API.CommonResultAuthLoginRespVO) {
       onSuccess?.(data);
     },
@@ -141,14 +141,14 @@ export function useSendLoginSmsCodeMutation(options?: {
 }
 
 /** 使用短信验证码登录 POST /admin-api/system/auth/sms-login */
-export function useSmsLoginMutation(options?: {
+export function useSmsLogin1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultAuthLoginRespVO) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.smsLogin,
+    mutationFn: apis.smsLogin1,
     onSuccess(data: API.CommonResultAuthLoginRespVO) {
       onSuccess?.(data);
     },
@@ -161,16 +161,16 @@ export function useSmsLoginMutation(options?: {
 }
 
 /** 社交授权的跳转 GET /admin-api/system/auth/social-auth-redirect */
-export function socialLoginQueryOptions(options: {
+export function socialLogin1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.socialLoginParams;
+  params: API.socialLogin1Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.socialLogin(queryKey[1] as typeof options);
+      return apis.socialLogin1(queryKey[1] as typeof options);
     },
-    queryKey: ['socialLogin', options],
+    queryKey: ['socialLogin1', options],
   });
 }
 

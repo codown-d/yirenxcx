@@ -103,13 +103,6 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, REGISTER_CONFIG } from '@/constant'
-import {
-  sendSmsCode as sendSms,
-  registerUser,
-  checkPhoneExists,
-  validateInviteCode,
-  type RegisterRequest,
-} from '@/service/index/register'
 
 // Props
 const props = defineProps({

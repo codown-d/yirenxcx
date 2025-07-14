@@ -169,10 +169,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
-import { publishForumPost } from '@/service/index/forum'
 import { categoryActions, visibilityActions, availableTopics, availableMoods } from '@/constant'
 import { useLocationStore } from '@/store'
 import { navigateToSub } from '@/utils'
+import { publishForumPost } from '@/types/forum'
 const { getLocation } = useLocationStore()
 
 // 页面状态

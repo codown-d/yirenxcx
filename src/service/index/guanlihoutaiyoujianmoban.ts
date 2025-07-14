@@ -69,7 +69,7 @@ export async function getMailTemplate({
 }
 
 /** 获得邮件模版精简列表 GET /admin-api/system/mail-template/list-all-simple */
-export async function getSimpleTemplateList({
+export async function getSimpleTemplateList1({
   options,
 }: {
   options?: CustomRequestOptions;
@@ -126,7 +126,7 @@ export async function sendMail({
 }
 
 /** 获得邮件模版精简列表 GET /admin-api/system/mail-template/simple-list */
-export async function getSimpleTemplateList1({
+export async function getSimpleTemplateList2({
   options,
 }: {
   options?: CustomRequestOptions;

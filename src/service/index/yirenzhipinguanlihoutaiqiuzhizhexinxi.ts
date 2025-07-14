@@ -90,12 +90,12 @@ export async function getJobSeekerByUserId({
 }
 
 /** 获得求职者信息分页 GET /admin-api/yirenzhipin/job-seeker/page */
-export async function getJobSeekerPage({
+export async function getJobSeekerPage1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobSeekerPageParams;
+  params: API.getJobSeekerPage1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultPageResultYRZPJobSeekerRespVO>(

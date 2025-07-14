@@ -63,16 +63,16 @@ export function exportConfigQueryOptions(options: {
 }
 
 /** 获得参数配置 GET /admin-api/infra/config/get */
-export function getConfigQueryOptions(options: {
+export function getConfig2QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getConfigParams;
+  params: API.getConfig2Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getConfig(queryKey[1] as typeof options);
+      return apis.getConfig2(queryKey[1] as typeof options);
     },
-    queryKey: ['getConfig', options],
+    queryKey: ['getConfig2', options],
   });
 }
 
@@ -105,14 +105,14 @@ export function getConfigPageQueryOptions(options: {
 }
 
 /** 修改参数配置 PUT /admin-api/infra/config/update */
-export function useUpdateConfigMutation(options?: {
+export function useUpdateConfig1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateConfig,
+    mutationFn: apis.updateConfig1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

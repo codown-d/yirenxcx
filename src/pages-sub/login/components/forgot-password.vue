@@ -86,11 +86,11 @@
           </text>
         </view>
       </view>
-      <wd-button 
-        block 
-        @click="handleResetPassword" 
-        :round="false" 
-        :loading="resetLoading" 
+      <wd-button
+        block
+        @click="handleResetPassword"
+        :round="false"
+        :loading="resetLoading"
         type="primary"
       >
         {{ FORGOT_PASSWORD_CONFIG.resetButtonText }}
@@ -103,13 +103,6 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, FORGOT_PASSWORD_CONFIG } from '@/constant'
-import {
-  sendSmsCode as sendSms,
-  checkPhoneExists,
-  resetPassword,
-  verifySmsCode,
-  type ResetPasswordRequest
-} from '@/service/index/register'
 
 // Props
 const props = defineProps({
@@ -151,12 +144,12 @@ const sendSmsCode = async () => {
 
   try {
     toast.loading('发送中...')
-    
+
     // 先检查手机号是否已注册
     const checkRes = await checkPhoneExists({
-      body: { phone: resetForm.value.phone }
+      body: { phone: resetForm.value.phone },
     })
-    
+
     if (checkRes.code === 0 && !checkRes.data.exists) {
       toast.error('该手机号未注册，请先注册账号')
       return
@@ -166,13 +159,13 @@ const sendSmsCode = async () => {
     const res = await sendSms({
       body: {
         phone: resetForm.value.phone,
-        type: 'reset'
-      }
+        type: 'reset',
+      },
     })
 
     if (res.code === 0) {
       toast.success('验证码已发送')
-      
+
       // 开始倒计时
       smsCountdown.value = res.data.countdown || 60
       const timer = setInterval(() => {
@@ -255,8 +248,8 @@ const handleResetPassword = async () => {
       body: {
         phone: resetForm.value.phone,
         smsCode: resetForm.value.smsCode,
-        type: 'reset'
-      }
+        type: 'reset',
+      },
     })
 
     if (verifyRes.code !== 0 || !verifyRes.data.valid) {
@@ -269,24 +262,23 @@ const handleResetPassword = async () => {
       phone: resetForm.value.phone,
       smsCode: resetForm.value.smsCode,
       newPassword: resetForm.value.newPassword,
-      verifyToken: verifyRes.data.token
+      verifyToken: verifyRes.data.token,
     }
 
     // 调用重置密码API
     const res = await resetPassword({ body: resetData })
-    
+
     if (res.code === 0) {
       toast.success('密码重置成功')
-      
+
       // 触发重置成功事件
       emit('resetSuccess', {
         phone: resetForm.value.phone,
-        message: '密码已重置，请使用新密码登录'
+        message: '密码已重置，请使用新密码登录',
       })
     } else {
       toast.error(res.msg || '重置失败')
     }
-
   } catch (error) {
     console.error('重置密码失败:', error)
     toast.error('重置失败，请重试')

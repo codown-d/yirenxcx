@@ -9,14 +9,14 @@ import * as apis from './guanlihoutaishejiaoyonghu';
 import * as API from './types';
 
 /** 社交绑定，使用 code 授权码 POST /admin-api/system/social-user/bind */
-export function useSocialBindMutation(options?: {
+export function useSocialBind1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.socialBind,
+    mutationFn: apis.socialBind1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },
@@ -29,16 +29,16 @@ export function useSocialBindMutation(options?: {
 }
 
 /** 获得社交用户 GET /admin-api/system/social-user/get */
-export function getSocialUserQueryOptions(options: {
+export function getSocialUser1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getSocialUserParams;
+  params: API.getSocialUser1Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getSocialUser(queryKey[1] as typeof options);
+      return apis.getSocialUser1(queryKey[1] as typeof options);
     },
-    queryKey: ['getSocialUser', options],
+    queryKey: ['getSocialUser1', options],
   });
 }
 
@@ -69,14 +69,14 @@ export function getSocialUserPageQueryOptions(options: {
 }
 
 /** 取消社交绑定 DELETE /admin-api/system/social-user/unbind */
-export function useSocialUnbindMutation(options?: {
+export function useSocialUnbind1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.socialUnbind,
+    mutationFn: apis.socialUnbind1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

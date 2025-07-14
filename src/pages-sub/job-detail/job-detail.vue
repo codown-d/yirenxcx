@@ -198,7 +198,7 @@ import {
   type JobDetail,
   type JobApplicationRequest,
   type JobFavoriteRequest,
-} from '@/service/index/jobDetail'
+} from '@/types/jobDetail'
 
 const { safeAreaInsets } = getSystemInfoSync()
 

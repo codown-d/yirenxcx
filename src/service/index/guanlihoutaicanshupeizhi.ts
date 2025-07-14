@@ -60,12 +60,12 @@ export async function exportConfig({
 }
 
 /** 获得参数配置 GET /admin-api/infra/config/get */
-export async function getConfig({
+export async function getConfig2({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getConfigParams;
+  params: API.getConfig2Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultConfigRespVO>('/admin-api/infra/config/get', {
@@ -120,7 +120,7 @@ export async function getConfigPage({
 }
 
 /** 修改参数配置 PUT /admin-api/infra/config/update */
-export async function updateConfig({
+export async function updateConfig1({
   body,
   options,
 }: {

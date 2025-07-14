@@ -5,7 +5,7 @@ import { CustomRequestOptions } from '@/interceptors/request';
 
 import * as API from './types';
 
-/** 创建Banner POST /admin-api/yirenzhipin/banner/create */
+/** 创建 Banner POST /admin-api/promotion/banner/create */
 export async function createBanner({
   body,
   options,
@@ -13,7 +13,7 @@ export async function createBanner({
   body: API.BannerCreateReqVO;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultLong>('/admin-api/yirenzhipin/banner/create', {
+  return request<API.CommonResultLong>('/admin-api/promotion/banner/create', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export async function createBanner({
   });
 }
 
-/** 删除Banner DELETE /admin-api/yirenzhipin/banner/delete */
+/** 删除 Banner DELETE /admin-api/promotion/banner/delete */
 export async function deleteBanner({
   params,
   options,
@@ -33,7 +33,7 @@ export async function deleteBanner({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultBoolean>(
-    '/admin-api/yirenzhipin/banner/delete',
+    '/admin-api/promotion/banner/delete',
     {
       method: 'DELETE',
       params: {
@@ -44,25 +44,7 @@ export async function deleteBanner({
   );
 }
 
-/** 导出Banner Excel GET /admin-api/yirenzhipin/banner/export-excel */
-export async function exportBannerExcel({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.exportBannerExcelParams;
-  options?: CustomRequestOptions;
-}) {
-  return request<unknown>('/admin-api/yirenzhipin/banner/export-excel', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
-}
-
-/** 获得Banner GET /admin-api/yirenzhipin/banner/get */
+/** 获得 Banner GET /admin-api/promotion/banner/get */
 export async function getBanner({
   params,
   options,
@@ -72,7 +54,7 @@ export async function getBanner({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultBannerRespVO>(
-    '/admin-api/yirenzhipin/banner/get',
+    '/admin-api/promotion/banner/get',
     {
       method: 'GET',
       params: {
@@ -83,28 +65,7 @@ export async function getBanner({
   );
 }
 
-/** 获得Banner列表 GET /admin-api/yirenzhipin/banner/list */
-export async function getBannerList1({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getBannerList1Params;
-  options?: CustomRequestOptions;
-}) {
-  return request<API.CommonResultListBannerRespVO>(
-    '/admin-api/yirenzhipin/banner/list',
-    {
-      method: 'GET',
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
-}
-
-/** 获得Banner分页 GET /admin-api/yirenzhipin/banner/page */
+/** 获得 Banner 分页 GET /admin-api/promotion/banner/page */
 export async function getBannerPage({
   params,
   options,
@@ -114,7 +75,7 @@ export async function getBannerPage({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultPageResultBannerRespVO>(
-    '/admin-api/yirenzhipin/banner/page',
+    '/admin-api/promotion/banner/page',
     {
       method: 'GET',
       params: {
@@ -125,7 +86,7 @@ export async function getBannerPage({
   );
 }
 
-/** 更新Banner PUT /admin-api/yirenzhipin/banner/update */
+/** 更新 Banner PUT /admin-api/promotion/banner/update */
 export async function updateBanner({
   body,
   options,
@@ -134,7 +95,7 @@ export async function updateBanner({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultBoolean>(
-    '/admin-api/yirenzhipin/banner/update',
+    '/admin-api/promotion/banner/update',
     {
       method: 'PUT',
       headers: {
