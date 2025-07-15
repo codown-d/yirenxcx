@@ -72,6 +72,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import type { JobPosition } from '@/constant/recruitment'
+import { navigateToSub } from '@/utils'
 
 interface Props {
   jobData: JobPosition
@@ -99,6 +100,7 @@ watch(
 
 const handleCardClick = () => {
   emit('click', props.jobData)
+  navigateToSub(`/job-detail/job-detail?id=${props.jobData.id}`)
 }
 
 const handleFavorite = () => {

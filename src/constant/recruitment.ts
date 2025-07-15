@@ -15,6 +15,10 @@ export interface JobPosition {
   description?: string
   requirements?: string[]
   benefits?: string[]
+  experience?: string
+  education?: string
+  workTime?: string
+  positionSituation: string
 }
 
 // 筛选标签类型
@@ -45,6 +49,10 @@ export const JOB_POSITIONS: JobPosition[] = [
     description: '招聘儿童表演演员，要求喜欢孩子，表演生动',
     requirements: ['表演专业毕业或有相关经验', '喜欢与儿童互动', '形象气质佳', '有责任心和耐心'],
     benefits: ['双休', '五险一金', '年终奖', '培训机会'],
+    experience: '1-3年',
+    education: '大专',
+    workTime: '周一至周五',
+    positionSituation: '立即到岗',
   },
   {
     id: '2',
@@ -58,6 +66,10 @@ export const JOB_POSITIONS: JobPosition[] = [
     description: '招聘儿童表演演员，要求喜欢孩子，表演生动',
     requirements: ['表演专业毕业或有相关经验', '喜欢与儿童互动', '形象气质佳', '有责任心和耐心'],
     benefits: ['双休', '五险一金', '年终奖', '培训机会'],
+    experience: '1-3年',
+    education: '大专',
+    workTime: '周一至周五',
+    positionSituation: '立即到岗',
   },
   {
     id: '3',
@@ -70,6 +82,10 @@ export const JOB_POSITIONS: JobPosition[] = [
     description: '招聘儿童表演演员，要求喜欢孩子，表演生动',
     requirements: ['表演专业毕业或有相关经验', '喜欢与儿童互动', '形象气质佳', '有责任心和耐心'],
     benefits: ['双休', '五险一金', '年终奖', '培训机会'],
+    experience: '1-3年',
+    education: '大专',
+    workTime: '周一至周五',
+    positionSituation: '立即到岗',
   },
   {
     id: '4',
@@ -82,6 +98,10 @@ export const JOB_POSITIONS: JobPosition[] = [
     description: '招聘有爱心的幼儿园老师，负责3-6岁儿童教育',
     requirements: ['学前教育专业', '有教师资格证', '热爱儿童教育事业', '普通话标准'],
     benefits: ['双休', '五险一金', '带薪年假', '节日福利'],
+    experience: '1-3年',
+    education: '大专',
+    workTime: '周一至周五',
+    positionSituation: '立即到岗',
   },
   {
     id: '5',
@@ -94,6 +114,10 @@ export const JOB_POSITIONS: JobPosition[] = [
     description: '招聘专业舞蹈老师，教授少儿舞蹈课程',
     requirements: ['舞蹈专业毕业', '有少儿舞蹈教学经验', '形象气质佳', '沟通能力强'],
     benefits: ['高薪', '双休', '提成奖励', '培训机会'],
+    experience: '1-3年',
+    education: '大专',
+    workTime: '周一至周五',
+    positionSituation: '立即到岗',
   },
 ]
 

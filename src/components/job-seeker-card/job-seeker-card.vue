@@ -98,6 +98,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import type { JobSeeker } from '@/constant/job-seeking'
+import { navigateToSub } from '@/utils'
 
 interface Props {
   seekerData: JobSeeker
@@ -135,5 +136,7 @@ const handleFavorite = () => {
 
 const handleContact = () => {
   emit('contact', props.seekerData)
+  console.log('handleContact', props)
+  navigateToSub(`/seeker-detail/seeker-detail?id=${props.seekerData.id}`)
 }
 </script>

@@ -22,6 +22,20 @@ export interface JobSeeker {
   expectedSalary?: string
   workType?: string
   availability?: string
+  school?: string
+  major?: string
+  graduationTime?: string
+  portfolio?: string[]
+  works?: WorkItem[]
+}
+
+// 作品项目类型
+export interface WorkItem {
+  id: string
+  title: string
+  role?: string
+  description?: string
+  year?: string
 }
 
 // 求职筛选标签类型
@@ -54,14 +68,27 @@ export const JOB_SEEKERS: JobSeeker[] = [
     isVerified: true,
     isVip: false,
     publishTime: '3天前',
-    description: '资深话剧演员，台词功底扎实，表演经验丰富。曾获得多个戏剧奖项。',
+    description:
+      '资深话剧演员，台词功底扎实，表演经验丰富。曾获得多个戏剧奖项。我是一名专业的话剧演员，毕业于北京舞蹈学院，有着扎实的表演功底和丰富的舞台经验。擅长各种类型的角色塑造，能够快速进入角色状态，具有良好的团队合作精神。希望能够在更大的舞台上展现自己的才华。',
     skills: ['话剧表演', '台词功底', '形体表演', '即兴表演'],
     education: '北京舞蹈学院-舞蹈表演专业',
     phone: '138****8888',
-    location: '北京',
+    location: '北京市朝阳区',
     expectedSalary: '8000-12000/月',
     workType: '全职',
     availability: '随时到岗',
+    school: '北京舞蹈学院',
+    major: '本科 • 舞蹈表演专业',
+    graduationTime: '2015.09 - 2019.06',
+    portfolio: [
+      '/static/images/portfolio1.jpg',
+      '/static/images/portfolio2.jpg',
+      '/static/images/portfolio3.jpg',
+    ],
+    works: [
+      { id: '1', title: '《雷雨》', role: '主要演员', year: '2023' },
+      { id: '2', title: '《茶馆》', role: '配角', year: '2022' },
+    ],
   },
   {
     id: '2',
@@ -74,14 +101,28 @@ export const JOB_SEEKERS: JobSeeker[] = [
     isVerified: true,
     isVip: true,
     publishTime: '1天前',
-    description: '专业舞蹈演员，擅长现代舞、民族舞，形象气质佳，有丰富的舞台表演经验。',
+    description:
+      '专业舞蹈演员，擅长现代舞、民族舞，形象气质佳，有丰富的舞台表演经验。毕业于中央音乐学院舞蹈系，具备扎实的舞蹈基本功和良好的艺术修养。曾参与多部大型舞剧的演出，具有丰富的舞台经验和良好的团队协作能力。',
     skills: ['现代舞', '民族舞', '芭蕾基础', '编舞'],
     education: '中央音乐学院-舞蹈表演专业',
     phone: '139****9999',
-    location: '上海',
+    location: '上海市徐汇区',
     expectedSalary: '6000-10000/月',
     workType: '全职/兼职',
     availability: '一周内到岗',
+    school: '中央音乐学院',
+    major: '本科 • 舞蹈表演专业',
+    graduationTime: '2018.09 - 2022.06',
+    portfolio: [
+      '/static/images/dance1.jpg',
+      '/static/images/dance2.jpg',
+      '/static/images/dance3.jpg',
+      '/static/images/dance4.jpg',
+    ],
+    works: [
+      { id: '1', title: '《丝路花雨》', role: '主要舞者', year: '2023' },
+      { id: '2', title: '《孔雀》', role: '独舞', year: '2022' },
+    ],
   },
   {
     id: '3',
