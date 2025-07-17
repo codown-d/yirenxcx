@@ -167,7 +167,7 @@ const sendSmsCode = async () => {
     // 调用真实的短信发送接口
     const smsData: AppAuthSmsSendReqVO = {
       mobile: loginForm.value.phone,
-      scene: 3, // 登录场景
+      scene: 1, // 登录场景
     }
 
     const res = await sendSms({
@@ -235,9 +235,9 @@ const handleLogin = async () => {
       const loginData: AppAuthLoginReqVO = {
         mobile: loginForm.value.phone,
         password: loginForm.value.password,
-        socialType: 0, // 非社交登录
-        socialCode: '',
-        socialState: '',
+        // socialType: 0, // 非社交登录
+        // socialCode: '',
+        // socialState: '',
       }
 
       loginResponse = await login({

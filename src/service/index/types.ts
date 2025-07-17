@@ -3,13489 +3,13489 @@
 
 export type addBrowseCount1Params = {
   /** 文章编号 */
-  id: number;
-};
+  id: number
+}
 
 export type addBrowseCountParams = {
   /** Banner 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type Address = {
   /** 编号 */
-  id: number;
+  id: number
   /** 收件人名称 */
-  name: string;
+  name: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 地区编号 */
-  areaId: number;
+  areaId: number
   /** 地区名字 */
-  areaName: string;
+  areaName: string
   /** 详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 是否默认收件地址 */
-  defaultStatus: boolean;
-};
+  defaultStatus: boolean
+}
 
 export type AddressRespVO = {
   /** 收件人名称 */
-  name: string;
+  name: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 地区编码 */
-  areaId: number;
+  areaId: number
   /** 收件详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 是否默认 */
-  defaultStatus: boolean;
+  defaultStatus: boolean
   /** 收件地址编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AfterSaleDetailRespVO = {
   /** 售后流水号 */
-  no: string;
+  no: string
   /** 售后状态 */
-  status: number;
+  status: number
   /** 售后类型 */
-  type: number;
+  type: number
   /** 售后方式 */
-  way: number;
+  way: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 申请原因 */
-  applyReason: string;
+  applyReason: string
   /** 补充描述 */
-  applyDescription?: string;
+  applyDescription?: string
   /** 补充凭证图片 */
-  applyPicUrls?: string[];
+  applyPicUrls?: string[]
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 订单流水号 */
-  orderNo: string;
+  orderNo: string
   /** 订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品图片 */
-  picUrl?: string;
+  picUrl?: string
   /** 购买数量 */
-  count: number;
+  count: number
   /** 审批时间 */
-  auditTime?: string;
+  auditTime?: string
   /** 审批人 */
-  auditUserId?: number;
+  auditUserId?: number
   /** 审批备注 */
-  auditReason?: string;
+  auditReason?: string
   /** 退款金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 支付退款编号 */
-  payRefundId?: number;
+  payRefundId?: number
   /** 退款时间 */
-  refundTime?: string;
+  refundTime?: string
   /** 退货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 退货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 退货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收货备注 */
-  receiveReason?: string;
+  receiveReason?: string
   /** 售后编号 */
-  id: number;
-  order?: TradeOrderBaseVO;
-  orderItem?: OrderItem;
-  user?: MemberUserRespVO;
-  logs?: AfterSaleLogRespVO[];
-};
+  id: number
+  order?: TradeOrderBaseVO
+  orderItem?: OrderItem
+  user?: MemberUserRespVO
+  logs?: AfterSaleLogRespVO[]
+}
 
 export type AfterSaleDisagreeReqVO = {
   /** 售后编号 */
-  id: number;
+  id: number
   /** 审批备注 */
-  auditReason: string;
-};
+  auditReason: string
+}
 
 export type AfterSaleLogRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 售后编号 */
-  afterSaleId: number;
+  afterSaleId: number
   /** 售后状态（之前） */
-  beforeStatus?: number;
+  beforeStatus?: number
   /** 售后状态（之后） */
-  afterStatus: number;
+  afterStatus: number
   /** 操作明细 */
-  content: string;
+  content: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AfterSaleRespPageItemVO = {
   /** 售后流水号 */
-  no: string;
+  no: string
   /** 售后状态 */
-  status: number;
+  status: number
   /** 售后类型 */
-  type: number;
+  type: number
   /** 售后方式 */
-  way: number;
+  way: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 申请原因 */
-  applyReason: string;
+  applyReason: string
   /** 补充描述 */
-  applyDescription?: string;
+  applyDescription?: string
   /** 补充凭证图片 */
-  applyPicUrls?: string[];
+  applyPicUrls?: string[]
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 订单流水号 */
-  orderNo: string;
+  orderNo: string
   /** 订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品图片 */
-  picUrl?: string;
+  picUrl?: string
   /** 购买数量 */
-  count: number;
+  count: number
   /** 审批时间 */
-  auditTime?: string;
+  auditTime?: string
   /** 审批人 */
-  auditUserId?: number;
+  auditUserId?: number
   /** 审批备注 */
-  auditReason?: string;
+  auditReason?: string
   /** 退款金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 支付退款编号 */
-  payRefundId?: number;
+  payRefundId?: number
   /** 退款时间 */
-  refundTime?: string;
+  refundTime?: string
   /** 退货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 退货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 退货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收货备注 */
-  receiveReason?: string;
+  receiveReason?: string
   /** 售后编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-  properties?: ProductPropertyValueDetailRespVO[];
-  user?: MemberUserRespVO;
-};
+  createTime: string
+  properties?: ProductPropertyValueDetailRespVO[]
+  user?: MemberUserRespVO
+}
 
 export type agreeAfterSaleParams = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type ApiAccessLogRespVO = {
   /** 日志主键 */
-  id: number;
+  id: number
   /** 链路追踪编号 */
-  traceId: string;
+  traceId: string
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType: number;
+  userType: number
   /** 应用名 */
-  applicationName: string;
+  applicationName: string
   /** 请求方法名 */
-  requestMethod: string;
+  requestMethod: string
   /** 请求地址 */
-  requestUrl: string;
+  requestUrl: string
   /** 请求参数 */
-  requestParams?: string;
+  requestParams?: string
   /** 响应结果 */
-  responseBody?: string;
+  responseBody?: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 浏览器 UA */
-  userAgent: string;
+  userAgent: string
   /** 操作模块 */
-  operateModule: string;
+  operateModule: string
   /** 操作名 */
-  operateName: string;
+  operateName: string
   /** 操作分类 */
-  operateType: number;
+  operateType: number
   /** 开始请求时间 */
-  beginTime: string;
+  beginTime: string
   /** 结束请求时间 */
-  endTime: string;
+  endTime: string
   /** 执行时长 */
-  duration: number;
+  duration: number
   /** 结果码 */
-  resultCode: number;
+  resultCode: number
   /** 结果提示 */
-  resultMsg?: string;
+  resultMsg?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ApiErrorLogRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 链路追踪编号 */
-  traceId: string;
+  traceId: string
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 应用名 */
-  applicationName: string;
+  applicationName: string
   /** 请求方法名 */
-  requestMethod: string;
+  requestMethod: string
   /** 请求地址 */
-  requestUrl: string;
+  requestUrl: string
   /** 请求参数 */
-  requestParams: string;
+  requestParams: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 浏览器 UA */
-  userAgent: string;
+  userAgent: string
   /** 异常发生时间 */
-  exceptionTime: string;
+  exceptionTime: string
   /** 异常名 */
-  exceptionName: string;
+  exceptionName: string
   /** 异常导致的消息 */
-  exceptionMessage: string;
+  exceptionMessage: string
   /** 异常导致的根消息 */
-  exceptionRootCauseMessage: string;
+  exceptionRootCauseMessage: string
   /** 异常的栈轨迹 */
-  exceptionStackTrace: string;
+  exceptionStackTrace: string
   /** 异常发生的类全名 */
-  exceptionClassName: string;
+  exceptionClassName: string
   /** 异常发生的类文件 */
-  exceptionFileName: string;
+  exceptionFileName: string
   /** 异常发生的方法名 */
-  exceptionMethodName: string;
+  exceptionMethodName: string
   /** 异常发生的方法所在行 */
-  exceptionLineNumber: number;
+  exceptionLineNumber: number
   /** 处理状态 */
-  processStatus: number;
+  processStatus: number
   /** 处理时间 */
-  processTime: string;
+  processTime: string
   /** 处理用户编号 */
-  processUserId?: number;
+  processUserId?: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppActivityRespVO = {
   /** 活动编号 */
-  id: number;
+  id: number
   /** 活动类型 */
-  type: number;
+  type: number
   /** 活动名称 */
-  name: string;
+  name: string
   /** spu 编号 */
-  spuId: number;
+  spuId: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
-};
+  endTime: string
+}
 
 export type AppAddressCreateReqVO = {
   /** 收件人名称 */
-  name: string;
+  name: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 地区编号 */
-  areaId: number;
+  areaId: number
   /** 收件详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 是否默认地址 */
-  defaultStatus: boolean;
-};
+  defaultStatus: boolean
+}
 
 export type AppAddressRespVO = {
   /** 收件人名称 */
-  name: string;
+  name: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 地区编号 */
-  areaId: number;
+  areaId: number
   /** 收件详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 是否默认地址 */
-  defaultStatus: boolean;
+  defaultStatus: boolean
   /** 编号 */
-  id: number;
+  id: number
   /** 地区名字 */
-  areaName: string;
-};
+  areaName: string
+}
 
 export type AppAddressUpdateReqVO = {
   /** 收件人名称 */
-  name: string;
+  name: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 地区编号 */
-  areaId: number;
+  areaId: number
   /** 收件详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 是否默认地址 */
-  defaultStatus: boolean;
+  defaultStatus: boolean
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type AppAfterSaleCreateReqVO = {
   /** 订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 售后方式 */
-  way: number;
+  way: number
   /** 退款金额 */
-  refundPrice: number;
+  refundPrice: number
   /** 申请原因 */
-  applyReason: string;
+  applyReason: string
   /** 补充描述 */
-  applyDescription?: string;
+  applyDescription?: string
   /** 补充凭证图片 */
-  applyPicUrls?: string[];
-};
+  applyPicUrls?: string[]
+}
 
 export type AppAfterSaleDeliveryReqVO = {
   /** 售后编号 */
-  id: number;
+  id: number
   /** 退货物流公司编号 */
-  logisticsId: number;
+  logisticsId: number
   /** 退货物流单号 */
-  logisticsNo: string;
-};
+  logisticsNo: string
+}
 
 export type AppAfterSaleLogRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 操作明细 */
-  content: string;
+  content: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppAfterSaleRespVO = {
   /** 售后编号 */
-  id: number;
+  id: number
   /** 售后流水号 */
-  no: string;
+  no: string
   /** 售后状态 */
-  status: number;
+  status: number
   /** 售后方式 */
-  way: number;
+  way: number
   /** 售后类型 */
-  type: number;
+  type: number
   /** 申请原因 */
-  applyReason: string;
+  applyReason: string
   /** 补充描述 */
-  applyDescription: string;
+  applyDescription: string
   /** 补充凭证图片 */
-  applyPicUrls: string[];
+  applyPicUrls: string[]
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
+  updateTime: string
   /** 交易订单编号 */
-  orderId: number;
+  orderId: number
   /** 交易订单流水号 */
-  orderNo: string;
+  orderNo: string
   /** 交易订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
-  properties?: AppProductPropertyValueDetailRespVO[];
+  skuId: number
+  properties?: AppProductPropertyValueDetailRespVO[]
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 退货商品数量 */
-  count: number;
-  auditReason?: string;
+  count: number
+  auditReason?: string
   /** 退款金额，单位：分 */
-  refundPrice?: number;
+  refundPrice?: number
   /** 退款时间 */
-  refundTime?: string;
+  refundTime?: string
   /** 退货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 退货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 退货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收货备注 */
-  receiveReason?: string;
-};
+  receiveReason?: string
+}
 
 export type AppAreaNodeRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
-};
+  name: string
+}
 
 export type AppArticleCategoryRespVO = {
   /** 分类编号 */
-  id: number;
+  id: number
   /** 分类名称 */
-  name: string;
+  name: string
   /** 分类图标 */
-  picUrl: string;
-};
+  picUrl: string
+}
 
 export type AppArticleRespVO = {
   /** 文章编号 */
-  id: number;
+  id: number
   /** 文章标题 */
-  title: string;
+  title: string
   /** 文章作者 */
-  author: string;
+  author: string
   /** 分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 图文封面 */
-  picUrl: string;
+  picUrl: string
   /** 文章简介 */
-  introduction: string;
+  introduction: string
   /** 文章内容 */
-  content: string;
+  content: string
   /** 发布时间 */
-  createTime: string;
+  createTime: string
   /** 浏览量 */
-  browseCount: number;
+  browseCount: number
   /** 关联的商品 SPU 编号 */
-  spuId?: number;
-};
+  spuId?: number
+}
 
 export type AppAuthLoginReqVO = {
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 密码 */
-  password: string;
+  password: string
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  socialType: number;
+  socialType?: number
   /** 授权码 */
-  socialCode: string;
+  socialCode?: string
   /** state */
-  socialState: string;
-  socialCodeValid?: boolean;
-};
+  socialState?: string
+  socialCodeValid?: boolean
+}
 
 export type AppAuthLoginRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 访问令牌 */
-  accessToken: string;
+  accessToken: string
   /** 刷新令牌 */
-  refreshToken: string;
+  refreshToken: string
   /** 过期时间 */
-  expiresTime: string;
+  expiresTime: string
   /** 社交用户 openid */
-  openid?: string;
-};
+  openid?: string
+}
 
 export type AppAuthSmsLoginReqVO = {
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 手机验证码 */
-  code: string;
+  code: string
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  socialType: number;
+  socialType?: number
   /** 授权码 */
-  socialCode: string;
+  socialCode?: string
   /** state */
-  socialState: string;
-  socialCodeValid?: boolean;
-};
+  socialState?: string
+  socialCodeValid?: boolean
+}
 
 export type AppAuthSmsSendReqVO = {
   /** 手机号 */
-  mobile?: string;
+  mobile?: string
   /** 发送场景,对应 SmsSceneEnum 枚举 */
-  scene: number;
-};
+  scene: number
+}
 
 export type AppAuthSmsValidateReqVO = {
   /** 手机号 */
-  mobile?: string;
+  mobile?: string
   /** 发送场景,对应 SmsSceneEnum 枚举 */
-  scene: number;
+  scene: number
   /** 手机验证码 */
-  code: string;
-};
+  code: string
+}
 
 export type AppAuthSocialLoginReqVO = {
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 授权码 */
-  code: string;
+  code: string
   /** state */
-  state: string;
-};
+  state: string
+}
 
 export type AppAuthWeixinMiniAppLoginReqVO = {
   /** 手机 code，小程序通过 wx.getPhoneNumber 方法获得 */
-  phoneCode: string;
+  phoneCode: string
   /** 登录 code，小程序通过 wx.login 方法获得 */
-  loginCode: string;
+  loginCode: string
   /** state */
-  state: string;
-};
+  state: string
+}
 
 export type AppBannerRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 标题 */
-  title: string;
+  title: string
   /** 跳转链接 */
-  url: string;
+  url: string
   /** 图片地址 */
-  picUrl: string;
-};
+  picUrl: string
+}
 
 export type AppBargainActivityDetailRespVO = {
   /** 砍价活动编号 */
-  id: number;
+  id: number
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品价格，单位：分 */
-  price: number;
+  price: number
   /** 商品描述 */
-  description: string;
+  description: string
   /** 砍价库存 */
-  stock: number;
+  stock: number
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 砍价起始价格，单位：分 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 砍价最低金额，单位：分 */
-  bargainMinPrice: number;
+  bargainMinPrice: number
   /** 砍价成功数量 */
-  successUserCount: number;
-};
+  successUserCount: number
+}
 
 export type AppBargainActivityRespVO = {
   /** 砍价活动编号 */
-  id: number;
+  id: number
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 砍价库存 */
-  stock: number;
+  stock: number
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 砍价最低金额，单位：分 */
-  bargainMinPrice: number;
-};
+  bargainMinPrice: number
+}
 
 export type AppBargainHelpCreateReqVO = {
   /** 砍价记录编号 */
-  recordId: number;
-};
+  recordId: number
+}
 
 export type AppBargainHelpRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 助力用户的昵称 */
-  nickname: string;
+  nickname: string
   /** 助力用户的头像 */
-  avatar: string;
+  avatar: string
   /** 助力用户的砍价金额 */
-  reducePrice: number;
+  reducePrice: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppBargainRecordCreateReqVO = {
   /** 砍价活动编号 */
-  activityId: number;
-};
+  activityId: number
+}
 
 export type AppBargainRecordDetailRespVO = {
   /** 砍价记录编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 活动编号 */
-  activityId: number;
+  activityId: number
   /** 砍价起始价格，单位：分 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 当前砍价，单位：分 */
-  bargainPrice: number;
+  bargainPrice: number
   /** 砍价记录状态 */
-  status: number;
+  status: number
   /** 订单编号 */
-  orderId?: number;
+  orderId?: number
   /** 支付状态 */
-  payStatus?: boolean;
+  payStatus?: boolean
   /** 支付订单编号 */
-  payOrderId?: number;
-  helpAction?: number;
-};
+  payOrderId?: number
+  helpAction?: number
+}
 
 export type AppBargainRecordRespVO = {
   /** 砍价记录编号 */
-  id: number;
+  id: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 活动编号 */
-  activityId: number;
+  activityId: number
   /** 砍价记录状态 */
-  status: number;
+  status: number
   /** 当前价格 */
-  bargainPrice: number;
+  bargainPrice: number
   /** 活动名称 */
-  activityName: string;
+  activityName: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 订单编号 */
-  orderId?: number;
+  orderId?: number
   /** 支付状态 */
-  payStatus?: boolean;
+  payStatus?: boolean
   /** 支付订单编号 */
-  payOrderId?: number;
-};
+  payOrderId?: number
+}
 
 export type AppBargainRecordSummaryRespVO = {
   /** 砍价用户数量 */
-  successUserCount: number;
+  successUserCount: number
   /** 成功砍价的记录 */
-  successList: Record[];
-};
+  successList: Record[]
+}
 
 export type AppBrokerageProductPriceRespVO = {
   /** 是否开启 */
-  enabled: boolean;
+  enabled: boolean
   /** 分销最小金额，单位：分 */
-  brokerageMinPrice?: number;
+  brokerageMinPrice?: number
   /** 分销最大金额，单位：分 */
-  brokerageMaxPrice?: number;
-};
+  brokerageMaxPrice?: number
+}
 
 export type AppBrokerageRecordRespVO = {
   /** 记录编号 */
-  id: number;
+  id: number
   /** 业务编号 */
-  bizId: string;
+  bizId: string
   /** 分销标题 */
-  title: string;
+  title: string
   /** 分销金额，单位：分 */
-  price: number;
+  price: number
   /** 状态 */
-  status: number;
+  status: number
   /** 状态名 */
-  statusName: string;
+  statusName: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 完成时间 */
-  finishTime: string;
-};
+  finishTime: string
+}
 
 export type AppBrokerageUserBindReqVO = {
   /** 推广员编号 */
-  bindUserId: number;
-};
+  bindUserId: number
+}
 
 export type AppBrokerageUserChildSummaryRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 佣金金额，单位：分 */
-  brokeragePrice: number;
+  brokeragePrice: number
   /** 分销订单数量 */
-  brokerageOrderCount: number;
+  brokerageOrderCount: number
   /** 分销用户数量 */
-  brokerageUserCount: number;
+  brokerageUserCount: number
   /** 绑定推广员的时间 */
-  brokerageTime: string;
-};
+  brokerageTime: string
+}
 
 export type AppBrokerageUserMySummaryRespVO = {
   /** 昨天的佣金，单位：分 */
-  yesterdayPrice: number;
+  yesterdayPrice: number
   /** 提现的佣金，单位：分 */
-  withdrawPrice: number;
+  withdrawPrice: number
   /** 可用的佣金，单位：分 */
-  brokeragePrice: number;
+  brokeragePrice: number
   /** 冻结的佣金，单位：分 */
-  frozenPrice: number;
+  frozenPrice: number
   /** 分销用户数量（一级） */
-  firstBrokerageUserCount: number;
+  firstBrokerageUserCount: number
   /** 分销用户数量（二级） */
-  secondBrokerageUserCount: number;
-};
+  secondBrokerageUserCount: number
+}
 
 export type AppBrokerageUserRankByPriceRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 佣金金额 */
-  brokeragePrice: number;
-};
+  brokeragePrice: number
+}
 
 export type AppBrokerageUserRankByUserCountRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 邀请用户数量 */
-  brokerageUserCount: number;
-};
+  brokerageUserCount: number
+}
 
 export type AppBrokerageUserRespVO = {
   /** 是否有分销资格 */
-  brokerageEnabled: boolean;
+  brokerageEnabled: boolean
   /** 可用的佣金，单位：分 */
-  brokeragePrice: number;
+  brokeragePrice: number
   /** 冻结的佣金，单位：分 */
-  frozenPrice: number;
-};
+  frozenPrice: number
+}
 
 export type AppBrokerageWithdrawCreateReqVO = {
   /** 提现方式 */
-  type: number;
+  type: number
   /** 提现金额，单位：分 */
-  price: number;
+  price: number
   /** 提现账号 */
-  userAccount: string;
+  userAccount: string
   /** 提现姓名 */
-  userName: string;
+  userName: string
   /** 收款码的图片 */
-  qrCodeUrl?: string;
+  qrCodeUrl?: string
   /** 提现银行 */
-  bankName: string;
+  bankName: string
   /** 开户地址 */
-  bankAddress?: string;
+  bankAddress?: string
   /** 转账渠道 */
-  transferChannelCode: string;
-};
+  transferChannelCode: string
+}
 
 export type AppBrokerageWithdrawRespVO = {
   /** 提现编号 */
-  id: number;
+  id: number
   /** 提现类型 */
-  type: number;
+  type: number
   /** 提现类型名 */
-  typeName: string;
+  typeName: string
   /** 提现状态 */
-  status: number;
+  status: number
   /** 提现状态名 */
-  statusName: string;
+  statusName: string
   /** 提现金额，单位：分 */
-  price: number;
+  price: number
   /** 提现时间 */
-  createTime: string;
+  createTime: string
   /** 转账单编号 */
-  payTransferId?: number;
+  payTransferId?: number
   /** 渠道 package 信息 */
-  transferChannelPackageInfo?: string;
+  transferChannelPackageInfo?: string
   /** 渠道商户号 */
-  transferChannelMchId?: string;
-};
+  transferChannelMchId?: string
+}
 
 export type AppCartAddReqVO = {
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 新增商品数量 */
-  count: number;
-};
+  count: number
+}
 
 export type AppCartListRespVO = {
-  validList?: Cart[];
-  invalidList?: Cart[];
-};
+  validList?: Cart[]
+  invalidList?: Cart[]
+}
 
 export type AppCartResetReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品数量 */
-  count: number;
-};
+  count: number
+}
 
 export type AppCartUpdateCountReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 商品数量 */
-  count: number;
-};
+  count: number
+}
 
 export type AppCartUpdateSelectedReqVO = {
   /** 编号列表 */
-  ids: number[];
+  ids: number[]
   /** 是否选中 */
-  selected: boolean;
-};
+  selected: boolean
+}
 
 export type AppCategoryRespVO = {
   /** 分类编号 */
-  id: number;
+  id: number
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 分类名称 */
-  name: string;
+  name: string
   /** 分类图片 */
-  picUrl: string;
-};
+  picUrl: string
+}
 
 export type AppCombinationActivityDetailRespVO = {
   /** 拼团活动编号 */
-  id: number;
+  id: number
   /** 拼团活动名称 */
-  name: string;
+  name: string
   /** 活动状态 */
-  status: number;
+  status: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 拼团人数 */
-  userSize: number;
+  userSize: number
   /** 成功的拼团数量 */
-  successCount: number;
+  successCount: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总共限购数量 */
-  totalLimitCount?: number;
+  totalLimitCount?: number
   /** 单次限购数量 */
-  singleLimitCount?: number;
+  singleLimitCount?: number
   /** 商品信息数组 */
-  products: Product[];
-};
+  products: Product[]
+}
 
 export type AppCombinationActivityRespVO = {
   /** 拼团活动编号 */
-  id: number;
+  id: number
   /** 拼团活动名称 */
-  name: string;
+  name: string
   /** 拼团人数 */
-  userSize: number;
+  userSize: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名字 */
-  spuName: string;
+  spuName: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 拼团金额，单位：分 */
-  combinationPrice: number;
-};
+  combinationPrice: number
+}
 
 export type AppCombinationRecordDetailRespVO = {
   /** 团长的拼团记录 */
-  headRecord: AppCombinationRecordRespVO;
+  headRecord: AppCombinationRecordRespVO
   /** 成员的拼团记录 */
-  memberRecords: AppCombinationRecordRespVO[];
+  memberRecords: AppCombinationRecordRespVO[]
   /** 当前用户参团记录对应的订单编号 */
-  orderId: number;
-};
+  orderId: number
+}
 
 export type AppCombinationRecordRespVO = {
   /** 拼团记录编号 */
-  id: number;
+  id: number
   /** 拼团活动编号 */
-  activityId: number;
+  activityId: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 过期时间 */
-  expireTime: string;
+  expireTime: string
   /** 可参团人数 */
-  userSize: number;
+  userSize: number
   /** 已参团人数 */
-  userCount: number;
+  userCount: number
   /** 拼团状态 */
-  status: number;
+  status: number
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 商品名字 */
-  spuName: string;
+  spuName: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 购买的商品数量 */
-  count: number;
+  count: number
   /** 拼团金额，单位：分 */
-  combinationPrice: number;
-};
+  combinationPrice: number
+}
 
 export type AppCombinationRecordSummaryRespVO = {
   /** 拼团用户数量 */
-  userCount: number;
+  userCount: number
   /** 拼团用户头像列表 */
-  avatars: string[];
-};
+  avatars: string[]
+}
 
 export type AppCouponRespVO = {
   /** 优惠劵编号 */
-  id: number;
+  id: number
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠劵状态 */
-  status: number;
+  status: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues: number[];
+  productScopeValues: number[]
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
-};
+  discountLimitPrice?: number
+}
 
 export type AppCouponTakeReqVO = {
   /** 优惠劵模板编号 */
-  templateId: number;
-};
+  templateId: number
+}
 
 export type AppCouponTemplateRespVO = {
   /** 优惠劵模板编号 */
-  id: number;
+  id: number
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠券说明 */
-  description?: string;
+  description?: string
   /** 发行总量 */
-  totalCount: number;
+  totalCount: number
   /** 每人限领个数 */
-  takeLimitCount: number;
+  takeLimitCount: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues: number[];
+  productScopeValues: number[]
   /** 生效日期类型 */
-  validityType: number;
+  validityType: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 领取日期 - 开始天数 */
-  fixedStartTerm?: number;
+  fixedStartTerm?: number
   /** 领取日期 - 结束天数 */
-  fixedEndTerm?: number;
+  fixedEndTerm?: number
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
+  discountLimitPrice?: number
   /** 领取优惠券的数量 */
-  takeCount: number;
+  takeCount: number
   /** 是否可以领取 */
-  canTake: boolean;
-};
+  canTake: boolean
+}
 
 export type AppDeliveryExpressRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 门店名称 */
-  name: string;
-};
+  name: string
+}
 
 export type AppDeliveryPickUpStoreRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 门店名称 */
-  name: string;
+  name: string
   /** 门店 logo */
-  logo: string;
+  logo: string
   /** 门店手机 */
-  phone: string;
+  phone: string
   /** 区域编号 */
-  areaId: number;
+  areaId: number
   /** 地区名字 */
-  areaName: string;
+  areaName: string
   /** 门店详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 营业开始时间 */
-  openingTime: LocalTime;
+  openingTime: LocalTime
   /** 营业结束时间 */
-  closingTime: LocalTime;
+  closingTime: LocalTime
   /** 纬度 */
-  latitude: number;
+  latitude: number
   /** 经度 */
-  longitude: number;
+  longitude: number
   /** 距离，单位：千米 */
-  distance?: number;
-};
+  distance?: number
+}
 
 export type AppDictDataRespVO = {
   /** 字典数据编号 */
-  id: number;
+  id: number
   /** 字典标签 */
-  label: string;
+  label: string
   /** 字典值 */
-  value: string;
+  value: string
   /** 字典类型 */
-  dictType: string;
-};
+  dictType: string
+}
 
 export type AppDiyPagePropertyRespVO = {
   /** 装修页面编号 */
-  id: number;
+  id: number
   /** 页面名称 */
-  name: string;
+  name: string
   /** 页面属性 */
-  property?: string;
-};
+  property?: string
+}
 
 export type AppDiyTemplatePropertyRespVO = {
   /** 装修模板编号 */
-  id: number;
+  id: number
   /** 模板名称 */
-  name: string;
+  name: string
   /** 模板属性 */
-  property: string;
+  property: string
   /** 首页 */
-  home: string;
+  home: string
   /** 我的 */
-  user: string;
-};
+  user: string
+}
 
 export type AppFavoriteReqVO = {
   /** 商品 SPU 编号 */
-  spuId: number;
-};
+  spuId: number
+}
 
 export type AppFavoriteRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName?: string;
+  spuName?: string
   /** 商品封面图 */
-  picUrl?: string;
+  picUrl?: string
   /** 商品单价 */
-  price?: number;
-};
+  price?: number
+}
 
 export type AppKeFuMessageSendReqVO = {
   /** 消息类型 */
-  contentType: number;
+  contentType: number
   /** 消息 */
-  content: string;
-};
+  content: string
+}
 
 export type AppMemberExperienceRecordRespVO = {
   /** 标题 */
-  title: string;
+  title: string
   /** 经验 */
-  experience: number;
+  experience: number
   /** 描述 */
-  description: string;
+  description: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppMemberLevelRespVO = {
   /** 等级名称 */
-  name: string;
+  name: string
   /** 等级 */
-  level: number;
+  level: number
   /** 升级经验 */
-  experience: number;
+  experience: number
   /** 享受折扣 */
-  discountPercent: number;
+  discountPercent: number
   /** 等级图标 */
-  icon?: string;
+  icon?: string
   /** 等级背景图 */
-  backgroundUrl?: string;
-};
+  backgroundUrl?: string
+}
 
 export type AppMemberPointRecordRespVO = {
   /** 自增主键 */
-  id: number;
+  id: number
   /** 积分标题 */
-  title: string;
+  title: string
   /** 积分描述 */
-  description?: string;
+  description?: string
   /** 积分 */
-  point: number;
+  point: number
   /** 发生时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppMemberSignInConfigRespVO = {
   /** 签到第 x 天 */
-  day: number;
+  day: number
   /** 奖励积分 */
-  point: number;
-};
+  point: number
+}
 
 export type AppMemberSignInRecordRespVO = {
   /** 第几天签到 */
-  day: number;
+  day: number
   /** 签到的分数 */
-  point: number;
+  point: number
   /** 签到的经验 */
-  experience: number;
+  experience: number
   /** 签到时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppMemberSignInRecordSummaryRespVO = {
   /** 总签到天数 */
-  totalDay: number;
+  totalDay: number
   /** 连续签到第 x 天 */
-  continuousDay: number;
+  continuousDay: number
   /** 今天是否已签到 */
-  todaySignIn: boolean;
-};
+  todaySignIn: boolean
+}
 
 export type AppMemberUserInfoRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 用户手机号 */
-  mobile: string;
+  mobile: string
   /** 用户性别 */
-  sex: number;
+  sex: number
   /** 积分 */
-  point: number;
+  point: number
   /** 经验值 */
-  experience: number;
+  experience: number
   /** 用户等级 */
-  level?: Level;
+  level?: Level
   /** 是否成为推广员 */
-  brokerageEnabled: boolean;
-};
+  brokerageEnabled: boolean
+}
 
 export type AppMemberUserResetPasswordReqVO = {
   /** 新密码 */
-  password: string;
+  password: string
   /** 手机验证码 */
-  code: string;
+  code: string
   /** 手机号 */
-  mobile: string;
-};
+  mobile: string
+}
 
 export type AppMemberUserUpdateMobileByWeixinReqVO = {
   /** 手机 code，小程序通过 wx.getPhoneNumber 方法获得 */
-  code: string;
-};
+  code: string
+}
 
 export type AppMemberUserUpdateMobileReqVO = {
   /** 手机验证码 */
-  code: string;
+  code: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 原手机验证码 */
-  oldCode?: string;
-};
+  oldCode?: string
+}
 
 export type AppMemberUserUpdatePasswordReqVO = {
   /** 新密码 */
-  password: string;
+  password: string
   /** 手机验证码 */
-  code: string;
-};
+  code: string
+}
 
 export type AppMemberUserUpdateReqVO = {
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 头像 */
-  avatar: string;
+  avatar: string
   /** 性别 */
-  sex: number;
-};
+  sex: number
+}
 
 export type AppOrderExpressTrackRespDTO = {
   /** 发生时间 */
-  time: string;
+  time: string
   /** 快递状态 */
-  content: string;
-};
+  content: string
+}
 
 export type AppPayOrderSubmitReqVO = {
   /** 支付单编号 */
-  id: number;
+  id: number
   /** 支付渠道 */
-  channelCode: string;
+  channelCode: string
   /** 支付渠道的额外参数，例如说，微信公众号需要传递 openid 参数 */
-  channelExtras?: Record<string, unknown>;
+  channelExtras?: Record<string, unknown>
   /** 展示模式 */
-  displayMode?: string;
+  displayMode?: string
   /** 回跳地址 */
-  returnUrl?: string;
-};
+  returnUrl?: string
+}
 
 export type AppPayOrderSubmitRespVO = {
   /** 支付状态 */
-  status: number;
+  status: number
   /** 展示模式 */
-  displayMode: string;
+  displayMode: string
   /** 展示内容 */
-  displayContent: string;
-};
+  displayContent: string
+}
 
 export type AppPayWalletPackageRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 套餐名 */
-  name: string;
+  name: string
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 赠送金额 */
-  bonusPrice: number;
-};
+  bonusPrice: number
+}
 
 export type AppPayWalletRechargeCreateReqVO = {
   /** 支付金额 */
-  payPrice?: number;
+  payPrice?: number
   /** 充值套餐编号 */
-  packageId?: number;
-  validPayPriceAndPackageId?: boolean;
-};
+  packageId?: number
+  validPayPriceAndPackageId?: boolean
+}
 
 export type AppPayWalletRechargeCreateRespVO = {
   /** 钱包充值编号 */
-  id: number;
+  id: number
   /** 支付订单编号 */
-  payOrderId: number;
-};
+  payOrderId: number
+}
 
 export type AppPayWalletRechargeRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 用户实际到账余额 */
-  totalPrice: number;
+  totalPrice: number
   /** 实际支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 钱包赠送金额 */
-  bonusPrice: number;
+  bonusPrice: number
   /** 支付成功的支付渠道 */
-  payChannelCode: string;
+  payChannelCode: string
   /** 支付渠道名 */
-  payChannelName?: string;
+  payChannelName?: string
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 支付成功的外部订单号 */
-  payOrderChannelOrderNo: string;
+  payOrderChannelOrderNo: string
   /** 订单支付时间 */
-  payTime: string;
+  payTime: string
   /** 退款状态 */
-  refundStatus: number;
-};
+  refundStatus: number
+}
 
 export type AppPayWalletRespVO = {
   /** 钱包余额，单位分 */
-  balance: number;
+  balance: number
   /** 累计支出，单位分 */
-  totalExpense: number;
+  totalExpense: number
   /** 累计充值，单位分 */
-  totalRecharge: number;
-};
+  totalRecharge: number
+}
 
 export type AppPayWalletTransactionRespVO = {
   /** 业务分类 */
-  bizType: number;
+  bizType: number
   /** 交易金额，单位分 */
-  price: number;
+  price: number
   /** 流水标题 */
-  title: string;
+  title: string
   /** 交易时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppPayWalletTransactionSummaryRespVO = {
   /** 累计支出，单位分 */
-  totalExpense: number;
+  totalExpense: number
   /** 累计收入，单位分 */
-  totalIncome: number;
-};
+  totalIncome: number
+}
 
 export type AppPointActivityDetailRespVO = {
   /** 积分商城活动编号 */
-  id: number;
+  id: number
   /** 积分商城活动商品 */
-  spuId: number;
+  spuId: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 积分商城活动库存(剩余库存积分兑换时扣减) */
-  stock: number;
+  stock: number
   /** 积分商城活动总库存 */
-  totalStock: number;
+  totalStock: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 商品信息数组 */
-  products: Product[];
+  products: Product[]
   /** 兑换积分 */
-  point: number;
+  point: number
   /** 兑换金额，单位：分 */
-  price: number;
-};
+  price: number
+}
 
 export type AppPointActivityRespVO = {
   /** 积分商城活动编号 */
-  id: number;
+  id: number
   /** 积分商城活动商品 */
-  spuId: number;
+  spuId: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 积分商城活动库存 */
-  stock: number;
+  stock: number
   /** 积分商城活动总库存 */
-  totalStock: number;
+  totalStock: number
   /** 商品名称 */
-  spuName: string;
+  spuName: string
   /** 商品主图 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 兑换积分 */
-  point: number;
+  point: number
   /** 兑换金额，单位：分 */
-  price: number;
-};
+  price: number
+}
 
 export type AppProductBrowseHistoryDeleteReqVO = {
   /** 商品 SPU 编号数组 */
-  spuIds: number[];
-};
+  spuIds: number[]
+}
 
 export type AppProductBrowseHistoryRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品单价 */
-  price: number;
+  price: number
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 库存 */
-  stock: number;
-};
+  stock: number
+}
 
 export type AppProductCommentRespVO = {
   /** 评价人的用户编号 */
-  userId: number;
+  userId: number
   /** 评价人名称 */
-  userNickname: string;
+  userNickname: string
   /** 评价人头像 */
-  userAvatar: string;
+  userAvatar: string
   /** 订单项编号 */
-  id: number;
+  id: number
   /** 是否匿名 */
-  anonymous: boolean;
+  anonymous: boolean
   /** 交易订单编号 */
-  orderId: number;
+  orderId: number
   /** 交易订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 商家是否回复 */
-  replyStatus: boolean;
+  replyStatus: boolean
   /** 回复管理员编号 */
-  replyUserId?: number;
+  replyUserId?: number
   /** 商家回复内容 */
-  replyContent?: string;
+  replyContent?: string
   /** 商家回复时间 */
-  replyTime?: string;
+  replyTime?: string
   /** 追加评价内容 */
-  additionalContent?: string;
+  additionalContent?: string
   /** 追评评价图片地址数组，以逗号分隔最多上传 9 张 */
-  additionalPicUrls?: string[];
+  additionalPicUrls?: string[]
   /** 追加评价时间 */
-  additionalTime?: string;
+  additionalTime?: string
   /** 创建时间 */
-  createTime?: string;
+  createTime?: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品 SKU 属性 */
-  skuProperties: AppProductPropertyValueDetailRespVO[];
+  skuProperties: AppProductPropertyValueDetailRespVO[]
   /** 评分星级 1-5 分 */
-  scores: number;
+  scores: number
   /** 描述星级 1-5 分 */
-  descriptionScores: number;
+  descriptionScores: number
   /** 服务星级 1-5 分 */
-  benefitScores: number;
+  benefitScores: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 评论图片地址数组，以逗号分隔最多上传 9 张 */
-  picUrls: string[];
-};
+  picUrls: string[]
+}
 
 export type AppProductPropertyValueDetailRespVO = {
   /** 属性的编号 */
-  propertyId: number;
+  propertyId: number
   /** 属性的名称 */
-  propertyName: string;
+  propertyName: string
   /** 属性值的编号 */
-  valueId: number;
+  valueId: number
   /** 属性值的名称 */
-  valueName: string;
-};
+  valueName: string
+}
 
 export type AppProductSkuBaseRespVO = {
   /** 主键 */
-  id: number;
+  id: number
   /** 图片地址 */
-  picUrl?: string;
+  picUrl?: string
   /** 销售价格，单位：分 */
-  price: number;
+  price: number
   /** 库存 */
-  stock: number;
-  properties?: AppProductPropertyValueDetailRespVO[];
-};
+  stock: number
+  properties?: AppProductPropertyValueDetailRespVO[]
+}
 
 export type AppProductSpuBaseRespVO = {
   /** 主键 */
-  id: number;
+  id: number
   /** 商品 SPU 名字 */
-  name: string;
+  name: string
   /** 商品主图地址 */
-  picUrl?: string;
+  picUrl?: string
   /** 商品分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 商品库存 */
-  stock: number;
+  stock: number
   /** 商品状态 */
-  status: number;
-};
+  status: number
+}
 
 export type AppProductSpuDetailRespVO = {
   /** 商品 SPU 编号 */
-  id: number;
+  id: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 商品简介 */
-  introduction: string;
+  introduction: string
   /** 商品详情 */
-  description: string;
+  description: string
   /** 商品分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 规格类型 */
-  specType: boolean;
+  specType: boolean
   /** 商品价格，单位使用：分 */
-  price: number;
+  price: number
   /** 市场价，单位使用：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 库存 */
-  stock: number;
-  skus?: Sku[];
+  stock: number
+  skus?: Sku[]
   /** 商品销量 */
-  salesCount: number;
-};
+  salesCount: number
+}
 
 export type AppProductSpuRespVO = {
   /** 商品 SPU 编号 */
-  id: number;
+  id: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 商品简介 */
-  introduction: string;
+  introduction: string
   /** 分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 规格类型 */
-  specType: boolean;
+  specType: boolean
   /** 商品价格，单位使用：分 */
-  price: number;
+  price: number
   /** 市场价，单位使用：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 库存 */
-  stock: number;
+  stock: number
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 配送方式数组 */
-  deliveryTypes: number[];
-};
+  deliveryTypes: number[]
+}
 
 export type AppRewardActivityRespVO = {
   /** 活动编号 */
-  id: number;
+  id: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 条件类型 */
-  conditionType: number;
+  conditionType: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品 SPU 编号的数组 */
-  productScopeValues?: number[];
+  productScopeValues?: number[]
   /** 优惠规则的数组 */
-  rules?: Rule[];
-};
+  rules?: Rule[]
+}
 
 export type approveBrokerageWithdrawParams = {
-  id: number;
-};
+  id: number
+}
 
 export type approveOrDenyParams = {
   /** 响应类型 */
-  response_type: string;
+  response_type: string
   /** 客户端编号 */
-  client_id: string;
+  client_id: string
   /** 授权范围 */
-  scope?: string;
+  scope?: string
   /** 重定向 URI */
-  redirect_uri: string;
+  redirect_uri: string
   /** 用户是否接受 */
-  auto_approve: boolean;
-  state?: string;
-};
+  auto_approve: boolean
+  state?: string
+}
 
 export type AppSeckillActivityDetailRespVO = {
   /** 秒杀活动编号 */
-  id: number;
+  id: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 活动状态 */
-  status: number;
+  status: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总共限购数量 */
-  totalLimitCount?: number;
+  totalLimitCount?: number
   /** 单次限购数量 */
-  singleLimitCount?: number;
+  singleLimitCount?: number
   /** 秒杀库存（剩余） */
-  stock: number;
+  stock: number
   /** 秒杀库存（总计） */
-  totalStock: number;
+  totalStock: number
   /** 商品信息数组 */
-  products: Product[];
-};
+  products: Product[]
+}
 
 export type AppSeckillActivityNowRespVO = {
   /** 秒杀时间段 */
-  config: AppSeckillConfigRespVO;
+  config: AppSeckillConfigRespVO
   /** 秒杀活动数组 */
-  activities: AppSeckillActivityRespVO[];
-};
+  activities: AppSeckillActivityRespVO[]
+}
 
 export type AppSeckillActivityRespVO = {
   /** 秒杀活动编号 */
-  id: number;
+  id: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名字 */
-  spuName: string;
+  spuName: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 秒杀活动状态 */
-  status: number;
+  status: number
   /** 秒杀库存（剩余） */
-  stock: number;
+  stock: number
   /** 秒杀库存（总共） */
-  totalStock: number;
+  totalStock: number
   /** 秒杀金额，单位：分 */
-  seckillPrice: number;
-};
+  seckillPrice: number
+}
 
 export type AppSeckillConfigRespVO = {
   /** 秒杀时间段编号 */
-  id: number;
+  id: number
   /** 开始时间点 */
-  startTime: string;
+  startTime: string
   /** 结束时间点 */
-  endTime: string;
+  endTime: string
   /** 轮播图 */
-  sliderPicUrls: string[];
-};
+  sliderPicUrls: string[]
+}
 
 export type AppSocialUserBindReqVO = {
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 授权码 */
-  code: string;
+  code: string
   /** state */
-  state: string;
-};
+  state: string
+}
 
 export type AppSocialUserRespVO = {
   /** 社交用户的 openid */
-  openid: string;
+  openid: string
   /** 社交用户的昵称 */
-  nickname: string;
+  nickname: string
   /** 社交用户的头像 */
-  avatar: string;
-};
+  avatar: string
+}
 
 export type AppSocialUserUnbindReqVO = {
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 社交用户的 openid */
-  openid: string;
-};
+  openid: string
+}
 
 export type AppSocialWxaQrcodeReqVO = {
   /** 场景值 */
-  scene: string;
+  scene: string
   /** 页面路径 */
-  path: string;
+  path: string
   /** 二维码宽度 */
-  width: number;
+  width: number
   /** 是/否自动配置线条颜色 */
-  autoColor: boolean;
+  autoColor: boolean
   /** 是/否检查 page 是否存在 */
-  checkPath: boolean;
+  checkPath: boolean
   /** 是/否需要透明底色 */
-  hyaline: boolean;
-};
+  hyaline: boolean
+}
 
 export type AppSocialWxaSubscribeTemplateRespVO = {
   /** 模版编号 */
-  id: string;
+  id: string
   /** 模版标题 */
-  title: string;
+  title: string
   /** 模版内容 */
-  content: string;
+  content: string
   /** 模板内容示例 */
-  example: string;
+  example: string
   /** 模版类型 */
-  type: number;
-};
+  type: number
+}
 
 export type AppTradeConfigRespVO = {
   /** 腾讯地图 KEY */
-  tencentLbsKey: string;
+  tencentLbsKey: string
   /** 是否开启自提 */
-  deliveryPickUpEnabled: boolean;
+  deliveryPickUpEnabled: boolean
   /** 售后的退款理由 */
-  afterSaleRefundReasons: string[];
+  afterSaleRefundReasons: string[]
   /** 售后的退货理由 */
-  afterSaleReturnReasons: string[];
+  afterSaleReturnReasons: string[]
   /** 分销海报地址数组 */
-  brokeragePosterUrls: string[];
+  brokeragePosterUrls: string[]
   /** 佣金冻结时间（天） */
-  brokerageFrozenDays: number;
+  brokerageFrozenDays: number
   /** 佣金提现最小金额，单位：分 */
-  brokerageWithdrawMinPrice: number;
+  brokerageWithdrawMinPrice: number
   /** 提现方式 */
-  brokerageWithdrawTypes: number[];
-};
+  brokerageWithdrawTypes: number[]
+}
 
 export type AppTradeOrderCreateReqVO = {
   /** 商品项数组 */
-  items: Item[];
+  items: Item[]
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 是否使用积分 */
-  pointStatus: boolean;
+  pointStatus: boolean
   /** 配送方式 */
-  deliveryType: number;
+  deliveryType: number
   /** 收件地址编号 */
-  addressId?: number;
+  addressId?: number
   /** 自提门店编号 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 收件人名称 */
-  receiverName?: string;
+  receiverName?: string
   /** 收件人手机 */
-  receiverMobile?: string;
+  receiverMobile?: string
   /** 秒杀活动编号 */
-  seckillActivityId?: number;
+  seckillActivityId?: number
   /** 拼团活动编号 */
-  combinationActivityId?: number;
+  combinationActivityId?: number
   /** 拼团团长编号 */
-  combinationHeadId?: number;
+  combinationHeadId?: number
   /** 砍价记录编号 */
-  bargainRecordId?: number;
+  bargainRecordId?: number
   /** 积分商城活动编号 */
-  pointActivityId?: number;
+  pointActivityId?: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type AppTradeOrderCreateRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 支付订单编号 */
-  payOrderId: number;
-};
+  payOrderId: number
+}
 
 export type AppTradeOrderDetailRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单流水号 */
-  no: string;
+  no: string
   /** 订单类型 */
-  type: number;
+  type: number
   /** 下单时间 */
-  createTime: string;
+  createTime: string
   /** 用户备注 */
-  userRemark: string;
+  userRemark: string
   /** 订单状态 */
-  status: number;
+  status: number
   /** 购买的商品数量 */
-  productCount: number;
+  productCount: number
   /** 订单完成时间 */
-  finishTime?: string;
+  finishTime?: string
   /** 订单取消时间 */
-  cancelTime?: string;
+  cancelTime?: string
   /** 是否评价 */
-  commentStatus: boolean;
+  commentStatus: boolean
   /** 是否已支付 */
-  payStatus: boolean;
+  payStatus: boolean
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 付款时间 */
-  payTime?: string;
+  payTime?: string
   /** 付款超时时间 */
-  payExpireTime: string;
+  payExpireTime: string
   /** 支付渠道 */
-  payChannelCode?: string;
+  payChannelCode?: string
   /** 支付渠道名 */
-  payChannelName?: string;
+  payChannelName?: string
   /** 商品原价（总） */
-  totalPrice: number;
+  totalPrice: number
   /** 订单优惠（总） */
-  discountPrice: number;
+  discountPrice: number
   /** 运费金额 */
-  deliveryPrice: number;
+  deliveryPrice: number
   /** 订单调价（总） */
-  adjustPrice: number;
+  adjustPrice: number
   /** 应付金额（总） */
-  payPrice: number;
+  payPrice: number
   /** 配送方式 */
-  deliveryType: number;
+  deliveryType: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 发货物流名称 */
-  logisticsName?: string;
+  logisticsName?: string
   /** 发货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 发货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收件人名称 */
-  receiverName: string;
+  receiverName: string
   /** 收件人手机 */
-  receiverMobile: string;
+  receiverMobile: string
   /** 收件人地区编号 */
-  receiverAreaId: number;
+  receiverAreaId: number
   /** 收件人地区名字 */
-  receiverAreaName: string;
+  receiverAreaName: string
   /** 收件人详细地址 */
-  receiverDetailAddress: string;
+  receiverDetailAddress: string
   /** 自提门店编号 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 自提核销码 */
-  pickUpVerifyCode?: string;
+  pickUpVerifyCode?: string
   /** 售后状态 */
-  refundStatus?: number;
+  refundStatus?: number
   /** 退款金额，单位：分 */
-  refundPrice?: number;
+  refundPrice?: number
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 优惠劵减免金额 */
-  couponPrice: number;
+  couponPrice: number
   /** 积分抵扣的金额 */
-  pointPrice: number;
+  pointPrice: number
   /** VIP 减免金额 */
-  vipPrice: number;
+  vipPrice: number
   /** 拼团记录编号 */
-  combinationRecordId?: number;
-  items?: AppTradeOrderItemRespVO[];
-};
+  combinationRecordId?: number
+  items?: AppTradeOrderItemRespVO[]
+}
 
 export type AppTradeOrderItemCommentCreateReqVO = {
   /** 是否匿名 */
-  anonymous: boolean;
+  anonymous: boolean
   /** 交易订单项编号 */
-  orderItemId: number;
+  orderItemId: number
   /** 描述星级 1-5 分 */
-  descriptionScores: number;
+  descriptionScores: number
   /** 服务星级 1-5 分 */
-  benefitScores: number;
+  benefitScores: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 评论图片地址数组，以逗号分隔最多上传 9 张 */
-  picUrls: string[];
-};
+  picUrls: string[]
+}
 
 export type AppTradeOrderItemRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
-  properties?: AppProductPropertyValueDetailRespVO[];
+  skuId: number
+  properties?: AppProductPropertyValueDetailRespVO[]
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 购买数量 */
-  count: number;
+  count: number
   /** 是否评价 */
-  commentStatus: boolean;
+  commentStatus: boolean
   /** 商品原价（单） */
-  price: number;
+  price: number
   /** 应付金额（总），单位：分 */
-  payPrice: number;
+  payPrice: number
   /** 售后编号 */
-  afterSaleId?: number;
+  afterSaleId?: number
   /** 售后状态 */
-  afterSaleStatus: number;
-};
+  afterSaleStatus: number
+}
 
 export type AppTradeOrderPageItemRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单流水号 */
-  no: string;
+  no: string
   /** 订单类型 */
-  type: number;
+  type: number
   /** 订单状态 */
-  status: number;
+  status: number
   /** 购买的商品数量 */
-  productCount: number;
+  productCount: number
   /** 是否评价 */
-  commentStatus: boolean;
+  commentStatus: boolean
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 应付金额，单位：分 */
-  payPrice: number;
+  payPrice: number
   /** 配送方式 */
-  deliveryType: number;
-  items?: AppTradeOrderItemRespVO[];
+  deliveryType: number
+  items?: AppTradeOrderItemRespVO[]
   /** 拼团记录编号 */
-  combinationRecordId?: number;
-};
+  combinationRecordId?: number
+}
 
 export type AppTradeOrderSettlementRespVO = {
   /** 交易类型 */
-  type: number;
+  type: number
   /** 购物项数组 */
-  items: Item[];
+  items: Item[]
   /** 优惠劵数组 */
-  coupons: Coupon[];
+  coupons: Coupon[]
   /** 费用 */
-  price: Price;
+  price: Price
   /** 收件地址 */
-  address: Address;
+  address: Address
   /** 已使用的积分 */
-  usePoint: number;
+  usePoint: number
   /** 总积分 */
-  totalPoint: number;
-  promotions?: Promotion[];
-};
+  totalPoint: number
+  promotions?: Promotion[]
+}
 
 export type AppTradeProductSettlementRespVO = {
   /** SPU 商品编号 */
-  spuId: number;
+  spuId: number
   /** SKU 价格信息数组 */
-  skus: Sku[];
+  skus: Sku[]
   /** 满减送活动信息 */
-  rewardActivity: RewardActivity;
-};
+  rewardActivity: RewardActivity
+}
 
 export type AppYRZPJobRespVO = {
   /** 职位编号 */
-  id: number;
+  id: number
   /** 职位名称 */
-  name: string;
+  name: string
   /** 职位描述 */
-  description: string;
+  description: string
   /** 薪资范围-最小值 */
-  salaryMin: number;
+  salaryMin: number
   /** 薪资范围-最大值 */
-  salaryMax: number;
+  salaryMax: number
   /** 工作地点 */
-  workLocation: string;
+  workLocation: string
   /** 职位类别编号 */
-  categoryId: number;
+  categoryId: number
   /** 职位类别名称 */
-  categoryName: string;
+  categoryName: string
   /** 发布时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AppYRZPJobSeekerRespVO = {
   /** 求职者编号 */
-  id: number;
+  id: number
   /** 求职者名称 */
-  name: string;
+  name: string
   /** 求职者头像 */
-  avatar: string;
+  avatar: string
   /** 求职者简介 */
-  description: string;
+  description: string
   /** 期望薪资-最小值 */
-  expectedSalaryMin: number;
+  expectedSalaryMin: number
   /** 期望薪资-最大值 */
-  expectedSalaryMax: number;
+  expectedSalaryMax: number
   /** 期望工作地点 */
-  expectedWorkLocation: string;
+  expectedWorkLocation: string
   /** 求职者类型编号 */
-  typeId: number;
+  typeId: number
   /** 求职者类型名称 */
-  typeName: string;
+  typeName: string
   /** 注册时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type AreaNodeRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
-};
+  name: string
+}
 
 export type ArticleCategoryCreateReqVO = {
   /** 文章分类名称 */
-  name: string;
+  name: string
   /** 图标地址 */
-  picUrl: string;
+  picUrl: string
   /** 状态 */
-  status: number;
+  status: number
   /** 排序 */
-  sort: number;
-};
+  sort: number
+}
 
 export type ArticleCategoryRespVO = {
   /** 文章分类名称 */
-  name: string;
+  name: string
   /** 图标地址 */
-  picUrl: string;
+  picUrl: string
   /** 状态 */
-  status: number;
+  status: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 文章分类编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ArticleCategorySimpleRespVO = {
   /** 文章分类编号 */
-  id: number;
+  id: number
   /** 文章分类名称 */
-  name: string;
-};
+  name: string
+}
 
 export type ArticleCategoryUpdateReqVO = {
   /** 文章分类名称 */
-  name: string;
+  name: string
   /** 图标地址 */
-  picUrl: string;
+  picUrl: string
   /** 状态 */
-  status: number;
+  status: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 文章分类编号 */
-  id: number;
-};
+  id: number
+}
 
 export type ArticleCreateReqVO = {
   /** 文章分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 关联商品编号 */
-  spuId: number;
+  spuId: number
   /** 文章标题 */
-  title: string;
+  title: string
   /** 文章作者 */
-  author: string;
+  author: string
   /** 文章封面图片地址 */
-  picUrl: string;
+  picUrl: string
   /** 文章简介 */
-  introduction: string;
+  introduction: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 是否热门(小程序) */
-  recommendHot: boolean;
+  recommendHot: boolean
   /** 是否轮播图(小程序) */
-  recommendBanner: boolean;
+  recommendBanner: boolean
   /** 文章内容 */
-  content: string;
-};
+  content: string
+}
 
 export type ArticleRespVO = {
   /** 文章分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 关联商品编号 */
-  spuId: number;
+  spuId: number
   /** 文章标题 */
-  title: string;
+  title: string
   /** 文章作者 */
-  author: string;
+  author: string
   /** 文章封面图片地址 */
-  picUrl: string;
+  picUrl: string
   /** 文章简介 */
-  introduction: string;
+  introduction: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 是否热门(小程序) */
-  recommendHot: boolean;
+  recommendHot: boolean
   /** 是否轮播图(小程序) */
-  recommendBanner: boolean;
+  recommendBanner: boolean
   /** 文章内容 */
-  content: string;
+  content: string
   /** 文章编号 */
-  id: number;
+  id: number
   /** 浏览量 */
-  browseCount: number;
+  browseCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ArticleUpdateReqVO = {
   /** 文章分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 关联商品编号 */
-  spuId: number;
+  spuId: number
   /** 文章标题 */
-  title: string;
+  title: string
   /** 文章作者 */
-  author: string;
+  author: string
   /** 文章封面图片地址 */
-  picUrl: string;
+  picUrl: string
   /** 文章简介 */
-  introduction: string;
+  introduction: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 是否热门(小程序) */
-  recommendHot: boolean;
+  recommendHot: boolean
   /** 是否轮播图(小程序) */
-  recommendBanner: boolean;
+  recommendBanner: boolean
   /** 文章内容 */
-  content: string;
+  content: string
   /** 文章编号 */
-  id: number;
-};
+  id: number
+}
 
 export type AuthLoginReqVO = {
   /** 验证码，验证码开启时，需要传递 */
-  captchaVerification: string;
+  captchaVerification: string
   /** 账号 */
-  username: string;
+  username: string
   /** 密码 */
-  password: string;
+  password: string
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  socialType: number;
+  socialType: number
   /** 授权码 */
-  socialCode: string;
+  socialCode: string
   /** state */
-  socialState: string;
-  socialCodeValid?: boolean;
-};
+  socialState: string
+  socialCodeValid?: boolean
+}
 
 export type AuthLoginRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 访问令牌 */
-  accessToken: string;
+  accessToken: string
   /** 刷新令牌 */
-  refreshToken: string;
+  refreshToken: string
   /** 过期时间 */
-  expiresTime: string;
-};
+  expiresTime: string
+}
 
 export type authorizeParams = {
   /** 客户端编号 */
-  clientId: string;
-};
+  clientId: string
+}
 
 export type AuthPermissionInfoRespVO = {
   /** 用户信息 */
-  user: UserVO;
+  user: UserVO
   /** 角色标识数组 */
-  roles: string[];
+  roles: string[]
   /** 操作权限数组 */
-  permissions: string[];
+  permissions: string[]
   /** 菜单树 */
-  menus: MenuVO[];
-};
+  menus: MenuVO[]
+}
 
 export type AuthRegisterReqVO = {
   /** 验证码，验证码开启时，需要传递 */
-  captchaVerification: string;
+  captchaVerification: string
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 密码 */
-  password: string;
-};
+  password: string
+}
 
 export type AuthResetPasswordReqVO = {
   /** 密码 */
-  password: string;
+  password: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 手机短信验证码 */
-  code: string;
-};
+  code: string
+}
 
 export type AuthSmsLoginReqVO = {
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 短信验证码 */
-  code: string;
-};
+  code: string
+}
 
 export type AuthSmsSendReqVO = {
   /** 验证码，验证码开启时，需要传递 */
-  captchaVerification: string;
+  captchaVerification: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 短信场景 */
-  scene: number;
-};
+  scene: number
+}
 
 export type AuthSocialLoginReqVO = {
   /** 社交平台的类型，参见 UserSocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 授权码 */
-  code: string;
+  code: string
   /** state */
-  state: string;
-};
+  state: string
+}
 
 export type BannerCreateReqVO = {
   /** 标题 */
-  title: string;
+  title: string
   /** 跳转链接 */
-  url: string;
+  url: string
   /** 图片地址 */
-  picUrl: string;
+  picUrl: string
   /** position */
-  position: number;
+  position: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 备注 */
-  memo?: string;
-};
+  memo?: string
+}
 
 export type BannerRespVO = {
   /** 标题 */
-  title: string;
+  title: string
   /** 跳转链接 */
-  url: string;
+  url: string
   /** 图片地址 */
-  picUrl: string;
+  picUrl: string
   /** position */
-  position: number;
+  position: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 备注 */
-  memo?: string;
+  memo?: string
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type BannerUpdateReqVO = {
   /** 标题 */
-  title: string;
+  title: string
   /** 跳转链接 */
-  url: string;
+  url: string
   /** 图片地址 */
-  picUrl: string;
+  picUrl: string
   /** position */
-  position: number;
+  position: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 备注 */
-  memo?: string;
+  memo?: string
   /** banner 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type BargainActivityCreateReqVO = {
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 砍价起始价格 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 砍价底价 */
-  bargainMinPrice: number;
+  bargainMinPrice: number
   /** 活动库存 */
-  stock: number;
+  stock: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 最大助力次数 */
-  helpMaxCount: number;
+  helpMaxCount: number
   /** 最大帮砍次数 */
-  bargainCount: number;
+  bargainCount: number
   /** 用户每次砍价的最小金额 */
-  randomMinPrice: number;
+  randomMinPrice: number
   /** 用户每次砍价的最大金额 */
-  randomMaxPrice: number;
-};
+  randomMaxPrice: number
+}
 
 export type BargainActivityPageItemRespVO = {
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 砍价起始价格 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 砍价底价 */
-  bargainMinPrice: number;
+  bargainMinPrice: number
   /** 活动库存 */
-  stock: number;
+  stock: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 最大助力次数 */
-  helpMaxCount: number;
+  helpMaxCount: number
   /** 最大帮砍次数 */
-  bargainCount: number;
+  bargainCount: number
   /** 用户每次砍价的最小金额 */
-  randomMinPrice: number;
+  randomMinPrice: number
   /** 用户每次砍价的最大金额 */
-  randomMaxPrice: number;
+  randomMaxPrice: number
   /** 活动编号 */
-  id: number;
+  id: number
   /** 商品名称 */
-  spuName: string;
+  spuName: string
   /** 商品主图 */
-  picUrl: string;
+  picUrl: string
   /** 活动状态 */
-  status: number;
+  status: number
   /** 活动总库存 */
-  totalStock: number;
+  totalStock: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 总砍价的用户数量 */
-  recordUserCount: number;
+  recordUserCount: number
   /** 成功砍价的用户数量 */
-  recordSuccessUserCount: number;
+  recordSuccessUserCount: number
   /** 帮助砍价的用户数量 */
-  helpUserCount: number;
-};
+  helpUserCount: number
+}
 
 export type BargainActivityRespVO = {
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 砍价起始价格 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 砍价底价 */
-  bargainMinPrice: number;
+  bargainMinPrice: number
   /** 活动库存 */
-  stock: number;
+  stock: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 最大助力次数 */
-  helpMaxCount: number;
+  helpMaxCount: number
   /** 最大帮砍次数 */
-  bargainCount: number;
+  bargainCount: number
   /** 用户每次砍价的最小金额 */
-  randomMinPrice: number;
+  randomMinPrice: number
   /** 用户每次砍价的最大金额 */
-  randomMaxPrice: number;
+  randomMaxPrice: number
   /** 活动编号 */
-  id: number;
+  id: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type BargainActivityUpdateReqVO = {
   /** 砍价活动名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 砍价起始价格 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 砍价底价 */
-  bargainMinPrice: number;
+  bargainMinPrice: number
   /** 活动库存 */
-  stock: number;
+  stock: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 最大助力次数 */
-  helpMaxCount: number;
+  helpMaxCount: number
   /** 最大帮砍次数 */
-  bargainCount: number;
+  bargainCount: number
   /** 用户每次砍价的最小金额 */
-  randomMinPrice: number;
+  randomMinPrice: number
   /** 用户每次砍价的最大金额 */
-  randomMaxPrice: number;
+  randomMaxPrice: number
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type BargainHelpRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 砍价活动名称 */
-  activityId: number;
+  activityId: number
   /** 砍价记录编号 */
-  recordId: number;
+  recordId: number
   /** 减少砍价，单位：分 */
-  reducePrice: number;
+  reducePrice: number
   /** 砍价助力编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户头像 */
-  avatar: string;
-};
+  avatar: string
+}
 
 export type BargainRecordPageItemRespVO = {
   /** 砍价活动名称 */
-  activityId: number;
+  activityId: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 砍价起始价格，单位：分 */
-  bargainFirstPrice: number;
+  bargainFirstPrice: number
   /** 当前砍价，单位：分 */
-  bargainPrice: number;
+  bargainPrice: number
   /** 砍价状态 */
-  status: number;
+  status: number
   /** 订单编号 */
-  orderId?: number;
+  orderId?: number
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 记录编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 帮砍次数 */
-  helpCount: number;
+  helpCount: number
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户头像 */
-  avatar: string;
-  activity?: BargainActivityRespVO;
-};
+  avatar: string
+  activity?: BargainActivityRespVO
+}
 
 export type BrokerageRecordRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 业务编号 */
-  bizId: string;
+  bizId: string
   /** 业务类型 */
-  bizType: number;
+  bizType: number
   /** 标题 */
-  title: string;
+  title: string
   /** 金额 */
-  price: number;
+  price: number
   /** 当前总佣金 */
-  totalPrice: number;
+  totalPrice: number
   /** 说明 */
-  description: string;
+  description: string
   /** 状态 */
-  status: number;
+  status: number
   /** 冻结时间（天） */
-  frozenDays: number;
+  frozenDays: number
   /** 解冻时间 */
-  unfreezeTime?: string;
+  unfreezeTime?: string
   /** 来源用户等级 */
-  sourceUserLevel?: number;
+  sourceUserLevel?: number
   /** 来源用户编号 */
-  sourceUserId?: number;
+  sourceUserId?: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 用户头像 */
-  userAvatar?: string;
+  userAvatar?: string
   /** 用户昵称 */
-  userNickname?: string;
+  userNickname?: string
   /** 来源用户头像 */
-  sourceUserAvatar?: string;
+  sourceUserAvatar?: string
   /** 来源用户昵称 */
-  sourceUserNickname?: string;
-};
+  sourceUserNickname?: string
+}
 
 export type BrokerageUserClearBrokerageUserReqVO = {
   /** 用户编号 */
-  id: number;
-};
+  id: number
+}
 
 export type BrokerageUserCreateReqVO = {
   /** 分销用户编号 */
-  userId: number;
+  userId: number
   /** 推广员编号 */
-  bindUserId: number;
-};
+  bindUserId: number
+}
 
 export type BrokerageUserRespVO = {
   /** 推广员编号 */
-  bindUserId: number;
+  bindUserId: number
   /** 推广员绑定时间 */
-  bindUserTime?: string;
+  bindUserTime?: string
   /** 推广资格 */
-  brokerageEnabled: boolean;
+  brokerageEnabled: boolean
   /** 成为分销员时间 */
-  brokerageTime?: string;
+  brokerageTime?: string
   /** 可用佣金 */
-  price: number;
+  price: number
   /** 冻结佣金 */
-  frozenPrice: number;
+  frozenPrice: number
   /** 用户编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 推广用户数量 */
-  brokerageUserCount: number;
+  brokerageUserCount: number
   /** 推广订单数量 */
-  brokerageOrderCount: number;
+  brokerageOrderCount: number
   /** 推广订单金额 */
-  brokerageOrderPrice: number;
+  brokerageOrderPrice: number
   /** 已提现金额 */
-  withdrawPrice: number;
+  withdrawPrice: number
   /** 已提现次数 */
-  withdrawCount: number;
-};
+  withdrawCount: number
+}
 
 export type BrokerageUserUpdateBrokerageEnabledReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 推广资格 */
-  enabled: boolean;
-};
+  enabled: boolean
+}
 
 export type BrokerageUserUpdateBrokerageUserReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 推广员编号 */
-  bindUserId: number;
-};
+  bindUserId: number
+}
 
 export type BrokerageWithdrawRejectReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 审核驳回原因 */
-  auditReason: string;
-};
+  auditReason: string
+}
 
 export type BrokerageWithdrawRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户昵称 */
-  userNickname: string;
+  userNickname: string
   /** 提现金额 */
-  price: number;
+  price: number
   /** 提现手续费 */
-  feePrice: number;
+  feePrice: number
   /** 当前总佣金 */
-  totalPrice: number;
+  totalPrice: number
   /** 提现类型 */
-  type: number;
+  type: number
   /** 真实姓名 */
-  userName?: string;
+  userName?: string
   /** 收款账号 */
-  userAccount?: string;
+  userAccount?: string
   /** 银行名称 */
-  bankName?: string;
+  bankName?: string
   /** 开户地址 */
-  bankAddress?: string;
+  bankAddress?: string
   /** 收款码 */
-  qrCodeUrl?: string;
+  qrCodeUrl?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 审核驳回原因 */
-  auditReason?: string;
+  auditReason?: string
   /** 审核时间 */
-  auditTime?: string;
+  auditTime?: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 转账单编号 */
-  payTransferId?: number;
+  payTransferId?: number
   /** 转账错误提示 */
-  transferErrorMsg?: string;
+  transferErrorMsg?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type cancelAfterSaleParams = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type cancelOrderParams = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type CaptchaVO = {
-  captchaId?: string;
-  projectCode?: string;
-  captchaType?: string;
-  captchaOriginalPath?: string;
-  captchaFontType?: string;
-  captchaFontSize?: number;
-  secretKey?: string;
-  originalImageBase64?: string;
-  point?: PointVO;
-  jigsawImageBase64?: string;
-  wordList?: string[];
-  pointList?: { x?: number; y?: number }[];
-  pointJson?: string;
-  token?: string;
-  result?: boolean;
-  captchaVerification?: string;
-  clientUid?: string;
-  ts?: number;
-  browserInfo?: string;
-};
+  captchaId?: string
+  projectCode?: string
+  captchaType?: string
+  captchaOriginalPath?: string
+  captchaFontType?: string
+  captchaFontSize?: number
+  secretKey?: string
+  originalImageBase64?: string
+  point?: PointVO
+  jigsawImageBase64?: string
+  wordList?: string[]
+  pointList?: { x?: number; y?: number }[]
+  pointJson?: string
+  token?: string
+  result?: boolean
+  captchaVerification?: string
+  clientUid?: string
+  ts?: number
+  browserInfo?: string
+}
 
 export type Cart = {
   /** 购物项的编号 */
-  id: number;
+  id: number
   /** 商品数量 */
-  count: number;
+  count: number
   /** 是否选中 */
-  selected: boolean;
-  spu?: AppProductSpuBaseRespVO;
-  sku?: AppProductSkuBaseRespVO;
-};
+  selected: boolean
+  spu?: AppProductSpuBaseRespVO
+  sku?: AppProductSkuBaseRespVO
+}
 
 export type checkTokenParams = {
   /** 访问令牌 */
-  token: string;
-};
+  token: string
+}
 
 export type Client = {
   /** 应用名 */
-  name: string;
+  name: string
   /** 应用图标 */
-  logo: string;
-};
+  logo: string
+}
 
 export type closeCombinationActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type closeRewardActivity1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type closeRewardActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type closeSeckillActivity1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type closeSeckillActivity2Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type closeSeckillActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type CodegenColumnRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 表编号 */
-  tableId: number;
+  tableId: number
   /** 字段名 */
-  columnName: string;
+  columnName: string
   /** 字段类型 */
-  dataType: string;
+  dataType: string
   /** 字段描述 */
-  columnComment: string;
+  columnComment: string
   /** 是否允许为空 */
-  nullable: boolean;
+  nullable: boolean
   /** 是否主键 */
-  primaryKey: boolean;
+  primaryKey: boolean
   /** 排序 */
-  ordinalPosition: number;
+  ordinalPosition: number
   /** Java 属性类型 */
-  javaType: string;
+  javaType: string
   /** Java 属性名 */
-  javaField: string;
+  javaField: string
   /** 字典类型 */
-  dictType?: string;
+  dictType?: string
   /** 数据示例 */
-  example?: string;
+  example?: string
   /** 是否为 Create 创建操作的字段 */
-  createOperation: boolean;
+  createOperation: boolean
   /** 是否为 Update 更新操作的字段 */
-  updateOperation: boolean;
+  updateOperation: boolean
   /** 是否为 List 查询操作的字段 */
-  listOperation: boolean;
+  listOperation: boolean
   /** List 查询操作的条件类型，参见 CodegenColumnListConditionEnum 枚举 */
-  listOperationCondition: string;
+  listOperationCondition: string
   /** 是否为 List 查询操作的返回字段 */
-  listOperationResult: boolean;
+  listOperationResult: boolean
   /** 显示类型 */
-  htmlType: string;
+  htmlType: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type CodegenColumnSaveReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 表编号 */
-  tableId: number;
+  tableId: number
   /** 字段名 */
-  columnName: string;
+  columnName: string
   /** 字段类型 */
-  dataType: string;
+  dataType: string
   /** 字段描述 */
-  columnComment: string;
+  columnComment: string
   /** 是否允许为空 */
-  nullable: boolean;
+  nullable: boolean
   /** 是否主键 */
-  primaryKey: boolean;
+  primaryKey: boolean
   /** 排序 */
-  ordinalPosition: number;
+  ordinalPosition: number
   /** Java 属性类型 */
-  javaType: string;
+  javaType: string
   /** Java 属性名 */
-  javaField: string;
+  javaField: string
   /** 字典类型 */
-  dictType?: string;
+  dictType?: string
   /** 数据示例 */
-  example?: string;
+  example?: string
   /** 是否为 Create 创建操作的字段 */
-  createOperation: boolean;
+  createOperation: boolean
   /** 是否为 Update 更新操作的字段 */
-  updateOperation: boolean;
+  updateOperation: boolean
   /** 是否为 List 查询操作的字段 */
-  listOperation: boolean;
+  listOperation: boolean
   /** List 查询操作的条件类型，参见 CodegenColumnListConditionEnum 枚举 */
-  listOperationCondition: string;
+  listOperationCondition: string
   /** 是否为 List 查询操作的返回字段 */
-  listOperationResult: boolean;
+  listOperationResult: boolean
   /** 显示类型 */
-  htmlType: string;
-};
+  htmlType: string
+}
 
 export type CodegenCreateListReqVO = {
   /** 数据源配置的编号 */
-  dataSourceConfigId: number;
+  dataSourceConfigId: number
   /** 表名数组 */
-  tableNames: string[];
-};
+  tableNames: string[]
+}
 
 export type CodegenDetailRespVO = {
   /** 表定义 */
-  table?: CodegenTableRespVO;
+  table?: CodegenTableRespVO
   /** 字段定义 */
-  columns?: CodegenColumnRespVO[];
-};
+  columns?: CodegenColumnRespVO[]
+}
 
 export type CodegenPreviewRespVO = {
   /** 文件路径 */
-  filePath: string;
+  filePath: string
   /** 代码 */
-  code: string;
-};
+  code: string
+}
 
 export type CodegenTableRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 生成场景，参见 CodegenSceneEnum 枚举 */
-  scene: number;
+  scene: number
   /** 表名称 */
-  tableName: string;
+  tableName: string
   /** 表描述 */
-  tableComment: string;
+  tableComment: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 模块名 */
-  moduleName: string;
+  moduleName: string
   /** 业务名 */
-  businessName: string;
+  businessName: string
   /** 类名称 */
-  className: string;
+  className: string
   /** 类描述 */
-  classComment: string;
+  classComment: string
   /** 作者 */
-  author: string;
+  author: string
   /** 模板类型，参见 CodegenTemplateTypeEnum 枚举 */
-  templateType: number;
+  templateType: number
   /** 前端类型，参见 CodegenFrontTypeEnum 枚举 */
-  frontType: number;
+  frontType: number
   /** 父菜单编号 */
-  parentMenuId?: number;
+  parentMenuId?: number
   /** 主表的编号 */
-  masterTableId?: number;
+  masterTableId?: number
   /** 子表关联主表的字段编号 */
-  subJoinColumnId?: number;
+  subJoinColumnId?: number
   /** 主表与子表是否一对多 */
-  subJoinMany?: boolean;
+  subJoinMany?: boolean
   /** 树表的父字段编号 */
-  treeParentColumnId?: number;
+  treeParentColumnId?: number
   /** 树表的名字字段编号 */
-  treeNameColumnId?: number;
+  treeNameColumnId?: number
   /** 主键编号 */
-  dataSourceConfigId: number;
+  dataSourceConfigId: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
-};
+  updateTime: string
+}
 
 export type CodegenTableSaveReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 生成场景，参见 CodegenSceneEnum 枚举 */
-  scene: number;
+  scene: number
   /** 表名称 */
-  tableName: string;
+  tableName: string
   /** 表描述 */
-  tableComment: string;
+  tableComment: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 模块名 */
-  moduleName: string;
+  moduleName: string
   /** 业务名 */
-  businessName: string;
+  businessName: string
   /** 类名称 */
-  className: string;
+  className: string
   /** 类描述 */
-  classComment: string;
+  classComment: string
   /** 作者 */
-  author: string;
+  author: string
   /** 模板类型，参见 CodegenTemplateTypeEnum 枚举 */
-  templateType: number;
+  templateType: number
   /** 前端类型，参见 CodegenFrontTypeEnum 枚举 */
-  frontType: number;
+  frontType: number
   /** 父菜单编号 */
-  parentMenuId?: number;
+  parentMenuId?: number
   /** 主表的编号 */
-  masterTableId?: number;
+  masterTableId?: number
   /** 子表关联主表的字段编号 */
-  subJoinColumnId?: number;
+  subJoinColumnId?: number
   /** 主表与子表是否一对多 */
-  subJoinMany?: boolean;
+  subJoinMany?: boolean
   /** 树表的父字段编号 */
-  treeParentColumnId?: number;
+  treeParentColumnId?: number
   /** 树表的名字字段编号 */
-  treeNameColumnId?: number;
-};
+  treeNameColumnId?: number
+}
 
 export type CodegenUpdateReqVO = {
-  table: CodegenTableSaveReqVO;
-  columns: CodegenColumnSaveReqVO[];
-};
+  table: CodegenTableSaveReqVO
+  columns: CodegenColumnSaveReqVO[]
+}
 
 export type CombinationActivityCreateReqVO = {
   /** 拼团名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限购数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 活动时间 */
-  startTime: string;
+  startTime: string
   /** 活动时间 */
-  endTime: string;
+  endTime: string
   /** 开团人数 */
-  userSize: number;
+  userSize: number
   /** 虚拟成团 */
-  virtualGroup: boolean;
+  virtualGroup: boolean
   /** 限制时长（小时） */
-  limitDuration: number;
+  limitDuration: number
   /** 拼团商品 */
-  products: CombinationProductBaseVO[];
-};
+  products: CombinationProductBaseVO[]
+}
 
 export type CombinationActivityPageItemRespVO = {
   /** 拼团名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限购数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 活动时间 */
-  startTime: string;
+  startTime: string
   /** 活动时间 */
-  endTime: string;
+  endTime: string
   /** 开团人数 */
-  userSize: number;
+  userSize: number
   /** 虚拟成团 */
-  virtualGroup: boolean;
+  virtualGroup: boolean
   /** 限制时长（小时） */
-  limitDuration: number;
+  limitDuration: number
   /** 活动编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 活动状态 */
-  status: number;
+  status: number
   /** 拼团商品 */
-  products: CombinationProductRespVO[];
+  products: CombinationProductRespVO[]
   /** 商品名称 */
-  spuName: string;
+  spuName: string
   /** 商品主图 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 开团组数 */
-  groupCount: number;
+  groupCount: number
   /** 成团组数 */
-  groupSuccessCount: number;
+  groupSuccessCount: number
   /** 购买次数 */
-  recordCount: number;
-};
+  recordCount: number
+}
 
 export type CombinationActivityRespVO = {
   /** 拼团名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限购数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 活动时间 */
-  startTime: string;
+  startTime: string
   /** 活动时间 */
-  endTime: string;
+  endTime: string
   /** 开团人数 */
-  userSize: number;
+  userSize: number
   /** 虚拟成团 */
-  virtualGroup: boolean;
+  virtualGroup: boolean
   /** 限制时长（小时） */
-  limitDuration: number;
+  limitDuration: number
   /** 活动编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 拼团商品 */
-  products: CombinationProductRespVO[];
+  products: CombinationProductRespVO[]
   /** 商品 SPU 名字 */
-  spuName: string;
+  spuName: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 拼团金额，单位：分 */
-  combinationPrice: number;
-};
+  combinationPrice: number
+}
 
 export type CombinationActivityUpdateReqVO = {
   /** 拼团名称 */
-  name: string;
+  name: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限购数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 活动时间 */
-  startTime: string;
+  startTime: string
   /** 活动时间 */
-  endTime: string;
+  endTime: string
   /** 开团人数 */
-  userSize: number;
+  userSize: number
   /** 虚拟成团 */
-  virtualGroup: boolean;
+  virtualGroup: boolean
   /** 限制时长（小时） */
-  limitDuration: number;
+  limitDuration: number
   /** 活动编号 */
-  id: number;
+  id: number
   /** 拼团商品 */
-  products: CombinationProductBaseVO[];
-};
+  products: CombinationProductBaseVO[]
+}
 
 export type CombinationProductBaseVO = {
   /** 商品 spuId */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 拼团价格，单位分 */
-  combinationPrice: number;
-};
+  combinationPrice: number
+}
 
 export type CombinationProductRespVO = {
   /** 商品 spuId */
-  spuId: number;
+  spuId: number
   /** 商品 skuId */
-  skuId: number;
+  skuId: number
   /** 拼团价格，单位分 */
-  combinationPrice: number;
+  combinationPrice: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type CombinationRecordPageItemRespVO = {
   /** 拼团记录编号 */
-  id: number;
+  id: number
   /** 拼团活动编号 */
-  activityId: number;
+  activityId: number
   /** 团长编号 */
-  headId: number;
+  headId: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品名字 */
-  spuName: string;
+  spuName: string
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 过期时间 */
-  expireTime: string;
+  expireTime: string
   /** 可参团人数 */
-  userSize: number;
+  userSize: number
   /** 已参团人数 */
-  userCount: number;
+  userCount: number
   /** 拼团状态 */
-  status: number;
+  status: number
   /** 是否虚拟成团 */
-  virtualGroup: boolean;
+  virtualGroup: boolean
   /** 开始时间 (订单付款后开始的时间) */
-  startTime: string;
+  startTime: string
   /** 结束时间（成团时间/失败时间） */
-  endTime: string;
-  activity?: CombinationActivityRespVO;
-};
+  endTime: string
+  activity?: CombinationActivityRespVO
+}
 
 export type CombinationRecordSummaryVO = {
   /** 所有拼团记录 */
-  userCount: number;
+  userCount: number
   /** 成团记录 */
-  successCount: number;
+  successCount: number
   /** 虚拟成团记录 */
-  virtualGroupCount: number;
-};
+  virtualGroupCount: number
+}
 
 export type CommandStat = {
   /** Redis 命令 */
-  command: string;
+  command: string
   /** 调用次数 */
-  calls: number;
+  calls: number
   /** 消耗 CPU 秒数 */
-  usec: number;
-};
+  usec: number
+}
 
 export type CommonResultAfterSaleDetailRespVO = {
-  code?: number;
-  data?: AfterSaleDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AfterSaleDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppAddressRespVO = {
-  code?: number;
-  data?: AppAddressRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppAddressRespVO
+  msg?: string
+}
 
 export type CommonResultAppAfterSaleRespVO = {
-  code?: number;
-  data?: AppAfterSaleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppAfterSaleRespVO
+  msg?: string
+}
 
 export type CommonResultAppArticleRespVO = {
-  code?: number;
-  data?: AppArticleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppArticleRespVO
+  msg?: string
+}
 
 export type CommonResultAppAuthLoginRespVO = {
-  code?: number;
-  data?: AppAuthLoginRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppAuthLoginRespVO
+  msg?: string
+}
 
 export type CommonResultAppBargainActivityDetailRespVO = {
-  code?: number;
-  data?: AppBargainActivityDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBargainActivityDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppBargainRecordDetailRespVO = {
-  code?: number;
-  data?: AppBargainRecordDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBargainRecordDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppBargainRecordSummaryRespVO = {
-  code?: number;
-  data?: AppBargainRecordSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBargainRecordSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultAppBrokerageProductPriceRespVO = {
-  code?: number;
-  data?: AppBrokerageProductPriceRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBrokerageProductPriceRespVO
+  msg?: string
+}
 
 export type CommonResultAppBrokerageUserMySummaryRespVO = {
-  code?: number;
-  data?: AppBrokerageUserMySummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBrokerageUserMySummaryRespVO
+  msg?: string
+}
 
 export type CommonResultAppBrokerageUserRespVO = {
-  code?: number;
-  data?: AppBrokerageUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBrokerageUserRespVO
+  msg?: string
+}
 
 export type CommonResultAppBrokerageWithdrawRespVO = {
-  code?: number;
-  data?: AppBrokerageWithdrawRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppBrokerageWithdrawRespVO
+  msg?: string
+}
 
 export type CommonResultAppCartListRespVO = {
-  code?: number;
-  data?: AppCartListRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCartListRespVO
+  msg?: string
+}
 
 export type CommonResultAppCombinationActivityDetailRespVO = {
-  code?: number;
-  data?: AppCombinationActivityDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCombinationActivityDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppCombinationRecordDetailRespVO = {
-  code?: number;
-  data?: AppCombinationRecordDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCombinationRecordDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppCombinationRecordSummaryRespVO = {
-  code?: number;
-  data?: AppCombinationRecordSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCombinationRecordSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultAppCouponRespVO = {
-  code?: number;
-  data?: AppCouponRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCouponRespVO
+  msg?: string
+}
 
 export type CommonResultAppCouponTemplateRespVO = {
-  code?: number;
-  data?: AppCouponTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppCouponTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultAppDeliveryPickUpStoreRespVO = {
-  code?: number;
-  data?: AppDeliveryPickUpStoreRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppDeliveryPickUpStoreRespVO
+  msg?: string
+}
 
 export type CommonResultAppDiyPagePropertyRespVO = {
-  code?: number;
-  data?: AppDiyPagePropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppDiyPagePropertyRespVO
+  msg?: string
+}
 
 export type CommonResultAppDiyTemplatePropertyRespVO = {
-  code?: number;
-  data?: AppDiyTemplatePropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppDiyTemplatePropertyRespVO
+  msg?: string
+}
 
 export type CommonResultAppMemberSignInRecordRespVO = {
-  code?: number;
-  data?: AppMemberSignInRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppMemberSignInRecordRespVO
+  msg?: string
+}
 
 export type CommonResultAppMemberSignInRecordSummaryRespVO = {
-  code?: number;
-  data?: AppMemberSignInRecordSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppMemberSignInRecordSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultAppMemberUserInfoRespVO = {
-  code?: number;
-  data?: AppMemberUserInfoRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppMemberUserInfoRespVO
+  msg?: string
+}
 
 export type CommonResultAppPayOrderSubmitRespVO = {
-  code?: number;
-  data?: AppPayOrderSubmitRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppPayOrderSubmitRespVO
+  msg?: string
+}
 
 export type CommonResultAppPayWalletRechargeCreateRespVO = {
-  code?: number;
-  data?: AppPayWalletRechargeCreateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppPayWalletRechargeCreateRespVO
+  msg?: string
+}
 
 export type CommonResultAppPayWalletRespVO = {
-  code?: number;
-  data?: AppPayWalletRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppPayWalletRespVO
+  msg?: string
+}
 
 export type CommonResultAppPayWalletTransactionSummaryRespVO = {
-  code?: number;
-  data?: AppPayWalletTransactionSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppPayWalletTransactionSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultAppPointActivityDetailRespVO = {
-  code?: number;
-  data?: AppPointActivityDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppPointActivityDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppProductSpuDetailRespVO = {
-  code?: number;
-  data?: AppProductSpuDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppProductSpuDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppRewardActivityRespVO = {
-  code?: number;
-  data?: AppRewardActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppRewardActivityRespVO
+  msg?: string
+}
 
 export type CommonResultAppSeckillActivityDetailRespVO = {
-  code?: number;
-  data?: AppSeckillActivityDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppSeckillActivityDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppSeckillActivityNowRespVO = {
-  code?: number;
-  data?: AppSeckillActivityNowRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppSeckillActivityNowRespVO
+  msg?: string
+}
 
 export type CommonResultAppSocialUserRespVO = {
-  code?: number;
-  data?: AppSocialUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppSocialUserRespVO
+  msg?: string
+}
 
 export type CommonResultAppTradeConfigRespVO = {
-  code?: number;
-  data?: AppTradeConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeConfigRespVO
+  msg?: string
+}
 
 export type CommonResultAppTradeOrderCreateRespVO = {
-  code?: number;
-  data?: AppTradeOrderCreateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeOrderCreateRespVO
+  msg?: string
+}
 
 export type CommonResultAppTradeOrderDetailRespVO = {
-  code?: number;
-  data?: AppTradeOrderDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeOrderDetailRespVO
+  msg?: string
+}
 
 export type CommonResultAppTradeOrderItemRespVO = {
-  code?: number;
-  data?: AppTradeOrderItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeOrderItemRespVO
+  msg?: string
+}
 
 export type CommonResultAppTradeOrderSettlementRespVO = {
-  code?: number;
-  data?: AppTradeOrderSettlementRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeOrderSettlementRespVO
+  msg?: string
+}
 
 export type CommonResultArticleCategoryRespVO = {
-  code?: number;
-  data?: ArticleCategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ArticleCategoryRespVO
+  msg?: string
+}
 
 export type CommonResultArticleRespVO = {
-  code?: number;
-  data?: ArticleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ArticleRespVO
+  msg?: string
+}
 
 export type CommonResultAuthLoginRespVO = {
-  code?: number;
-  data?: AuthLoginRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AuthLoginRespVO
+  msg?: string
+}
 
 export type CommonResultAuthPermissionInfoRespVO = {
-  code?: number;
-  data?: AuthPermissionInfoRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: AuthPermissionInfoRespVO
+  msg?: string
+}
 
 export type CommonResultBannerRespVO = {
-  code?: number;
-  data?: BannerRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: BannerRespVO
+  msg?: string
+}
 
 export type CommonResultBargainActivityRespVO = {
-  code?: number;
-  data?: BargainActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: BargainActivityRespVO
+  msg?: string
+}
 
 export type CommonResultBoolean = {
-  code?: number;
-  data?: boolean;
-  msg?: string;
-};
+  code?: number
+  data?: boolean
+  msg?: string
+}
 
 export type CommonResultBrokerageRecordRespVO = {
-  code?: number;
-  data?: BrokerageRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: BrokerageRecordRespVO
+  msg?: string
+}
 
 export type CommonResultBrokerageUserRespVO = {
-  code?: number;
-  data?: BrokerageUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: BrokerageUserRespVO
+  msg?: string
+}
 
 export type CommonResultBrokerageWithdrawRespVO = {
-  code?: number;
-  data?: BrokerageWithdrawRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: BrokerageWithdrawRespVO
+  msg?: string
+}
 
 export type CommonResultCodegenDetailRespVO = {
-  code?: number;
-  data?: CodegenDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: CodegenDetailRespVO
+  msg?: string
+}
 
 export type CommonResultCombinationActivityRespVO = {
-  code?: number;
-  data?: CombinationActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: CombinationActivityRespVO
+  msg?: string
+}
 
 export type CommonResultCombinationRecordSummaryVO = {
-  code?: number;
-  data?: CombinationRecordSummaryVO;
-  msg?: string;
-};
+  code?: number
+  data?: CombinationRecordSummaryVO
+  msg?: string
+}
 
 export type CommonResultConfigRespVO = {
-  code?: number;
-  data?: ConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ConfigRespVO
+  msg?: string
+}
 
 export type CommonResultCouponTemplateRespVO = {
-  code?: number;
-  data?: CouponTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: CouponTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultDataComparisonRespVOMemberCountRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOMemberCountRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOMemberCountRespVO
+  msg?: string
+}
 
 export type CommonResultDataComparisonRespVOProductStatisticsRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOProductStatisticsRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOProductStatisticsRespVO
+  msg?: string
+}
 
 export type CommonResultDataComparisonRespVOTradeOrderSummaryRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOTradeOrderSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOTradeOrderSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultDataComparisonRespVOTradeSummaryRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOTradeSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOTradeSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultDataComparisonRespVOTradeTrendSummaryRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOTradeTrendSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOTradeTrendSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultDataSourceConfigRespVO = {
-  code?: number;
-  data?: DataSourceConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DataSourceConfigRespVO
+  msg?: string
+}
 
 export type CommonResultDeliveryExpressRespVO = {
-  code?: number;
-  data?: DeliveryExpressRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryExpressRespVO
+  msg?: string
+}
 
 export type CommonResultDeliveryExpressTemplateDetailRespVO = {
-  code?: number;
-  data?: DeliveryExpressTemplateDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryExpressTemplateDetailRespVO
+  msg?: string
+}
 
 export type CommonResultDeliveryPickUpStoreRespVO = {
-  code?: number;
-  data?: DeliveryPickUpStoreRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryPickUpStoreRespVO
+  msg?: string
+}
 
 export type CommonResultDemo01ContactRespVO = {
-  code?: number;
-  data?: Demo01ContactRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: Demo01ContactRespVO
+  msg?: string
+}
 
 export type CommonResultDemo02CategoryRespVO = {
-  code?: number;
-  data?: Demo02CategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: Demo02CategoryRespVO
+  msg?: string
+}
 
 export type CommonResultDemo03CourseDO = {
-  code?: number;
-  data?: Demo03CourseDO;
-  msg?: string;
-};
+  code?: number
+  data?: Demo03CourseDO
+  msg?: string
+}
 
 export type CommonResultDemo03GradeDO = {
-  code?: number;
-  data?: Demo03GradeDO;
-  msg?: string;
-};
+  code?: number
+  data?: Demo03GradeDO
+  msg?: string
+}
 
 export type CommonResultDemo03StudentRespVO = {
-  code?: number;
-  data?: Demo03StudentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: Demo03StudentRespVO
+  msg?: string
+}
 
 export type CommonResultDeptRespVO = {
-  code?: number;
-  data?: DeptRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DeptRespVO
+  msg?: string
+}
 
 export type CommonResultDictDataRespVO = {
-  code?: number;
-  data?: DictDataRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DictDataRespVO
+  msg?: string
+}
 
 export type CommonResultDictTypeRespVO = {
-  code?: number;
-  data?: DictTypeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DictTypeRespVO
+  msg?: string
+}
 
 export type CommonResultDiscountActivityRespVO = {
-  code?: number;
-  data?: DiscountActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DiscountActivityRespVO
+  msg?: string
+}
 
 export type CommonResultDiyPagePropertyRespVO = {
-  code?: number;
-  data?: DiyPagePropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DiyPagePropertyRespVO
+  msg?: string
+}
 
 export type CommonResultDiyPageRespVO = {
-  code?: number;
-  data?: DiyPageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DiyPageRespVO
+  msg?: string
+}
 
 export type CommonResultDiyTemplatePropertyRespVO = {
-  code?: number;
-  data?: DiyTemplatePropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DiyTemplatePropertyRespVO
+  msg?: string
+}
 
 export type CommonResultDiyTemplateRespVO = {
-  code?: number;
-  data?: DiyTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: DiyTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultFileConfigRespVO = {
-  code?: number;
-  data?: FileConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: FileConfigRespVO
+  msg?: string
+}
 
 export type CommonResultFilePresignedUrlRespVO = {
-  code?: number;
-  data?: FilePresignedUrlRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: FilePresignedUrlRespVO
+  msg?: string
+}
 
 export type CommonResultInteger = {
-  code?: number;
-  data?: number;
-  msg?: string;
-};
+  code?: number
+  data?: number
+  msg?: string
+}
 
 export type CommonResultJobLogRespVO = {
-  code?: number;
-  data?: JobLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: JobLogRespVO
+  msg?: string
+}
 
 export type CommonResultJobRespVO = {
-  code?: number;
-  data?: JobRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: JobRespVO
+  msg?: string
+}
 
 export type CommonResultKeFuConversationRespVO = {
-  code?: number;
-  data?: KeFuConversationRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: KeFuConversationRespVO
+  msg?: string
+}
 
 export type CommonResultListAddressRespVO = {
-  code?: number;
-  data?: AddressRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AddressRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppActivityRespVO = {
-  code?: number;
-  data?: AppActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppAddressRespVO = {
-  code?: number;
-  data?: AppAddressRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppAddressRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppAfterSaleLogRespVO = {
-  code?: number;
-  data?: AppAfterSaleLogRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppAfterSaleLogRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppAreaNodeRespVO = {
-  code?: number;
-  data?: AppAreaNodeRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppAreaNodeRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppArticleCategoryRespVO = {
-  code?: number;
-  data?: AppArticleCategoryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppArticleCategoryRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppArticleRespVO = {
-  code?: number;
-  data?: AppArticleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppArticleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppBannerRespVO = {
-  code?: number;
-  data?: AppBannerRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppBannerRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppBargainActivityRespVO = {
-  code?: number;
-  data?: AppBargainActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppBargainActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppBargainHelpRespVO = {
-  code?: number;
-  data?: AppBargainHelpRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppBargainHelpRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppCategoryRespVO = {
-  code?: number;
-  data?: AppCategoryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppCategoryRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppCombinationActivityRespVO = {
-  code?: number;
-  data?: AppCombinationActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppCombinationActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppCombinationRecordRespVO = {
-  code?: number;
-  data?: AppCombinationRecordRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppCombinationRecordRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppCouponTemplateRespVO = {
-  code?: number;
-  data?: AppCouponTemplateRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppCouponTemplateRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppDeliveryExpressRespVO = {
-  code?: number;
-  data?: AppDeliveryExpressRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppDeliveryExpressRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppDeliveryPickUpStoreRespVO = {
-  code?: number;
-  data?: AppDeliveryPickUpStoreRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppDeliveryPickUpStoreRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppDictDataRespVO = {
-  code?: number;
-  data?: AppDictDataRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppDictDataRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppMemberLevelRespVO = {
-  code?: number;
-  data?: AppMemberLevelRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppMemberLevelRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppMemberSignInConfigRespVO = {
-  code?: number;
-  data?: AppMemberSignInConfigRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppMemberSignInConfigRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppOrderExpressTrackRespDTO = {
-  code?: number;
-  data?: AppOrderExpressTrackRespDTO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppOrderExpressTrackRespDTO[]
+  msg?: string
+}
 
 export type CommonResultListAppPayWalletPackageRespVO = {
-  code?: number;
-  data?: AppPayWalletPackageRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppPayWalletPackageRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppPointActivityRespVO = {
-  code?: number;
-  data?: AppPointActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppPointActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppProductSpuRespVO = {
-  code?: number;
-  data?: AppProductSpuRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppProductSpuRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppSeckillActivityRespVO = {
-  code?: number;
-  data?: AppSeckillActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppSeckillActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppSeckillConfigRespVO = {
-  code?: number;
-  data?: AppSeckillConfigRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppSeckillConfigRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppSocialWxaSubscribeTemplateRespVO = {
-  code?: number;
-  data?: AppSocialWxaSubscribeTemplateRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppSocialWxaSubscribeTemplateRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAppTradeProductSettlementRespVO = {
-  code?: number;
-  data?: AppTradeProductSettlementRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AppTradeProductSettlementRespVO[]
+  msg?: string
+}
 
 export type CommonResultListAreaNodeRespVO = {
-  code?: number;
-  data?: AreaNodeRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: AreaNodeRespVO[]
+  msg?: string
+}
 
 export type CommonResultListArticleCategorySimpleRespVO = {
-  code?: number;
-  data?: ArticleCategorySimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ArticleCategorySimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListCodegenPreviewRespVO = {
-  code?: number;
-  data?: CodegenPreviewRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: CodegenPreviewRespVO[]
+  msg?: string
+}
 
 export type CommonResultListCodegenTableRespVO = {
-  code?: number;
-  data?: CodegenTableRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: CodegenTableRespVO[]
+  msg?: string
+}
 
 export type CommonResultListCombinationActivityRespVO = {
-  code?: number;
-  data?: CombinationActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: CombinationActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListCouponTemplateRespVO = {
-  code?: number;
-  data?: CouponTemplateRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: CouponTemplateRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDatabaseTableRespVO = {
-  code?: number;
-  data?: DatabaseTableRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DatabaseTableRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDataComparisonRespVOTradeOrderTrendRespVO = {
-  code?: number;
-  data?: DataComparisonRespVOTradeOrderTrendRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DataComparisonRespVOTradeOrderTrendRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDataSourceConfigRespVO = {
-  code?: number;
-  data?: DataSourceConfigRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DataSourceConfigRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeliveryExpressSimpleRespVO = {
-  code?: number;
-  data?: DeliveryExpressSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryExpressSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeliveryExpressTemplateRespVO = {
-  code?: number;
-  data?: DeliveryExpressTemplateRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryExpressTemplateRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeliveryExpressTemplateSimpleRespVO = {
-  code?: number;
-  data?: DeliveryExpressTemplateSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryExpressTemplateSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeliveryPickUpStoreRespVO = {
-  code?: number;
-  data?: DeliveryPickUpStoreRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryPickUpStoreRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeliveryPickUpStoreSimpleRespVO = {
-  code?: number;
-  data?: DeliveryPickUpStoreSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeliveryPickUpStoreSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDemo02CategoryRespVO = {
-  code?: number;
-  data?: Demo02CategoryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: Demo02CategoryRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDemo03CourseDO = {
-  code?: number;
-  data?: Demo03CourseDO[];
-  msg?: string;
-};
+  code?: number
+  data?: Demo03CourseDO[]
+  msg?: string
+}
 
 export type CommonResultListDeptRespVO = {
-  code?: number;
-  data?: DeptRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeptRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDeptSimpleRespVO = {
-  code?: number;
-  data?: DeptSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DeptSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDictDataSimpleRespVO = {
-  code?: number;
-  data?: DictDataSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DictDataSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDictTypeSimpleRespVO = {
-  code?: number;
-  data?: DictTypeSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DictTypeSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListDiyPageRespVO = {
-  code?: number;
-  data?: DiyPageRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: DiyPageRespVO[]
+  msg?: string
+}
 
 export type CommonResultListKeFuConversationRespVO = {
-  code?: number;
-  data?: KeFuConversationRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: KeFuConversationRespVO[]
+  msg?: string
+}
 
 export type CommonResultListKeFuMessageRespVO = {
-  code?: number;
-  data?: KeFuMessageRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: KeFuMessageRespVO[]
+  msg?: string
+}
 
 export type CommonResultListLocalDateTime = {
-  code?: number;
-  data?: string[];
-  msg?: string;
-};
+  code?: number
+  data?: string[]
+  msg?: string
+}
 
 export type CommonResultListLong = {
-  code?: number;
-  data?: number[];
-  msg?: string;
-};
+  code?: number
+  data?: number[]
+  msg?: string
+}
 
 export type CommonResultListMailAccountSimpleRespVO = {
-  code?: number;
-  data?: MailAccountSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MailAccountSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMailTemplateSimpleRespVO = {
-  code?: number;
-  data?: MailTemplateSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MailTemplateSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberAreaStatisticsRespVO = {
-  code?: number;
-  data?: MemberAreaStatisticsRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberAreaStatisticsRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberGroupSimpleRespVO = {
-  code?: number;
-  data?: MemberGroupSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberGroupSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberLevelRespVO = {
-  code?: number;
-  data?: MemberLevelRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberLevelRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberLevelSimpleRespVO = {
-  code?: number;
-  data?: MemberLevelSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberLevelSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberRegisterCountRespVO = {
-  code?: number;
-  data?: MemberRegisterCountRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberRegisterCountRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberSexStatisticsRespVO = {
-  code?: number;
-  data?: MemberSexStatisticsRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberSexStatisticsRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberSignInConfigRespVO = {
-  code?: number;
-  data?: MemberSignInConfigRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberSignInConfigRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberTagRespVO = {
-  code?: number;
-  data?: MemberTagRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberTagRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMemberTerminalStatisticsRespVO = {
-  code?: number;
-  data?: MemberTerminalStatisticsRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MemberTerminalStatisticsRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMenuRespVO = {
-  code?: number;
-  data?: MenuRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MenuRespVO[]
+  msg?: string
+}
 
 export type CommonResultListMenuSimpleRespVO = {
-  code?: number;
-  data?: MenuSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: MenuSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListNotifyMessageRespVO = {
-  code?: number;
-  data?: NotifyMessageRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: NotifyMessageRespVO[]
+  msg?: string
+}
 
 export type CommonResultListObject = {
-  code?: number;
-  data?: Record<string, unknown>[];
-  msg?: string;
-};
+  code?: number
+  data?: Record<string, unknown>[]
+  msg?: string
+}
 
 export type CommonResultListPayAppRespVO = {
-  code?: number;
-  data?: PayAppRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: PayAppRespVO[]
+  msg?: string
+}
 
 export type CommonResultListPointActivityRespVO = {
-  code?: number;
-  data?: PointActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: PointActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListPostSimpleRespVO = {
-  code?: number;
-  data?: PostSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: PostSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductBrandRespVO = {
-  code?: number;
-  data?: ProductBrandRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductBrandRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductBrandSimpleRespVO = {
-  code?: number;
-  data?: ProductBrandSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductBrandSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductCategoryRespVO = {
-  code?: number;
-  data?: ProductCategoryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductCategoryRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductPropertyRespVO = {
-  code?: number;
-  data?: ProductPropertyRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductPropertyRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductPropertyValueRespVO = {
-  code?: number;
-  data?: ProductPropertyValueRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductPropertyValueRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductSpuRespVO = {
-  code?: number;
-  data?: ProductSpuRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductSpuRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductSpuSimpleRespVO = {
-  code?: number;
-  data?: ProductSpuSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductSpuSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListProductStatisticsRespVO = {
-  code?: number;
-  data?: ProductStatisticsRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: ProductStatisticsRespVO[]
+  msg?: string
+}
 
 export type CommonResultListRoleRespVO = {
-  code?: number;
-  data?: RoleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: RoleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListSeckillActivityRespVO = {
-  code?: number;
-  data?: SeckillActivityRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: SeckillActivityRespVO[]
+  msg?: string
+}
 
 export type CommonResultListSeckillConfigRespVO = {
-  code?: number;
-  data?: SeckillConfigRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: SeckillConfigRespVO[]
+  msg?: string
+}
 
 export type CommonResultListSeckillConfigSimpleRespVO = {
-  code?: number;
-  data?: SeckillConfigSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: SeckillConfigSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListSmsChannelSimpleRespVO = {
-  code?: number;
-  data?: SmsChannelSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: SmsChannelSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListSocialUserRespVO = {
-  code?: number;
-  data?: SocialUserRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: SocialUserRespVO[]
+  msg?: string
+}
 
 export type CommonResultListTenantPackageSimpleRespVO = {
-  code?: number;
-  data?: TenantPackageSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: TenantPackageSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListTenantRespVO = {
-  code?: number;
-  data?: TenantRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: TenantRespVO[]
+  msg?: string
+}
 
 export type CommonResultListTradeTrendSummaryRespVO = {
-  code?: number;
-  data?: TradeTrendSummaryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: TradeTrendSummaryRespVO[]
+  msg?: string
+}
 
 export type CommonResultListUserSimpleRespVO = {
-  code?: number;
-  data?: UserSimpleRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: UserSimpleRespVO[]
+  msg?: string
+}
 
 export type CommonResultListUserTypeRespVO = {
-  code?: number;
-  data?: UserTypeRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: UserTypeRespVO[]
+  msg?: string
+}
 
 export type CommonResultListYRZPJobCategoryRespVO = {
-  code?: number;
-  data?: YRZPJobCategoryRespVO[];
-  msg?: string;
-};
+  code?: number
+  data?: YRZPJobCategoryRespVO[]
+  msg?: string
+}
 
 export type CommonResultLong = {
-  code?: number;
-  data?: number;
-  msg?: string;
-};
+  code?: number
+  data?: number
+  msg?: string
+}
 
 export type CommonResultMailAccountRespVO = {
-  code?: number;
-  data?: MailAccountRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MailAccountRespVO
+  msg?: string
+}
 
 export type CommonResultMailLogRespVO = {
-  code?: number;
-  data?: MailLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MailLogRespVO
+  msg?: string
+}
 
 export type CommonResultMailTemplateRespVO = {
-  code?: number;
-  data?: MailTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MailTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultMapIntegerLong = {
-  code?: number;
-  data?: Record<string, unknown>;
-  msg?: string;
-};
+  code?: number
+  data?: Record<string, unknown>
+  msg?: string
+}
 
 export type CommonResultMapStringLong = {
-  code?: number;
-  data?: Record<string, unknown>;
-  msg?: string;
-};
+  code?: number
+  data?: Record<string, unknown>
+  msg?: string
+}
 
 export type CommonResultMemberAnalyseRespVO = {
-  code?: number;
-  data?: MemberAnalyseRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberAnalyseRespVO
+  msg?: string
+}
 
 export type CommonResultMemberConfigRespVO = {
-  code?: number;
-  data?: MemberConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberConfigRespVO
+  msg?: string
+}
 
 export type CommonResultMemberExperienceRecordRespVO = {
-  code?: number;
-  data?: MemberExperienceRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberExperienceRecordRespVO
+  msg?: string
+}
 
 export type CommonResultMemberGroupRespVO = {
-  code?: number;
-  data?: MemberGroupRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberGroupRespVO
+  msg?: string
+}
 
 export type CommonResultMemberLevelRecordRespVO = {
-  code?: number;
-  data?: MemberLevelRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberLevelRecordRespVO
+  msg?: string
+}
 
 export type CommonResultMemberLevelRespVO = {
-  code?: number;
-  data?: MemberLevelRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberLevelRespVO
+  msg?: string
+}
 
 export type CommonResultMemberSignInConfigRespVO = {
-  code?: number;
-  data?: MemberSignInConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberSignInConfigRespVO
+  msg?: string
+}
 
 export type CommonResultMemberSummaryRespVO = {
-  code?: number;
-  data?: MemberSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultMemberTagRespVO = {
-  code?: number;
-  data?: MemberTagRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberTagRespVO
+  msg?: string
+}
 
 export type CommonResultMemberUserRespVO = {
-  code?: number;
-  data?: MemberUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MemberUserRespVO
+  msg?: string
+}
 
 export type CommonResultMenuRespVO = {
-  code?: number;
-  data?: MenuRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: MenuRespVO
+  msg?: string
+}
 
 export type CommonResultNoticeRespVO = {
-  code?: number;
-  data?: NoticeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: NoticeRespVO
+  msg?: string
+}
 
 export type CommonResultNotifyMessageRespVO = {
-  code?: number;
-  data?: NotifyMessageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: NotifyMessageRespVO
+  msg?: string
+}
 
 export type CommonResultNotifyTemplateRespVO = {
-  code?: number;
-  data?: NotifyTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: NotifyTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultOAuth2ClientRespVO = {
-  code?: number;
-  data?: OAuth2ClientRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: OAuth2ClientRespVO
+  msg?: string
+}
 
 export type CommonResultOAuth2OpenAccessTokenRespVO = {
-  code?: number;
-  data?: OAuth2OpenAccessTokenRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: OAuth2OpenAccessTokenRespVO
+  msg?: string
+}
 
 export type CommonResultOAuth2OpenAuthorizeInfoRespVO = {
-  code?: number;
-  data?: OAuth2OpenAuthorizeInfoRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: OAuth2OpenAuthorizeInfoRespVO
+  msg?: string
+}
 
 export type CommonResultOAuth2OpenCheckTokenRespVO = {
-  code?: number;
-  data?: OAuth2OpenCheckTokenRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: OAuth2OpenCheckTokenRespVO
+  msg?: string
+}
 
 export type CommonResultOAuth2UserInfoRespVO = {
-  code?: number;
-  data?: OAuth2UserInfoRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: OAuth2UserInfoRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAfterSaleRespPageItemVO = {
-  code?: number;
-  data?: PageResultAfterSaleRespPageItemVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAfterSaleRespPageItemVO
+  msg?: string
+}
 
 export type CommonResultPageResultApiAccessLogRespVO = {
-  code?: number;
-  data?: PageResultApiAccessLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultApiAccessLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultApiErrorLogRespVO = {
-  code?: number;
-  data?: PageResultApiErrorLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultApiErrorLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppAfterSaleRespVO = {
-  code?: number;
-  data?: PageResultAppAfterSaleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppAfterSaleRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppArticleRespVO = {
-  code?: number;
-  data?: PageResultAppArticleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppArticleRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBargainActivityRespVO = {
-  code?: number;
-  data?: PageResultAppBargainActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBargainActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBargainRecordRespVO = {
-  code?: number;
-  data?: PageResultAppBargainRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBargainRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBrokerageRecordRespVO = {
-  code?: number;
-  data?: PageResultAppBrokerageRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBrokerageRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBrokerageUserChildSummaryRespVO = {
-  code?: number;
-  data?: PageResultAppBrokerageUserChildSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBrokerageUserChildSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBrokerageUserRankByPriceRespVO = {
-  code?: number;
-  data?: PageResultAppBrokerageUserRankByPriceRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBrokerageUserRankByPriceRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBrokerageUserRankByUserCountRespVO = {
-  code?: number;
-  data?: PageResultAppBrokerageUserRankByUserCountRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBrokerageUserRankByUserCountRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppBrokerageWithdrawRespVO = {
-  code?: number;
-  data?: PageResultAppBrokerageWithdrawRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppBrokerageWithdrawRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppCombinationActivityRespVO = {
-  code?: number;
-  data?: PageResultAppCombinationActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppCombinationActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppCombinationRecordRespVO = {
-  code?: number;
-  data?: PageResultAppCombinationRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppCombinationRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppCouponRespVO = {
-  code?: number;
-  data?: PageResultAppCouponRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppCouponRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppCouponTemplateRespVO = {
-  code?: number;
-  data?: PageResultAppCouponTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppCouponTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppFavoriteRespVO = {
-  code?: number;
-  data?: PageResultAppFavoriteRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppFavoriteRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppMemberExperienceRecordRespVO = {
-  code?: number;
-  data?: PageResultAppMemberExperienceRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppMemberExperienceRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppMemberPointRecordRespVO = {
-  code?: number;
-  data?: PageResultAppMemberPointRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppMemberPointRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppMemberSignInRecordRespVO = {
-  code?: number;
-  data?: PageResultAppMemberSignInRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppMemberSignInRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppPayWalletRechargeRespVO = {
-  code?: number;
-  data?: PageResultAppPayWalletRechargeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppPayWalletRechargeRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppPayWalletTransactionRespVO = {
-  code?: number;
-  data?: PageResultAppPayWalletTransactionRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppPayWalletTransactionRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppPointActivityRespVO = {
-  code?: number;
-  data?: PageResultAppPointActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppPointActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppProductBrowseHistoryRespVO = {
-  code?: number;
-  data?: PageResultAppProductBrowseHistoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppProductBrowseHistoryRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppProductCommentRespVO = {
-  code?: number;
-  data?: PageResultAppProductCommentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppProductCommentRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppProductSpuRespVO = {
-  code?: number;
-  data?: PageResultAppProductSpuRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppProductSpuRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppSeckillActivityRespVO = {
-  code?: number;
-  data?: PageResultAppSeckillActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppSeckillActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppTradeOrderPageItemRespVO = {
-  code?: number;
-  data?: PageResultAppTradeOrderPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppTradeOrderPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppYRZPJobRespVO = {
-  code?: number;
-  data?: PageResultAppYRZPJobRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppYRZPJobRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultAppYRZPJobSeekerRespVO = {
-  code?: number;
-  data?: PageResultAppYRZPJobSeekerRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultAppYRZPJobSeekerRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultArticleCategoryRespVO = {
-  code?: number;
-  data?: PageResultArticleCategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultArticleCategoryRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultArticleRespVO = {
-  code?: number;
-  data?: PageResultArticleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultArticleRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBannerRespVO = {
-  code?: number;
-  data?: PageResultBannerRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBannerRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBargainActivityPageItemRespVO = {
-  code?: number;
-  data?: PageResultBargainActivityPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBargainActivityPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBargainHelpRespVO = {
-  code?: number;
-  data?: PageResultBargainHelpRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBargainHelpRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBargainRecordPageItemRespVO = {
-  code?: number;
-  data?: PageResultBargainRecordPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBargainRecordPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBrokerageRecordRespVO = {
-  code?: number;
-  data?: PageResultBrokerageRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBrokerageRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBrokerageUserRespVO = {
-  code?: number;
-  data?: PageResultBrokerageUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBrokerageUserRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultBrokerageWithdrawRespVO = {
-  code?: number;
-  data?: PageResultBrokerageWithdrawRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultBrokerageWithdrawRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultCodegenTableRespVO = {
-  code?: number;
-  data?: PageResultCodegenTableRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultCodegenTableRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultCombinationActivityPageItemRespVO = {
-  code?: number;
-  data?: PageResultCombinationActivityPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultCombinationActivityPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultCombinationRecordPageItemRespVO = {
-  code?: number;
-  data?: PageResultCombinationRecordPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultCombinationRecordPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultConfigRespVO = {
-  code?: number;
-  data?: PageResultConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultConfigRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultCouponPageItemRespVO = {
-  code?: number;
-  data?: PageResultCouponPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultCouponPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultCouponTemplateRespVO = {
-  code?: number;
-  data?: PageResultCouponTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultCouponTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDeliveryExpressRespVO = {
-  code?: number;
-  data?: PageResultDeliveryExpressRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDeliveryExpressRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDeliveryExpressTemplateRespVO = {
-  code?: number;
-  data?: PageResultDeliveryExpressTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDeliveryExpressTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDeliveryPickUpStoreRespVO = {
-  code?: number;
-  data?: PageResultDeliveryPickUpStoreRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDeliveryPickUpStoreRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDemo01ContactRespVO = {
-  code?: number;
-  data?: PageResultDemo01ContactRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDemo01ContactRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDemo03CourseDO = {
-  code?: number;
-  data?: PageResultDemo03CourseDO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDemo03CourseDO
+  msg?: string
+}
 
 export type CommonResultPageResultDemo03GradeDO = {
-  code?: number;
-  data?: PageResultDemo03GradeDO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDemo03GradeDO
+  msg?: string
+}
 
 export type CommonResultPageResultDemo03StudentRespVO = {
-  code?: number;
-  data?: PageResultDemo03StudentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDemo03StudentRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDictDataRespVO = {
-  code?: number;
-  data?: PageResultDictDataRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDictDataRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDictTypeRespVO = {
-  code?: number;
-  data?: PageResultDictTypeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDictTypeRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDiscountActivityRespVO = {
-  code?: number;
-  data?: PageResultDiscountActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDiscountActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDiyPageRespVO = {
-  code?: number;
-  data?: PageResultDiyPageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDiyPageRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultDiyTemplateRespVO = {
-  code?: number;
-  data?: PageResultDiyTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultDiyTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultFileConfigRespVO = {
-  code?: number;
-  data?: PageResultFileConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultFileConfigRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultFileRespVO = {
-  code?: number;
-  data?: PageResultFileRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultFileRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultJobLogRespVO = {
-  code?: number;
-  data?: PageResultJobLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultJobLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultJobRespVO = {
-  code?: number;
-  data?: PageResultJobRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultJobRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultLoginLogRespVO = {
-  code?: number;
-  data?: PageResultLoginLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultLoginLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMailAccountRespVO = {
-  code?: number;
-  data?: PageResultMailAccountRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMailAccountRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMailLogRespVO = {
-  code?: number;
-  data?: PageResultMailLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMailLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMailTemplateRespVO = {
-  code?: number;
-  data?: PageResultMailTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMailTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberExperienceRecordRespVO = {
-  code?: number;
-  data?: PageResultMemberExperienceRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberExperienceRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberGroupRespVO = {
-  code?: number;
-  data?: PageResultMemberGroupRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberGroupRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberLevelRecordRespVO = {
-  code?: number;
-  data?: PageResultMemberLevelRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberLevelRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberPointRecordRespVO = {
-  code?: number;
-  data?: PageResultMemberPointRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberPointRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberSignInRecordRespVO = {
-  code?: number;
-  data?: PageResultMemberSignInRecordRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberSignInRecordRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberTagRespVO = {
-  code?: number;
-  data?: PageResultMemberTagRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberTagRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultMemberUserRespVO = {
-  code?: number;
-  data?: PageResultMemberUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultMemberUserRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultNoticeRespVO = {
-  code?: number;
-  data?: PageResultNoticeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultNoticeRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultNotifyMessageRespVO = {
-  code?: number;
-  data?: PageResultNotifyMessageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultNotifyMessageRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultNotifyTemplateRespVO = {
-  code?: number;
-  data?: PageResultNotifyTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultNotifyTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultOAuth2AccessTokenRespVO = {
-  code?: number;
-  data?: PageResultOAuth2AccessTokenRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultOAuth2AccessTokenRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultOAuth2ClientRespVO = {
-  code?: number;
-  data?: PageResultOAuth2ClientRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultOAuth2ClientRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultOperateLogRespVO = {
-  code?: number;
-  data?: PageResultOperateLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultOperateLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayAppPageItemRespVO = {
-  code?: number;
-  data?: PageResultPayAppPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayAppPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayDemoOrderRespVO = {
-  code?: number;
-  data?: PageResultPayDemoOrderRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayDemoOrderRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayDemoWithdrawRespVO = {
-  code?: number;
-  data?: PageResultPayDemoWithdrawRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayDemoWithdrawRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayNotifyTaskRespVO = {
-  code?: number;
-  data?: PageResultPayNotifyTaskRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayNotifyTaskRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayOrderPageItemRespVO = {
-  code?: number;
-  data?: PageResultPayOrderPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayOrderPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayRefundPageItemRespVO = {
-  code?: number;
-  data?: PageResultPayRefundPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayRefundPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayTransferRespVO = {
-  code?: number;
-  data?: PageResultPayTransferRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayTransferRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayWalletRespVO = {
-  code?: number;
-  data?: PageResultPayWalletRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayWalletRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPayWalletTransactionRespVO = {
-  code?: number;
-  data?: PageResultPayWalletTransactionRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPayWalletTransactionRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPointActivityRespVO = {
-  code?: number;
-  data?: PageResultPointActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPointActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultPostRespVO = {
-  code?: number;
-  data?: PageResultPostRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultPostRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductBrandRespVO = {
-  code?: number;
-  data?: PageResultProductBrandRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductBrandRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductBrowseHistoryRespVO = {
-  code?: number;
-  data?: PageResultProductBrowseHistoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductBrowseHistoryRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductCommentRespVO = {
-  code?: number;
-  data?: PageResultProductCommentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductCommentRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductFavoriteRespVO = {
-  code?: number;
-  data?: PageResultProductFavoriteRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductFavoriteRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductPropertyRespVO = {
-  code?: number;
-  data?: PageResultProductPropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductPropertyRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductPropertyValueRespVO = {
-  code?: number;
-  data?: PageResultProductPropertyValueRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductPropertyValueRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductSpuRespVO = {
-  code?: number;
-  data?: PageResultProductSpuRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductSpuRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultProductStatisticsRespVO = {
-  code?: number;
-  data?: PageResultProductStatisticsRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultProductStatisticsRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultRewardActivityRespVO = {
-  code?: number;
-  data?: PageResultRewardActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultRewardActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultRoleRespVO = {
-  code?: number;
-  data?: PageResultRoleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultRoleRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSeckillActivityRespVO = {
-  code?: number;
-  data?: PageResultSeckillActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSeckillActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSeckillConfigRespVO = {
-  code?: number;
-  data?: PageResultSeckillConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSeckillConfigRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSmsChannelRespVO = {
-  code?: number;
-  data?: PageResultSmsChannelRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSmsChannelRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSmsLogRespVO = {
-  code?: number;
-  data?: PageResultSmsLogRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSmsLogRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSmsTemplateRespVO = {
-  code?: number;
-  data?: PageResultSmsTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSmsTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSocialClientRespVO = {
-  code?: number;
-  data?: PageResultSocialClientRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSocialClientRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultSocialUserRespVO = {
-  code?: number;
-  data?: PageResultSocialUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultSocialUserRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultTenantPackageRespVO = {
-  code?: number;
-  data?: PageResultTenantPackageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultTenantPackageRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultTenantRespVO = {
-  code?: number;
-  data?: PageResultTenantRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultTenantRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultTradeOrderPageItemRespVO = {
-  code?: number;
-  data?: PageResultTradeOrderPageItemRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultTradeOrderPageItemRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultUserRespVO = {
-  code?: number;
-  data?: PageResultUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultUserRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultUserTypeRespVO = {
-  code?: number;
-  data?: PageResultUserTypeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultUserTypeRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultWalletRechargePackageRespVO = {
-  code?: number;
-  data?: PageResultWalletRechargePackageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultWalletRechargePackageRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPForumCommentRespAppVO = {
-  code?: number;
-  data?: PageResultYRZPForumCommentRespAppVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPForumCommentRespAppVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPForumCommentRespVO = {
-  code?: number;
-  data?: PageResultYRZPForumCommentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPForumCommentRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPForumPostRespAppVO = {
-  code?: number;
-  data?: PageResultYRZPForumPostRespAppVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPForumPostRespAppVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPForumPostRespVO = {
-  code?: number;
-  data?: PageResultYRZPForumPostRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPForumPostRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPJobApplicationRespVO = {
-  code?: number;
-  data?: PageResultYRZPJobApplicationRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPJobApplicationRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPJobCategoryRespVO = {
-  code?: number;
-  data?: PageResultYRZPJobCategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPJobCategoryRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPJobRespVO = {
-  code?: number;
-  data?: PageResultYRZPJobRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPJobRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPJobSeekerRespVO = {
-  code?: number;
-  data?: PageResultYRZPJobSeekerRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPJobSeekerRespVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPMessageRespAppVO = {
-  code?: number;
-  data?: PageResultYRZPMessageRespAppVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPMessageRespAppVO
+  msg?: string
+}
 
 export type CommonResultPageResultYRZPMessageRespVO = {
-  code?: number;
-  data?: PageResultYRZPMessageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PageResultYRZPMessageRespVO
+  msg?: string
+}
 
 export type CommonResultPayAppRespVO = {
-  code?: number;
-  data?: PayAppRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayAppRespVO
+  msg?: string
+}
 
 export type CommonResultPayChannelRespVO = {
-  code?: number;
-  data?: PayChannelRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayChannelRespVO
+  msg?: string
+}
 
 export type CommonResultPayNotifyTaskDetailRespVO = {
-  code?: number;
-  data?: PayNotifyTaskDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayNotifyTaskDetailRespVO
+  msg?: string
+}
 
 export type CommonResultPayOrderDetailsRespVO = {
-  code?: number;
-  data?: PayOrderDetailsRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayOrderDetailsRespVO
+  msg?: string
+}
 
 export type CommonResultPayOrderRespVO = {
-  code?: number;
-  data?: PayOrderRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayOrderRespVO
+  msg?: string
+}
 
 export type CommonResultPayOrderSubmitRespVO = {
-  code?: number;
-  data?: PayOrderSubmitRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayOrderSubmitRespVO
+  msg?: string
+}
 
 export type CommonResultPayRefundDetailsRespVO = {
-  code?: number;
-  data?: PayRefundDetailsRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayRefundDetailsRespVO
+  msg?: string
+}
 
 export type CommonResultPaySummaryRespVO = {
-  code?: number;
-  data?: PaySummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PaySummaryRespVO
+  msg?: string
+}
 
 export type CommonResultPayTransferRespVO = {
-  code?: number;
-  data?: PayTransferRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayTransferRespVO
+  msg?: string
+}
 
 export type CommonResultPayWalletRespVO = {
-  code?: number;
-  data?: PayWalletRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PayWalletRespVO
+  msg?: string
+}
 
 export type CommonResultPointActivityRespVO = {
-  code?: number;
-  data?: PointActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PointActivityRespVO
+  msg?: string
+}
 
 export type CommonResultPostRespVO = {
-  code?: number;
-  data?: PostRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: PostRespVO
+  msg?: string
+}
 
 export type CommonResultProductBrandRespVO = {
-  code?: number;
-  data?: ProductBrandRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ProductBrandRespVO
+  msg?: string
+}
 
 export type CommonResultProductCategoryRespVO = {
-  code?: number;
-  data?: ProductCategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ProductCategoryRespVO
+  msg?: string
+}
 
 export type CommonResultProductPropertyRespVO = {
-  code?: number;
-  data?: ProductPropertyRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ProductPropertyRespVO
+  msg?: string
+}
 
 export type CommonResultProductPropertyValueRespVO = {
-  code?: number;
-  data?: ProductPropertyValueRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ProductPropertyValueRespVO
+  msg?: string
+}
 
 export type CommonResultProductSpuRespVO = {
-  code?: number;
-  data?: ProductSpuRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: ProductSpuRespVO
+  msg?: string
+}
 
 export type CommonResultRedisMonitorRespVO = {
-  code?: number;
-  data?: RedisMonitorRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: RedisMonitorRespVO
+  msg?: string
+}
 
 export type CommonResultRewardActivityRespVO = {
-  code?: number;
-  data?: RewardActivityRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: RewardActivityRespVO
+  msg?: string
+}
 
 export type CommonResultRoleRespVO = {
-  code?: number;
-  data?: RoleRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: RoleRespVO
+  msg?: string
+}
 
 export type CommonResultSeckillActivityDetailRespVO = {
-  code?: number;
-  data?: SeckillActivityDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SeckillActivityDetailRespVO
+  msg?: string
+}
 
 export type CommonResultSeckillConfigRespVO = {
-  code?: number;
-  data?: SeckillConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SeckillConfigRespVO
+  msg?: string
+}
 
 export type CommonResultSetLong = {
-  code?: number;
-  data?: number[];
-  msg?: string;
-};
+  code?: number
+  data?: number[]
+  msg?: string
+}
 
 export type CommonResultSetString = {
-  code?: number;
-  data?: string[];
-  msg?: string;
-};
+  code?: number
+  data?: string[]
+  msg?: string
+}
 
 export type CommonResultSmsChannelRespVO = {
-  code?: number;
-  data?: SmsChannelRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SmsChannelRespVO
+  msg?: string
+}
 
 export type CommonResultSmsTemplateRespVO = {
-  code?: number;
-  data?: SmsTemplateRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SmsTemplateRespVO
+  msg?: string
+}
 
 export type CommonResultSocialClientRespVO = {
-  code?: number;
-  data?: SocialClientRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SocialClientRespVO
+  msg?: string
+}
 
 export type CommonResultSocialUserRespVO = {
-  code?: number;
-  data?: SocialUserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: SocialUserRespVO
+  msg?: string
+}
 
 export type CommonResultSocialWxJsapiSignatureRespDTO = {
-  code?: number;
-  data?: SocialWxJsapiSignatureRespDTO;
-  msg?: string;
-};
+  code?: number
+  data?: SocialWxJsapiSignatureRespDTO
+  msg?: string
+}
 
 export type CommonResultString = {
-  code?: number;
-  data?: string;
-  msg?: string;
-};
+  code?: number
+  data?: string
+  msg?: string
+}
 
 export type CommonResultTenantPackageRespVO = {
-  code?: number;
-  data?: TenantPackageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TenantPackageRespVO
+  msg?: string
+}
 
 export type CommonResultTenantRespVO = {
-  code?: number;
-  data?: TenantRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TenantRespVO
+  msg?: string
+}
 
 export type CommonResultTradeConfigRespVO = {
-  code?: number;
-  data?: TradeConfigRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TradeConfigRespVO
+  msg?: string
+}
 
 export type CommonResultTradeOrderCountRespVO = {
-  code?: number;
-  data?: TradeOrderCountRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TradeOrderCountRespVO
+  msg?: string
+}
 
 export type CommonResultTradeOrderDetailRespVO = {
-  code?: number;
-  data?: TradeOrderDetailRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TradeOrderDetailRespVO
+  msg?: string
+}
 
 export type CommonResultTradeOrderSummaryRespVO = {
-  code?: number;
-  data?: TradeOrderSummaryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: TradeOrderSummaryRespVO
+  msg?: string
+}
 
 export type CommonResultUserImportRespVO = {
-  code?: number;
-  data?: UserImportRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: UserImportRespVO
+  msg?: string
+}
 
 export type CommonResultUserProfileRespVO = {
-  code?: number;
-  data?: UserProfileRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: UserProfileRespVO
+  msg?: string
+}
 
 export type CommonResultUserRespVO = {
-  code?: number;
-  data?: UserRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: UserRespVO
+  msg?: string
+}
 
 export type CommonResultUserTypeRespVO = {
-  code?: number;
-  data?: UserTypeRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: UserTypeRespVO
+  msg?: string
+}
 
 export type CommonResultWalletRechargePackageRespVO = {
-  code?: number;
-  data?: WalletRechargePackageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: WalletRechargePackageRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPForumCommentRespVO = {
-  code?: number;
-  data?: YRZPForumCommentRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPForumCommentRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPForumPostRespAppVO = {
-  code?: number;
-  data?: YRZPForumPostRespAppVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPForumPostRespAppVO
+  msg?: string
+}
 
 export type CommonResultYRZPForumPostRespVO = {
-  code?: number;
-  data?: YRZPForumPostRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPForumPostRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPJobApplicationRespVO = {
-  code?: number;
-  data?: YRZPJobApplicationRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPJobApplicationRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPJobCategoryRespVO = {
-  code?: number;
-  data?: YRZPJobCategoryRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPJobCategoryRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPJobRespVO = {
-  code?: number;
-  data?: YRZPJobRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPJobRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPJobSeekerRespVO = {
-  code?: number;
-  data?: YRZPJobSeekerRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPJobSeekerRespVO
+  msg?: string
+}
 
 export type CommonResultYRZPMessageRespVO = {
-  code?: number;
-  data?: YRZPMessageRespVO;
-  msg?: string;
-};
+  code?: number
+  data?: YRZPMessageRespVO
+  msg?: string
+}
 
 export type ConfigRespVO = {
   /** 参数配置序号 */
-  id: number;
+  id: number
   /** 参数分类 */
-  category: string;
+  category: string
   /** 参数名称 */
-  name: string;
+  name: string
   /** 参数键名 */
-  key: string;
+  key: string
   /** 参数键值 */
-  value: string;
+  value: string
   /** 参数类型，参见 SysConfigTypeEnum 枚举 */
-  type: number;
+  type: number
   /** 是否可见 */
-  visible: boolean;
+  visible: boolean
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ConfigSaveReqVO = {
   /** 参数配置序号 */
-  id?: number;
+  id?: number
   /** 参数分组 */
-  category: string;
+  category: string
   /** 参数名称 */
-  name: string;
+  name: string
   /** 参数键名 */
-  key: string;
+  key: string
   /** 参数键值 */
-  value: string;
+  value: string
   /** 是否可见 */
-  visible: boolean;
+  visible: boolean
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type Coupon = {
   /** 优惠劵编号 */
-  id: number;
+  id: number
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
+  discountLimitPrice?: number
   /** 是否可用 */
-  match: boolean;
+  match: boolean
   /** 不可用原因 */
-  mismatchReason?: string;
-};
+  mismatchReason?: string
+}
 
 export type CouponPageItemRespVO = {
   /** 优惠劵模板编号 */
-  templateId: number;
+  templateId: number
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠码状态 */
-  status: number;
+  status: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 领取方式 */
-  takeType: number;
+  takeType: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
+  productScopeValues?: number[]
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
+  discountLimitPrice?: number
   /** 使用订单号 */
-  useOrderId?: number;
+  useOrderId?: number
   /** 使用时间 */
-  useTime?: string;
+  useTime?: string
   /** 优惠劵编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 用户昵称 */
-  nickname?: string;
-};
+  nickname?: string
+}
 
 export type CouponSendReqVO = {
   /** 优惠劵模板编号 */
-  templateId: number;
+  templateId: number
   /** 用户编号列表 */
-  userIds: number[];
-};
+  userIds: number[]
+}
 
 export type CouponTemplateCreateReqVO = {
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠券说明 */
-  description?: string;
+  description?: string
   /** 发行总量 */
-  totalCount: number;
+  totalCount: number
   /** 每人限领个数 */
-  takeLimitCount: number;
+  takeLimitCount: number
   /** 领取方式 */
-  takeType: number;
+  takeType: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
+  productScopeValues?: number[]
   /** 生效日期类型 */
-  validityType: number;
+  validityType: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 领取日期 - 开始天数 */
-  fixedStartTerm?: number;
+  fixedStartTerm?: number
   /** 领取日期 - 结束天数 */
-  fixedEndTerm?: number;
+  fixedEndTerm?: number
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
-};
+  discountLimitPrice?: number
+}
 
 export type CouponTemplateRespVO = {
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠券说明 */
-  description?: string;
+  description?: string
   /** 发行总量 */
-  totalCount: number;
+  totalCount: number
   /** 每人限领个数 */
-  takeLimitCount: number;
+  takeLimitCount: number
   /** 领取方式 */
-  takeType: number;
+  takeType: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
+  productScopeValues?: number[]
   /** 生效日期类型 */
-  validityType: number;
+  validityType: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 领取日期 - 开始天数 */
-  fixedStartTerm?: number;
+  fixedStartTerm?: number
   /** 领取日期 - 结束天数 */
-  fixedEndTerm?: number;
+  fixedEndTerm?: number
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
+  discountLimitPrice?: number
   /** 模板编号 */
-  id: number;
+  id: number
   /** 状态 */
-  status: number;
+  status: number
   /** 领取优惠券的数量 */
-  takeCount: number;
+  takeCount: number
   /** 使用优惠券的次数 */
-  useCount: number;
+  useCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type CouponTemplateUpdateReqVO = {
   /** 优惠劵名 */
-  name: string;
+  name: string
   /** 优惠券说明 */
-  description?: string;
+  description?: string
   /** 发行总量 */
-  totalCount: number;
+  totalCount: number
   /** 每人限领个数 */
-  takeLimitCount: number;
+  takeLimitCount: number
   /** 领取方式 */
-  takeType: number;
+  takeType: number
   /** 是否设置满多少金额可用 */
-  usePrice: number;
+  usePrice: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
+  productScopeValues?: number[]
   /** 生效日期类型 */
-  validityType: number;
+  validityType: number
   /** 固定日期 - 生效开始时间 */
-  validStartTime?: string;
+  validStartTime?: string
   /** 固定日期 - 生效结束时间 */
-  validEndTime?: string;
+  validEndTime?: string
   /** 领取日期 - 开始天数 */
-  fixedStartTerm?: number;
+  fixedStartTerm?: number
   /** 领取日期 - 结束天数 */
-  fixedEndTerm?: number;
+  fixedEndTerm?: number
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
+  discountPrice?: number
   /** 折扣上限 */
-  discountLimitPrice?: number;
+  discountLimitPrice?: number
   /** 模板编号 */
-  id: number;
-};
+  id: number
+}
 
 export type CouponTemplateUpdateStatusReqVO = {
   /** 优惠劵模板编号 */
-  id: number;
+  id: number
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type createWeixinMpJsapiSignatureParams = {
-  url: string;
-};
+  url: string
+}
 
 export type DatabaseTableRespVO = {
   /** 表名称 */
-  name: string;
+  name: string
   /** 表描述 */
-  comment: string;
-};
+  comment: string
+}
 
 export type DataComparisonRespVOMemberAnalyseDataRespVO = {
   /** 当前数据 */
-  value: MemberAnalyseDataRespVO;
+  value: MemberAnalyseDataRespVO
   /** 参照数据 */
-  reference: MemberAnalyseDataRespVO;
-};
+  reference: MemberAnalyseDataRespVO
+}
 
 export type DataComparisonRespVOMemberCountRespVO = {
   /** 当前数据 */
-  value: MemberCountRespVO;
+  value: MemberCountRespVO
   /** 参照数据 */
-  reference: MemberCountRespVO;
-};
+  reference: MemberCountRespVO
+}
 
 export type DataComparisonRespVOProductStatisticsRespVO = {
   /** 当前数据 */
-  value: ProductStatisticsRespVO;
+  value: ProductStatisticsRespVO
   /** 参照数据 */
-  reference: ProductStatisticsRespVO;
-};
+  reference: ProductStatisticsRespVO
+}
 
 export type DataComparisonRespVOTradeOrderSummaryRespVO = {
   /** 当前数据 */
-  value: TradeOrderSummaryRespVO;
+  value: TradeOrderSummaryRespVO
   /** 参照数据 */
-  reference: TradeOrderSummaryRespVO;
-};
+  reference: TradeOrderSummaryRespVO
+}
 
 export type DataComparisonRespVOTradeOrderTrendRespVO = {
   /** 当前数据 */
-  value: TradeOrderTrendRespVO;
+  value: TradeOrderTrendRespVO
   /** 参照数据 */
-  reference: TradeOrderTrendRespVO;
-};
+  reference: TradeOrderTrendRespVO
+}
 
 export type DataComparisonRespVOTradeSummaryRespVO = {
   /** 当前数据 */
-  value: TradeSummaryRespVO;
+  value: TradeSummaryRespVO
   /** 参照数据 */
-  reference: TradeSummaryRespVO;
-};
+  reference: TradeSummaryRespVO
+}
 
 export type DataComparisonRespVOTradeTrendSummaryRespVO = {
   /** 当前数据 */
-  value: TradeTrendSummaryRespVO;
+  value: TradeTrendSummaryRespVO
   /** 参照数据 */
-  reference: TradeTrendSummaryRespVO;
-};
+  reference: TradeTrendSummaryRespVO
+}
 
 export type DataSourceConfigRespVO = {
   /** 主键编号 */
-  id: number;
+  id: number
   /** 数据源名称 */
-  name: string;
+  name: string
   /** 数据源连接 */
-  url: string;
+  url: string
   /** 用户名 */
-  username: string;
+  username: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DataSourceConfigSaveReqVO = {
   /** 主键编号 */
-  id?: number;
+  id?: number
   /** 数据源名称 */
-  name: string;
+  name: string
   /** 数据源连接 */
-  url: string;
+  url: string
   /** 用户名 */
-  username: string;
+  username: string
   /** 密码 */
-  password: string;
-};
+  password: string
+}
 
 export type deleteAccessTokenParams = {
   /** 访问令牌 */
-  accessToken: string;
-};
+  accessToken: string
+}
 
 export type deleteAddressParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteAppParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteArticleCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteArticleParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteBannerParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteBargainActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteBrandParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteCartParams = {
   /** 购物车商品编号 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type deleteCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteChannelParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteCodegenParams = {
   /** 表编号 */
-  tableId: number;
-};
+  tableId: number
+}
 
 export type deleteCombinationActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteConversationParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteCouponParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteCouponTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDataSourceConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDeliveryExpressParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDeliveryExpressTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDeliveryPickUpStoreParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDemo01ContactParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDemo02CategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDemo03CourseParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDemo03GradeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDemo03StudentParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDeptParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDictDataParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDictTypeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDiscountActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDiyPageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteDiyTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteFileConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteFileParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteForumComment1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteForumCommentParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteForumPost1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteForumPostParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteGroupParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteJob1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteJobApplicationParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteJobCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteJobParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteJobSeekerParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteLevelParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteMailAccountParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteMailTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteMenuParams = {
   /** 菜单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteMessageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteNoticeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteNotifyTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteOAuth2ClientParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteOrderParams = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deletePointActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deletePostParams = {
-  id: number;
-};
+  id: number
+}
 
 export type deletePropertyParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deletePropertyValueParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteRewardActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteRoleParams = {
   /** 角色编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSeckillActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSeckillConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSignInConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSmsChannelParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSmsTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSocialClientParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteSpuParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteTagParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteTenantPackageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteTenantParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteUserParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteUserTypeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type deleteWalletRechargePackageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type DeliveryExpressCreateReqVO = {
   /** 快递公司编码 */
-  code: string;
+  code: string
   /** 快递公司名称 */
-  name: string;
+  name: string
   /** 快递公司logo */
-  logo?: string;
+  logo?: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type DeliveryExpressRespVO = {
   /** 快递公司编码 */
-  code: string;
+  code: string
   /** 快递公司名称 */
-  name: string;
+  name: string
   /** 快递公司logo */
-  logo?: string;
+  logo?: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DeliveryExpressSimpleRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 快递公司名称 */
-  name: string;
-};
+  name: string
+}
 
 export type DeliveryExpressTemplateChargeBaseVO = {
   /** 区域编号列表 */
-  areaIds: number[];
+  areaIds: number[]
   /** 首件数量 */
-  startCount: number;
+  startCount: number
   /** 起步价 */
-  startPrice: number;
+  startPrice: number
   /** 续件数量 */
-  extraCount: number;
+  extraCount: number
   /** 额外价 */
-  extraPrice: number;
-};
+  extraPrice: number
+}
 
 export type DeliveryExpressTemplateCreateReqVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 配送计费方式 1:按件 2:按重量 3:按体积 */
-  chargeMode: number;
+  chargeMode: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 区域运费列表 */
-  charges?: DeliveryExpressTemplateChargeBaseVO[];
+  charges?: DeliveryExpressTemplateChargeBaseVO[]
   /** 包邮区域列表 */
-  frees?: DeliveryExpressTemplateFreeBaseVO[];
-};
+  frees?: DeliveryExpressTemplateFreeBaseVO[]
+}
 
 export type DeliveryExpressTemplateDetailRespVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 配送计费方式 1:按件 2:按重量 3:按体积 */
-  chargeMode: number;
+  chargeMode: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 编号 */
-  id: number;
+  id: number
   /** 运费模板运费设置 */
-  charges: DeliveryExpressTemplateChargeBaseVO[];
+  charges: DeliveryExpressTemplateChargeBaseVO[]
   /** 运费模板包邮区域 */
-  frees: DeliveryExpressTemplateFreeBaseVO[];
-};
+  frees: DeliveryExpressTemplateFreeBaseVO[]
+}
 
 export type DeliveryExpressTemplateFreeBaseVO = {
   /** 区域编号列表 */
-  areaIds: number[];
+  areaIds: number[]
   /** 包邮金额 */
-  freePrice: number;
+  freePrice: number
   /** 包邮件数 */
-  freeCount: number;
-};
+  freeCount: number
+}
 
 export type DeliveryExpressTemplateRespVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 配送计费方式 1:按件 2:按重量 3:按体积 */
-  chargeMode: number;
+  chargeMode: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 编号，自增 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DeliveryExpressTemplateSimpleRespVO = {
   /** 模版编号 */
-  id: number;
+  id: number
   /** 模板名称 */
-  name: string;
-};
+  name: string
+}
 
 export type DeliveryExpressTemplateUpdateReqVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 配送计费方式 1:按件 2:按重量 3:按体积 */
-  chargeMode: number;
+  chargeMode: number
   /** 排序 */
-  sort: number;
+  sort: number
   /** 编号 */
-  id: number;
+  id: number
   /** 区域运费列表 */
-  charges?: DeliveryExpressTemplateChargeBaseVO[];
+  charges?: DeliveryExpressTemplateChargeBaseVO[]
   /** 包邮区域列表 */
-  frees?: DeliveryExpressTemplateFreeBaseVO[];
-};
+  frees?: DeliveryExpressTemplateFreeBaseVO[]
+}
 
 export type DeliveryExpressUpdateReqVO = {
   /** 快递公司编码 */
-  code: string;
+  code: string
   /** 快递公司名称 */
-  name: string;
+  name: string
   /** 快递公司logo */
-  logo?: string;
+  logo?: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type DeliveryPickUpBindReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 绑定用户编号组数 */
-  verifyUserIds: number[];
-};
+  verifyUserIds: number[]
+}
 
 export type DeliveryPickUpStoreCreateReqVO = {
   /** 门店名称 */
-  name: string;
+  name: string
   /** 门店简介 */
-  introduction?: string;
+  introduction?: string
   /** 门店手机 */
-  phone: string;
+  phone: string
   /** 区域编号 */
-  areaId: number;
+  areaId: number
   /** 门店详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 门店 logo */
-  logo: string;
+  logo: string
   /** 营业开始时间 */
-  openingTime: LocalTime;
+  openingTime: LocalTime
   /** 营业结束时间 */
-  closingTime: LocalTime;
+  closingTime: LocalTime
   /** 纬度 */
-  latitude: number;
+  latitude: number
   /** 经度 */
-  longitude: number;
+  longitude: number
   /** 门店状态 */
-  status: number;
-};
+  status: number
+}
 
 export type DeliveryPickUpStoreRespVO = {
   /** 门店名称 */
-  name: string;
+  name: string
   /** 门店简介 */
-  introduction?: string;
+  introduction?: string
   /** 门店手机 */
-  phone: string;
+  phone: string
   /** 区域编号 */
-  areaId: number;
+  areaId: number
   /** 门店详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 门店 logo */
-  logo: string;
+  logo: string
   /** 营业开始时间 */
-  openingTime: LocalTime;
+  openingTime: LocalTime
   /** 营业结束时间 */
-  closingTime: LocalTime;
+  closingTime: LocalTime
   /** 纬度 */
-  latitude: number;
+  latitude: number
   /** 经度 */
-  longitude: number;
+  longitude: number
   /** 门店状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 核销用户数组 */
-  verifyUsers: UserSimpleBaseVO[];
-};
+  verifyUsers: UserSimpleBaseVO[]
+}
 
 export type DeliveryPickUpStoreSimpleRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 门店名称 */
-  name: string;
+  name: string
   /** 门店手机 */
-  phone: string;
+  phone: string
   /** 区域编号 */
-  areaId: number;
+  areaId: number
   /** 区域名称 */
-  areaName: string;
+  areaName: string
   /** 门店详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 绑定用户编号组数 */
-  verifyUserIds: number[];
-};
+  verifyUserIds: number[]
+}
 
 export type DeliveryPickUpStoreUpdateReqVO = {
   /** 门店名称 */
-  name: string;
+  name: string
   /** 门店简介 */
-  introduction?: string;
+  introduction?: string
   /** 门店手机 */
-  phone: string;
+  phone: string
   /** 区域编号 */
-  areaId: number;
+  areaId: number
   /** 门店详细地址 */
-  detailAddress: string;
+  detailAddress: string
   /** 门店 logo */
-  logo: string;
+  logo: string
   /** 营业开始时间 */
-  openingTime: LocalTime;
+  openingTime: LocalTime
   /** 营业结束时间 */
-  closingTime: LocalTime;
+  closingTime: LocalTime
   /** 纬度 */
-  latitude: number;
+  latitude: number
   /** 经度 */
-  longitude: number;
+  longitude: number
   /** 门店状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type Demo01ContactRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 性别 */
-  sex: number;
+  sex: number
   /** 出生年 */
-  birthday: string;
+  birthday: string
   /** 简介 */
-  description: string;
+  description: string
   /** 头像 */
-  avatar?: string;
+  avatar?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type Demo01ContactSaveReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 性别 */
-  sex: number;
+  sex: number
   /** 出生年 */
-  birthday: string;
+  birthday: string
   /** 简介 */
-  description: string;
+  description: string
   /** 头像 */
-  avatar?: string;
-};
+  avatar?: string
+}
 
 export type Demo02CategoryRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 父级编号 */
-  parentId: number;
+  parentId: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type Demo02CategorySaveReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 父级编号 */
-  parentId: number;
-};
+  parentId: number
+}
 
 export type Demo03CourseDO = {
-  createTime?: string;
-  updateTime?: string;
-  creator?: string;
-  updater?: string;
-  deleted?: boolean;
-  id?: number;
-  studentId?: number;
-  name?: string;
-  score?: number;
-};
+  createTime?: string
+  updateTime?: string
+  creator?: string
+  updater?: string
+  deleted?: boolean
+  id?: number
+  studentId?: number
+  name?: string
+  score?: number
+}
 
 export type Demo03GradeDO = {
-  createTime?: string;
-  updateTime?: string;
-  creator?: string;
-  updater?: string;
-  deleted?: boolean;
-  id?: number;
-  studentId?: number;
-  name?: string;
-  teacher?: string;
-};
+  createTime?: string
+  updateTime?: string
+  creator?: string
+  updater?: string
+  deleted?: boolean
+  id?: number
+  studentId?: number
+  name?: string
+  teacher?: string
+}
 
 export type Demo03StudentRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 性别 */
-  sex: number;
+  sex: number
   /** 出生日期 */
-  birthday: string;
+  birthday: string
   /** 简介 */
-  description: string;
+  description: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type Demo03StudentSaveReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名字 */
-  name: string;
+  name: string
   /** 性别 */
-  sex: number;
+  sex: number
   /** 出生日期 */
-  birthday: string;
+  birthday: string
   /** 简介 */
-  description: string;
-  demo03Courses?: Demo03CourseDO[];
-  demo03Grade?: Demo03GradeDO;
-};
+  description: string
+  demo03Courses?: Demo03CourseDO[]
+  demo03Grade?: Demo03GradeDO
+}
 
 export type Dept = {
   /** 部门编号 */
-  id: number;
+  id: number
   /** 部门名称 */
-  name: string;
-};
+  name: string
+}
 
 export type DeptRespVO = {
   /** 部门编号 */
-  id?: number;
+  id?: number
   /** 部门名称 */
-  name: string;
+  name: string
   /** 父部门 ID */
-  parentId?: number;
+  parentId?: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 负责人的用户编号 */
-  leaderUserId?: number;
+  leaderUserId?: number
   /** 联系电话 */
-  phone?: string;
+  phone?: string
   /** 邮箱 */
-  email?: string;
+  email?: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DeptSaveReqVO = {
   /** 部门编号 */
-  id?: number;
+  id?: number
   /** 部门名称 */
-  name: string;
+  name: string
   /** 父部门 ID */
-  parentId?: number;
+  parentId?: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 负责人的用户编号 */
-  leaderUserId?: number;
+  leaderUserId?: number
   /** 联系电话 */
-  phone?: string;
+  phone?: string
   /** 邮箱 */
-  email?: string;
+  email?: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
-};
+  status: number
+}
 
 export type DeptSimpleRespVO = {
   /** 部门编号 */
-  id: number;
+  id: number
   /** 部门名称 */
-  name: string;
+  name: string
   /** 父部门 ID */
-  parentId: number;
-};
+  parentId: number
+}
 
 export type DictDataRespVO = {
   /** 字典数据编号 */
-  id: number;
+  id: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 字典标签 */
-  label: string;
+  label: string
   /** 字典值 */
-  value: string;
+  value: string
   /** 字典类型 */
-  dictType: string;
+  dictType: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 颜色类型,default、primary、success、info、warning、danger */
-  colorType?: string;
+  colorType?: string
   /** css 样式 */
-  cssClass?: string;
+  cssClass?: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DictDataSaveReqVO = {
   /** 字典数据编号 */
-  id?: number;
+  id?: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 字典标签 */
-  label: string;
+  label: string
   /** 字典值 */
-  value: string;
+  value: string
   /** 字典类型 */
-  dictType: string;
+  dictType: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 颜色类型,default、primary、success、info、warning、danger */
-  colorType?: string;
+  colorType?: string
   /** css 样式 */
-  cssClass?: string;
+  cssClass?: string
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type DictDataSimpleRespVO = {
   /** 字典类型 */
-  dictType: string;
+  dictType: string
   /** 字典键值 */
-  value: string;
+  value: string
   /** 字典标签 */
-  label: string;
+  label: string
   /** 颜色类型，default、primary、success、info、warning、danger */
-  colorType?: string;
+  colorType?: string
   /** css 样式 */
-  cssClass?: string;
-};
+  cssClass?: string
+}
 
 export type DictTypeRespVO = {
   /** 字典类型编号 */
-  id: number;
+  id: number
   /** 字典名称 */
-  name: string;
+  name: string
   /** 字典类型 */
-  type: string;
+  type: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DictTypeSaveReqVO = {
   /** 字典类型编号 */
-  id?: number;
+  id?: number
   /** 字典名称 */
-  name: string;
+  name: string
   /** 字典类型 */
-  type: string;
+  type: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type DictTypeSimpleRespVO = {
   /** 字典类型编号 */
-  id: number;
+  id: number
   /** 字典类型名称 */
-  name: string;
+  name: string
   /** 字典类型 */
-  type: string;
-};
+  type: string
+}
 
 export type DiscountActivityCreateReqVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
-  products: Product[];
-};
+  remark?: string
+  products: Product[]
+}
 
 export type DiscountActivityRespVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动编号 */
-  id: number;
+  id: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 限时折扣商品 */
-  products: Product[];
-};
+  products: Product[]
+}
 
 export type DiscountActivityUpdateReqVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动编号 */
-  id: number;
-  products: Product[];
-};
+  id: number
+  products: Product[]
+}
 
 export type DiyPageCreateReqVO = {
   /** 装修模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 页面名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
-};
+  previewPicUrls?: string[]
+}
 
 export type DiyPagePropertyRespVO = {
   /** 装修模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 页面名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修页面编号 */
-  id: number;
+  id: number
   /** 页面属性 */
-  property?: string;
-};
+  property?: string
+}
 
 export type DiyPagePropertyUpdateRequestVO = {
   /** 装修页面编号 */
-  id: number;
+  id: number
   /** 页面属性，JSON 格式 */
-  property: string;
-};
+  property: string
+}
 
 export type DiyPageRespVO = {
   /** 装修模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 页面名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修页面编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type DiyPageUpdateReqVO = {
   /** 装修模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 页面名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修页面编号 */
-  id: number;
-};
+  id: number
+}
 
 export type DiyTemplateCreateReqVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
-};
+  previewPicUrls?: string[]
+}
 
 export type DiyTemplatePropertyRespVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修模板编号 */
-  id: number;
+  id: number
   /** 模板属性，JSON 格式 */
-  property: string;
+  property: string
   /** 模板页面 */
-  pages: DiyPagePropertyRespVO[];
-};
+  pages: DiyPagePropertyRespVO[]
+}
 
 export type DiyTemplatePropertyUpdateRequestVO = {
   /** 装修模板编号 */
-  id: number;
+  id: number
   /** 模板属性，JSON 格式 */
-  property: string;
-};
+  property: string
+}
 
 export type DiyTemplateRespVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修模板编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 是否使用 */
-  used: boolean;
+  used: boolean
   /** 使用时间 */
-  usedTime?: string;
-};
+  usedTime?: string
+}
 
 export type DiyTemplateUpdateReqVO = {
   /** 模板名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 预览图 */
-  previewPicUrls?: string[];
+  previewPicUrls?: string[]
   /** 装修模板编号 */
-  id: number;
-};
+  id: number
+}
 
 export type downloadCodegenParams = {
   /** 表编号 */
-  tableId: number;
-};
+  tableId: number
+}
 
 export type export1Params = {
   /** 岗位编码，模糊匹配 */
-  code?: string;
+  code?: string
   /** 岗位名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type export2Params = {
   /** 字典类型名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 字典类型，模糊匹配 */
-  type?: string;
+  type?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type export3Params = {
   /** 字典标签 */
-  label?: string;
+  label?: string
   /** 字典类型，模糊匹配 */
-  dictType?: string;
+  dictType?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportApiAccessLogExcelParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 应用名 */
-  applicationName?: string;
+  applicationName?: string
   /** 请求地址，模糊匹配 */
-  requestUrl?: string;
+  requestUrl?: string
   /** 开始时间 */
-  beginTime?: string[];
+  beginTime?: string[]
   /** 执行时长,大于等于，单位：毫秒 */
-  duration?: number;
+  duration?: number
   /** 结果码 */
-  resultCode?: number;
+  resultCode?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportApiErrorLogExcelParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 应用名 */
-  applicationName?: string;
+  applicationName?: string
   /** 请求地址 */
-  requestUrl?: string;
+  requestUrl?: string
   /** 异常发生时间 */
-  exceptionTime?: string[];
+  exceptionTime?: string[]
   /** 处理状态 */
-  processStatus?: number;
+  processStatus?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportConfigParams = {
   /** 数据源名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 参数键名，模糊匹配 */
-  key?: string;
+  key?: string
   /** 参数类型，参见 SysConfigTypeEnum 枚举 */
-  type?: number;
+  type?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportDeliveryExpressExcelParams = {
   /** 快递公司编码 */
-  code?: string;
+  code?: string
   /** 快递公司名称 */
-  name?: string;
+  name?: string
   /** 状态（0正常 1停用） */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type exportDemo01ContactExcelParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 性别 */
-  sex?: number;
+  sex?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportDemo02CategoryExcelParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 父级编号 */
-  parentId?: number;
+  parentId?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type exportDemo03StudentExcelParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 性别 */
-  sex?: number;
+  sex?: number
   /** 简介 */
-  description?: string;
+  description?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportJobExcelParams = {
   /** 任务名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 任务状态，参见 JobStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 处理器的名字，模糊匹配 */
-  handlerName?: string;
+  handlerName?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportJobLogExcelParams = {
   /** 任务编号 */
-  jobId?: number;
+  jobId?: number
   /** 处理器的名字，模糊匹配 */
-  handlerName?: string;
+  handlerName?: string
   /** 开始执行时间 */
-  beginTime?: string;
+  beginTime?: string
   /** 结束执行时间 */
-  endTime?: string;
+  endTime?: string
   /** 任务状态，参见 JobLogStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportLoginLogParams = {
   /** 用户 IP，模拟匹配 */
-  userIp?: string;
+  userIp?: string
   /** 用户账号，模拟匹配 */
-  username?: string;
+  username?: string
   /** 操作状态 */
-  status?: boolean;
+  status?: boolean
   /** 登录时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportOperateLogParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 操作模块业务编号 */
-  bizId?: number;
+  bizId?: number
   /** 操作模块，模拟匹配 */
-  type?: string;
+  type?: string
   /** 操作名，模拟匹配 */
-  subType?: string;
+  subType?: string
   /** 操作明细，模拟匹配 */
-  action?: string;
+  action?: string
   /** 开始时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportOrderExcelParams = {
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户订单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 渠道编号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 支付单号 */
-  no?: string;
+  no?: string
   /** 支付状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type exportProductStatisticsExcelParams = {
   /** 统计时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type exportRefundExcelParams = {
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户支付单号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 商户退款单号 */
-  merchantRefundId?: string;
+  merchantRefundId?: string
   /** 渠道支付单号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 渠道退款单号 */
-  channelRefundNo?: string;
+  channelRefundNo?: string
   /** 退款状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type exportSmsLogExcelParams = {
   /** 短信渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 手机号 */
-  mobile?: string;
+  mobile?: string
   /** 发送状态，参见 SmsSendStatusEnum 枚举类 */
-  sendStatus?: number;
+  sendStatus?: number
   /** 发送时间 */
-  sendTime?: string[];
+  sendTime?: string[]
   /** 接收状态，参见 SmsReceiveStatusEnum 枚举类 */
-  receiveStatus?: number;
+  receiveStatus?: number
   /** 接收时间 */
-  receiveTime?: string[];
+  receiveTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportSmsTemplateExcelParams = {
   /** 短信签名 */
-  type?: number;
+  type?: number
   /** 开启状态 */
-  status?: number;
+  status?: number
   /** 模板编码，模糊匹配 */
-  code?: string;
+  code?: string
   /** 模板内容，模糊匹配 */
-  content?: string;
+  content?: string
   /** 短信 API 的模板编号，模糊匹配 */
-  apiTemplateId?: string;
+  apiTemplateId?: string
   /** 短信渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportSpuListParams = {
   /** 商品名称 */
-  name?: string;
+  name?: string
   /** 前端请求的tab类型 */
-  tabType: number;
+  tabType: number
   /** 商品分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportTenantExcelParams = {
   /** 租户名 */
-  name?: string;
+  name?: string
   /** 联系人 */
-  contactName?: string;
+  contactName?: string
   /** 联系手机 */
-  contactMobile?: string;
+  contactMobile?: string
   /** 租户状态（0正常 1停用） */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportTradeStatisticsExcelParams = {
   /** 时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type exportTransferParams = {
   /** 转账单号 */
-  no?: string;
+  no?: string
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户转账单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 转账状态 */
-  status?: number;
+  status?: number
   /** 收款人姓名 */
-  userName?: string;
+  userName?: string
   /** 收款人账号 */
-  userAccount?: string;
+  userAccount?: string
   /** 渠道转账单号 */
-  channelTransferNo?: string;
+  channelTransferNo?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportUserListParams = {
   /** 用户账号，模糊匹配 */
-  username?: string;
+  username?: string
   /** 手机号码，模糊匹配 */
-  mobile?: string;
+  mobile?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 部门编号，同时筛选子部门 */
-  deptId?: number;
+  deptId?: number
   /** 角色编号 */
-  roleId?: number;
+  roleId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type exportUserTypeExcelParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type exportUsingGETParams = {
   /** 角色名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 角色标识，模糊匹配 */
-  code?: string;
+  code?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
-export type FileClientConfig = object;
+export type FileClientConfig = object
 
 export type FileConfigRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 配置名 */
-  name: string;
+  name: string
   /** 存储器，参见 FileStorageEnum 枚举类 */
-  storage: number;
+  storage: number
   /** 是否为主配置 */
-  master: boolean;
+  master: boolean
   /** 存储配置 */
-  config: FileClientConfig;
+  config: FileClientConfig
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type FileConfigSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 配置名 */
-  name: string;
+  name: string
   /** 存储器，参见 FileStorageEnum 枚举类 */
-  storage: number;
+  storage: number
   /** 存储配置,配置是动态参数，所以使用 Map 接收 */
-  config: Record<string, unknown>;
+  config: Record<string, unknown>
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type FileCreateReqVO = {
   /** 文件配置编号 */
-  configId: number;
+  configId: number
   /** 文件路径 */
-  path: string;
+  path: string
   /** 原文件名 */
-  name: string;
+  name: string
   /** 文件 URL */
-  url: string;
+  url: string
   /** 文件 MIME 类型 */
-  type?: string;
+  type?: string
   /** 文件大小 */
-  size: number;
-};
+  size: number
+}
 
 export type FilePresignedUrlRespVO = {
   /** 配置编号 */
-  configId: number;
+  configId: number
   /** 文件上传 URL */
-  uploadUrl: string;
+  uploadUrl: string
   /** 文件访问 URL */
-  url: string;
+  url: string
   /** 文件路径 */
-  path: string;
-};
+  path: string
+}
 
 export type FileRespVO = {
   /** 文件编号 */
-  id: number;
+  id: number
   /** 配置编号 */
-  configId: number;
+  configId: number
   /** 文件路径 */
-  path: string;
+  path: string
   /** 原文件名 */
-  name: string;
+  name: string
   /** 文件 URL */
-  url: string;
+  url: string
   /** 文件MIME类型 */
-  type?: string;
+  type?: string
   /** 文件大小 */
-  size: number;
+  size: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type getAccessTokenPageParams = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType: number;
+  userType: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getActivityListBySpuIdParams = {
   /** 商品编号 */
-  spuId: number;
-};
+  spuId: number
+}
 
 export type getAddressList1Params = {
   /** 用户编号 */
-  userId: number;
-};
+  userId: number
+}
 
 export type getAddressParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getAfterSaleLogListParams = {
   /** 售后编号 */
-  afterSaleId: number;
-};
+  afterSaleId: number
+}
 
 export type getAfterSalePage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 售后流水号 */
-  no?: string;
+  no?: string
   /** 售后状态 */
-  status?: number;
+  status?: number
   /** 售后类型 */
-  type?: number;
+  type?: number
   /** 售后方式 */
-  way?: number;
+  way?: number
   /** 订单编号 */
-  orderNo?: string;
+  orderNo?: string
   /** 商品 SPU 名称 */
-  spuName?: string;
+  spuName?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getAfterSalePageParams = {
   /** 售后状态 */
-  statuses?: number[];
+  statuses?: number[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getAfterSaleParams = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getApiAccessLogPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 应用名 */
-  applicationName?: string;
+  applicationName?: string
   /** 请求地址，模糊匹配 */
-  requestUrl?: string;
+  requestUrl?: string
   /** 开始时间 */
-  beginTime?: string[];
+  beginTime?: string[]
   /** 执行时长,大于等于，单位：毫秒 */
-  duration?: number;
+  duration?: number
   /** 结果码 */
-  resultCode?: number;
+  resultCode?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getApiErrorLogPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 应用名 */
-  applicationName?: string;
+  applicationName?: string
   /** 请求地址 */
-  requestUrl?: string;
+  requestUrl?: string
   /** 异常发生时间 */
-  exceptionTime?: string[];
+  exceptionTime?: string[]
   /** 处理状态 */
-  processStatus?: number;
+  processStatus?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getAppPageParams = {
   /** 应用名 */
-  name?: string;
+  name?: string
   /** 应用标识 */
-  appKey?: string;
+  appKey?: string
   /** 开启状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getAppParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getAreaByIpParams = {
   /** IP */
-  ip: string;
-};
+  ip: string
+}
 
 export type getArticle1Params = {
   /** 文章编号 */
-  id?: number;
+  id?: number
   /** 文章标题 */
-  title?: string;
-};
+  title?: string
+}
 
 export type getArticle2Params = {
   /** 文章编号 */
-  id?: number;
+  id?: number
   /** 文章标题 */
-  title?: string;
-};
+  title?: string
+}
 
 export type getArticle3Params = {
   /** 文章编号 */
-  id?: number;
+  id?: number
   /** 文章标题 */
-  title?: string;
-};
+  title?: string
+}
 
 export type getArticle4Params = {
   /** 文章编号 */
-  id?: number;
+  id?: number
   /** 文章标题 */
-  title?: string;
-};
+  title?: string
+}
 
 export type getArticle5Params = {
   /** 文章编号 */
-  id?: number;
+  id?: number
   /** 文章标题 */
-  title?: string;
-};
+  title?: string
+}
 
 export type getArticleCategoryPageParams = {
   /** 文章分类名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticleCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getArticleList1Params = {
   /** 是否热门 */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图 */
-  recommendBanner?: boolean;
-};
+  recommendBanner?: boolean
+}
 
 export type getArticleList2Params = {
   /** 是否热门 */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图 */
-  recommendBanner?: boolean;
-};
+  recommendBanner?: boolean
+}
 
 export type getArticleList3Params = {
   /** 是否热门 */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图 */
-  recommendBanner?: boolean;
-};
+  recommendBanner?: boolean
+}
 
 export type getArticleList4Params = {
   /** 是否热门 */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图 */
-  recommendBanner?: boolean;
-};
+  recommendBanner?: boolean
+}
 
 export type getArticleListParams = {
   /** 是否热门 */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图 */
-  recommendBanner?: boolean;
-};
+  recommendBanner?: boolean
+}
 
 export type getArticlePage1Params = {
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticlePage2Params = {
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticlePage3Params = {
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticlePage4Params = {
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticlePage5Params = {
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticlePageParams = {
   /** 文章分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 关联商品编号 */
-  spuId?: number;
+  spuId?: number
   /** 文章标题 */
-  title?: string;
+  title?: string
   /** 文章作者 */
-  author?: string;
+  author?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 是否热门(小程序) */
-  recommendHot?: boolean;
+  recommendHot?: boolean
   /** 是否轮播图(小程序) */
-  recommendBanner?: boolean;
+  recommendBanner?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getArticleParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBannerListParams = {
   /** Banner position */
-  position: number;
-};
+  position: number
+}
 
 export type getBannerPageParams = {
   /** 标题 */
-  title?: string;
+  title?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBannerParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBargainActivityDetailParams = {
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBargainActivityListParams = {
   /** 需要展示的数量 */
-  count?: number;
-};
+  count?: number
+}
 
 export type getBargainActivityPage1Params = {
   /** 砍价名称 */
-  name?: string;
+  name?: string
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBargainActivityPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBargainActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBargainHelpListParams = {
   /** 砍价记录编号 */
-  recordId: number;
-};
+  recordId: number
+}
 
 export type getBargainHelpPageParams = {
   /** 砍价记录编号 */
-  recordId?: number;
+  recordId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBargainRecordDetailParams = {
   /** 砍价记录编号 */
-  id?: number;
+  id?: number
   /** 砍价活动编号 */
-  activityId?: number;
-};
+  activityId?: number
+}
 
 export type getBargainRecordPage1Params = {
   /** 砍价状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBargainRecordPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrandListParams = {
   /** 品牌名称 */
-  name?: string;
-};
+  name?: string
+}
 
 export type getBrandPageParams = {
   /** 品牌名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrandParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBrokerageRecordPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 业务类型 */
-  bizType?: number;
+  bizType?: number
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 用户类型 */
-  sourceUserLevel?: number;
+  sourceUserLevel?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageRecordPageParams = {
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 业务类型 */
-  bizType?: number;
+  bizType?: number
   /** 状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageRecordParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBrokerageUser1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBrokerageUserChildSummaryPageByPriceParams = {
   /** 开始 + 结束时间 */
-  times: string[];
+  times: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageUserChildSummaryPageParams = {
   /** 用户昵称 */
-  nickname?: string;
-  'sortingField.field'?: string;
-  'sortingField.order'?: string;
+  nickname?: string
+  'sortingField.field'?: string
+  'sortingField.order'?: string
   /** 下级的级别 */
-  level: number;
+  level: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageUserPageParams = {
   /** 推广员编号 */
-  bindUserId?: number;
+  bindUserId?: number
   /** 推广资格 */
-  brokerageEnabled?: boolean;
+  brokerageEnabled?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 用户等级 */
-  level?: number;
+  level?: number
   /** 绑定时间 */
-  bindUserTime?: string[];
+  bindUserTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageUserRankPageByUserCountParams = {
   /** 开始 + 结束时间 */
-  times: string[];
+  times: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageWithdraw1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBrokerageWithdrawPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 提现类型 */
-  type?: number;
+  type?: number
   /** 真实姓名 */
-  userName?: string;
+  userName?: string
   /** 账号 */
-  userAccount?: string;
+  userAccount?: string
   /** 银行名称 */
-  bankName?: string;
+  bankName?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageWithdrawPageParams = {
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrokerageWithdrawParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getBrowseHistoryPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户是否删除 */
-  userDeleted?: boolean;
+  userDeleted?: boolean
   /** 商品 SPU 编号 */
-  spuId?: number;
+  spuId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 排序字段 */
-  sortingFields?: SortingField[];
+  sortingFields?: SortingField[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getBrowseHistoryPageParams = {
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getByPickUpVerifyCodeParams = {
   /** 自提核销码 */
-  pickUpVerifyCode: string;
-};
+  pickUpVerifyCode: string
+}
 
 export type getCategoryListParams = {
   /** 分类名称 */
-  name?: string;
+  name?: string
   /** 开启状态 */
-  status?: number;
+  status?: number
   /** 父分类编号 */
-  parentId?: number;
+  parentId?: number
   /** 父分类编号数组 */
-  parentIds?: number[];
-};
+  parentIds?: number[]
+}
 
 export type getCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getChannelParams = {
   /** 编号 */
-  id: number;
-  appId?: number;
-  code?: string;
-};
+  id: number
+  appId?: number
+  code?: string
+}
 
 export type getCodegenDetailParams = {
   /** 表编号 */
-  tableId: number;
-};
+  tableId: number
+}
 
 export type getCodegenTableListParams = {
   /** 数据源配置的编号 */
-  dataSourceConfigId: number;
-};
+  dataSourceConfigId: number
+}
 
 export type getCodegenTablePageParams = {
   /** 表名称，模糊匹配 */
-  tableName?: string;
+  tableName?: string
   /** 表描述，模糊匹配 */
-  tableComment?: string;
+  tableComment?: string
   /** 实体，模糊匹配 */
-  className?: string;
+  className?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCombinationActivityDetailParams = {
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCombinationActivityListByIds1Params = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getCombinationActivityListByIds2Params = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getCombinationActivityListByIds3Params = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getCombinationActivityListByIdsParams = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getCombinationActivityPage1Params = {
   /** 拼团名称 */
-  name?: string;
+  name?: string
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCombinationActivityPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCombinationActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCombinationRecordDetailParams = {
   /** 拼团记录编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCombinationRecordPage1Params = {
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 团长编号 */
-  headId?: number;
+  headId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCombinationRecordPageParams = {
   /** 拼团状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCommentPage1Params = {
   /** 评价人名称 */
-  userNickname?: string;
+  userNickname?: string
   /** 交易订单编号 */
-  orderId?: number;
+  orderId?: number
   /** 商品SPU编号 */
-  spuId?: number;
+  spuId?: number
   /** 商品SPU名称 */
-  spuName?: string;
+  spuName?: string
   /** 评分星级 1-5 分 */
-  scores?: number;
+  scores?: number
   /** 商家是否回复 */
-  replyStatus?: boolean;
+  replyStatus?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCommentPageParams = {
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** app 评论页 tab 类型 (0 全部、1 好评、2 中评、3 差评) */
-  type: number;
+  type: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getConfig2Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getConfigKeyParams = {
   /** 参数键 */
-  key: string;
-};
+  key: string
+}
 
 export type getConfigPageParams = {
   /** 数据源名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 参数键名，模糊匹配 */
-  key?: string;
+  key?: string
   /** 参数类型，参见 SysConfigTypeEnum 枚举 */
-  type?: number;
+  type?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getConversationParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCouponPage1Params = {
   /** 优惠劵模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 优惠码状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户编号 */
-  userIds?: number[];
+  userIds?: number[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCouponPageParams = {
   /** 优惠劵状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCouponParams = {
   /** 优惠劵编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCouponTemplate1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getCouponTemplateList1Params = {
   /** 优惠券模板编号列表 */
-  ids?: number[];
-};
+  ids?: number[]
+}
 
 export type getCouponTemplateList2Params = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getCouponTemplateListParams = {
   /** 商品 SPU 编号 */
-  spuId?: number;
+  spuId?: number
   /** 使用类型 */
-  productScope?: number;
+  productScope?: number
   /** 数量 */
-  count: number;
-};
+  count: number
+}
 
 export type getCouponTemplatePage1Params = {
   /** 优惠劵名 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 优惠类型 */
-  discountType?: number;
+  discountType?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 可以领取的类型 */
-  canTakeTypes?: number[];
+  canTakeTypes?: number[]
   /** 商品范围 */
-  productScope?: number;
+  productScope?: number
   /** 商品范围编号 */
-  productScopeValue?: number;
+  productScopeValue?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCouponTemplatePageParams = {
   /** 商品范围 */
-  productScope?: number;
+  productScope?: number
   /** 商品标号 */
-  spuId?: number;
+  spuId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getCouponTemplateParams = {
   /** 优惠券模板编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDatabaseTableListParams = {
   /** 数据源配置的编号 */
-  dataSourceConfigId: number;
+  dataSourceConfigId: number
   /** 表名，模糊匹配 */
-  name?: string;
+  name?: string
   /** 描述，模糊匹配 */
-  comment?: string;
-};
+  comment?: string
+}
 
 export type getDataSourceConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDeliveryExpressPageParams = {
   /** 快递公司编码 */
-  code?: string;
+  code?: string
   /** 快递公司名称 */
-  name?: string;
+  name?: string
   /** 状态（0正常 1停用） */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDeliveryExpressParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDeliveryExpressTemplateListParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getDeliveryExpressTemplatePageParams = {
   /** 模板名称 */
-  name?: string;
+  name?: string
   /** 配送计费方式 1:按件 2:按重量 3:按体积 */
-  chargeMode?: number;
+  chargeMode?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDeliveryExpressTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDeliveryPickUpStoreList1Params = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getDeliveryPickUpStoreListParams = {
   /** 精度 */
-  latitude?: number;
+  latitude?: number
   /** 纬度 */
-  longitude?: number;
-};
+  longitude?: number
+}
 
 export type getDeliveryPickUpStorePageParams = {
   /** 门店名称 */
-  name?: string;
+  name?: string
   /** 门店手机 */
-  phone?: string;
+  phone?: string
   /** 区域编号 */
-  areaId?: number;
+  areaId?: number
   /** 门店状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDeliveryPickUpStoreParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemo01ContactPageParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 性别 */
-  sex?: number;
+  sex?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDemo01ContactParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemo02CategoryListParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 父级编号 */
-  parentId?: number;
+  parentId?: number
   /** 创建时间 */
-  createTime?: string[];
-};
+  createTime?: string[]
+}
 
 export type getDemo02CategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemo03CourseListByStudentIdParams = {
   /** 学生编号 */
-  studentId: number;
-};
+  studentId: number
+}
 
 export type getDemo03CoursePageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
+  pageSize: number
   /** 学生编号 */
-  studentId: number;
-};
+  studentId: number
+}
 
 export type getDemo03CourseParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemo03GradeByStudentIdParams = {
   /** 学生编号 */
-  studentId: number;
-};
+  studentId: number
+}
 
 export type getDemo03GradePageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
+  pageSize: number
   /** 学生编号 */
-  studentId: number;
-};
+  studentId: number
+}
 
 export type getDemo03GradeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemo03StudentPageParams = {
   /** 名字 */
-  name?: string;
+  name?: string
   /** 性别 */
-  sex?: number;
+  sex?: number
   /** 简介 */
-  description?: string;
+  description?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDemo03StudentParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDemoOrderPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDemoWithdrawPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDeptListParams = {
   /** 部门名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
-};
+  status?: number
+}
 
 export type getDeptParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDictDataListByTypeParams = {
   /** 字典类型 */
-  type: string;
-};
+  type: string
+}
 
 export type getDictDataParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDictTypePageParams = {
   /** 字典标签 */
-  label?: string;
+  label?: string
   /** 字典类型，模糊匹配 */
-  dictType?: string;
+  dictType?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDictTypeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiscountActivityPageParams = {
   /** 活动标题 */
-  name?: string;
+  name?: string
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDiscountActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyPage1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyPageListParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getDiyPagePageParams = {
   /** 页面名称 */
-  name?: string;
+  name?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDiyPageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyPagePropertyParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyTemplate1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyTemplatePageParams = {
   /** 模板名称 */
-  name?: string;
+  name?: string
   /** 是否使用 */
-  used?: boolean;
+  used?: boolean
   /** 使用时间 */
-  usedTime?: string[];
+  usedTime?: string[]
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getDiyTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getDiyTemplatePropertyParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getEnableChannelCodeList1Params = {
   /** 应用编号 */
-  appId: number;
-};
+  appId: number
+}
 
 export type getEnableChannelCodeListParams = {
   /** 应用编号 */
-  appId: number;
-};
+  appId: number
+}
 
 export type getExperienceRecordPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 业务编号 */
-  bizId?: string;
+  bizId?: string
   /** 业务类型 */
-  bizType?: number;
+  bizType?: number
   /** 标题 */
-  title?: string;
+  title?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getExperienceRecordPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getExperienceRecordParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getFavoritePage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getFavoritePageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getFileConfigPageParams = {
   /** 配置名 */
-  name?: string;
+  name?: string
   /** 存储器 */
-  storage?: number;
+  storage?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getFileConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getFilePageParams = {
   /** 文件路径，模糊匹配 */
-  path?: string;
+  path?: string
   /** 文件类型，模糊匹配 */
-  type?: string;
+  type?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getFilePresignedUrl1Params = {
   /** 文件名称 */
-  name: string;
+  name: string
   /** 文件目录 */
-  directory?: string;
-};
+  directory?: string
+}
 
 export type getFilePresignedUrlParams = {
   /** 文件名称 */
-  name: string;
+  name: string
   /** 文件目录 */
-  directory?: string;
-};
+  directory?: string
+}
 
 export type getForumCommentPage1Params = {
   /** 帖子编号 */
-  postId?: number;
+  postId?: number
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getForumCommentPageParams = {
   /** 帖子编号 */
-  postId: number;
+  postId: number
   /** 父评论编号 */
-  parentId?: number;
+  parentId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getForumCommentParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getForumPost1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getForumPostPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 标题 */
-  title?: string;
+  title?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getForumPostPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 标题 */
-  title?: string;
+  title?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getForumPostParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getGroupPageParams = {
   /** 名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getGroupParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getHeadCombinationRecordListParams = {
   /** 拼团活动编号 */
-  activityId?: number;
+  activityId?: number
   /** 拼团状态 */
-  status: number;
+  status: number
   /** 数量 */
-  count?: number;
-};
+  count?: number
+}
 
 export type getJob1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getJobApplicationPageParams = {
   /** 职位编号 */
-  jobId?: number;
+  jobId?: number
   /** 求职者编号 */
-  jobSeekerId?: number;
+  jobSeekerId?: number
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobApplicationParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getJobCategoryListByParentIdParams = {
   /** 父分类编号 */
-  parentId?: number;
-};
+  parentId?: number
+}
 
 export type getJobCategoryPageParams = {
   /** 分类名称 */
-  name?: string;
+  name?: string
   /** 父分类编号 */
-  parentId?: number;
+  parentId?: number
   /** 状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobCategoryParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getJobLogPageParams = {
   /** 任务编号 */
-  jobId?: number;
+  jobId?: number
   /** 处理器的名字，模糊匹配 */
-  handlerName?: string;
+  handlerName?: string
   /** 开始执行时间 */
-  beginTime?: string;
+  beginTime?: string
   /** 结束执行时间 */
-  endTime?: string;
+  endTime?: string
   /** 任务状态，参见 JobLogStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobLogParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getJobNextTimesParams = {
   /** 编号 */
-  id: number;
+  id: number
   /** 数量 */
-  count?: number;
-};
+  count?: number
+}
 
 export type getJobPage1Params = {
   /** 职位标题 */
-  title?: string;
+  title?: string
   /** 公司编号 */
-  companyId?: number;
+  companyId?: number
   /** 职位分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 工作类型 */
-  jobType?: number;
+  jobType?: number
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobPage2Params = {
   /** 任务名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 任务状态，参见 JobStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 处理器的名字，模糊匹配 */
-  handlerName?: string;
+  handlerName?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobPageParams = {
   /** 职位类别编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 关键词 */
-  keyword?: string;
+  keyword?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getJobSeekerByUserIdParams = {
   /** 用户编号 */
-  userId: number;
-};
+  userId: number
+}
 
 export type getJobSeekerPage1Params = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 真实姓名 */
-  realName?: string;
+  realName?: string
   /** 专业类别 */
-  category?: string;
+  category?: string
   /** 专业 */
-  specialty?: string;
+  specialty?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 是否认证 */
-  isCertified?: boolean;
+  isCertified?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobSeekerPageParams = {
   /** 求职者类型编号 */
-  typeId?: number;
+  typeId?: number
   /** 关键词 */
-  keyword?: string;
+  keyword?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getJobSeekerParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getKefuMessageListParams = {
   /** 会话编号 */
-  conversationId?: number;
+  conversationId?: number
   /** 发送时间 */
-  createTime?: string;
+  createTime?: string
   /** 每次查询条数，最大值为 100 */
-  limit: number;
-};
+  limit: number
+}
 
 export type getKeFuMessageListParams = {
   /** 会话编号 */
-  conversationId: number;
+  conversationId: number
   /** 发送时间 */
-  createTime?: string;
+  createTime?: string
   /** 每次查询条数，最大值为 100 */
-  limit: number;
-};
+  limit: number
+}
 
 export type getLevelList1Params = {
   /** 等级名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
-};
+  status?: number
+}
 
 export type getLevelParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getLevelRecordPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 等级编号 */
-  levelId?: number;
+  levelId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getLevelRecordParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getLoginLogPageParams = {
   /** 用户 IP，模拟匹配 */
-  userIp?: string;
+  userIp?: string
   /** 用户账号，模拟匹配 */
-  username?: string;
+  username?: string
   /** 操作状态 */
-  status?: boolean;
+  status?: boolean
   /** 登录时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMailAccountPageParams = {
   /** 邮箱 */
-  mail: string;
+  mail: string
   /** 用户名 */
-  username: string;
+  username: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMailAccountParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getMailLogPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType?: number;
+  userType?: number
   /** 接收邮箱地址，模糊匹配 */
-  toMail?: string;
+  toMail?: string
   /** 邮箱账号编号 */
-  accountId?: number;
+  accountId?: number
   /** 模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 发送状态，参见 MailSendStatusEnum 枚举 */
-  sendStatus?: number;
+  sendStatus?: number
   /** 发送时间 */
-  sendTime?: string[];
+  sendTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMailTemplate1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getMailTemplatePageParams = {
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 标识，模糊匹配 */
-  code?: string;
+  code?: string
   /** 名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 账号编号 */
-  accountId?: number;
+  accountId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMailTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getMemberAnalyseParams = {
   /** 时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getMemberRegisterCountListParams = {
   /** 时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getMemberTagListParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getMemberTagParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getMenuListParams = {
   /** 菜单名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
-};
+  status?: number
+}
 
 export type getMenuParams = {
-  id: number;
-};
+  id: number
+}
 
 export type getMessagePage1Params = {
   /** 发送者用户编号 */
-  fromUserId?: number;
+  fromUserId?: number
   /** 接收者用户编号 */
-  toUserId?: number;
+  toUserId?: number
   /** 消息类型 */
-  type?: number;
+  type?: number
   /** 是否已读 */
-  isRead?: boolean;
+  isRead?: boolean
   /** 关联业务类型 */
-  businessType?: number;
+  businessType?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMessagePageParams = {
   /** 发送者用户编号 */
-  fromUserId?: number;
+  fromUserId?: number
   /** 消息类型 */
-  type?: number;
+  type?: number
   /** 是否已读 */
-  isRead?: boolean;
+  isRead?: boolean
   /** 关联业务类型 */
-  businessType?: number;
+  businessType?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getMessageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getMyMyNotifyMessagePageParams = {
   /** 是否已读 */
-  readStatus?: boolean;
+  readStatus?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getNoticePageParams = {
   /** 通知公告名称，模糊匹配 */
-  title?: string;
+  title?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getNoticeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getNotifyMessagePageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 模板编码 */
-  templateCode?: string;
+  templateCode?: string
   /** 模版类型 */
-  templateType?: number;
+  templateType?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getNotifyMessageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getNotifyTaskDetailParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getNotifyTaskPageParams = {
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 通知类型 */
-  type?: number;
+  type?: number
   /** 数据编号 */
-  dataId?: number;
+  dataId?: number
   /** 通知状态 */
-  status?: number;
+  status?: number
   /** 商户订单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 商户退款编号 */
-  merchantRefundId?: string;
+  merchantRefundId?: string
   /** 商户转账编号 */
-  merchantTransferId?: string;
+  merchantTransferId?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getNotifyTemplatePageParams = {
   /** 模版编码 */
-  code?: string;
+  code?: string
   /** 模版名称 */
-  name?: string;
+  name?: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getNotifyTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOAuth2ClientPageParams = {
   /** 应用名，模糊匹配 */
-  name?: string;
+  name?: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getOAuth2ClientParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrder1Params = {
   /** 编号 */
-  id: number;
+  id: number
   /** 是否同步 */
-  sync?: boolean;
-};
+  sync?: boolean
+}
 
 export type getOrder2Params = {
   /** 编号 */
-  id: number;
+  id: number
   /** 是否同步 */
-  sync?: boolean;
-};
+  sync?: boolean
+}
 
 export type getOrderCountTrendComparisonParams = {
   /** 日期范围类型 */
-  type: number;
+  type: number
   /** 起始时间 */
-  beginTime?: string;
+  beginTime?: string
   /** 截止时间 */
-  endTime?: string;
-};
+  endTime?: string
+}
 
 export type getOrderDetail1Params = {
   /** 订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderDetail2Params = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderDetail3Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderDetailParams = {
   /** 交易订单编号 */
-  id: number;
+  id: number
   /** 是否同步支付状态 */
-  sync?: boolean;
-};
+  sync?: boolean
+}
 
 export type getOrderExpressTrackList1Params = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderExpressTrackListParams = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderItemParams = {
   /** 交易订单项编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderPage1Params = {
   /** 订单号 */
-  no?: string;
+  no?: string
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户昵称 */
-  userNickname?: string;
+  userNickname?: string
   /** 用户手机号 */
-  userMobile?: string;
+  userMobile?: string
   /** 配送方式 */
-  deliveryType?: number;
+  deliveryType?: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 自提门店编号 */
-  pickUpStoreIds?: number[];
+  pickUpStoreIds?: number[]
   /** 自提核销码 */
-  pickUpVerifyCode?: string;
+  pickUpVerifyCode?: string
   /** 订单类型 */
-  type?: number;
+  type?: number
   /** 订单状态 */
-  status?: number;
+  status?: number
   /** 支付渠道 */
-  payChannelCode?: string;
+  payChannelCode?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 订单来源 */
-  terminal?: number;
+  terminal?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getOrderPage2Params = {
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户订单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 渠道编号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 支付单号 */
-  no?: string;
+  no?: string
   /** 支付状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getOrderPageParams = {
   /** 订单状态 */
-  status?: number;
+  status?: number
   /** 是否评价 */
-  commentStatus?: boolean;
+  commentStatus?: boolean
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getOrderParams = {
   /** 门店编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getOrderSummaryParams = {
   /** 订单号 */
-  no?: string;
+  no?: string
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户昵称 */
-  userNickname?: string;
+  userNickname?: string
   /** 用户手机号 */
-  userMobile?: string;
+  userMobile?: string
   /** 配送方式 */
-  deliveryType?: number;
+  deliveryType?: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 自提门店编号 */
-  pickUpStoreIds?: number[];
+  pickUpStoreIds?: number[]
   /** 自提核销码 */
-  pickUpVerifyCode?: string;
+  pickUpVerifyCode?: string
   /** 订单类型 */
-  type?: number;
+  type?: number
   /** 订单状态 */
-  status?: number;
+  status?: number
   /** 支付渠道 */
-  payChannelCode?: string;
+  payChannelCode?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 订单来源 */
-  terminal?: number;
+  terminal?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPointActivity1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getPointActivityListByIdsParams = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getPointActivityPage1Params = {
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPointActivityPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPointActivityParams = {
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getPointRecordPage1Params = {
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 业务类型 */
-  bizType?: number;
+  bizType?: number
   /** 积分标题 */
-  title?: string;
+  title?: string
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPointRecordPageParams = {
   /** 是否增加积分 */
-  addStatus?: boolean;
+  addStatus?: boolean
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPostPageParams = {
   /** 岗位编码，模糊匹配 */
-  code?: string;
+  code?: string
   /** 岗位名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPostParams = {
   /** 岗位编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getProductBrokeragePriceParams = {
-  spuId: number;
-};
+  spuId: number
+}
 
 export type getProductCategoryList1Params = {
   /** 商品分类编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getProductStatisticsAnalyseParams = {
   /** 统计时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getProductStatisticsListParams = {
   /** 统计时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getProductStatisticsRankPageParams = {
   /** 统计时间范围 */
-  times?: string[];
+  times?: string[]
   /** 排序字段 */
-  sortingFields?: SortingField[];
+  sortingFields?: SortingField[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPropertyPageParams = {
   /** 名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPropertyParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getPropertyValuePageParams = {
   /** 属性项的编号 */
-  propertyId?: string;
+  propertyId?: string
   /** 名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getPropertyValueParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getPropertyValueSimpleListParams = {
   /** 属性项编号 */
-  propertyId: number;
-};
+  propertyId: number
+}
 
 export type getRankByPriceParams = {
   /** 时间段 */
-  times: string[];
-};
+  times: string[]
+}
 
 export type getRefundPageParams = {
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户支付单号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 商户退款单号 */
-  merchantRefundId?: string;
+  merchantRefundId?: string
   /** 渠道支付单号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 渠道退款单号 */
-  channelRefundNo?: string;
+  channelRefundNo?: string
   /** 退款状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getRefundParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getRewardActivity1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getRewardActivityPageParams = {
   /** 活动标题 */
-  name?: string;
+  name?: string
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getRewardActivityParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getRoleMenuListParams = {
   /** 角色编号 */
-  roleId: number;
-};
+  roleId: number
+}
 
 export type getRolePageParams = {
   /** 角色名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 角色标识，模糊匹配 */
-  code?: string;
+  code?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getRoleParams = {
-  id: number;
-};
+  id: number
+}
 
 export type getSeckillActivity1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSeckillActivityListByIdsParams = {
   /** 活动编号数组 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getSeckillActivityPage1Params = {
   /** 秒杀时段名称 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSeckillActivityPage2Params = {
   /** 秒杀活动名称 */
-  name?: string;
+  name?: string
   /** 活动状态 */
-  status?: number;
+  status?: number
   /** 秒杀时段id */
-  configId?: number;
+  configId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSeckillActivityPageParams = {
   /** 秒杀配置编号 */
-  configId?: number;
+  configId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSeckillActivityParams = {
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSeckillConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSignInConfigParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSignInRecordPageParams = {
   /** 签到用户 */
-  nickname?: string;
+  nickname?: string
   /** 第几天签到 */
-  day?: number;
+  day?: number
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 签到时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSignRecordPageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSmsChannelPageParams = {
   /** 任务状态 */
-  status?: number;
+  status?: number
   /** 短信签名，模糊匹配 */
-  signature?: string;
+  signature?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSmsChannelParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSmsLogPageParams = {
   /** 短信渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 模板编号 */
-  templateId?: number;
+  templateId?: number
   /** 手机号 */
-  mobile?: string;
+  mobile?: string
   /** 发送状态，参见 SmsSendStatusEnum 枚举类 */
-  sendStatus?: number;
+  sendStatus?: number
   /** 发送时间 */
-  sendTime?: string[];
+  sendTime?: string[]
   /** 接收状态，参见 SmsReceiveStatusEnum 枚举类 */
-  receiveStatus?: number;
+  receiveStatus?: number
   /** 接收时间 */
-  receiveTime?: string[];
+  receiveTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSmsTemplatePageParams = {
   /** 短信签名 */
-  type?: number;
+  type?: number
   /** 开启状态 */
-  status?: number;
+  status?: number
   /** 模板编码，模糊匹配 */
-  code?: string;
+  code?: string
   /** 模板内容，模糊匹配 */
-  content?: string;
+  content?: string
   /** 短信 API 的模板编号，模糊匹配 */
-  apiTemplateId?: string;
+  apiTemplateId?: string
   /** 短信渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSmsTemplateParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSocialClientPageParams = {
   /** 应用名 */
-  name?: string;
+  name?: string
   /** 社交平台的类型 */
-  socialType?: number;
+  socialType?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 客户端编号 */
-  clientId?: string;
+  clientId?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSocialClientParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSocialUser1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSocialUserPageParams = {
   /** 社交平台的类型 */
-  type?: number;
+  type?: number
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 社交 openid */
-  openid?: string;
+  openid?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSocialUserParams = {
   /** 社交平台的类型，参见 SocialTypeEnum 枚举值 */
-  type: number;
-};
+  type: number
+}
 
 export type getSpuDetail1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSpuDetailParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getSpuList1Params = {
   /** spu 编号列表 */
-  spuIds: number[];
-};
+  spuIds: number[]
+}
 
 export type getSpuListParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getSpuPage1Params = {
   /** 商品名称 */
-  name?: string;
+  name?: string
   /** 前端请求的tab类型 */
-  tabType: number;
+  tabType: number
   /** 商品分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getSpuPageParams = {
   /** 商品 SPU 编号数组 */
-  ids?: number[];
+  ids?: number[]
   /** 分类编号 */
-  categoryId?: number;
+  categoryId?: number
   /** 分类编号数组 */
-  categoryIds?: number[];
+  categoryIds?: number[]
   /** 关键字 */
-  keyword?: string;
+  keyword?: string
   /** 排序字段 */
-  sortField?: string;
+  sortField?: string
   /** 排序方式 */
-  sortAsc?: boolean;
+  sortAsc?: boolean
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getTagPageParams = {
   /** 标签名称 */
-  name?: string;
+  name?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getTenantByWebsiteParams = {
   /** 域名 */
-  website: string;
-};
+  website: string
+}
 
 export type getTenantIdByNameParams = {
   /** 租户名 */
-  name: string;
-};
+  name: string
+}
 
 export type getTenantPackagePageParams = {
   /** 套餐名 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getTenantPackageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getTenantPageParams = {
   /** 租户名 */
-  name?: string;
+  name?: string
   /** 联系人 */
-  contactName?: string;
+  contactName?: string
   /** 联系手机 */
-  contactMobile?: string;
+  contactMobile?: string
   /** 租户状态（0正常 1停用） */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getTenantParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getTradeStatisticsAnalyseParams = {
   /** 时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getTradeStatisticsListParams = {
   /** 时间范围 */
-  times?: string[];
-};
+  times?: string[]
+}
 
 export type getTransferPageParams = {
   /** 转账单号 */
-  no?: string;
+  no?: string
   /** 应用编号 */
-  appId?: number;
+  appId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户转账单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 转账状态 */
-  status?: number;
+  status?: number
   /** 收款人姓名 */
-  userName?: string;
+  userName?: string
   /** 收款人账号 */
-  userAccount?: string;
+  userAccount?: string
   /** 渠道转账单号 */
-  channelTransferNo?: string;
+  channelTransferNo?: string
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getTransferParams = {
-  id: number;
-};
+  id: number
+}
 
 export type getUnreadNotifyMessageListParams = {
   /** 10 */
-  size?: number;
-};
+  size?: number
+}
 
 export type getUser1Params = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getUserPage1Params = {
   /** 手机号 */
-  mobile?: string;
+  mobile?: string
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 最后登录时间 */
-  loginDate?: string[];
+  loginDate?: string[]
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 会员标签编号列表 */
-  tagIds?: number[];
+  tagIds?: number[]
   /** 会员等级编号 */
-  levelId?: number;
+  levelId?: number
   /** 用户分组编号 */
-  groupId?: number;
+  groupId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getUserPageParams = {
   /** 用户账号，模糊匹配 */
-  username?: string;
+  username?: string
   /** 手机号码，模糊匹配 */
-  mobile?: string;
+  mobile?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 部门编号，同时筛选子部门 */
-  deptId?: number;
+  deptId?: number
   /** 角色编号 */
-  roleId?: number;
+  roleId?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getUserParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getUserTypeListParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type getUserTypePageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getUserTypeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getWalletPageParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getWalletParams = {
   /** 用户编号 */
-  userId: number;
-};
+  userId: number
+}
 
 export type getWalletRechargePackagePageParams = {
   /** 套餐名 */
-  name?: string;
+  name?: string
   /** 状态 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getWalletRechargePackageParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type getWalletRechargePageParams = {
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getWalletTransactionPage1Params = {
   /** 钱包编号 */
-  walletId?: number;
+  walletId?: number
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getWalletTransactionPageParams = {
   /** 类型 */
-  type?: number;
+  type?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type getWalletTransactionSummaryParams = {
-  createTime: string[];
+  createTime: string[]
   /** 时间段 */
-  times: unknown;
-};
+  times: unknown
+}
 
 export type importExcelParams = {
   /** 是否支持更新，默认为 false */
-  updateSupport?: boolean;
+  updateSupport?: boolean
   /** Excel 文件 */
-  file: unknown;
-};
+  file: unknown
+}
 
 export type isFavoriteExistsParams = {
   /** 商品 SPU 编号 */
-  spuId: number;
-};
+  spuId: number
+}
 
 export type Item = {
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 购买数量 */
-  count?: number;
+  count?: number
   /** 购物车项的编号 */
-  cartId?: number;
-};
+  cartId?: number
+}
 
 export type JobLogRespVO = {
   /** 日志编号 */
-  id: number;
+  id: number
   /** 任务编号 */
-  jobId: number;
+  jobId: number
   /** 处理器的名字 */
-  handlerName: string;
+  handlerName: string
   /** 处理器的参数 */
-  handlerParam?: string;
+  handlerParam?: string
   /** 第几次执行 */
-  executeIndex: number;
+  executeIndex: number
   /** 开始执行时间 */
-  beginTime: string;
+  beginTime: string
   /** 结束执行时间 */
-  endTime?: string;
+  endTime?: string
   /** 执行时长 */
-  duration?: number;
+  duration?: number
   /** 任务状态，参见 JobLogStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 结果数据 */
-  result?: string;
+  result?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type JobRespVO = {
   /** 任务编号 */
-  id: number;
+  id: number
   /** 任务名称 */
-  name: string;
+  name: string
   /** 任务状态 */
-  status: number;
+  status: number
   /** 处理器的名字 */
-  handlerName: string;
+  handlerName: string
   /** 处理器的参数 */
-  handlerParam?: string;
+  handlerParam?: string
   /** CRON 表达式 */
-  cronExpression: string;
+  cronExpression: string
   /** 重试次数 */
-  retryCount: number;
+  retryCount: number
   /** 重试间隔 */
-  retryInterval: number;
+  retryInterval: number
   /** 监控超时时间 */
-  monitorTimeout?: number;
+  monitorTimeout?: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type JobSaveReqVO = {
   /** 任务编号 */
-  id?: number;
+  id?: number
   /** 任务名称 */
-  name: string;
+  name: string
   /** 处理器的名字 */
-  handlerName: string;
+  handlerName: string
   /** 处理器的参数 */
-  handlerParam?: string;
+  handlerParam?: string
   /** CRON 表达式 */
-  cronExpression: string;
+  cronExpression: string
   /** 重试次数 */
-  retryCount: number;
+  retryCount: number
   /** 重试间隔 */
-  retryInterval: number;
+  retryInterval: number
   /** 监控超时时间 */
-  monitorTimeout?: number;
-};
+  monitorTimeout?: number
+}
 
 export type KeFuConversationRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 会话所属用户 */
-  userId: number;
+  userId: number
   /** 会话所属用户头像 */
-  userAvatar: string;
+  userAvatar: string
   /** 会话所属用户昵称 */
-  userNickname: string;
+  userNickname: string
   /** 最后聊天时间 */
-  lastMessageTime: string;
+  lastMessageTime: string
   /** 最后聊天内容 */
-  lastMessageContent: string;
+  lastMessageContent: string
   /** 最后发送的消息类型 */
-  lastMessageContentType: number;
+  lastMessageContentType: number
   /** 管理端置顶 */
-  adminPinned: boolean;
+  adminPinned: boolean
   /** 用户是否可见 */
-  userDeleted: boolean;
+  userDeleted: boolean
   /** 管理员是否可见 */
-  adminDeleted: boolean;
+  adminDeleted: boolean
   /** 管理员未读消息数 */
-  adminUnreadMessageCount: number;
+  adminUnreadMessageCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type KeFuConversationUpdatePinnedReqVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 管理端置顶 */
-  adminPinned: boolean;
-};
+  adminPinned: boolean
+}
 
 export type KeFuMessageRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 会话编号 */
-  conversationId: number;
+  conversationId: number
   /** 发送人编号 */
-  senderId: number;
+  senderId: number
   /** 发送人头像 */
-  senderAvatar: string;
+  senderAvatar: string
   /** 发送人类型 */
-  senderType: number;
+  senderType: number
   /** 接收人编号 */
-  receiverId: number;
+  receiverId: number
   /** 接收人类型 */
-  receiverType: number;
+  receiverType: number
   /** 消息类型 */
-  contentType: number;
+  contentType: number
   /** 消息 */
-  content: string;
+  content: string
   /** 是否已读 */
-  readStatus: boolean;
+  readStatus: boolean
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type KeFuMessageSendReqVO = {
   /** 会话编号 */
-  conversationId: number;
+  conversationId: number
   /** 消息类型 */
-  contentType: number;
+  contentType: number
   /** 消息 */
-  content: string;
-};
+  content: string
+}
 
 export type KeyValueStringBoolean = {
-  key?: string;
-  value?: boolean;
-};
+  key?: string
+  value?: boolean
+}
 
 export type Level = {
   /** 等级编号 */
-  id: number;
+  id: number
   /** 等级名称 */
-  name: string;
+  name: string
   /** 等级 */
-  level: number;
+  level: number
   /** 等级图标 */
-  icon?: string;
-};
+  icon?: string
+}
 
 export type likeForumCommentParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type likeForumPostParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type listAdminRolesParams = {
   /** 用户编号 */
-  userId: number;
-};
+  userId: number
+}
 
 export type LocalTime = {
-  hour?: number;
-  minute?: number;
-  second?: number;
-  nano?: number;
-};
+  hour?: number
+  minute?: number
+  second?: number
+  nano?: number
+}
 
 export type Log = {
   /** 日志编号 */
-  id: number;
+  id: number
   /** 通知状态 */
-  status: string;
+  status: string
   /** 当前通知次数 */
-  notifyTimes: string;
+  notifyTimes: string
   /** HTTP 响应结果 */
-  response: string;
+  response: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type LoginLogRespVO = {
   /** 日志编号 */
-  id: number;
+  id: number
   /** 日志类型，参见 LoginLogTypeEnum 枚举类 */
-  logType: number;
+  logType: number
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType: number;
+  userType: number
   /** 链路追踪编号 */
-  traceId?: string;
+  traceId?: string
   /** 用户账号 */
-  username: string;
+  username: string
   /** 登录结果，参见 LoginResultEnum 枚举类 */
-  result: number;
+  result: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 浏览器 UserAgent */
-  userAgent?: string;
+  userAgent?: string
   /** 登录时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MailAccountRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 邮箱 */
-  mail: string;
+  mail: string
   /** 用户名 */
-  username: string;
+  username: string
   /** 密码 */
-  password: string;
+  password: string
   /** SMTP 服务器域名 */
-  host: string;
+  host: string
   /** SMTP 服务器端口 */
-  port: number;
+  port: number
   /** 是否开启 ssl */
-  sslEnable: boolean;
+  sslEnable: boolean
   /** 是否开启 starttls */
-  starttlsEnable: boolean;
+  starttlsEnable: boolean
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MailAccountSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 邮箱 */
-  mail: string;
+  mail: string
   /** 用户名 */
-  username: string;
+  username: string
   /** 密码 */
-  password: string;
+  password: string
   /** SMTP 服务器域名 */
-  host: string;
+  host: string
   /** SMTP 服务器端口 */
-  port: number;
+  port: number
   /** 是否开启 ssl */
-  sslEnable: boolean;
+  sslEnable: boolean
   /** 是否开启 starttls */
-  starttlsEnable: boolean;
-};
+  starttlsEnable: boolean
+}
 
 export type MailAccountSimpleRespVO = {
   /** 邮箱编号 */
-  id: number;
+  id: number
   /** 邮箱 */
-  mail: string;
-};
+  mail: string
+}
 
 export type MailLogRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType?: string;
+  userType?: string
   /** 接收邮箱地址 */
-  toMail: string;
+  toMail: string
   /** 邮箱账号编号 */
-  accountId: number;
+  accountId: number
   /** 发送邮箱地址 */
-  fromMail: string;
+  fromMail: string
   /** 模板编号 */
-  templateId: number;
+  templateId: number
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 模版发送人名称 */
-  templateNickname?: string;
+  templateNickname?: string
   /** 邮件标题 */
-  templateTitle: string;
+  templateTitle: string
   /** 邮件内容 */
-  templateContent: string;
+  templateContent: string
   /** 邮件参数 */
-  templateParams: Record<string, unknown>;
+  templateParams: Record<string, unknown>
   /** 发送状态，参见 MailSendStatusEnum 枚举 */
-  sendStatus: string;
+  sendStatus: string
   /** 发送时间 */
-  sendTime?: string;
+  sendTime?: string
   /** 发送返回的消息 ID */
-  sendMessageId?: string;
+  sendMessageId?: string
   /** 发送异常 */
-  sendException?: string;
+  sendException?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MailTemplateRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 模版名称 */
-  name: string;
+  name: string
   /** 模版编号 */
-  code: string;
+  code: string
   /** 发送的邮箱账号编号 */
-  accountId: number;
+  accountId: number
   /** 发送人名称 */
-  nickname?: string;
+  nickname?: string
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 参数数组 */
-  params?: string[];
+  params?: string[]
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MailTemplateSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 模版名称 */
-  name: string;
+  name: string
   /** 模版编号 */
-  code: string;
+  code: string
   /** 发送的邮箱账号编号 */
-  accountId: number;
+  accountId: number
   /** 发送人名称 */
-  nickname?: string;
+  nickname?: string
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type MailTemplateSendReqVO = {
   /** 接收邮箱 */
-  mail: string;
+  mail: string
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 模板参数 */
-  templateParams?: Record<string, unknown>;
-};
+  templateParams?: Record<string, unknown>
+}
 
 export type MailTemplateSimpleRespVO = {
   /** 模版编号 */
-  id: number;
+  id: number
   /** 模版名字 */
-  name: string;
-};
+  name: string
+}
 
 export type markMessageAsReadParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberAnalyseDataRespVO = {
   /** 会员数量 */
-  registerUserCount: number;
+  registerUserCount: number
   /** 活跃用户数量 */
-  visitUserCount: number;
+  visitUserCount: number
   /** 充值会员数量 */
-  rechargeUserCount: number;
-};
+  rechargeUserCount: number
+}
 
 export type MemberAnalyseRespVO = {
   /** 访客数量 */
-  visitUserCount: number;
+  visitUserCount: number
   /** 下单用户数量 */
-  orderUserCount: number;
+  orderUserCount: number
   /** 成交用户数量 */
-  payUserCount: number;
+  payUserCount: number
   /** 客单价，单位：分 */
-  atv: number;
+  atv: number
   /** 对照数据 */
-  comparison: DataComparisonRespVOMemberAnalyseDataRespVO;
-};
+  comparison: DataComparisonRespVOMemberAnalyseDataRespVO
+}
 
 export type MemberAreaStatisticsRespVO = {
   /** 省份编号 */
-  areaId: number;
+  areaId: number
   /** 省份名称 */
-  areaName: string;
+  areaName: string
   /** 会员数量 */
-  userCount: number;
+  userCount: number
   /** 下单的会员数量 */
-  orderCreateUserCount: number;
+  orderCreateUserCount: number
   /** 支付订单的会员数量 */
-  orderPayUserCount: number;
+  orderPayUserCount: number
   /** 订单支付金额，单位：分 */
-  orderPayPrice: number;
-};
+  orderPayPrice: number
+}
 
 export type MemberConfigRespVO = {
   /** 积分抵扣开关 */
-  pointTradeDeductEnable: boolean;
+  pointTradeDeductEnable: boolean
   /** 积分抵扣，单位：分 */
-  pointTradeDeductUnitPrice: number;
+  pointTradeDeductUnitPrice: number
   /** 积分抵扣最大值 */
-  pointTradeDeductMaxPrice: number;
+  pointTradeDeductMaxPrice: number
   /** 1 元赠送多少分 */
-  pointTradeGivePoint: number;
+  pointTradeGivePoint: number
   /** 自增主键 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberConfigSaveReqVO = {
   /** 积分抵扣开关 */
-  pointTradeDeductEnable: boolean;
+  pointTradeDeductEnable: boolean
   /** 积分抵扣，单位：分 */
-  pointTradeDeductUnitPrice: number;
+  pointTradeDeductUnitPrice: number
   /** 积分抵扣最大值 */
-  pointTradeDeductMaxPrice: number;
+  pointTradeDeductMaxPrice: number
   /** 1 元赠送多少分 */
-  pointTradeGivePoint: number;
-};
+  pointTradeGivePoint: number
+}
 
 export type MemberCountRespVO = {
   /** 用户访问量 */
-  visitUserCount: number;
+  visitUserCount: number
   /** 注册用户数量 */
-  registerUserCount: number;
-};
+  registerUserCount: number
+}
 
 export type MemberExperienceRecordRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 业务编号 */
-  bizId: string;
+  bizId: string
   /** 业务类型 */
-  bizType: number;
+  bizType: number
   /** 标题 */
-  title: string;
+  title: string
   /** 经验 */
-  experience: number;
+  experience: number
   /** 变更后的经验 */
-  totalExperience: number;
+  totalExperience: number
   /** 描述 */
-  description: string;
+  description: string
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberGroupCreateReqVO = {
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark: string;
+  remark: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type MemberGroupRespVO = {
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark: string;
+  remark: string
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberGroupSimpleRespVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 等级名称 */
-  name?: string;
-};
+  name?: string
+}
 
 export type MemberGroupUpdateReqVO = {
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark: string;
+  remark: string
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberLevelCreateReqVO = {
   /** 等级名称 */
-  name: string;
+  name: string
   /** 升级经验 */
-  experience: number;
+  experience: number
   /** 等级 */
-  level: number;
+  level: number
   /** 享受折扣 */
-  discountPercent: number;
+  discountPercent: number
   /** 等级图标 */
-  icon?: string;
+  icon?: string
   /** 等级背景图 */
-  backgroundUrl?: string;
+  backgroundUrl?: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type MemberLevelRecordRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 等级编号 */
-  levelId: number;
+  levelId: number
   /** 会员等级 */
-  level: number;
+  level: number
   /** 享受折扣 */
-  discountPercent: number;
+  discountPercent: number
   /** 升级经验 */
-  experience: number;
+  experience: number
   /** 会员此时的经验 */
-  userExperience: number;
+  userExperience: number
   /** 备注 */
-  remark: string;
+  remark: string
   /** 描述 */
-  description: string;
+  description: string
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberLevelRespVO = {
   /** 等级名称 */
-  name: string;
+  name: string
   /** 升级经验 */
-  experience: number;
+  experience: number
   /** 等级 */
-  level: number;
+  level: number
   /** 享受折扣 */
-  discountPercent: number;
+  discountPercent: number
   /** 等级图标 */
-  icon?: string;
+  icon?: string
   /** 等级背景图 */
-  backgroundUrl?: string;
+  backgroundUrl?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberLevelSimpleRespVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 等级名称 */
-  name?: string;
+  name?: string
   /** 等级图标 */
-  icon?: string;
-};
+  icon?: string
+}
 
 export type MemberLevelUpdateReqVO = {
   /** 等级名称 */
-  name: string;
+  name: string
   /** 升级经验 */
-  experience: number;
+  experience: number
   /** 等级 */
-  level: number;
+  level: number
   /** 享受折扣 */
-  discountPercent: number;
+  discountPercent: number
   /** 等级图标 */
-  icon?: string;
+  icon?: string
   /** 等级背景图 */
-  backgroundUrl?: string;
+  backgroundUrl?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberPointRecordRespVO = {
   /** 自增主键 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 昵称 */
-  nickname?: string;
+  nickname?: string
   /** 业务编码 */
-  bizId: string;
+  bizId: string
   /** 业务类型 */
-  bizType: number;
+  bizType: number
   /** 积分标题 */
-  title: string;
+  title: string
   /** 积分描述 */
-  description?: string;
+  description?: string
   /** 积分 */
-  point: number;
+  point: number
   /** 变动后的积分 */
-  totalPoint: number;
+  totalPoint: number
   /** 发生时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberRegisterCountRespVO = {
   /** 日期 */
-  date: string;
+  date: string
   /** 数量 */
-  count: number;
-};
+  count: number
+}
 
 export type MemberSexStatisticsRespVO = {
   /** 性别 */
-  sex: number;
+  sex: number
   /** 会员数量 */
-  userCount: number;
-};
+  userCount: number
+}
 
 export type MemberSignInConfigCreateReqVO = {
   /** 签到第 x 天 */
-  day: number;
+  day: number
   /** 奖励积分 */
-  point: number;
+  point: number
   /** 奖励经验 */
-  experience: number;
+  experience: number
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type MemberSignInConfigRespVO = {
   /** 签到第 x 天 */
-  day: number;
+  day: number
   /** 奖励积分 */
-  point: number;
+  point: number
   /** 奖励经验 */
-  experience: number;
+  experience: number
   /** 状态 */
-  status: number;
+  status: number
   /** 自增主键 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime?: string;
-};
+  createTime?: string
+}
 
 export type MemberSignInConfigUpdateReqVO = {
   /** 签到第 x 天 */
-  day: number;
+  day: number
   /** 奖励积分 */
-  point: number;
+  point: number
   /** 奖励经验 */
-  experience: number;
+  experience: number
   /** 状态 */
-  status: number;
+  status: number
   /** 规则自增主键 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberSignInRecordRespVO = {
   /** 签到自增 id */
-  id: number;
+  id: number
   /** 签到用户 */
-  userId: number;
+  userId: number
   /** 昵称 */
-  nickname?: string;
+  nickname?: string
   /** 第几天签到 */
-  day: number;
+  day: number
   /** 签到的积分 */
-  point: number;
+  point: number
   /** 签到时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberSummaryRespVO = {
   /** 会员数量 */
-  userCount: number;
+  userCount: number
   /** 充值会员数量 */
-  rechargeUserCount: number;
+  rechargeUserCount: number
   /** 充值金额，单位：分 */
-  rechargePrice: number;
+  rechargePrice: number
   /** 支出金额，单位：分 */
-  expensePrice: number;
-};
+  expensePrice: number
+}
 
 export type MemberTagCreateReqVO = {
   /** 标签名称 */
-  name: string;
-};
+  name: string
+}
 
 export type MemberTagRespVO = {
   /** 标签名称 */
-  name: string;
+  name: string
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MemberTagUpdateReqVO = {
   /** 标签名称 */
-  name: string;
+  name: string
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type MemberTerminalStatisticsRespVO = {
   /** 终端 */
-  terminal: number;
+  terminal: number
   /** 会员数量 */
-  userCount: number;
-};
+  userCount: number
+}
 
 export type MemberUserRespVO = {
   /** 用户 ID */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar?: string;
-};
+  avatar?: string
+}
 
 export type MemberUserUpdateLevelReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户等级编号 */
-  levelId?: number;
+  levelId?: number
   /** 修改原因 */
-  reason: string;
-};
+  reason: string
+}
 
 export type MemberUserUpdatePointReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 变动积分，正数为增加，负数为减少 */
-  point: number;
-};
+  point: number
+}
 
 export type MemberUserUpdateReqVO = {
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 状态 */
-  status: string;
+  status: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 头像 */
-  avatar: string;
+  avatar: string
   /** 用户昵称 */
-  name?: string;
+  name?: string
   /** 用户性别 */
-  sex?: number;
+  sex?: number
   /** 所在地编号 */
-  areaId?: number;
+  areaId?: number
   /** 所在地全程 */
-  areaName?: string;
+  areaName?: string
   /** 出生日期 */
-  birthday?: string;
+  birthday?: string
   /** 会员备注 */
-  mark?: string;
+  mark?: string
   /** 会员标签 */
-  tagIds?: number[];
+  tagIds?: number[]
   /** 会员等级编号 */
-  levelId?: number;
+  levelId?: number
   /** 用户分组编号 */
-  groupId?: number;
+  groupId?: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type MenuRespVO = {
   /** 菜单编号 */
-  id: number;
+  id: number
   /** 菜单名称 */
-  name: string;
+  name: string
   /** 权限标识,仅菜单类型为按钮时，才需要传递 */
-  permission?: string;
+  permission?: string
   /** 类型，参见 MenuTypeEnum 枚举类 */
-  type: number;
+  type: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 父菜单 ID */
-  parentId: number;
+  parentId: number
   /** 路由地址,仅菜单类型为菜单或者目录时，才需要传 */
-  path?: string;
+  path?: string
   /** 菜单图标,仅菜单类型为菜单或者目录时，才需要传 */
-  icon?: string;
+  icon?: string
   /** 组件路径,仅菜单类型为菜单时，才需要传 */
-  component?: string;
+  component?: string
   /** 组件名 */
-  componentName?: string;
+  componentName?: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 是否可见 */
-  visible?: boolean;
+  visible?: boolean
   /** 是否缓存 */
-  keepAlive?: boolean;
+  keepAlive?: boolean
   /** 是否总是显示 */
-  alwaysShow?: boolean;
+  alwaysShow?: boolean
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type MenuSaveVO = {
   /** 菜单编号 */
-  id?: number;
+  id?: number
   /** 菜单名称 */
-  name: string;
+  name: string
   /** 权限标识,仅菜单类型为按钮时，才需要传递 */
-  permission?: string;
+  permission?: string
   /** 类型，参见 MenuTypeEnum 枚举类 */
-  type: number;
+  type: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 父菜单 ID */
-  parentId: number;
+  parentId: number
   /** 路由地址,仅菜单类型为菜单或者目录时，才需要传 */
-  path?: string;
+  path?: string
   /** 菜单图标,仅菜单类型为菜单或者目录时，才需要传 */
-  icon?: string;
+  icon?: string
   /** 组件路径,仅菜单类型为菜单时，才需要传 */
-  component?: string;
+  component?: string
   /** 组件名 */
-  componentName?: string;
+  componentName?: string
   /** 状态,见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 是否可见 */
-  visible?: boolean;
+  visible?: boolean
   /** 是否缓存 */
-  keepAlive?: boolean;
+  keepAlive?: boolean
   /** 是否总是显示 */
-  alwaysShow?: boolean;
-};
+  alwaysShow?: boolean
+}
 
 export type MenuSimpleRespVO = {
   /** 菜单编号 */
-  id: number;
+  id: number
   /** 菜单名称 */
-  name: string;
+  name: string
   /** 父菜单 ID */
-  parentId: number;
+  parentId: number
   /** 类型，参见 MenuTypeEnum 枚举类 */
-  type: number;
-};
+  type: number
+}
 
 export type MenuVO = {
   /** 菜单名称 */
-  id: number;
+  id: number
   /** 父菜单 ID */
-  parentId: number;
+  parentId: number
   /** 菜单名称 */
-  name: string;
+  name: string
   /** 路由地址,仅菜单类型为菜单或者目录时，才需要传 */
-  path?: string;
+  path?: string
   /** 组件路径,仅菜单类型为菜单时，才需要传 */
-  component?: string;
+  component?: string
   /** 组件名 */
-  componentName?: string;
+  componentName?: string
   /** 菜单图标,仅菜单类型为菜单或者目录时，才需要传 */
-  icon?: string;
+  icon?: string
   /** 是否可见 */
-  visible: boolean;
+  visible: boolean
   /** 是否缓存 */
-  keepAlive: boolean;
+  keepAlive: boolean
   /** 是否总是显示 */
-  alwaysShow?: boolean;
-};
+  alwaysShow?: boolean
+}
 
 export type NoticeRespVO = {
   /** 通知公告序号 */
-  id: number;
+  id: number
   /** 公告标题 */
-  title: string;
+  title: string
   /** 公告类型 */
-  type: number;
+  type: number
   /** 公告内容 */
-  content: string;
+  content: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type NoticeSaveReqVO = {
   /** 岗位公告编号 */
-  id?: number;
+  id?: number
   /** 公告标题 */
-  title: string;
+  title: string
   /** 公告类型 */
-  type: number;
+  type: number
   /** 公告内容 */
-  content: string;
+  content: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
-};
+  status: number
+}
 
 export type NotifyMessageRespVO = {
   /** ID */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType: string;
+  userType: string
   /** 模版编号 */
-  templateId: number;
+  templateId: number
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 模版发送人名称 */
-  templateNickname: string;
+  templateNickname: string
   /** 模版内容 */
-  templateContent: string;
+  templateContent: string
   /** 模版类型 */
-  templateType: number;
+  templateType: number
   /** 模版参数 */
-  templateParams: Record<string, unknown>;
+  templateParams: Record<string, unknown>
   /** 是否已读 */
-  readStatus: boolean;
+  readStatus: boolean
   /** 阅读时间 */
-  readTime?: string;
+  readTime?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type notifyOrderParams = {
-  channelId: number;
-};
+  channelId: number
+}
 
 export type notifyRefundParams = {
-  channelId: number;
-};
+  channelId: number
+}
 
 export type NotifyTemplateRespVO = {
   /** ID */
-  id: number;
+  id: number
   /** 模版名称 */
-  name: string;
+  name: string
   /** 模版编码 */
-  code: string;
+  code: string
   /** 模版类型，对应 system_notify_template_type 字典 */
-  type: number;
+  type: number
   /** 发送人名称 */
-  nickname: string;
+  nickname: string
   /** 模版内容 */
-  content: string;
+  content: string
   /** 参数数组 */
-  params?: string[];
+  params?: string[]
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type NotifyTemplateSaveReqVO = {
   /** ID */
-  id?: number;
+  id?: number
   /** 模版名称 */
-  name: string;
+  name: string
   /** 模版编码 */
-  code: string;
+  code: string
   /** 模版类型，对应 system_notify_template_type 字典 */
-  type: number;
+  type: number
   /** 发送人名称 */
-  nickname: string;
+  nickname: string
   /** 模版内容 */
-  content: string;
+  content: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type NotifyTemplateSendReqVO = {
   /** 用户id */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 模板参数 */
-  templateParams?: Record<string, unknown>;
-};
+  templateParams?: Record<string, unknown>
+}
 
 export type notifyTransferParams = {
-  channelId: number;
-};
+  channelId: number
+}
 
 export type OAuth2AccessTokenRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 访问令牌 */
-  accessToken: string;
+  accessToken: string
   /** 刷新令牌 */
-  refreshToken: string;
+  refreshToken: string
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  userType: number;
+  userType: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 过期时间 */
-  expiresTime: string;
-};
+  expiresTime: string
+}
 
 export type OAuth2ClientRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 客户端密钥 */
-  secret: string;
+  secret: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 应用图标 */
-  logo: string;
+  logo: string
   /** 应用描述 */
-  description?: string;
+  description?: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 访问令牌的有效期 */
-  accessTokenValiditySeconds: number;
+  accessTokenValiditySeconds: number
   /** 刷新令牌的有效期 */
-  refreshTokenValiditySeconds: number;
+  refreshTokenValiditySeconds: number
   /** 可重定向的 URI 地址 */
-  redirectUris: string[];
+  redirectUris: string[]
   /** 授权类型，参见 OAuth2GrantTypeEnum 枚举 */
-  authorizedGrantTypes: string[];
+  authorizedGrantTypes: string[]
   /** 授权范围 */
-  scopes?: string[];
+  scopes?: string[]
   /** 自动通过的授权范围 */
-  autoApproveScopes?: string[];
+  autoApproveScopes?: string[]
   /** 权限 */
-  authorities?: string[];
+  authorities?: string[]
   /** 资源 */
-  resourceIds?: string[];
+  resourceIds?: string[]
   /** 附加信息 */
-  additionalInformation?: string;
+  additionalInformation?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type OAuth2ClientSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 客户端密钥 */
-  secret: string;
+  secret: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 应用图标 */
-  logo: string;
+  logo: string
   /** 应用描述 */
-  description?: string;
+  description?: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 访问令牌的有效期 */
-  accessTokenValiditySeconds: number;
+  accessTokenValiditySeconds: number
   /** 刷新令牌的有效期 */
-  refreshTokenValiditySeconds: number;
+  refreshTokenValiditySeconds: number
   /** 可重定向的 URI 地址 */
-  redirectUris: string[];
+  redirectUris: string[]
   /** 授权类型，参见 OAuth2GrantTypeEnum 枚举 */
-  authorizedGrantTypes: string[];
+  authorizedGrantTypes: string[]
   /** 授权范围 */
-  scopes?: string[];
+  scopes?: string[]
   /** 自动通过的授权范围 */
-  autoApproveScopes?: string[];
+  autoApproveScopes?: string[]
   /** 权限 */
-  authorities?: string[];
+  authorities?: string[]
   /** 资源 */
-  resourceIds?: string[];
+  resourceIds?: string[]
   /** 附加信息 */
-  additionalInformation?: string;
-  additionalInformationJson?: boolean;
-};
+  additionalInformation?: string
+  additionalInformationJson?: boolean
+}
 
 export type OAuth2OpenAccessTokenRespVO = {
   /** 授权范围,如果多个授权范围，使用空格分隔 */
-  scope?: string;
+  scope?: string
   /** 访问令牌 */
-  access_token: string;
+  access_token: string
   /** 刷新令牌 */
-  refresh_token: string;
+  refresh_token: string
   /** 令牌类型 */
-  token_type: string;
+  token_type: string
   /** 过期时间,单位：秒 */
-  expires_in: number;
-};
+  expires_in: number
+}
 
 export type OAuth2OpenAuthorizeInfoRespVO = {
-  client?: Client;
+  client?: Client
   /** scope 的选中信息,使用 List 保证有序性，Key 是 scope，Value 为是否选中 */
-  scopes: KeyValueStringBoolean[];
-};
+  scopes: KeyValueStringBoolean[]
+}
 
 export type OAuth2OpenCheckTokenRespVO = {
   /** 授权范围 */
-  scopes: string[];
+  scopes: string[]
   /** 过期时间，时间戳 / 1000，即单位：秒 */
-  exp: number;
+  exp: number
   /** 用户编号 */
-  user_id: number;
+  user_id: number
   /** 用户类型，参见 UserTypeEnum 枚举 */
-  user_type: number;
+  user_type: number
   /** 租户编号 */
-  tenant_id: number;
+  tenant_id: number
   /** 客户端编号 */
-  client_id: string;
+  client_id: string
   /** 访问令牌 */
-  access_token: string;
-};
+  access_token: string
+}
 
 export type OAuth2UserInfoRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
+  sex?: number
   /** 用户头像 */
-  avatar?: string;
-  dept?: Dept;
-  posts?: Post[];
-};
+  avatar?: string
+  dept?: Dept
+  posts?: Post[]
+}
 
 export type OAuth2UserUpdateReqVO = {
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
-};
+  sex?: number
+}
 
 export type OperateLogRespVO = {
   /** 日志编号 */
-  id: number;
+  id: number
   /** 链路追踪编号 */
-  traceId: string;
+  traceId: string
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户昵称 */
-  userName: string;
+  userName: string
   /** 操作模块类型 */
-  type: string;
+  type: string
   /** 操作名 */
-  subType: string;
+  subType: string
   /** 操作模块业务编号 */
-  bizId: number;
+  bizId: number
   /** 操作明细 */
-  action?: string;
+  action?: string
   /** 拓展字段 */
-  extra?: string;
+  extra?: string
   /** 请求方法名 */
-  requestMethod: string;
+  requestMethod: string
   /** 请求地址 */
-  requestUrl: string;
+  requestUrl: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 浏览器 UserAgent */
-  userAgent: string;
+  userAgent: string
   /** 创建时间 */
-  createTime: string;
-  transMap?: Record<string, unknown>;
-};
+  createTime: string
+  transMap?: Record<string, unknown>
+}
 
 export type Order = {
   /** 商品标题 */
-  subject: string;
-};
+  subject: string
+}
 
 export type OrderItem = {
   /** 编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品图片 */
-  picUrl: string;
+  picUrl: string
   /** 购买数量 */
-  count: number;
+  count: number
   /** 商品原价（单） */
-  price: number;
+  price: number
   /** 商品优惠（总） */
-  discountPrice: number;
+  discountPrice: number
   /** 商品实付金额（总） */
-  payPrice: number;
+  payPrice: number
   /** 子订单分摊金额（总） */
-  orderPartPrice: number;
+  orderPartPrice: number
   /** 分摊后子订单实付金额（总） */
-  orderDividePrice: number;
+  orderDividePrice: number
   /** 售后状态 */
-  afterSaleStatus: number;
-  properties?: ProductPropertyValueDetailRespVO[];
-};
+  afterSaleStatus: number
+  properties?: ProductPropertyValueDetailRespVO[]
+}
 
 export type OrderLog = {
   /** 操作详情 */
-  content: string;
+  content: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 用户类型 */
-  userType: number;
-};
+  userType: number
+}
 
 export type pageDictTypesParams = {
   /** 字典类型名称，模糊匹配 */
-  name?: string;
+  name?: string
   /** 字典类型，模糊匹配 */
-  type?: string;
+  type?: string
   /** 展示状态，参见 CommonStatusEnum 枚举类 */
-  status?: number;
+  status?: number
   /** 创建时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type pageOperateLogParams = {
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 操作模块业务编号 */
-  bizId?: number;
+  bizId?: number
   /** 操作模块，模拟匹配 */
-  type?: string;
+  type?: string
   /** 操作名，模拟匹配 */
-  subType?: string;
+  subType?: string
   /** 操作明细，模拟匹配 */
-  action?: string;
+  action?: string
   /** 开始时间 */
-  createTime?: string[];
+  createTime?: string[]
   /** 页码，从 1 开始 */
-  pageNo: number;
+  pageNo: number
   /** 每页条数，最大值为 100 */
-  pageSize: number;
-};
+  pageSize: number
+}
 
 export type PageResultAfterSaleRespPageItemVO = {
   /** 数据 */
-  list: AfterSaleRespPageItemVO[];
+  list: AfterSaleRespPageItemVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultApiAccessLogRespVO = {
   /** 数据 */
-  list: ApiAccessLogRespVO[];
+  list: ApiAccessLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultApiErrorLogRespVO = {
   /** 数据 */
-  list: ApiErrorLogRespVO[];
+  list: ApiErrorLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppAfterSaleRespVO = {
   /** 数据 */
-  list: AppAfterSaleRespVO[];
+  list: AppAfterSaleRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppArticleRespVO = {
   /** 数据 */
-  list: AppArticleRespVO[];
+  list: AppArticleRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBargainActivityRespVO = {
   /** 数据 */
-  list: AppBargainActivityRespVO[];
+  list: AppBargainActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBargainRecordRespVO = {
   /** 数据 */
-  list: AppBargainRecordRespVO[];
+  list: AppBargainRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBrokerageRecordRespVO = {
   /** 数据 */
-  list: AppBrokerageRecordRespVO[];
+  list: AppBrokerageRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBrokerageUserChildSummaryRespVO = {
   /** 数据 */
-  list: AppBrokerageUserChildSummaryRespVO[];
+  list: AppBrokerageUserChildSummaryRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBrokerageUserRankByPriceRespVO = {
   /** 数据 */
-  list: AppBrokerageUserRankByPriceRespVO[];
+  list: AppBrokerageUserRankByPriceRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBrokerageUserRankByUserCountRespVO = {
   /** 数据 */
-  list: AppBrokerageUserRankByUserCountRespVO[];
+  list: AppBrokerageUserRankByUserCountRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppBrokerageWithdrawRespVO = {
   /** 数据 */
-  list: AppBrokerageWithdrawRespVO[];
+  list: AppBrokerageWithdrawRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppCombinationActivityRespVO = {
   /** 数据 */
-  list: AppCombinationActivityRespVO[];
+  list: AppCombinationActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppCombinationRecordRespVO = {
   /** 数据 */
-  list: AppCombinationRecordRespVO[];
+  list: AppCombinationRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppCouponRespVO = {
   /** 数据 */
-  list: AppCouponRespVO[];
+  list: AppCouponRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppCouponTemplateRespVO = {
   /** 数据 */
-  list: AppCouponTemplateRespVO[];
+  list: AppCouponTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppFavoriteRespVO = {
   /** 数据 */
-  list: AppFavoriteRespVO[];
+  list: AppFavoriteRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppMemberExperienceRecordRespVO = {
   /** 数据 */
-  list: AppMemberExperienceRecordRespVO[];
+  list: AppMemberExperienceRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppMemberPointRecordRespVO = {
   /** 数据 */
-  list: AppMemberPointRecordRespVO[];
+  list: AppMemberPointRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppMemberSignInRecordRespVO = {
   /** 数据 */
-  list: AppMemberSignInRecordRespVO[];
+  list: AppMemberSignInRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppPayWalletRechargeRespVO = {
   /** 数据 */
-  list: AppPayWalletRechargeRespVO[];
+  list: AppPayWalletRechargeRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppPayWalletTransactionRespVO = {
   /** 数据 */
-  list: AppPayWalletTransactionRespVO[];
+  list: AppPayWalletTransactionRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppPointActivityRespVO = {
   /** 数据 */
-  list: AppPointActivityRespVO[];
+  list: AppPointActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppProductBrowseHistoryRespVO = {
   /** 数据 */
-  list: AppProductBrowseHistoryRespVO[];
+  list: AppProductBrowseHistoryRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppProductCommentRespVO = {
   /** 数据 */
-  list: AppProductCommentRespVO[];
+  list: AppProductCommentRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppProductSpuRespVO = {
   /** 数据 */
-  list: AppProductSpuRespVO[];
+  list: AppProductSpuRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppSeckillActivityRespVO = {
   /** 数据 */
-  list: AppSeckillActivityRespVO[];
+  list: AppSeckillActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppTradeOrderPageItemRespVO = {
   /** 数据 */
-  list: AppTradeOrderPageItemRespVO[];
+  list: AppTradeOrderPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppYRZPJobRespVO = {
   /** 数据 */
-  list: AppYRZPJobRespVO[];
+  list: AppYRZPJobRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultAppYRZPJobSeekerRespVO = {
   /** 数据 */
-  list: AppYRZPJobSeekerRespVO[];
+  list: AppYRZPJobSeekerRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultArticleCategoryRespVO = {
   /** 数据 */
-  list: ArticleCategoryRespVO[];
+  list: ArticleCategoryRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultArticleRespVO = {
   /** 数据 */
-  list: ArticleRespVO[];
+  list: ArticleRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBannerRespVO = {
   /** 数据 */
-  list: BannerRespVO[];
+  list: BannerRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBargainActivityPageItemRespVO = {
   /** 数据 */
-  list: BargainActivityPageItemRespVO[];
+  list: BargainActivityPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBargainHelpRespVO = {
   /** 数据 */
-  list: BargainHelpRespVO[];
+  list: BargainHelpRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBargainRecordPageItemRespVO = {
   /** 数据 */
-  list: BargainRecordPageItemRespVO[];
+  list: BargainRecordPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBrokerageRecordRespVO = {
   /** 数据 */
-  list: BrokerageRecordRespVO[];
+  list: BrokerageRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBrokerageUserRespVO = {
   /** 数据 */
-  list: BrokerageUserRespVO[];
+  list: BrokerageUserRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultBrokerageWithdrawRespVO = {
   /** 数据 */
-  list: BrokerageWithdrawRespVO[];
+  list: BrokerageWithdrawRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultCodegenTableRespVO = {
   /** 数据 */
-  list: CodegenTableRespVO[];
+  list: CodegenTableRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultCombinationActivityPageItemRespVO = {
   /** 数据 */
-  list: CombinationActivityPageItemRespVO[];
+  list: CombinationActivityPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultCombinationRecordPageItemRespVO = {
   /** 数据 */
-  list: CombinationRecordPageItemRespVO[];
+  list: CombinationRecordPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultConfigRespVO = {
   /** 数据 */
-  list: ConfigRespVO[];
+  list: ConfigRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultCouponPageItemRespVO = {
   /** 数据 */
-  list: CouponPageItemRespVO[];
+  list: CouponPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultCouponTemplateRespVO = {
   /** 数据 */
-  list: CouponTemplateRespVO[];
+  list: CouponTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDeliveryExpressRespVO = {
   /** 数据 */
-  list: DeliveryExpressRespVO[];
+  list: DeliveryExpressRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDeliveryExpressTemplateRespVO = {
   /** 数据 */
-  list: DeliveryExpressTemplateRespVO[];
+  list: DeliveryExpressTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDeliveryPickUpStoreRespVO = {
   /** 数据 */
-  list: DeliveryPickUpStoreRespVO[];
+  list: DeliveryPickUpStoreRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDemo01ContactRespVO = {
   /** 数据 */
-  list: Demo01ContactRespVO[];
+  list: Demo01ContactRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDemo03CourseDO = {
   /** 数据 */
-  list: Demo03CourseDO[];
+  list: Demo03CourseDO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDemo03GradeDO = {
   /** 数据 */
-  list: Demo03GradeDO[];
+  list: Demo03GradeDO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDemo03StudentRespVO = {
   /** 数据 */
-  list: Demo03StudentRespVO[];
+  list: Demo03StudentRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDictDataRespVO = {
   /** 数据 */
-  list: DictDataRespVO[];
+  list: DictDataRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDictTypeRespVO = {
   /** 数据 */
-  list: DictTypeRespVO[];
+  list: DictTypeRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDiscountActivityRespVO = {
   /** 数据 */
-  list: DiscountActivityRespVO[];
+  list: DiscountActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDiyPageRespVO = {
   /** 数据 */
-  list: DiyPageRespVO[];
+  list: DiyPageRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultDiyTemplateRespVO = {
   /** 数据 */
-  list: DiyTemplateRespVO[];
+  list: DiyTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultFileConfigRespVO = {
   /** 数据 */
-  list: FileConfigRespVO[];
+  list: FileConfigRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultFileRespVO = {
   /** 数据 */
-  list: FileRespVO[];
+  list: FileRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultJobLogRespVO = {
   /** 数据 */
-  list: JobLogRespVO[];
+  list: JobLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultJobRespVO = {
   /** 数据 */
-  list: JobRespVO[];
+  list: JobRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultLoginLogRespVO = {
   /** 数据 */
-  list: LoginLogRespVO[];
+  list: LoginLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMailAccountRespVO = {
   /** 数据 */
-  list: MailAccountRespVO[];
+  list: MailAccountRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMailLogRespVO = {
   /** 数据 */
-  list: MailLogRespVO[];
+  list: MailLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMailTemplateRespVO = {
   /** 数据 */
-  list: MailTemplateRespVO[];
+  list: MailTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberExperienceRecordRespVO = {
   /** 数据 */
-  list: MemberExperienceRecordRespVO[];
+  list: MemberExperienceRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberGroupRespVO = {
   /** 数据 */
-  list: MemberGroupRespVO[];
+  list: MemberGroupRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberLevelRecordRespVO = {
   /** 数据 */
-  list: MemberLevelRecordRespVO[];
+  list: MemberLevelRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberPointRecordRespVO = {
   /** 数据 */
-  list: MemberPointRecordRespVO[];
+  list: MemberPointRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberSignInRecordRespVO = {
   /** 数据 */
-  list: MemberSignInRecordRespVO[];
+  list: MemberSignInRecordRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberTagRespVO = {
   /** 数据 */
-  list: MemberTagRespVO[];
+  list: MemberTagRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultMemberUserRespVO = {
   /** 数据 */
-  list: MemberUserRespVO[];
+  list: MemberUserRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultNoticeRespVO = {
   /** 数据 */
-  list: NoticeRespVO[];
+  list: NoticeRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultNotifyMessageRespVO = {
   /** 数据 */
-  list: NotifyMessageRespVO[];
+  list: NotifyMessageRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultNotifyTemplateRespVO = {
   /** 数据 */
-  list: NotifyTemplateRespVO[];
+  list: NotifyTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultOAuth2AccessTokenRespVO = {
   /** 数据 */
-  list: OAuth2AccessTokenRespVO[];
+  list: OAuth2AccessTokenRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultOAuth2ClientRespVO = {
   /** 数据 */
-  list: OAuth2ClientRespVO[];
+  list: OAuth2ClientRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultOperateLogRespVO = {
   /** 数据 */
-  list: OperateLogRespVO[];
+  list: OperateLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayAppPageItemRespVO = {
   /** 数据 */
-  list: PayAppPageItemRespVO[];
+  list: PayAppPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayDemoOrderRespVO = {
   /** 数据 */
-  list: PayDemoOrderRespVO[];
+  list: PayDemoOrderRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayDemoWithdrawRespVO = {
   /** 数据 */
-  list: PayDemoWithdrawRespVO[];
+  list: PayDemoWithdrawRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayNotifyTaskRespVO = {
   /** 数据 */
-  list: PayNotifyTaskRespVO[];
+  list: PayNotifyTaskRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayOrderPageItemRespVO = {
   /** 数据 */
-  list: PayOrderPageItemRespVO[];
+  list: PayOrderPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayRefundPageItemRespVO = {
   /** 数据 */
-  list: PayRefundPageItemRespVO[];
+  list: PayRefundPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayTransferRespVO = {
   /** 数据 */
-  list: PayTransferRespVO[];
+  list: PayTransferRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayWalletRespVO = {
   /** 数据 */
-  list: PayWalletRespVO[];
+  list: PayWalletRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPayWalletTransactionRespVO = {
   /** 数据 */
-  list: PayWalletTransactionRespVO[];
+  list: PayWalletTransactionRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPointActivityRespVO = {
   /** 数据 */
-  list: PointActivityRespVO[];
+  list: PointActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultPostRespVO = {
   /** 数据 */
-  list: PostRespVO[];
+  list: PostRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductBrandRespVO = {
   /** 数据 */
-  list: ProductBrandRespVO[];
+  list: ProductBrandRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductBrowseHistoryRespVO = {
   /** 数据 */
-  list: ProductBrowseHistoryRespVO[];
+  list: ProductBrowseHistoryRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductCommentRespVO = {
   /** 数据 */
-  list: ProductCommentRespVO[];
+  list: ProductCommentRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductFavoriteRespVO = {
   /** 数据 */
-  list: ProductFavoriteRespVO[];
+  list: ProductFavoriteRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductPropertyRespVO = {
   /** 数据 */
-  list: ProductPropertyRespVO[];
+  list: ProductPropertyRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductPropertyValueRespVO = {
   /** 数据 */
-  list: ProductPropertyValueRespVO[];
+  list: ProductPropertyValueRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductSpuRespVO = {
   /** 数据 */
-  list: ProductSpuRespVO[];
+  list: ProductSpuRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultProductStatisticsRespVO = {
   /** 数据 */
-  list: ProductStatisticsRespVO[];
+  list: ProductStatisticsRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultRewardActivityRespVO = {
   /** 数据 */
-  list: RewardActivityRespVO[];
+  list: RewardActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultRoleRespVO = {
   /** 数据 */
-  list: RoleRespVO[];
+  list: RoleRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSeckillActivityRespVO = {
   /** 数据 */
-  list: SeckillActivityRespVO[];
+  list: SeckillActivityRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSeckillConfigRespVO = {
   /** 数据 */
-  list: SeckillConfigRespVO[];
+  list: SeckillConfigRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSmsChannelRespVO = {
   /** 数据 */
-  list: SmsChannelRespVO[];
+  list: SmsChannelRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSmsLogRespVO = {
   /** 数据 */
-  list: SmsLogRespVO[];
+  list: SmsLogRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSmsTemplateRespVO = {
   /** 数据 */
-  list: SmsTemplateRespVO[];
+  list: SmsTemplateRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSocialClientRespVO = {
   /** 数据 */
-  list: SocialClientRespVO[];
+  list: SocialClientRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultSocialUserRespVO = {
   /** 数据 */
-  list: SocialUserRespVO[];
+  list: SocialUserRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultTenantPackageRespVO = {
   /** 数据 */
-  list: TenantPackageRespVO[];
+  list: TenantPackageRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultTenantRespVO = {
   /** 数据 */
-  list: TenantRespVO[];
+  list: TenantRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultTradeOrderPageItemRespVO = {
   /** 数据 */
-  list: TradeOrderPageItemRespVO[];
+  list: TradeOrderPageItemRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultUserRespVO = {
   /** 数据 */
-  list: UserRespVO[];
+  list: UserRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultUserTypeRespVO = {
   /** 数据 */
-  list: UserTypeRespVO[];
+  list: UserTypeRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultWalletRechargePackageRespVO = {
   /** 数据 */
-  list: WalletRechargePackageRespVO[];
+  list: WalletRechargePackageRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPForumCommentRespAppVO = {
   /** 数据 */
-  list: YRZPForumCommentRespAppVO[];
+  list: YRZPForumCommentRespAppVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPForumCommentRespVO = {
   /** 数据 */
-  list: YRZPForumCommentRespVO[];
+  list: YRZPForumCommentRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPForumPostRespAppVO = {
   /** 数据 */
-  list: YRZPForumPostRespAppVO[];
+  list: YRZPForumPostRespAppVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPForumPostRespVO = {
   /** 数据 */
-  list: YRZPForumPostRespVO[];
+  list: YRZPForumPostRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPJobApplicationRespVO = {
   /** 数据 */
-  list: YRZPJobApplicationRespVO[];
+  list: YRZPJobApplicationRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPJobCategoryRespVO = {
   /** 数据 */
-  list: YRZPJobCategoryRespVO[];
+  list: YRZPJobCategoryRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPJobRespVO = {
   /** 数据 */
-  list: YRZPJobRespVO[];
+  list: YRZPJobRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPJobSeekerRespVO = {
   /** 数据 */
-  list: YRZPJobSeekerRespVO[];
+  list: YRZPJobSeekerRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPMessageRespAppVO = {
   /** 数据 */
-  list: YRZPMessageRespAppVO[];
+  list: YRZPMessageRespAppVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PageResultYRZPMessageRespVO = {
   /** 数据 */
-  list: YRZPMessageRespVO[];
+  list: YRZPMessageRespVO[]
   /** 总量 */
-  total: number;
-};
+  total: number
+}
 
 export type PayAppCreateReqVO = {
   /** 应用标识 */
-  appKey: string;
+  appKey: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 支付结果的回调地址 */
-  orderNotifyUrl: string;
+  orderNotifyUrl: string
   /** 退款结果的回调地址 */
-  refundNotifyUrl: string;
+  refundNotifyUrl: string
   /** 转账结果的回调地址 */
-  transferNotifyUrl?: string;
-};
+  transferNotifyUrl?: string
+}
 
 export type PayAppPageItemRespVO = {
   /** 应用标识 */
-  appKey: string;
+  appKey: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 支付结果的回调地址 */
-  orderNotifyUrl: string;
+  orderNotifyUrl: string
   /** 退款结果的回调地址 */
-  refundNotifyUrl: string;
+  refundNotifyUrl: string
   /** 转账结果的回调地址 */
-  transferNotifyUrl?: string;
+  transferNotifyUrl?: string
   /** 应用编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 已配置的支付渠道编码 */
-  channelCodes: string[];
-};
+  channelCodes: string[]
+}
 
 export type PayAppRespVO = {
   /** 应用标识 */
-  appKey: string;
+  appKey: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 支付结果的回调地址 */
-  orderNotifyUrl: string;
+  orderNotifyUrl: string
   /** 退款结果的回调地址 */
-  refundNotifyUrl: string;
+  refundNotifyUrl: string
   /** 转账结果的回调地址 */
-  transferNotifyUrl?: string;
+  transferNotifyUrl?: string
   /** 应用编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayAppUpdateReqVO = {
   /** 应用标识 */
-  appKey: string;
+  appKey: string
   /** 应用名 */
-  name: string;
+  name: string
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 支付结果的回调地址 */
-  orderNotifyUrl: string;
+  orderNotifyUrl: string
   /** 退款结果的回调地址 */
-  refundNotifyUrl: string;
+  refundNotifyUrl: string
   /** 转账结果的回调地址 */
-  transferNotifyUrl?: string;
+  transferNotifyUrl?: string
   /** 应用编号 */
-  id: number;
-};
+  id: number
+}
 
 export type PayAppUpdateStatusReqVO = {
   /** 应用编号 */
-  id: number;
+  id: number
   /** 状态，见 SysCommonStatusEnum 枚举 */
-  status: number;
-};
+  status: number
+}
 
 export type PayChannelCreateReqVO = {
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 渠道费率，单位：百分比 */
-  feeRate: number;
+  feeRate: number
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编码 */
-  code: string;
+  code: string
   /** 渠道配置的 json 字符串 */
-  config: string;
-};
+  config: string
+}
 
 export type PayChannelRespVO = {
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 渠道费率，单位：百分比 */
-  feeRate: number;
+  feeRate: number
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 商户编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 渠道编码 */
-  code: string;
+  code: string
   /** 配置 */
-  config: string;
-};
+  config: string
+}
 
 export type PayChannelUpdateReqVO = {
   /** 开启状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 渠道费率，单位：百分比 */
-  feeRate: number;
+  feeRate: number
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 商户编号 */
-  id: number;
+  id: number
   /** 渠道配置的json字符串 */
-  config: string;
-};
+  config: string
+}
 
 export type PayDemoOrderCreateReqVO = {
   /** 商品编号 */
-  spuId: number;
-};
+  spuId: number
+}
 
 export type PayDemoOrderRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 商品编号 */
-  spuId: number;
+  spuId: number
   /** 商家备注 */
-  spuName?: string;
+  spuName?: string
   /** 价格，单位：分 */
-  price: number;
+  price: number
   /** 是否已支付 */
-  payStatus: boolean;
+  payStatus: boolean
   /** 支付订单编号 */
-  payOrderId?: number;
+  payOrderId?: number
   /** 订单支付时间 */
-  payTime?: string;
+  payTime?: string
   /** 支付渠道 */
-  payChannelCode?: string;
+  payChannelCode?: string
   /** 支付退款编号 */
-  payRefundId?: number;
+  payRefundId?: number
   /** 退款金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 退款时间 */
-  refundTime?: string;
+  refundTime?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayDemoWithdrawCreateReqVO = {
   /** 提现标题 */
-  subject: string;
+  subject: string
   /** 提现金额，单位：分 */
-  price: number;
+  price: number
   /** 收款人账号 */
-  userAccount: string;
+  userAccount: string
   /** 收款人姓名 */
-  userName?: string;
+  userName?: string
   /** 提现方式 */
-  type: number;
-  userNameValid?: boolean;
-};
+  type: number
+  userNameValid?: boolean
+}
 
 export type PayDemoWithdrawRespVO = {
   /** 转账单编号 */
-  id: number;
+  id: number
   /** 提现标题 */
-  subject: string;
+  subject: string
   /** 提现金额，单位：分 */
-  price: number;
+  price: number
   /** 收款人姓名 */
-  userName?: string;
+  userName?: string
   /** 收款人账号 */
-  userAccount?: string;
+  userAccount?: string
   /** 提现类型 */
-  type: number;
+  type: number
   /** 提现状态 */
-  status: number;
+  status: number
   /** 转账单编号 */
-  payTransferId?: number;
+  payTransferId?: number
   /** 转账渠道 */
-  transferChannelCode?: string;
+  transferChannelCode?: string
   /** 转账成功时间 */
-  transferTime?: string;
+  transferTime?: string
   /** 转账失败原因 */
-  transferErrorMsg?: string;
-};
+  transferErrorMsg?: string
+}
 
 export type PayNotifyTaskDetailRespVO = {
   /** 任务编号 */
-  id: number;
+  id: number
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 应用名称 */
-  appName?: string;
+  appName?: string
   /** 通知类型 */
-  type: string;
+  type: string
   /** 数据编号 */
-  dataId: number;
+  dataId: number
   /** 商户订单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 商户退款编号 */
-  merchantRefundId?: string;
+  merchantRefundId?: string
   /** 商户转账编号 */
-  merchantTransferId?: string;
+  merchantTransferId?: string
   /** 通知状态 */
-  status: string;
+  status: string
   /** 下一次通知时间 */
-  nextNotifyTime: string;
+  nextNotifyTime: string
   /** 最后一次执行时间 */
-  lastExecuteTime: string;
+  lastExecuteTime: string
   /** 当前通知次数 */
-  notifyTimes: string;
+  notifyTimes: string
   /** 最大可通知次数 */
-  maxNotifyTimes: string;
+  maxNotifyTimes: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
+  updateTime: string
   /** 回调日志列表 */
-  logs?: Log[];
-};
+  logs?: Log[]
+}
 
 export type PayNotifyTaskRespVO = {
   /** 任务编号 */
-  id: number;
+  id: number
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 应用名称 */
-  appName?: string;
+  appName?: string
   /** 通知类型 */
-  type: string;
+  type: string
   /** 数据编号 */
-  dataId: number;
+  dataId: number
   /** 商户订单编号 */
-  merchantOrderId?: string;
+  merchantOrderId?: string
   /** 商户退款编号 */
-  merchantRefundId?: string;
+  merchantRefundId?: string
   /** 商户转账编号 */
-  merchantTransferId?: string;
+  merchantTransferId?: string
   /** 通知状态 */
-  status: string;
+  status: string
   /** 下一次通知时间 */
-  nextNotifyTime: string;
+  nextNotifyTime: string
   /** 最后一次执行时间 */
-  lastExecuteTime: string;
+  lastExecuteTime: string
   /** 当前通知次数 */
-  notifyTimes: string;
+  notifyTimes: string
   /** 最大可通知次数 */
-  maxNotifyTimes: string;
+  maxNotifyTimes: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
-};
+  updateTime: string
+}
 
 export type PayOrderDetailsRespVO = {
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户订单编号 */
-  merchantOrderId: string;
+  merchantOrderId: string
   /** 商品标题 */
-  subject: string;
+  subject: string
   /** 商品描述 */
-  body: string;
+  body: string
   /** 异步通知地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 支付金额，单位：分 */
-  price: number;
+  price: number
   /** 渠道手续费，单位：百分比 */
-  channelFeeRate?: number;
+  channelFeeRate?: number
   /** 渠道手续金额，单位：分 */
-  channelFeePrice?: number;
+  channelFeePrice?: number
   /** 支付状态 */
-  status: number;
+  status: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 订单失效时间 */
-  expireTime: string;
+  expireTime: string
   /** 订单支付成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 支付成功的订单拓展单编号 */
-  extensionId?: number;
+  extensionId?: number
   /** 支付订单号 */
-  no?: string;
+  no?: string
   /** 退款总金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 渠道用户编号 */
-  channelUserId?: string;
+  channelUserId?: string
   /** 渠道订单号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 支付订单编号 */
-  id: number;
+  id: number
   /** 应用名称 */
-  appName: string;
+  appName: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
-  extension?: PayOrderExtension;
-};
+  updateTime: string
+  extension?: PayOrderExtension
+}
 
 export type PayOrderExtension = {
   /** 支付订单号 */
-  no: string;
+  no: string
   /** 支付异步通知的内容 */
-  channelNotifyData?: string;
-};
+  channelNotifyData?: string
+}
 
 export type PayOrderNotifyReqDTO = {
-  merchantOrderId: string;
-  payOrderId: number;
-};
+  merchantOrderId: string
+  payOrderId: number
+}
 
 export type PayOrderPageItemRespVO = {
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户订单编号 */
-  merchantOrderId: string;
+  merchantOrderId: string
   /** 商品标题 */
-  subject: string;
+  subject: string
   /** 商品描述 */
-  body: string;
+  body: string
   /** 异步通知地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 支付金额，单位：分 */
-  price: number;
+  price: number
   /** 渠道手续费，单位：百分比 */
-  channelFeeRate?: number;
+  channelFeeRate?: number
   /** 渠道手续金额，单位：分 */
-  channelFeePrice?: number;
+  channelFeePrice?: number
   /** 支付状态 */
-  status: number;
+  status: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 订单失效时间 */
-  expireTime: string;
+  expireTime: string
   /** 订单支付成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 支付成功的订单拓展单编号 */
-  extensionId?: number;
+  extensionId?: number
   /** 支付订单号 */
-  no?: string;
+  no?: string
   /** 退款总金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 渠道用户编号 */
-  channelUserId?: string;
+  channelUserId?: string
   /** 渠道订单号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 支付订单编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 应用名称 */
-  appName?: string;
-};
+  appName?: string
+}
 
 export type PayOrderRespVO = {
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编号 */
-  channelId?: number;
+  channelId?: number
   /** 渠道编码 */
-  channelCode?: string;
+  channelCode?: string
   /** 商户订单编号 */
-  merchantOrderId: string;
+  merchantOrderId: string
   /** 商品标题 */
-  subject: string;
+  subject: string
   /** 商品描述 */
-  body: string;
+  body: string
   /** 异步通知地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 支付金额，单位：分 */
-  price: number;
+  price: number
   /** 渠道手续费，单位：百分比 */
-  channelFeeRate?: number;
+  channelFeeRate?: number
   /** 渠道手续金额，单位：分 */
-  channelFeePrice?: number;
+  channelFeePrice?: number
   /** 支付状态 */
-  status: number;
+  status: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 订单失效时间 */
-  expireTime: string;
+  expireTime: string
   /** 订单支付成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 支付成功的订单拓展单编号 */
-  extensionId?: number;
+  extensionId?: number
   /** 支付订单号 */
-  no?: string;
+  no?: string
   /** 退款总金额，单位：分 */
-  refundPrice: number;
+  refundPrice: number
   /** 渠道用户编号 */
-  channelUserId?: string;
+  channelUserId?: string
   /** 渠道订单号 */
-  channelOrderNo?: string;
+  channelOrderNo?: string
   /** 支付订单编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayOrderSubmitReqVO = {
   /** 支付单编号 */
-  id: number;
+  id: number
   /** 支付渠道 */
-  channelCode: string;
+  channelCode: string
   /** 支付渠道的额外参数，例如说，微信公众号需要传递 openid 参数 */
-  channelExtras?: Record<string, unknown>;
+  channelExtras?: Record<string, unknown>
   /** 展示模式 */
-  displayMode?: string;
+  displayMode?: string
   /** 回跳地址 */
-  returnUrl?: string;
-};
+  returnUrl?: string
+}
 
 export type PayOrderSubmitRespVO = {
   /** 支付状态 */
-  status: number;
+  status: number
   /** 展示模式 */
-  displayMode: string;
+  displayMode: string
   /** 展示内容 */
-  displayContent: string;
-};
+  displayContent: string
+}
 
 export type PayRefundDetailsRespVO = {
   /** 外部退款号 */
-  no: string;
+  no: string
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编号 */
-  channelId: number;
+  channelId: number
   /** 渠道编码 */
-  channelCode: string;
+  channelCode: string
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 商户订单编号 */
-  merchantOrderId: string;
+  merchantOrderId: string
   /** 商户退款订单号 */
-  merchantRefundId: string;
+  merchantRefundId: string
   /** 异步通知地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 退款状态 */
-  status: number;
+  status: number
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 退款金额,单位分 */
-  refundPrice: number;
+  refundPrice: number
   /** 退款原因 */
-  reason: string;
+  reason: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 渠道订单号 */
-  channelOrderNo: string;
+  channelOrderNo: string
   /** 渠道退款单号 */
-  channelRefundNo?: string;
+  channelRefundNo?: string
   /** 退款成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 调用渠道的错误码 */
-  channelErrorCode?: string;
+  channelErrorCode?: string
   /** 调用渠道的错误提示 */
-  channelErrorMsg?: string;
+  channelErrorMsg?: string
   /** 支付渠道的额外参数 */
-  channelNotifyData?: string;
+  channelNotifyData?: string
   /** 支付退款编号 */
-  id: number;
+  id: number
   /** 应用名称 */
-  appName: string;
+  appName: string
   /** 支付订单 */
-  order: Order;
+  order: Order
   /** 创建时间 */
-  createTime?: string;
+  createTime?: string
   /** 更新时间 */
-  updateTime?: string;
-};
+  updateTime?: string
+}
 
 export type PayRefundNotifyReqDTO = {
-  merchantOrderId: string;
-  merchantRefundId: string;
-  payRefundId: number;
-};
+  merchantOrderId: string
+  merchantRefundId: string
+  payRefundId: number
+}
 
 export type PayRefundPageItemRespVO = {
   /** 外部退款号 */
-  no: string;
+  no: string
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 渠道编号 */
-  channelId: number;
+  channelId: number
   /** 渠道编码 */
-  channelCode: string;
+  channelCode: string
   /** 订单编号 */
-  orderId: number;
+  orderId: number
   /** 商户订单编号 */
-  merchantOrderId: string;
+  merchantOrderId: string
   /** 商户退款订单号 */
-  merchantRefundId: string;
+  merchantRefundId: string
   /** 异步通知地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 退款状态 */
-  status: number;
+  status: number
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 退款金额,单位分 */
-  refundPrice: number;
+  refundPrice: number
   /** 退款原因 */
-  reason: string;
+  reason: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 渠道订单号 */
-  channelOrderNo: string;
+  channelOrderNo: string
   /** 渠道退款单号 */
-  channelRefundNo?: string;
+  channelRefundNo?: string
   /** 退款成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 调用渠道的错误码 */
-  channelErrorCode?: string;
+  channelErrorCode?: string
   /** 调用渠道的错误提示 */
-  channelErrorMsg?: string;
+  channelErrorMsg?: string
   /** 支付渠道的额外参数 */
-  channelNotifyData?: string;
+  channelNotifyData?: string
   /** 支付订单编号 */
-  id: number;
+  id: number
   /** 应用名称 */
-  appName: string;
+  appName: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PaySummaryRespVO = {
   /** 充值金额，单位分 */
-  rechargePrice: number;
-};
+  rechargePrice: number
+}
 
 export type PayTransferNotifyReqDTO = {
-  merchantTransferId: string;
-  payTransferId: number;
-};
+  merchantTransferId: string
+  payTransferId: number
+}
 
 export type PayTransferRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 转账单号 */
-  no: string;
+  no: string
   /** 应用编号 */
-  appId: number;
+  appId: number
   /** 应用名称 */
-  appName: string;
+  appName: string
   /** 转账渠道编号 */
-  channelId: number;
+  channelId: number
   /** 转账渠道编码 */
-  channelCode: string;
+  channelCode: string
   /** 商户转账单编号 */
-  merchantTransferId: string;
+  merchantTransferId: string
   /** 转账状态 */
-  status: number;
+  status: number
   /** 转账成功时间 */
-  successTime?: string;
+  successTime?: string
   /** 转账金额 */
-  price: number;
+  price: number
   /** 转账标题 */
-  subject: string;
+  subject: string
   /** 收款人姓名 */
-  userName?: string;
+  userName?: string
   /** 收款人账号 */
-  userAccount: string;
+  userAccount: string
   /** 异步通知商户地址 */
-  notifyUrl: string;
+  notifyUrl: string
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 渠道的额外参数 */
-  channelExtras?: Record<string, unknown>;
+  channelExtras?: Record<string, unknown>
   /** 渠道转账单号 */
-  channelTransferNo?: string;
+  channelTransferNo?: string
   /** 调用渠道的错误码 */
-  channelErrorCode?: string;
+  channelErrorCode?: string
   /** 调用渠道的错误提示 */
-  channelErrorMsg?: string;
+  channelErrorMsg?: string
   /** 渠道的同步/异步通知的内容 */
-  channelNotifyData?: string;
+  channelNotifyData?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayWalletRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 余额，单位分 */
-  balance: number;
+  balance: number
   /** 累计支出，单位分 */
-  totalExpense: number;
+  totalExpense: number
   /** 累计充值，单位分 */
-  totalRecharge: number;
+  totalRecharge: number
   /** 冻结金额，单位分 */
-  freezePrice: number;
+  freezePrice: number
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayWalletTransactionRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 钱包编号 */
-  walletId: number;
+  walletId: number
   /** 业务分类 */
-  bizType: number;
+  bizType: number
   /** 交易金额，单位分 */
-  price: number;
+  price: number
   /** 流水标题 */
-  title: string;
+  title: string
   /** 交易后的余额，单位分 */
-  balance: number;
+  balance: number
   /** 交易时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PayWalletUpdateBalanceReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 变动余额，正数为增加，负数为减少 */
-  balance: number;
-};
+  balance: number
+}
 
 export type PermissionAssignRoleDataScopeReqVO = {
   /** 角色编号 */
-  roleId: number;
+  roleId: number
   /** 数据范围，参见 DataScopeEnum 枚举类 */
-  dataScope: number;
+  dataScope: number
   /** 部门编号列表，只有范围类型为 DEPT_CUSTOM 时，该字段才需要 */
-  dataScopeDeptIds?: number[];
-};
+  dataScopeDeptIds?: number[]
+}
 
 export type PermissionAssignRoleMenuReqVO = {
   /** 角色编号 */
-  roleId: number;
+  roleId: number
   /** 菜单编号列表 */
-  menuIds?: number[];
-};
+  menuIds?: number[]
+}
 
 export type PermissionAssignUserRoleReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 角色编号列表 */
-  roleIds?: number[];
-};
+  roleIds?: number[]
+}
 
 export type pickUpOrderByIdParams = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type pickUpOrderByVerifyCodeParams = {
   /** 自提核销码 */
-  pickUpVerifyCode: string;
-};
+  pickUpVerifyCode: string
+}
 
 export type PointActivityRespVO = {
   /** 积分商城活动编号 */
-  id: number;
+  id: number
   /** 积分商城活动商品 */
-  spuId: number;
+  spuId: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 积分商城活动库存 */
-  stock: number;
+  stock: number
   /** 积分商城活动总库存 */
-  totalStock: number;
+  totalStock: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 积分商城商品 */
-  products: PointProductRespVO[];
+  products: PointProductRespVO[]
   /** 商品名称 */
-  spuName: string;
+  spuName: string
   /** 商品主图 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 兑换积分 */
-  point: number;
+  point: number
   /** 兑换金额，单位：分 */
-  price: number;
-};
+  price: number
+}
 
 export type PointActivitySaveReqVO = {
   /** 积分商城活动编号 */
-  id: number;
+  id: number
   /** 积分商城活动商品 */
-  spuId: number;
+  spuId: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 积分商城商品 */
-  products: PointProductSaveReqVO[];
-};
+  products: PointProductSaveReqVO[]
+}
 
 export type PointProductRespVO = {
   /** 积分商城商品编号 */
-  id: number;
+  id: number
   /** 积分商城活动编号 */
-  activityId: number;
+  activityId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 可兑换数量 */
-  count: number;
+  count: number
   /** 兑换积分 */
-  point: number;
+  point: number
   /** 兑换金额，单位：分 */
-  price: number;
+  price: number
   /** 积分商城商品库存 */
-  stock: number;
+  stock: number
   /** 积分商城商品状态 */
-  activityStatus: number;
-};
+  activityStatus: number
+}
 
 export type PointProductSaveReqVO = {
   /** 积分商城商品编号 */
-  id: number;
+  id: number
   /** 积分商城活动 id */
-  activityId: number;
+  activityId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 可兑换数量 */
-  count: number;
+  count: number
   /** 兑换积分 */
-  point: number;
+  point: number
   /** 兑换金额，单位：分 */
-  price: number;
+  price: number
   /** 积分商城商品库存 */
-  stock: number;
+  stock: number
   /** 积分商城商品状态 */
-  activityStatus: number;
-};
+  activityStatus: number
+}
 
 export type PointVO = {
-  secretKey?: string;
-  x?: number;
-  y?: number;
-};
+  secretKey?: string
+  x?: number
+  y?: number
+}
 
 export type Post = {
   /** 岗位编号 */
-  id: number;
+  id: number
   /** 岗位名称 */
-  name: string;
-};
+  name: string
+}
 
 export type postAccessTokenParams = {
   /** 授权类型 */
-  grant_type: string;
+  grant_type: string
   /** 授权范围 */
-  code?: string;
+  code?: string
   /** 重定向 URI */
-  redirect_uri?: string;
+  redirect_uri?: string
   /** 状态 */
-  state?: string;
-  username?: string;
-  password?: string;
-  scope?: string;
-  refresh_token?: string;
-};
+  state?: string
+  username?: string
+  password?: string
+  scope?: string
+  refresh_token?: string
+}
 
 export type PostRespVO = {
   /** 岗位序号 */
-  id: number;
+  id: number
   /** 岗位名称 */
-  name: string;
+  name: string
   /** 岗位编码 */
-  code: string;
+  code: string
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type PostSaveReqVO = {
   /** 岗位编号 */
-  id?: number;
+  id?: number
   /** 岗位名称 */
-  name: string;
+  name: string
   /** 岗位编码 */
-  code: string;
+  code: string
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type PostSimpleRespVO = {
   /** 岗位序号 */
-  id: number;
+  id: number
   /** 岗位名称 */
-  name: string;
-};
+  name: string
+}
 
 export type previewCodegenParams = {
   /** 表编号 */
-  tableId: number;
-};
+  tableId: number
+}
 
 export type Price = {
   /** 商品原价（总），单位：分 */
-  totalPrice: number;
+  totalPrice: number
   /** 订单优惠（总），单位：分 */
-  discountPrice: number;
+  discountPrice: number
   /** 运费金额，单位：分 */
-  deliveryPrice: number;
+  deliveryPrice: number
   /** 优惠劵减免金额，单位：分 */
-  couponPrice: number;
+  couponPrice: number
   /** 积分抵扣的金额，单位：分 */
-  pointPrice: number;
+  pointPrice: number
   /** VIP 减免金额，单位：分 */
-  vipPrice: number;
+  vipPrice: number
   /** 实际支付金额（总），单位：分 */
-  payPrice: number;
-};
+  payPrice: number
+}
 
 export type Product = {
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 优惠类型 */
-  discountType: number;
+  discountType: number
   /** 折扣百分比 */
-  discountPercent?: number;
+  discountPercent?: number
   /** 优惠金额 */
-  discountPrice?: number;
-};
+  discountPrice?: number
+}
 
 export type ProductBrandCreateReqVO = {
   /** 品牌名称 */
-  name: string;
+  name: string
   /** 品牌图片 */
-  picUrl: string;
+  picUrl: string
   /** 品牌排序 */
-  sort: number;
+  sort: number
   /** 品牌描述 */
-  description?: string;
+  description?: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type ProductBrandRespVO = {
   /** 品牌名称 */
-  name: string;
+  name: string
   /** 品牌图片 */
-  picUrl: string;
+  picUrl: string
   /** 品牌排序 */
-  sort: number;
+  sort: number
   /** 品牌描述 */
-  description?: string;
+  description?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 品牌编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ProductBrandSimpleRespVO = {
   /** 品牌编号 */
-  id: number;
+  id: number
   /** 品牌名称 */
-  name: string;
-};
+  name: string
+}
 
 export type ProductBrandUpdateReqVO = {
   /** 品牌名称 */
-  name: string;
+  name: string
   /** 品牌图片 */
-  picUrl: string;
+  picUrl: string
   /** 品牌排序 */
-  sort: number;
+  sort: number
   /** 品牌描述 */
-  description?: string;
+  description?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 品牌编号 */
-  id: number;
-};
+  id: number
+}
 
 export type ProductBrowseHistoryRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SPU 名称 */
-  spuName?: string;
+  spuName?: string
   /** 商品封面图 */
-  picUrl?: string;
+  picUrl?: string
   /** 商品单价 */
-  price?: number;
+  price?: number
   /** 商品销量 */
-  salesCount?: number;
+  salesCount?: number
   /** 库存 */
-  stock?: number;
-};
+  stock?: number
+}
 
 export type ProductCategoryRespVO = {
   /** 分类编号 */
-  id: number;
+  id: number
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 分类名称 */
-  name: string;
+  name: string
   /** 移动端分类图 */
-  picUrl: string;
+  picUrl: string
   /** 分类排序 */
-  sort: number;
+  sort: number
   /** 开启状态 */
-  status: number;
+  status: number
   /** 分类描述 */
-  description?: string;
+  description?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ProductCategorySaveReqVO = {
   /** 分类编号 */
-  id?: number;
+  id?: number
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 分类名称 */
-  name: string;
+  name: string
   /** 移动端分类图 */
-  picUrl: string;
+  picUrl: string
   /** 分类排序 */
-  sort: number;
+  sort: number
   /** 开启状态 */
-  status: number;
+  status: number
   /** 分类描述 */
-  description?: string;
-};
+  description?: string
+}
 
 export type ProductCommentCreateReqVO = {
   /** 评价人 */
-  userId: number;
+  userId: number
   /** 评价订单项 */
-  orderItemId: number;
+  orderItemId: number
   /** 评价人名称 */
-  userNickname: string;
+  userNickname: string
   /** 评价人头像 */
-  userAvatar: string;
+  userAvatar: string
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 描述星级 1-5 分 */
-  descriptionScores: number;
+  descriptionScores: number
   /** 服务星级 1-5 分 */
-  benefitScores: number;
+  benefitScores: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 评论图片地址数组，以逗号分隔最多上传 9 张 */
-  picUrls: string[];
-};
+  picUrls: string[]
+}
 
 export type ProductCommentReplyReqVO = {
   /** 评价编号 */
-  id: number;
+  id: number
   /** 商家回复内容 */
-  replyContent: string;
-};
+  replyContent: string
+}
 
 export type ProductCommentRespVO = {
   /** 订单项编号 */
-  id: number;
+  id: number
   /** 评价人 */
-  userId: number;
+  userId: number
   /** 评价人名称 */
-  userNickname: string;
+  userNickname: string
   /** 评价人头像 */
-  userAvatar: string;
+  userAvatar: string
   /** 是否匿名 */
-  anonymous: boolean;
+  anonymous: boolean
   /** 交易订单编号 */
-  orderId: number;
+  orderId: number
   /** 评价订单项 */
-  orderItemId: number;
+  orderItemId: number
   /** 商品 SPU 编号 */
-  spuId: number;
+  spuId: number
   /** 商品 SKU 编号 */
-  skuId: number;
+  skuId: number
   /** 商品 SPU 名称 */
-  spuName: string;
+  spuName: string
   /** 商品 SKU 图片地址 */
-  skuPicUrl?: string;
+  skuPicUrl?: string
   /** 商品 SKU 规格值数组 */
-  skuProperties?: Property[];
+  skuProperties?: Property[]
   /** 是否可见 */
-  visible: boolean;
+  visible: boolean
   /** 评分星级 1-5 分 */
-  scores: number;
+  scores: number
   /** 描述星级 1-5 分 */
-  descriptionScores: number;
+  descriptionScores: number
   /** 服务星级 1-5 分 */
-  benefitScores: number;
+  benefitScores: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 评论图片地址数组，以逗号分隔最多上传 9 张 */
-  picUrls: string[];
+  picUrls: string[]
   /** 商家是否回复 */
-  replyStatus: boolean;
+  replyStatus: boolean
   /** 回复管理员编号 */
-  replyUserId?: number;
+  replyUserId?: number
   /** 商家回复内容 */
-  replyContent?: string;
+  replyContent?: string
   /** 商家回复时间 */
-  replyTime?: string;
+  replyTime?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ProductCommentUpdateVisibleReqVO = {
   /** 评价编号 */
-  id: number;
+  id: number
   /** 是否可见 */
-  visible: boolean;
-};
+  visible: boolean
+}
 
 export type ProductFavoriteRespVO = {
   /** 商品 SPU 编号 */
-  id: number;
+  id: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 关键字 */
-  keyword: string;
+  keyword: string
   /** 商品简介 */
-  introduction: string;
+  introduction: string
   /** 商品详情 */
-  description: string;
+  description: string
   /** 商品分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 商品品牌编号 */
-  brandId: number;
+  brandId: number
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 排序字段 */
-  sort: number;
+  sort: number
   /** 商品状态 */
-  status: number;
+  status: number
   /** 商品创建时间 */
-  createTime: string;
+  createTime: string
   /** 规格类型 */
-  specType: boolean;
+  specType: boolean
   /** 商品价格 */
-  price: number;
+  price: number
   /** 市场价，单位使用：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 成本价，单位使用：分 */
-  costPrice: number;
+  costPrice: number
   /** 商品库存 */
-  stock: number;
+  stock: number
   /** SKU 数组 */
-  skus?: ProductSkuRespVO[];
+  skus?: ProductSkuRespVO[]
   /** 配送方式数组 */
-  deliveryTypes: number[];
+  deliveryTypes: number[]
   /** 物流配置模板编号 */
-  deliveryTemplateId: number;
+  deliveryTemplateId: number
   /** 赠送积分 */
-  giveIntegral: number;
+  giveIntegral: number
   /** 分销类型 */
-  subCommissionType: boolean;
+  subCommissionType: boolean
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 虚拟销量 */
-  virtualSalesCount?: number;
+  virtualSalesCount?: number
   /** 浏览量 */
-  browseCount: number;
+  browseCount: number
   /** userId */
-  userId: number;
+  userId: number
   /** spuId */
-  spuId: number;
-};
+  spuId: number
+}
 
 export type ProductPropertyRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type ProductPropertySaveReqVO = {
   /** 主键 */
-  id?: number;
+  id?: number
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type ProductPropertyValueDetailRespVO = {
   /** 属性的编号 */
-  propertyId: number;
+  propertyId: number
   /** 属性的名称 */
-  propertyName: string;
+  propertyName: string
   /** 属性值的编号 */
-  valueId: number;
+  valueId: number
   /** 属性值的名称 */
-  valueName: string;
-};
+  valueName: string
+}
 
 export type ProductPropertyValueRespVO = {
   /** 主键 */
-  id?: number;
+  id?: number
   /** 属性项的编号 */
-  propertyId: number;
+  propertyId: number
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 创建时间 */
-  createTime?: string;
-};
+  createTime?: string
+}
 
 export type ProductPropertyValueSaveReqVO = {
   /** 主键 */
-  id?: number;
+  id?: number
   /** 属性项的编号 */
-  propertyId: number;
+  propertyId: number
   /** 名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type ProductSkuRespVO = {
   /** 主键 */
-  id: number;
+  id: number
   /** 商品 SKU 名字 */
-  name: string;
+  name: string
   /** 销售价格，单位：分 */
-  price: number;
+  price: number
   /** 市场价 */
-  marketPrice?: number;
+  marketPrice?: number
   /** 成本价 */
-  costPrice?: number;
+  costPrice?: number
   /** 条形码 */
-  barCode?: string;
+  barCode?: string
   /** 图片地址 */
-  picUrl: string;
+  picUrl: string
   /** 库存 */
-  stock: number;
+  stock: number
   /** 商品重量,单位：kg 千克 */
-  weight?: number;
+  weight?: number
   /** 商品体积,单位：m^3 平米 */
-  volume?: number;
+  volume?: number
   /** 一级分销的佣金，单位：分 */
-  firstBrokeragePrice?: number;
+  firstBrokeragePrice?: number
   /** 二级分销的佣金，单位：分 */
-  secondBrokeragePrice?: number;
+  secondBrokeragePrice?: number
   /** 属性数组 */
-  properties?: Property[];
-};
+  properties?: Property[]
+}
 
 export type ProductSkuSaveReqVO = {
   /** 商品 SKU 名字 */
-  name: string;
+  name: string
   /** 销售价格，单位：分 */
-  price: number;
+  price: number
   /** 市场价 */
-  marketPrice?: number;
+  marketPrice?: number
   /** 成本价 */
-  costPrice?: number;
+  costPrice?: number
   /** 条形码 */
-  barCode?: string;
+  barCode?: string
   /** 图片地址 */
-  picUrl: string;
+  picUrl: string
   /** 库存 */
-  stock: number;
+  stock: number
   /** 商品重量,单位：kg 千克 */
-  weight?: number;
+  weight?: number
   /** 商品体积,单位：m^3 平米 */
-  volume?: number;
+  volume?: number
   /** 一级分销的佣金，单位：分 */
-  firstBrokeragePrice?: number;
+  firstBrokeragePrice?: number
   /** 二级分销的佣金，单位：分 */
-  secondBrokeragePrice?: number;
+  secondBrokeragePrice?: number
   /** 属性数组 */
-  properties?: Property[];
-};
+  properties?: Property[]
+}
 
 export type ProductSpuRespVO = {
   /** 商品 SPU 编号 */
-  id: number;
+  id: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 关键字 */
-  keyword: string;
+  keyword: string
   /** 商品简介 */
-  introduction: string;
+  introduction: string
   /** 商品详情 */
-  description: string;
+  description: string
   /** 商品分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 商品品牌编号 */
-  brandId: number;
+  brandId: number
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 排序字段 */
-  sort: number;
+  sort: number
   /** 商品状态 */
-  status: number;
+  status: number
   /** 商品创建时间 */
-  createTime: string;
+  createTime: string
   /** 规格类型 */
-  specType: boolean;
+  specType: boolean
   /** 商品价格 */
-  price: number;
+  price: number
   /** 市场价，单位使用：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 成本价，单位使用：分 */
-  costPrice: number;
+  costPrice: number
   /** 商品库存 */
-  stock: number;
+  stock: number
   /** SKU 数组 */
-  skus?: ProductSkuRespVO[];
+  skus?: ProductSkuRespVO[]
   /** 配送方式数组 */
-  deliveryTypes: number[];
+  deliveryTypes: number[]
   /** 物流配置模板编号 */
-  deliveryTemplateId: number;
+  deliveryTemplateId: number
   /** 赠送积分 */
-  giveIntegral: number;
+  giveIntegral: number
   /** 分销类型 */
-  subCommissionType: boolean;
+  subCommissionType: boolean
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 虚拟销量 */
-  virtualSalesCount?: number;
+  virtualSalesCount?: number
   /** 浏览量 */
-  browseCount: number;
-};
+  browseCount: number
+}
 
 export type ProductSpuSaveReqVO = {
   /** 商品编号 */
-  id?: number;
+  id?: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 关键字 */
-  keyword: string;
+  keyword: string
   /** 商品简介 */
-  introduction: string;
+  introduction: string
   /** 商品详情 */
-  description: string;
+  description: string
   /** 商品分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 商品品牌编号 */
-  brandId: number;
+  brandId: number
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 商品轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 排序字段 */
-  sort: number;
+  sort: number
   /** 规格类型 */
-  specType: boolean;
+  specType: boolean
   /** 配送方式数组 */
-  deliveryTypes: number[];
+  deliveryTypes: number[]
   /** 物流配置模板编号 */
-  deliveryTemplateId: number;
+  deliveryTemplateId: number
   /** 赠送积分 */
-  giveIntegral: number;
+  giveIntegral: number
   /** 分销类型 */
-  subCommissionType: boolean;
+  subCommissionType: boolean
   /** 虚拟销量 */
-  virtualSalesCount?: number;
+  virtualSalesCount?: number
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 浏览量 */
-  browseCount: number;
+  browseCount: number
   /** SKU 数组 */
-  skus?: ProductSkuSaveReqVO[];
-};
+  skus?: ProductSkuSaveReqVO[]
+}
 
 export type ProductSpuSimpleRespVO = {
   /** 主键 */
-  id: number;
+  id: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 商品价格，单位使用：分 */
-  price: number;
+  price: number
   /** 商品市场价，单位使用：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 商品成本价，单位使用：分 */
-  costPrice: number;
+  costPrice: number
   /** 商品库存 */
-  stock: number;
+  stock: number
   /** 商品销量 */
-  salesCount: number;
+  salesCount: number
   /** 商品虚拟销量 */
-  virtualSalesCount: number;
+  virtualSalesCount: number
   /** 商品浏览量 */
-  browseCount: number;
-};
+  browseCount: number
+}
 
 export type ProductSpuUpdateStatusReqVO = {
   /** 商品编号 */
-  id: number;
+  id: number
   /** 商品状态 */
-  status: number;
-};
+  status: number
+}
 
 export type ProductStatisticsRespVO = {
   /** 编号，主键自增 */
-  id: number;
+  id: number
   /** 统计日期 */
-  time: string;
+  time: string
   /** 商品SPU编号 */
-  spuId: number;
+  spuId: number
   /** 商品名称 */
-  name: string;
+  name: string
   /** 商品封面图 */
-  picUrl: string;
+  picUrl: string
   /** 浏览量 */
-  browseCount: number;
+  browseCount: number
   /** 访客量 */
-  browseUserCount: number;
+  browseUserCount: number
   /** 收藏数量 */
-  favoriteCount: number;
+  favoriteCount: number
   /** 加购数量 */
-  cartCount: number;
+  cartCount: number
   /** 下单件数 */
-  orderCount: number;
+  orderCount: number
   /** 支付件数 */
-  orderPayCount: number;
+  orderPayCount: number
   /** 支付金额，单位：分 */
-  orderPayPrice: number;
+  orderPayPrice: number
   /** 退款件数 */
-  afterSaleCount: number;
+  afterSaleCount: number
   /** 退款金额，单位：分 */
-  afterSaleRefundPrice: number;
+  afterSaleRefundPrice: number
   /** 访客支付转化率（百分比） */
-  browseConvertPercent: number;
-};
+  browseConvertPercent: number
+}
 
 export type Promotion = {
-  id?: number;
-  name?: string;
-  type?: number;
-  totalPrice?: number;
-  discountPrice?: number;
-  items?: PromotionItem[];
-  match?: boolean;
-  description?: string;
-};
+  id?: number
+  name?: string
+  type?: number
+  totalPrice?: number
+  discountPrice?: number
+  items?: PromotionItem[]
+  match?: boolean
+  description?: string
+}
 
 export type PromotionItem = {
-  skuId?: number;
-  totalPrice?: number;
-  discountPrice?: number;
-};
+  skuId?: number
+  totalPrice?: number
+  discountPrice?: number
+}
 
 export type Property = {
   /** 属性编号 */
-  propertyId?: number;
+  propertyId?: number
   /** 属性名字 */
-  propertyName?: string;
+  propertyName?: string
   /** 属性值编号 */
-  valueId?: number;
+  valueId?: number
   /** 属性值名字 */
-  valueName?: string;
-};
+  valueName?: string
+}
 
 export type pushParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type receiveAfterSaleParams = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type receiveOrderParams = {
   /** 交易订单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type Record = {
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 活动名称 */
-  activityName: string;
-};
+  activityName: string
+}
 
 export type RedisMonitorRespVO = {
   /** Redis info 指令结果,具体字段，查看 Redis 文档 */
-  info: Record<string, unknown>;
+  info: Record<string, unknown>
   /** Redis key 数量 */
-  dbSize: number;
+  dbSize: number
   /** CommandStat 数组 */
-  commandStats: CommandStat[];
-};
+  commandStats: CommandStat[]
+}
 
 export type refreshToken1Params = {
   /** 刷新令牌 */
-  refreshToken: string;
-};
+  refreshToken: string
+}
 
 export type refreshTokenParams = {
   /** 刷新令牌 */
-  refreshToken: string;
-};
+  refreshToken: string
+}
 
 export type refundAfterSaleParams = {
   /** 售后编号 */
-  id: number;
-};
+  id: number
+}
 
 export type refundDemoOrderParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type refundWalletRechargeParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type refuseAfterSaleParams = {
   /** 售后编号 */
-  id: number;
+  id: number
   /** 收货备注 */
-  refuseMemo: string;
-};
+  refuseMemo: string
+}
 
 export enum RepCodeEnumEnum {
   SUCCESS = 'SUCCESS',
@@ -13509,13 +13509,13 @@ export enum RepCodeEnumEnum {
   API_REQ_LIMIT_VERIFY_ERROR = 'API_REQ_LIMIT_VERIFY_ERROR',
 }
 
-export type IRepCodeEnumEnum = keyof typeof RepCodeEnumEnum;
+export type IRepCodeEnumEnum = keyof typeof RepCodeEnumEnum
 
 export type ResponseModel = {
-  repCode?: string;
-  repMsg?: string;
-  repData?: Record<string, unknown>;
-  success?: boolean;
+  repCode?: string
+  repMsg?: string
+  repData?: Record<string, unknown>
+  success?: boolean
   repCodeEnum?:
     | 'SUCCESS'
     | 'ERROR'
@@ -13535,2044 +13535,2044 @@ export type ResponseModel = {
     | 'API_REQ_INVALID'
     | 'API_REQ_LOCK_GET_ERROR'
     | 'API_REQ_LIMIT_CHECK_ERROR'
-    | 'API_REQ_LIMIT_VERIFY_ERROR';
-};
+    | 'API_REQ_LIMIT_VERIFY_ERROR'
+}
 
 export type revokeTokenParams = {
   /** 访问令牌 */
-  token: string;
-};
+  token: string
+}
 
 export type RewardActivity = {
   /** 满减活动编号 */
-  id: number;
+  id: number
   /** 条件类型 */
-  conditionType: number;
+  conditionType: number
   /** 优惠规则的数组 */
-  rules: RewardActivityRule[];
-};
+  rules: RewardActivityRule[]
+}
 
 export type RewardActivityCreateReqVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 条件类型 */
-  conditionType: number;
+  conditionType: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
-  rules?: Rule[];
-};
+  productScopeValues?: number[]
+  rules?: Rule[]
+}
 
 export type RewardActivityRespVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 条件类型 */
-  conditionType: number;
+  conditionType: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
-  rules?: Rule[];
+  productScopeValues?: number[]
+  rules?: Rule[]
   /** 活动编号 */
-  id: number;
+  id: number
   /** 活动状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type RewardActivityRule = {
   /** 优惠门槛 */
-  limit: number;
+  limit: number
   /** 优惠价格 */
-  discountPrice: number;
+  discountPrice: number
   /** 是否包邮 */
-  freeDelivery: boolean;
+  freeDelivery: boolean
   /** 赠送的积分 */
-  point: number;
+  point: number
   /** 赠送的优惠劵编号的数组 */
-  giveCouponTemplateCounts?: Record<string, unknown>;
-};
+  giveCouponTemplateCounts?: Record<string, unknown>
+}
 
 export type RewardActivityUpdateReqVO = {
   /** 活动标题 */
-  name: string;
+  name: string
   /** 开始时间 */
-  startTime: string;
+  startTime: string
   /** 结束时间 */
-  endTime: string;
+  endTime: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 条件类型 */
-  conditionType: number;
+  conditionType: number
   /** 商品范围 */
-  productScope: number;
+  productScope: number
   /** 商品范围编号的数组 */
-  productScopeValues?: number[];
-  rules?: Rule[];
+  productScopeValues?: number[]
+  rules?: Rule[]
   /** 活动编号 */
-  id: number;
-};
+  id: number
+}
 
 export type RoleRespVO = {
   /** 角色编号 */
-  id: number;
+  id: number
   /** 角色名称 */
-  name: string;
+  name: string
   /** 角色标志 */
-  code: string;
+  code: string
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 角色类型，参见 RoleTypeEnum 枚举类 */
-  type: number;
+  type: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 数据范围，参见 DataScopeEnum 枚举类 */
-  dataScope: number;
+  dataScope: number
   /** 数据范围(指定部门数组) */
-  dataScopeDeptIds?: number[];
+  dataScopeDeptIds?: number[]
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type RoleSaveReqVO = {
   /** 角色编号 */
-  id?: number;
+  id?: number
   /** 角色名称 */
-  name: string;
+  name: string
   /** 角色标志 */
-  code: string;
+  code: string
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
-};
+  remark?: string
+}
 
 export type RoleSimpleRespVO = {
   /** 角色编号 */
-  id: number;
+  id: number
   /** 角色名称 */
-  name: string;
-};
+  name: string
+}
 
 export type Rule = {
   /** 优惠门槛 */
-  limit: number;
+  limit: number
   /** 优惠价格 */
-  discountPrice: number;
+  discountPrice: number
   /** 是否包邮 */
-  freeDelivery: boolean;
+  freeDelivery: boolean
   /** 赠送的积分 */
-  point: number;
+  point: number
   /** 赠送的优惠劵编号的数组 */
-  giveCouponTemplateCounts?: Record<string, unknown>;
-};
+  giveCouponTemplateCounts?: Record<string, unknown>
+}
 
 export type SeckillActivityCreateReqVO = {
   /** 秒杀活动商品 id */
-  spuId: number;
+  spuId: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 秒杀时段 id */
-  configIds: number[];
+  configIds: number[]
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限够数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 秒杀商品 */
-  products: SeckillProductBaseVO[];
-};
+  products: SeckillProductBaseVO[]
+}
 
 export type SeckillActivityDetailRespVO = {
   /** 秒杀活动商品 id */
-  spuId: number;
+  spuId: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 秒杀时段 id */
-  configIds: number[];
+  configIds: number[]
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限够数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 秒杀活动id */
-  id: number;
+  id: number
   /** 秒杀商品 */
-  products: SeckillProductRespVO[];
-};
+  products: SeckillProductRespVO[]
+}
 
 export type SeckillActivityRespVO = {
   /** 秒杀活动商品 id */
-  spuId: number;
+  spuId: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 秒杀时段 id */
-  configIds: number[];
+  configIds: number[]
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限够数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 秒杀活动 id */
-  id: number;
+  id: number
   /** 秒杀商品 */
-  products: SeckillProductRespVO[];
+  products: SeckillProductRespVO[]
   /** 活动状态 */
-  status: number;
+  status: number
   /** 订单实付金额，单位：分 */
-  totalPrice: number;
+  totalPrice: number
   /** 秒杀库存 */
-  stock: number;
+  stock: number
   /** 秒杀总库存 */
-  totalStock: number;
+  totalStock: number
   /** 新增订单数 */
-  orderCount: number;
+  orderCount: number
   /** 付款人数 */
-  userCount: number;
+  userCount: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 商品名称 */
-  spuName: string;
+  spuName: string
   /** 商品主图 */
-  picUrl: string;
+  picUrl: string
   /** 商品市场价，单位：分 */
-  marketPrice: number;
+  marketPrice: number
   /** 秒杀金额，单位：分 */
-  seckillPrice: number;
-};
+  seckillPrice: number
+}
 
 export type SeckillActivityUpdateReqVO = {
   /** 秒杀活动商品 id */
-  spuId: number;
+  spuId: number
   /** 秒杀活动名称 */
-  name: string;
+  name: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 活动开始时间 */
-  startTime: string;
+  startTime: string
   /** 活动结束时间 */
-  endTime: string;
+  endTime: string
   /** 排序 */
-  sort: number;
+  sort: number
   /** 秒杀时段 id */
-  configIds: number[];
+  configIds: number[]
   /** 总限购数量 */
-  totalLimitCount: number;
+  totalLimitCount: number
   /** 单次限够数量 */
-  singleLimitCount: number;
+  singleLimitCount: number
   /** 秒杀活动id */
-  id: number;
+  id: number
   /** 秒杀商品 */
-  products: SeckillProductBaseVO[];
-};
+  products: SeckillProductBaseVO[]
+}
 
 export type SeckillConfigCreateReqVO = {
   /** 秒杀时段名称 */
-  name: string;
+  name: string
   /** 开始时间点 */
-  startTime: string;
+  startTime: string
   /** 结束时间点 */
-  endTime: string;
+  endTime: string
   /** 秒杀轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type SeckillConfigRespVO = {
   /** 秒杀时段名称 */
-  name: string;
+  name: string
   /** 开始时间点 */
-  startTime: string;
+  startTime: string
   /** 结束时间点 */
-  endTime: string;
+  endTime: string
   /** 秒杀轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
+  id: number
   /** 秒杀活动数量 */
-  seckillActivityCount: number;
+  seckillActivityCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type SeckillConfigSimpleRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 秒杀时段名称 */
-  name: string;
+  name: string
   /** 开始时间点 */
-  startTime: string;
+  startTime: string
   /** 结束时间点 */
-  endTime: string;
-};
+  endTime: string
+}
 
 export type SeckillConfigUpdateReqVO = {
   /** 秒杀时段名称 */
-  name: string;
+  name: string
   /** 开始时间点 */
-  startTime: string;
+  startTime: string
   /** 结束时间点 */
-  endTime: string;
+  endTime: string
   /** 秒杀轮播图 */
-  sliderPicUrls: string[];
+  sliderPicUrls: string[]
   /** 状态 */
-  status: number;
+  status: number
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type SeckillConfigUpdateStatusReqVo = {
   /** 时段配置编号 */
-  id: number;
+  id: number
   /** 状态，见 CommonStatusEnum 枚举 */
-  status: number;
-};
+  status: number
+}
 
 export type SeckillProductBaseVO = {
   /** 商品sku_id */
-  skuId: number;
+  skuId: number
   /** 秒杀金额，单位：分 */
-  seckillPrice: number;
+  seckillPrice: number
   /** 秒杀库存 */
-  stock: number;
-};
+  stock: number
+}
 
 export type SeckillProductRespVO = {
   /** 商品sku_id */
-  skuId: number;
+  skuId: number
   /** 秒杀金额，单位：分 */
-  seckillPrice: number;
+  seckillPrice: number
   /** 秒杀库存 */
-  stock: number;
+  stock: number
   /** 秒杀参与商品编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type settlementOrderParams = {
   /** 商品项数组 */
-  items: Item[];
+  items: Item[]
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 是否使用积分 */
-  pointStatus: boolean;
+  pointStatus: boolean
   /** 配送方式 */
-  deliveryType: number;
+  deliveryType: number
   /** 收件地址编号 */
-  addressId?: number;
+  addressId?: number
   /** 自提门店编号 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 收件人名称 */
-  receiverName?: string;
+  receiverName?: string
   /** 收件人手机 */
-  receiverMobile?: string;
+  receiverMobile?: string
   /** 秒杀活动编号 */
-  seckillActivityId?: number;
+  seckillActivityId?: number
   /** 拼团活动编号 */
-  combinationActivityId?: number;
+  combinationActivityId?: number
   /** 拼团团长编号 */
-  combinationHeadId?: number;
+  combinationHeadId?: number
   /** 砍价记录编号 */
-  bargainRecordId?: number;
+  bargainRecordId?: number
   /** 积分商城活动编号 */
-  pointActivityId?: number;
-};
+  pointActivityId?: number
+}
 
 export type settlementProductParams = {
   /** 商品 SPU 编号数组 */
-  spuIds: number[];
-};
+  spuIds: number[]
+}
 
 export type Sku = {
   /** 商品 SKU 编号 */
-  id: number;
+  id: number
   /** 优惠后价格，单位：分 */
-  promotionPrice: number;
+  promotionPrice: number
   /** 营销类型 */
-  promotionType: number;
+  promotionType: number
   /** 营销编号 */
-  promotionId: number;
+  promotionId: number
   /** 活动结束时间 */
-  promotionEndTime: string;
-};
+  promotionEndTime: string
+}
 
 export type SmsChannelRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 短信签名 */
-  signature: string;
+  signature: string
   /** 渠道编码，参见 SmsChannelEnum 枚举类 */
-  code: string;
+  code: string
   /** 启用状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 短信 API 的账号 */
-  apiKey: string;
+  apiKey: string
   /** 短信 API 的密钥 */
-  apiSecret?: string;
+  apiSecret?: string
   /** 短信发送回调 URL */
-  callbackUrl?: string;
+  callbackUrl?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type SmsChannelSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 短信签名 */
-  signature: string;
+  signature: string
   /** 渠道编码，参见 SmsChannelEnum 枚举类 */
-  code: string;
+  code: string
   /** 启用状态 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 短信 API 的账号 */
-  apiKey: string;
+  apiKey: string
   /** 短信 API 的密钥 */
-  apiSecret?: string;
+  apiSecret?: string
   /** 短信发送回调 URL */
-  callbackUrl?: string;
-};
+  callbackUrl?: string
+}
 
 export type SmsChannelSimpleRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 短信签名 */
-  signature: string;
+  signature: string
   /** 渠道编码，参见 SmsChannelEnum 枚举类 */
-  code: string;
-};
+  code: string
+}
 
 export type SmsLogRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 短信渠道编号 */
-  channelId: number;
+  channelId: number
   /** 短信渠道编码 */
-  channelCode: string;
+  channelCode: string
   /** 模板编号 */
-  templateId: number;
+  templateId: number
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 短信类型 */
-  templateType: number;
+  templateType: number
   /** 短信内容 */
-  templateContent: string;
+  templateContent: string
   /** 短信参数 */
-  templateParams: Record<string, unknown>;
+  templateParams: Record<string, unknown>
   /** 短信 API 的模板编号 */
-  apiTemplateId: string;
+  apiTemplateId: string
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 用户编号 */
-  userId?: number;
+  userId?: number
   /** 用户类型 */
-  userType?: number;
+  userType?: number
   /** 发送状态 */
-  sendStatus: number;
+  sendStatus: number
   /** 发送时间 */
-  sendTime?: string;
+  sendTime?: string
   /** 短信 API 发送结果的编码 */
-  apiSendCode?: string;
+  apiSendCode?: string
   /** 短信 API 发送失败的提示 */
-  apiSendMsg?: string;
+  apiSendMsg?: string
   /** 短信 API 发送返回的唯一请求 ID */
-  apiRequestId?: string;
+  apiRequestId?: string
   /** 短信 API 发送返回的序号 */
-  apiSerialNo?: string;
+  apiSerialNo?: string
   /** 接收状态 */
-  receiveStatus: number;
+  receiveStatus: number
   /** 接收时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** API 接收结果的编码 */
-  apiReceiveCode?: string;
+  apiReceiveCode?: string
   /** API 接收结果的说明 */
-  apiReceiveMsg?: string;
+  apiReceiveMsg?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type SmsTemplateRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 短信类型，参见 SmsTemplateTypeEnum 枚举类 */
-  type: number;
+  type: number
   /** 开启状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 模板编码 */
-  code: string;
+  code: string
   /** 模板名称 */
-  name: string;
+  name: string
   /** 模板内容 */
-  content: string;
+  content: string
   /** 参数数组 */
-  params?: string[];
+  params?: string[]
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 短信 API 的模板编号 */
-  apiTemplateId: string;
+  apiTemplateId: string
   /** 短信渠道编号 */
-  channelId: number;
+  channelId: number
   /** 短信渠道编码 */
-  channelCode: string;
+  channelCode: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type SmsTemplateSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 短信类型，参见 SmsTemplateTypeEnum 枚举类 */
-  type: number;
+  type: number
   /** 开启状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 模板编码 */
-  code: string;
+  code: string
   /** 模板名称 */
-  name: string;
+  name: string
   /** 模板内容 */
-  content: string;
+  content: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 短信 API 的模板编号 */
-  apiTemplateId: string;
+  apiTemplateId: string
   /** 短信渠道编号 */
-  channelId: number;
-};
+  channelId: number
+}
 
 export type SmsTemplateSendReqVO = {
   /** 手机号 */
-  mobile: string;
+  mobile: string
   /** 模板编码 */
-  templateCode: string;
+  templateCode: string
   /** 模板参数 */
-  templateParams?: Record<string, unknown>;
-};
+  templateParams?: Record<string, unknown>
+}
 
 export type socialAuthRedirectParams = {
   /** 社交类型 */
-  type: number;
+  type: number
   /** 回调路径 */
-  redirectUri: string;
-};
+  redirectUri: string
+}
 
 export type SocialClientRespVO = {
   /** 编号 */
-  id: number;
+  id: number
   /** 应用名 */
-  name: string;
+  name: string
   /** 社交平台的类型 */
-  socialType: number;
+  socialType: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 客户端密钥 */
-  clientSecret: string;
+  clientSecret: string
   /** 授权方的网页应用编号 */
-  agentId: string;
+  agentId: string
   /** 状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type SocialClientSaveReqVO = {
   /** 编号 */
-  id?: number;
+  id?: number
   /** 应用名 */
-  name: string;
+  name: string
   /** 社交平台的类型 */
-  socialType: number;
+  socialType: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 客户端编号 */
-  clientId: string;
+  clientId: string
   /** 客户端密钥 */
-  clientSecret: string;
+  clientSecret: string
   /** 授权方的网页应用编号 */
-  agentId: string;
+  agentId: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type socialLogin1Params = {
   /** 社交类型 */
-  type: number;
+  type: number
   /** 回调路径 */
-  redirectUri: string;
-};
+  redirectUri: string
+}
 
 export type SocialUserBindReqVO = {
   /** 社交平台的类型，参见 UserSocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 授权码 */
-  code: string;
+  code: string
   /** state */
-  state: string;
-};
+  state: string
+}
 
 export type SocialUserRespVO = {
   /** 主键(自增策略) */
-  id: number;
+  id: number
   /** 社交平台的类型 */
-  type: number;
+  type: number
   /** 社交 openid */
-  openid: string;
+  openid: string
   /** 社交 token */
-  token: string;
+  token: string
   /** 原始 Token 数据，一般是 JSON 格式 */
-  rawTokenInfo: string;
+  rawTokenInfo: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar?: string;
+  avatar?: string
   /** 原始用户数据，一般是 JSON 格式 */
-  rawUserInfo: string;
+  rawUserInfo: string
   /** 最后一次的认证 code */
-  code: string;
+  code: string
   /** 最后一次的认证 state */
-  state: string;
+  state: string
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
-};
+  updateTime: string
+}
 
 export type SocialUserUnbindReqVO = {
   /** 社交平台的类型，参见 UserSocialTypeEnum 枚举值 */
-  type: number;
+  type: number
   /** 社交用户的 openid */
-  openid: string;
-};
+  openid: string
+}
 
 export type SocialWxaSubscribeMessageSendReqDTO = {
-  userId: number;
-  userType: number;
-  templateTitle: string;
-  page?: string;
-  messages?: Record<string, unknown>;
-};
+  userId: number
+  userType: number
+  templateTitle: string
+  page?: string
+  messages?: Record<string, unknown>
+}
 
 export type SocialWxJsapiSignatureRespDTO = {
-  appId?: string;
-  nonceStr?: string;
-  timestamp?: number;
-  url?: string;
-  signature?: string;
-};
+  appId?: string
+  nonceStr?: string
+  timestamp?: number
+  url?: string
+  signature?: string
+}
 
 export type SortingField = {
-  field?: string;
-  order?: string;
-};
+  field?: string
+  order?: string
+}
 
 export type syncCodegenFromDBParams = {
   /** 表编号 */
-  tableId: number;
-};
+  tableId: number
+}
 
 export type syncTransferParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type takeCouponParams = {
   /** 优惠券模板编号 */
-  templateId: unknown;
-};
+  templateId: unknown
+}
 
 export type TenantPackageRespVO = {
   /** 套餐编号 */
-  id: number;
+  id: number
   /** 套餐名 */
-  name: string;
+  name: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 关联的菜单编号 */
-  menuIds: number[];
+  menuIds: number[]
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type TenantPackageSaveReqVO = {
   /** 套餐编号 */
-  id?: number;
+  id?: number
   /** 套餐名 */
-  name: string;
+  name: string
   /** 状态，参见 CommonStatusEnum 枚举 */
-  status: number;
+  status: number
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 关联的菜单编号 */
-  menuIds: number[];
-};
+  menuIds: number[]
+}
 
 export type TenantPackageSimpleRespVO = {
   /** 套餐编号 */
-  id: number;
+  id: number
   /** 套餐名 */
-  name: string;
-};
+  name: string
+}
 
 export type TenantRespVO = {
   /** 租户编号 */
-  id: number;
+  id: number
   /** 租户名 */
-  name: string;
+  name: string
   /** 联系人 */
-  contactName: string;
+  contactName: string
   /** 联系手机 */
-  contactMobile?: string;
+  contactMobile?: string
   /** 租户状态 */
-  status: number;
+  status: number
   /** 绑定域名 */
-  website?: string;
+  website?: string
   /** 租户套餐编号 */
-  packageId: number;
+  packageId: number
   /** 过期时间 */
-  expireTime: string;
+  expireTime: string
   /** 账号数量 */
-  accountCount: number;
+  accountCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type TenantSaveReqVO = {
   /** 租户编号 */
-  id?: number;
+  id?: number
   /** 租户名 */
-  name: string;
+  name: string
   /** 联系人 */
-  contactName: string;
+  contactName: string
   /** 联系手机 */
-  contactMobile?: string;
+  contactMobile?: string
   /** 租户状态 */
-  status: number;
+  status: number
   /** 绑定域名 */
-  website?: string;
+  website?: string
   /** 租户套餐编号 */
-  packageId: number;
+  packageId: number
   /** 过期时间 */
-  expireTime: string;
+  expireTime: string
   /** 账号数量 */
-  accountCount: number;
+  accountCount: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 密码 */
-  password: string;
-};
+  password: string
+}
 
 export type testFileConfigParams = {
-  id: number;
-};
+  id: number
+}
 
 export type TradeConfigRespVO = {
   /** 售后的退款理由 */
-  afterSaleRefundReasons: string[];
+  afterSaleRefundReasons: string[]
   /** 售后的退货理由 */
-  afterSaleReturnReasons: string[];
+  afterSaleReturnReasons: string[]
   /** 是否启用全场包邮 */
-  deliveryExpressFreeEnabled: boolean;
+  deliveryExpressFreeEnabled: boolean
   /** 全场包邮的最小金额 */
-  deliveryExpressFreePrice: number;
+  deliveryExpressFreePrice: number
   /** 是否开启自提 */
-  deliveryPickUpEnabled: boolean;
+  deliveryPickUpEnabled: boolean
   /** 是否启用分佣 */
-  brokerageEnabled: boolean;
+  brokerageEnabled: boolean
   /** 分佣模式 */
-  brokerageEnabledCondition: number;
+  brokerageEnabledCondition: number
   /** 分销关系绑定模式 */
-  brokerageBindMode: number;
+  brokerageBindMode: number
   /** 分销海报图地址数组 */
-  brokeragePosterUrls: string[];
+  brokeragePosterUrls: string[]
   /** 一级返佣比例 */
-  brokerageFirstPercent: number;
+  brokerageFirstPercent: number
   /** 二级返佣比例 */
-  brokerageSecondPercent: number;
+  brokerageSecondPercent: number
   /** 用户提现最低金额 */
-  brokerageWithdrawMinPrice: number;
+  brokerageWithdrawMinPrice: number
   /** 用户提现手续费百分比 */
-  brokerageWithdrawFeePercent: number;
+  brokerageWithdrawFeePercent: number
   /** 佣金冻结时间(天) */
-  brokerageFrozenDays: number;
+  brokerageFrozenDays: number
   /** 提现方式 */
-  brokerageWithdrawTypes: number[];
+  brokerageWithdrawTypes: number[]
   /** 自增主键 */
-  id: number;
+  id: number
   /** 腾讯地图 KEY */
-  tencentLbsKey: string;
-};
+  tencentLbsKey: string
+}
 
 export type TradeConfigSaveReqVO = {
   /** 售后的退款理由 */
-  afterSaleRefundReasons: string[];
+  afterSaleRefundReasons: string[]
   /** 售后的退货理由 */
-  afterSaleReturnReasons: string[];
+  afterSaleReturnReasons: string[]
   /** 是否启用全场包邮 */
-  deliveryExpressFreeEnabled: boolean;
+  deliveryExpressFreeEnabled: boolean
   /** 全场包邮的最小金额 */
-  deliveryExpressFreePrice: number;
+  deliveryExpressFreePrice: number
   /** 是否开启自提 */
-  deliveryPickUpEnabled: boolean;
+  deliveryPickUpEnabled: boolean
   /** 是否启用分佣 */
-  brokerageEnabled: boolean;
+  brokerageEnabled: boolean
   /** 分佣模式 */
-  brokerageEnabledCondition: number;
+  brokerageEnabledCondition: number
   /** 分销关系绑定模式 */
-  brokerageBindMode: number;
+  brokerageBindMode: number
   /** 分销海报图地址数组 */
-  brokeragePosterUrls: string[];
+  brokeragePosterUrls: string[]
   /** 一级返佣比例 */
-  brokerageFirstPercent: number;
+  brokerageFirstPercent: number
   /** 二级返佣比例 */
-  brokerageSecondPercent: number;
+  brokerageSecondPercent: number
   /** 用户提现最低金额 */
-  brokerageWithdrawMinPrice: number;
+  brokerageWithdrawMinPrice: number
   /** 用户提现手续费百分比 */
-  brokerageWithdrawFeePercent: number;
+  brokerageWithdrawFeePercent: number
   /** 佣金冻结时间(天) */
-  brokerageFrozenDays: number;
+  brokerageFrozenDays: number
   /** 提现方式 */
-  brokerageWithdrawTypes: number[];
-};
+  brokerageWithdrawTypes: number[]
+}
 
 export type TradeOrderBaseVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单流水号 */
-  no: string;
+  no: string
   /** 下单时间 */
-  createTime: string;
+  createTime: string
   /** 订单类型 */
-  type: number;
+  type: number
   /** 订单来源 */
-  terminal: number;
+  terminal: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 用户备注 */
-  userRemark: string;
+  userRemark: string
   /** 订单状态 */
-  status: number;
+  status: number
   /** 购买的商品数量 */
-  productCount: number;
+  productCount: number
   /** 订单完成时间 */
-  finishTime?: string;
+  finishTime?: string
   /** 订单取消时间 */
-  cancelTime?: string;
+  cancelTime?: string
   /** 取消类型 */
-  cancelType?: number;
+  cancelType?: number
   /** 商家备注 */
-  remark?: string;
+  remark?: string
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 是否已支付 */
-  payStatus: boolean;
+  payStatus: boolean
   /** 付款时间 */
-  payTime?: string;
+  payTime?: string
   /** 支付渠道 */
-  payChannelCode: string;
+  payChannelCode: string
   /** 商品原价（总） */
-  totalPrice: number;
+  totalPrice: number
   /** 订单优惠（总） */
-  discountPrice: number;
+  discountPrice: number
   /** 运费金额 */
-  deliveryPrice: number;
+  deliveryPrice: number
   /** 订单调价（总） */
-  adjustPrice: number;
+  adjustPrice: number
   /** 应付金额（总） */
-  payPrice: number;
+  payPrice: number
   /** 配送方式 */
-  deliveryType?: number;
+  deliveryType?: number
   /** 自提门店 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 自提核销码 */
-  pickUpVerifyCode?: number;
+  pickUpVerifyCode?: number
   /** 配送模板编号 */
-  deliveryTemplateId?: number;
+  deliveryTemplateId?: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 发货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 发货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收件人名称 */
-  receiverName: string;
+  receiverName: string
   /** 收件人手机 */
-  receiverMobile: string;
+  receiverMobile: string
   /** 收件人地区编号 */
-  receiverAreaId: number;
+  receiverAreaId: number
   /** 收件人详细地址 */
-  receiverDetailAddress: string;
+  receiverDetailAddress: string
   /** 售后状态 */
-  afterSaleStatus?: number;
+  afterSaleStatus?: number
   /** 退款金额 */
-  refundPrice: number;
+  refundPrice: number
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 优惠劵减免金额 */
-  couponPrice: number;
+  couponPrice: number
   /** 积分抵扣的金额 */
-  pointPrice: number;
+  pointPrice: number
   /** VIP 减免金额 */
-  vipPrice: number;
+  vipPrice: number
   /** 推广人编号 */
-  brokerageUserId?: number;
-};
+  brokerageUserId?: number
+}
 
 export type TradeOrderCountRespVO = {
   /** 待发货 */
-  undelivered: number;
+  undelivered: number
   /** 待核销 */
-  pickUp: number;
+  pickUp: number
   /** 退款中 */
-  afterSaleApply: number;
+  afterSaleApply: number
   /** 提现待审核 */
-  auditingWithdraw: number;
-};
+  auditingWithdraw: number
+}
 
 export type TradeOrderDeliveryReqVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 发货物流公司编号 */
-  logisticsId: number;
+  logisticsId: number
   /** 发货物流单号 */
-  logisticsNo?: string;
-};
+  logisticsNo?: string
+}
 
 export type TradeOrderDetailRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单流水号 */
-  no: string;
+  no: string
   /** 下单时间 */
-  createTime: string;
+  createTime: string
   /** 订单类型 */
-  type: number;
+  type: number
   /** 订单来源 */
-  terminal: number;
+  terminal: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 用户备注 */
-  userRemark: string;
+  userRemark: string
   /** 订单状态 */
-  status: number;
+  status: number
   /** 购买的商品数量 */
-  productCount: number;
+  productCount: number
   /** 订单完成时间 */
-  finishTime?: string;
+  finishTime?: string
   /** 订单取消时间 */
-  cancelTime?: string;
+  cancelTime?: string
   /** 取消类型 */
-  cancelType?: number;
+  cancelType?: number
   /** 商家备注 */
-  remark?: string;
+  remark?: string
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 是否已支付 */
-  payStatus: boolean;
+  payStatus: boolean
   /** 付款时间 */
-  payTime?: string;
+  payTime?: string
   /** 支付渠道 */
-  payChannelCode: string;
+  payChannelCode: string
   /** 商品原价（总） */
-  totalPrice: number;
+  totalPrice: number
   /** 订单优惠（总） */
-  discountPrice: number;
+  discountPrice: number
   /** 运费金额 */
-  deliveryPrice: number;
+  deliveryPrice: number
   /** 订单调价（总） */
-  adjustPrice: number;
+  adjustPrice: number
   /** 应付金额（总） */
-  payPrice: number;
+  payPrice: number
   /** 配送方式 */
-  deliveryType?: number;
+  deliveryType?: number
   /** 自提门店 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 自提核销码 */
-  pickUpVerifyCode?: number;
+  pickUpVerifyCode?: number
   /** 配送模板编号 */
-  deliveryTemplateId?: number;
+  deliveryTemplateId?: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 发货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 发货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收件人名称 */
-  receiverName: string;
+  receiverName: string
   /** 收件人手机 */
-  receiverMobile: string;
+  receiverMobile: string
   /** 收件人地区编号 */
-  receiverAreaId: number;
+  receiverAreaId: number
   /** 收件人详细地址 */
-  receiverDetailAddress: string;
+  receiverDetailAddress: string
   /** 售后状态 */
-  afterSaleStatus?: number;
+  afterSaleStatus?: number
   /** 退款金额 */
-  refundPrice: number;
+  refundPrice: number
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 优惠劵减免金额 */
-  couponPrice: number;
+  couponPrice: number
   /** 积分抵扣的金额 */
-  pointPrice: number;
+  pointPrice: number
   /** VIP 减免金额 */
-  vipPrice: number;
+  vipPrice: number
   /** 推广人编号 */
-  brokerageUserId?: number;
-  items?: Item[];
-  user?: MemberUserRespVO;
-  brokerageUser?: MemberUserRespVO;
-  logs?: OrderLog[];
+  brokerageUserId?: number
+  items?: Item[]
+  user?: MemberUserRespVO
+  brokerageUser?: MemberUserRespVO
+  logs?: OrderLog[]
   /** 收件人地区名字 */
-  receiverAreaName: string;
-};
+  receiverAreaName: string
+}
 
 export type TradeOrderPageItemRespVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单流水号 */
-  no: string;
+  no: string
   /** 下单时间 */
-  createTime: string;
+  createTime: string
   /** 订单类型 */
-  type: number;
+  type: number
   /** 订单来源 */
-  terminal: number;
+  terminal: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户 IP */
-  userIp: string;
+  userIp: string
   /** 用户备注 */
-  userRemark: string;
+  userRemark: string
   /** 订单状态 */
-  status: number;
+  status: number
   /** 购买的商品数量 */
-  productCount: number;
+  productCount: number
   /** 订单完成时间 */
-  finishTime?: string;
+  finishTime?: string
   /** 订单取消时间 */
-  cancelTime?: string;
+  cancelTime?: string
   /** 取消类型 */
-  cancelType?: number;
+  cancelType?: number
   /** 商家备注 */
-  remark?: string;
+  remark?: string
   /** 支付订单编号 */
-  payOrderId: number;
+  payOrderId: number
   /** 是否已支付 */
-  payStatus: boolean;
+  payStatus: boolean
   /** 付款时间 */
-  payTime?: string;
+  payTime?: string
   /** 支付渠道 */
-  payChannelCode: string;
+  payChannelCode: string
   /** 商品原价（总） */
-  totalPrice: number;
+  totalPrice: number
   /** 订单优惠（总） */
-  discountPrice: number;
+  discountPrice: number
   /** 运费金额 */
-  deliveryPrice: number;
+  deliveryPrice: number
   /** 订单调价（总） */
-  adjustPrice: number;
+  adjustPrice: number
   /** 应付金额（总） */
-  payPrice: number;
+  payPrice: number
   /** 配送方式 */
-  deliveryType?: number;
+  deliveryType?: number
   /** 自提门店 */
-  pickUpStoreId?: number;
+  pickUpStoreId?: number
   /** 自提核销码 */
-  pickUpVerifyCode?: number;
+  pickUpVerifyCode?: number
   /** 配送模板编号 */
-  deliveryTemplateId?: number;
+  deliveryTemplateId?: number
   /** 发货物流公司编号 */
-  logisticsId?: number;
+  logisticsId?: number
   /** 发货物流单号 */
-  logisticsNo?: string;
+  logisticsNo?: string
   /** 发货时间 */
-  deliveryTime?: string;
+  deliveryTime?: string
   /** 收货时间 */
-  receiveTime?: string;
+  receiveTime?: string
   /** 收件人名称 */
-  receiverName: string;
+  receiverName: string
   /** 收件人手机 */
-  receiverMobile: string;
+  receiverMobile: string
   /** 收件人地区编号 */
-  receiverAreaId: number;
+  receiverAreaId: number
   /** 收件人详细地址 */
-  receiverDetailAddress: string;
+  receiverDetailAddress: string
   /** 售后状态 */
-  afterSaleStatus?: number;
+  afterSaleStatus?: number
   /** 退款金额 */
-  refundPrice: number;
+  refundPrice: number
   /** 优惠劵编号 */
-  couponId?: number;
+  couponId?: number
   /** 优惠劵减免金额 */
-  couponPrice: number;
+  couponPrice: number
   /** 积分抵扣的金额 */
-  pointPrice: number;
+  pointPrice: number
   /** VIP 减免金额 */
-  vipPrice: number;
+  vipPrice: number
   /** 推广人编号 */
-  brokerageUserId?: number;
+  brokerageUserId?: number
   /** 收件人地区名字 */
-  receiverAreaName: string;
+  receiverAreaName: string
   /** 订单项列表 */
-  items: Item[];
+  items: Item[]
   /** 用户信息 */
-  user: MemberUserRespVO;
+  user: MemberUserRespVO
   /** 推广人信息 */
-  brokerageUser?: MemberUserRespVO;
-};
+  brokerageUser?: MemberUserRespVO
+}
 
 export type TradeOrderRemarkReqVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 商家备注 */
-  remark: string;
-};
+  remark: string
+}
 
 export type TradeOrderSummaryRespVO = {
   /** 订单数量 */
-  orderCount: number;
+  orderCount: number
   /** 订单金额 */
-  orderPayPrice: number;
+  orderPayPrice: number
   /** 退款单数 */
-  afterSaleCount: number;
+  afterSaleCount: number
   /** 退款金额 */
-  afterSalePrice: number;
-};
+  afterSalePrice: number
+}
 
 export type TradeOrderTrendRespVO = {
   /** 日期 */
-  date: string;
+  date: string
   /** 订单数量 */
-  orderPayCount: number;
+  orderPayCount: number
   /** 订单支付金额 */
-  orderPayPrice: number;
-};
+  orderPayPrice: number
+}
 
 export type TradeOrderUpdateAddressReqVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 收件人名称 */
-  receiverName: string;
+  receiverName: string
   /** 收件人手机 */
-  receiverMobile: string;
+  receiverMobile: string
   /** 收件人地区编号 */
-  receiverAreaId: number;
+  receiverAreaId: number
   /** 收件人详细地址 */
-  receiverDetailAddress: string;
-};
+  receiverDetailAddress: string
+}
 
 export type TradeOrderUpdatePriceReqVO = {
   /** 订单编号 */
-  id: number;
+  id: number
   /** 订单调价，单位：分。正数，加价；负数，减价 */
-  adjustPrice: number;
-};
+  adjustPrice: number
+}
 
 export type TradeSummaryRespVO = {
   /** 昨日订单数量 */
-  yesterdayOrderCount: number;
+  yesterdayOrderCount: number
   /** 昨日支付金额 */
-  yesterdayPayPrice: number;
+  yesterdayPayPrice: number
   /** 本月订单数量 */
-  monthOrderCount: number;
+  monthOrderCount: number
   /** 本月支付金额 */
-  monthPayPrice: number;
-};
+  monthPayPrice: number
+}
 
 export type TradeTrendSummaryRespVO = {
   /** 日期 */
-  date: string;
+  date: string
   /** 营业额 */
-  turnoverPrice: number;
+  turnoverPrice: number
   /** 订单支付金额 */
-  orderPayPrice: number;
+  orderPayPrice: number
   /** 余额支付金额 */
-  walletPayPrice: number;
+  walletPayPrice: number
   /** 订单退款金额 */
-  afterSaleRefundPrice: number;
+  afterSaleRefundPrice: number
   /** 支付佣金金额 */
-  brokerageSettlementPrice: number;
+  brokerageSettlementPrice: number
   /** 充值金额 */
-  rechargePrice: number;
+  rechargePrice: number
   /** 支出金额 */
-  expensePrice: number;
-};
+  expensePrice: number
+}
 
 export type transferDemoWithdrawParams = {
   /** 提现单编号 */
-  id: number;
-};
+  id: number
+}
 
 export type triggerJobParams = {
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type updateApiErrorLogProcessParams = {
   /** 编号 */
-  id: number;
+  id: number
   /** 处理状态 */
-  processStatus: number;
-};
+  processStatus: number
+}
 
 export type updateFileConfigMasterParams = {
-  id: number;
-};
+  id: number
+}
 
 export type updateJobApplicationStatusParams = {
-  id: number;
-  status: number;
-};
+  id: number
+  status: number
+}
 
 export type updateJobStatusParams = {
   /** 编号 */
-  id: number;
+  id: number
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type updateKefuMessageReadStatusParams = {
   /** 会话编号 */
-  conversationId: number;
-};
+  conversationId: number
+}
 
 export type updateKeFuMessageReadStatusParams = {
   /** 会话编号 */
-  conversationId: number;
-};
+  conversationId: number
+}
 
 export type updateNotifyMessageReadParams = {
   /** 编号列表 */
-  ids: number[];
-};
+  ids: number[]
+}
 
 export type uploadFile1Params = {
   /** 文件目录 */
-  directory?: string;
-};
+  directory?: string
+}
 
 export type uploadFileParams = {
   /** 文件目录 */
-  directory?: string;
-};
+  directory?: string
+}
 
 export type useDiyTemplateParams = {
-  id: number;
-};
+  id: number
+}
 
 export type UserImportRespVO = {
   /** 创建成功的用户名数组 */
-  createUsernames: string[];
+  createUsernames: string[]
   /** 更新成功的用户名数组 */
-  updateUsernames: string[];
+  updateUsernames: string[]
   /** 导入失败的用户集合，key 为用户名，value 为失败原因 */
-  failureUsernames: Record<string, unknown>;
-};
+  failureUsernames: Record<string, unknown>
+}
 
 export type UserProfileRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
+  sex?: number
   /** 用户头像 */
-  avatar?: string;
+  avatar?: string
   /** 最后登录 IP */
-  loginIp: string;
+  loginIp: string
   /** 最后登录时间 */
-  loginDate: string;
+  loginDate: string
   /** 创建时间 */
-  createTime: string;
-  roles?: RoleSimpleRespVO[];
-  dept?: DeptSimpleRespVO;
-  posts?: PostSimpleRespVO[];
-};
+  createTime: string
+  roles?: RoleSimpleRespVO[]
+  dept?: DeptSimpleRespVO
+  posts?: PostSimpleRespVO[]
+}
 
 export type UserProfileUpdatePasswordReqVO = {
   /** 旧密码 */
-  oldPassword: string;
+  oldPassword: string
   /** 新密码 */
-  newPassword: string;
-};
+  newPassword: string
+}
 
 export type UserProfileUpdateReqVO = {
   /** 用户昵称 */
-  nickname?: string;
+  nickname?: string
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
+  sex?: number
   /** 角色头像 */
-  avatar?: string;
-};
+  avatar?: string
+}
 
 export type UserRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 部门ID */
-  deptId?: number;
+  deptId?: number
   /** 部门名称 */
-  deptName?: string;
+  deptName?: string
   /** 岗位编号数组 */
-  postIds?: number[];
+  postIds?: number[]
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
+  sex?: number
   /** 用户头像 */
-  avatar?: string;
+  avatar?: string
   /** 状态，参见 CommonStatusEnum 枚举类 */
-  status: number;
+  status: number
   /** 最后登录 IP */
-  loginIp: string;
+  loginIp: string
   /** 最后登录时间 */
-  loginDate: string;
+  loginDate: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type UserSaveReqVO = {
   /** 用户编号 */
-  id?: number;
+  id?: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 备注 */
-  remark?: string;
+  remark?: string
   /** 部门编号 */
-  deptId?: number;
+  deptId?: number
   /** 岗位编号数组 */
-  postIds?: number[];
+  postIds?: number[]
   /** 用户邮箱 */
-  email?: string;
+  email?: string
   /** 手机号码 */
-  mobile?: string;
+  mobile?: string
   /** 用户性别，参见 SexEnum 枚举类 */
-  sex?: number;
+  sex?: number
   /** 用户头像 */
-  avatar?: string;
+  avatar?: string
   /** 密码 */
-  password: string;
-};
+  password: string
+}
 
 export type UserSimpleBaseVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar?: string;
-};
+  avatar?: string
+}
 
 export type UserSimpleRespVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 部门ID */
-  deptId?: number;
+  deptId?: number
   /** 部门名称 */
-  deptName?: string;
-};
+  deptName?: string
+}
 
 export type UserTypeCreateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
-};
+  userType: number
+}
 
 export type UserTypeRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 主键 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type UserTypeUpdateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户类型 */
-  userType: number;
+  userType: number
   /** 主键 */
-  id: number;
-};
+  id: number
+}
 
 export type UserUpdatePasswordReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 密码 */
-  password: string;
-};
+  password: string
+}
 
 export type UserUpdateStatusReqVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 状态，见 CommonStatusEnum 枚举 */
-  status: number;
-};
+  status: number
+}
 
 export type UserVO = {
   /** 用户编号 */
-  id: number;
+  id: number
   /** 用户昵称 */
-  nickname: string;
+  nickname: string
   /** 用户头像 */
-  avatar: string;
+  avatar: string
   /** 部门编号 */
-  deptId: number;
+  deptId: number
   /** 用户账号 */
-  username: string;
+  username: string
   /** 用户邮箱 */
-  email?: string;
-};
+  email?: string
+}
 
 export type WalletRechargePackageCreateReqVO = {
   /** 套餐名 */
-  name: string;
+  name: string
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 赠送金额 */
-  bonusPrice: number;
+  bonusPrice: number
   /** 状态 */
-  status: string;
-};
+  status: string
+}
 
 export type WalletRechargePackageRespVO = {
   /** 套餐名 */
-  name: string;
+  name: string
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 赠送金额 */
-  bonusPrice: number;
+  bonusPrice: number
   /** 状态 */
-  status: string;
+  status: string
   /** 编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type WalletRechargePackageUpdateReqVO = {
   /** 套餐名 */
-  name: string;
+  name: string
   /** 支付金额 */
-  payPrice: number;
+  payPrice: number
   /** 赠送金额 */
-  bonusPrice: number;
+  bonusPrice: number
   /** 状态 */
-  status: string;
+  status: string
   /** 编号 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPForumCommentCreateAppReqVO = {
   /** 帖子编号 */
-  postId: number;
+  postId: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 父评论编号 */
-  parentId?: number;
+  parentId?: number
   /** 回复评论编号 */
-  replyId?: number;
+  replyId?: number
   /** 回复用户编号 */
-  replyUserId?: number;
-};
+  replyUserId?: number
+}
 
 export type YRZPForumCommentCreateReqVO = {
   /** 帖子编号 */
-  postId: number;
+  postId: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 父评论编号 */
-  parentId?: number;
+  parentId?: number
   /** 回复评论编号 */
-  replyId?: number;
+  replyId?: number
   /** 回复用户编号 */
-  replyUserId?: number;
-};
+  replyUserId?: number
+}
 
 export type YRZPForumCommentRespAppVO = {
   /** 评论编号 */
-  id: number;
+  id: number
   /** 帖子编号 */
-  postId: number;
+  postId: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户昵称 */
-  userNickname?: string;
+  userNickname?: string
   /** 用户头像 */
-  userAvatar?: string;
+  userAvatar?: string
   /** 评论内容 */
-  content: string;
+  content: string
   /** 点赞量 */
-  likeCount: number;
+  likeCount: number
   /** 父评论编号 */
-  parentId?: number;
+  parentId?: number
   /** 回复评论编号 */
-  replyId?: number;
+  replyId?: number
   /** 回复用户编号 */
-  replyUserId?: number;
+  replyUserId?: number
   /** 回复用户昵称 */
-  replyUserNickname?: string;
+  replyUserNickname?: string
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPForumCommentRespVO = {
   /** 评论编号 */
-  id: number;
+  id: number
   /** 帖子编号 */
-  postId: number;
+  postId: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 评论内容 */
-  content: string;
+  content: string
   /** 点赞量 */
-  likeCount: number;
+  likeCount: number
   /** 父评论编号 */
-  parentId?: number;
+  parentId?: number
   /** 回复评论编号 */
-  replyId?: number;
+  replyId?: number
   /** 回复用户编号 */
-  replyUserId?: number;
+  replyUserId?: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPForumPostCreateAppReqVO = {
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
-};
+  content: string
+}
 
 export type YRZPForumPostCreateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type YRZPForumPostRespAppVO = {
   /** 帖子编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 用户昵称 */
-  userNickname?: string;
+  userNickname?: string
   /** 用户头像 */
-  userAvatar?: string;
+  userAvatar?: string
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 浏览量 */
-  viewCount: number;
+  viewCount: number
   /** 点赞量 */
-  likeCount: number;
+  likeCount: number
   /** 评论量 */
-  commentCount: number;
+  commentCount: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPForumPostRespVO = {
   /** 帖子编号 */
-  id: number;
+  id: number
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 浏览量 */
-  viewCount: number;
+  viewCount: number
   /** 点赞量 */
-  likeCount: number;
+  likeCount: number
   /** 评论量 */
-  commentCount: number;
+  commentCount: number
   /** 状态 */
-  status: number;
+  status: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPForumPostUpdateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 标题 */
-  title: string;
+  title: string
   /** 内容 */
-  content: string;
+  content: string
   /** 状态 */
-  status: number;
+  status: number
   /** 帖子编号 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPJobApplicationCreateReqVO = {
   /** 求职者编号 */
-  jobSeekerId: number;
+  jobSeekerId: number
   /** 职位编号 */
-  jobId: number;
+  jobId: number
   /** 求职简历 */
-  resume?: string;
+  resume?: string
   /** 求职信 */
-  coverLetter?: string;
+  coverLetter?: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type YRZPJobApplicationRespVO = {
   /** 求职者编号 */
-  jobSeekerId: number;
+  jobSeekerId: number
   /** 职位编号 */
-  jobId: number;
+  jobId: number
   /** 求职简历 */
-  resume?: string;
+  resume?: string
   /** 求职信 */
-  coverLetter?: string;
+  coverLetter?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 主键 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
+  updateTime: string
   /** 求职者姓名 */
-  jobSeekerName?: string;
+  jobSeekerName?: string
   /** 职位名称 */
-  jobName?: string;
+  jobName?: string
   /** 公司名称 */
-  companyName?: string;
-};
+  companyName?: string
+}
 
 export type YRZPJobApplicationUpdateReqVO = {
   /** 求职者编号 */
-  jobSeekerId: number;
+  jobSeekerId: number
   /** 职位编号 */
-  jobId: number;
+  jobId: number
   /** 求职简历 */
-  resume?: string;
+  resume?: string
   /** 求职信 */
-  coverLetter?: string;
+  coverLetter?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 主键 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPJobCategoryCreateReqVO = {
   /** 分类名称 */
-  name: string;
+  name: string
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type YRZPJobCategoryRespVO = {
   /** 分类名称 */
-  name: string;
+  name: string
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 分类编号 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPJobCategoryUpdateReqVO = {
   /** 分类名称 */
-  name: string;
+  name: string
   /** 父分类编号 */
-  parentId: number;
+  parentId: number
   /** 显示顺序 */
-  sort: number;
+  sort: number
   /** 状态 */
-  status: number;
+  status: number
   /** 分类编号 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPJobCreateReqVO = {
   /** 招聘者编号 */
-  employerId: number;
+  employerId: number
   /** 公司编号 */
-  companyId: number;
+  companyId: number
   /** 职位分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 职位名称 */
-  name: string;
+  name: string
   /** 职位描述 */
-  description: string;
+  description: string
   /** 工作地点 */
-  location: string;
+  location: string
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin: number
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax: number
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: number
   /** 学历要求 */
-  educationRequirement?: string;
+  educationRequirement?: string
   /** 招聘人数 */
-  headcount: number;
+  headcount: number
   /** 职位福利 */
-  benefits?: string;
+  benefits?: string
   /** 状态 */
-  status: number;
-};
+  status: number
+}
 
 export type YRZPJobRespVO = {
   /** 招聘者编号 */
-  employerId: number;
+  employerId: number
   /** 公司编号 */
-  companyId: number;
+  companyId: number
   /** 职位分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 职位名称 */
-  name: string;
+  name: string
   /** 职位描述 */
-  description: string;
+  description: string
   /** 工作地点 */
-  location: string;
+  location: string
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin: number
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax: number
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: number
   /** 学历要求 */
-  educationRequirement?: string;
+  educationRequirement?: string
   /** 招聘人数 */
-  headcount: number;
+  headcount: number
   /** 职位福利 */
-  benefits?: string;
+  benefits?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 主键 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
+  createTime: string
   /** 更新时间 */
-  updateTime: string;
+  updateTime: string
   /** 公司名称 */
-  companyName?: string;
+  companyName?: string
   /** 职位分类名称 */
-  categoryName?: string;
-};
+  categoryName?: string
+}
 
 export type YRZPJobSeekerCreateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 真实姓名 */
-  realName: string;
+  realName: string
   /** 性别 */
-  gender: number;
+  gender: number
   /** 年龄 */
-  age: number;
+  age: number
   /** 专业类别 */
-  category: string;
+  category: string
   /** 专业 */
-  specialty: string;
+  specialty: string
   /** 工作经验(年) */
-  experience: number;
+  experience: number
   /** 身高(cm) */
-  height?: number;
+  height?: number
   /** 体重(kg) */
-  weight?: number;
+  weight?: number
   /** 学历 */
-  education?: string;
+  education?: string
   /** 毕业院校 */
-  school?: string;
+  school?: string
   /** 获得证书 */
-  certificate?: string;
+  certificate?: string
   /** 获奖情况 */
-  award?: string;
+  award?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 是否认证 */
-  isCertified?: boolean;
+  isCertified?: boolean
   /** 联系电话 */
-  contactMobile: string;
+  contactMobile: string
   /** 个人简介 */
-  description?: string;
-};
+  description?: string
+}
 
 export type YRZPJobSeekerRespVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 真实姓名 */
-  realName: string;
+  realName: string
   /** 性别 */
-  gender: number;
+  gender: number
   /** 年龄 */
-  age: number;
+  age: number
   /** 专业类别 */
-  category: string;
+  category: string
   /** 专业 */
-  specialty: string;
+  specialty: string
   /** 工作经验(年) */
-  experience: number;
+  experience: number
   /** 身高(cm) */
-  height?: number;
+  height?: number
   /** 体重(kg) */
-  weight?: number;
+  weight?: number
   /** 学历 */
-  education?: string;
+  education?: string
   /** 毕业院校 */
-  school?: string;
+  school?: string
   /** 获得证书 */
-  certificate?: string;
+  certificate?: string
   /** 获奖情况 */
-  award?: string;
+  award?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 是否认证 */
-  isCertified?: boolean;
+  isCertified?: boolean
   /** 联系电话 */
-  contactMobile: string;
+  contactMobile: string
   /** 个人简介 */
-  description?: string;
+  description?: string
   /** 主键 */
-  id: number;
+  id: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPJobSeekerUpdateReqVO = {
   /** 用户编号 */
-  userId: number;
+  userId: number
   /** 真实姓名 */
-  realName: string;
+  realName: string
   /** 性别 */
-  gender: number;
+  gender: number
   /** 年龄 */
-  age: number;
+  age: number
   /** 专业类别 */
-  category: string;
+  category: string
   /** 专业 */
-  specialty: string;
+  specialty: string
   /** 工作经验(年) */
-  experience: number;
+  experience: number
   /** 身高(cm) */
-  height?: number;
+  height?: number
   /** 体重(kg) */
-  weight?: number;
+  weight?: number
   /** 学历 */
-  education?: string;
+  education?: string
   /** 毕业院校 */
-  school?: string;
+  school?: string
   /** 获得证书 */
-  certificate?: string;
+  certificate?: string
   /** 获奖情况 */
-  award?: string;
+  award?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 是否认证 */
-  isCertified?: boolean;
+  isCertified?: boolean
   /** 联系电话 */
-  contactMobile: string;
+  contactMobile: string
   /** 个人简介 */
-  description?: string;
+  description?: string
   /** 主键 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPJobUpdateReqVO = {
   /** 招聘者编号 */
-  employerId: number;
+  employerId: number
   /** 公司编号 */
-  companyId: number;
+  companyId: number
   /** 职位分类编号 */
-  categoryId: number;
+  categoryId: number
   /** 职位名称 */
-  name: string;
+  name: string
   /** 职位描述 */
-  description: string;
+  description: string
   /** 工作地点 */
-  location: string;
+  location: string
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin: number
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax: number
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: number
   /** 学历要求 */
-  educationRequirement?: string;
+  educationRequirement?: string
   /** 招聘人数 */
-  headcount: number;
+  headcount: number
   /** 职位福利 */
-  benefits?: string;
+  benefits?: string
   /** 状态 */
-  status: number;
+  status: number
   /** 主键 */
-  id: number;
-};
+  id: number
+}
 
 export type YRZPMessageCreateReqVO = {
   /** 发送者用户编号 */
-  fromUserId: number;
+  fromUserId: number
   /** 接收者用户编号 */
-  toUserId: number;
+  toUserId: number
   /** 消息内容 */
-  content: string;
+  content: string
   /** 消息类型 */
-  type: number;
+  type: number
   /** 关联业务编号 */
-  businessId?: number;
+  businessId?: number
   /** 关联业务类型 */
-  businessType?: number;
-};
+  businessType?: number
+}
 
 export type YRZPMessageRespAppVO = {
   /** 消息编号 */
-  id: number;
+  id: number
   /** 发送者用户编号 */
-  fromUserId: number;
+  fromUserId: number
   /** 发送者用户昵称 */
-  fromUserNickname?: string;
+  fromUserNickname?: string
   /** 发送者用户头像 */
-  fromUserAvatar?: string;
+  fromUserAvatar?: string
   /** 消息内容 */
-  content: string;
+  content: string
   /** 消息类型 */
-  type: number;
+  type: number
   /** 是否已读 */
-  isRead: boolean;
+  isRead: boolean
   /** 关联业务编号 */
-  businessId?: number;
+  businessId?: number
   /** 关联业务类型 */
-  businessType?: number;
+  businessType?: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPMessageRespVO = {
   /** 消息编号 */
-  id: number;
+  id: number
   /** 发送者用户编号 */
-  fromUserId: number;
+  fromUserId: number
   /** 接收者用户编号 */
-  toUserId: number;
+  toUserId: number
   /** 消息内容 */
-  content: string;
+  content: string
   /** 消息类型 */
-  type: number;
+  type: number
   /** 是否已读 */
-  isRead: boolean;
+  isRead: boolean
   /** 关联业务编号 */
-  businessId?: number;
+  businessId?: number
   /** 关联业务类型 */
-  businessType?: number;
+  businessType?: number
   /** 创建时间 */
-  createTime: string;
-};
+  createTime: string
+}
 
 export type YRZPMessageSendAppReqVO = {
   /** 接收者用户编号 */
-  toUserId: number;
+  toUserId: number
   /** 消息内容 */
-  content: string;
+  content: string
   /** 消息类型 */
-  type: number;
+  type: number
   /** 关联业务编号 */
-  businessId?: number;
+  businessId?: number
   /** 关联业务类型 */
-  businessType?: number;
-};
+  businessType?: number
+}

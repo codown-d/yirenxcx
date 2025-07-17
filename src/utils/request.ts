@@ -1,5 +1,7 @@
 import { CustomRequestOptions } from '@/interceptors/request'
+import { getAccessToken, getTerminal } from '.'
 
+export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
 /**
  * 请求方法: 主要是对 uni.request 的封装，去适配 openapi-ts-request 的 request 方法
  * @param options 请求参数
@@ -68,7 +70,16 @@ export default function request<T = unknown>(
   }
 
   if (options.headers) {
-    requestOptions.header = options.headers
+    // requestOptions.header = options.headers
+    requestOptions.header = {
+      ...requestOptions.header,
+      ...options.headers,
+      Authorization: getAccessToken(),
+      terminal: getTerminal(),
+      Accept: '*/*',
+      'tenant-id': tenantId,
+    }
+    console.log(requestOptions.header)
     delete requestOptions.headers
   }
 

@@ -277,3 +277,29 @@ export function formatNumber(data: number, fixed = 2): { num: string; unit: stri
     return { num: (num / 100000000).toFixed(fixed), unit: '亿元' }
   }
 }
+
+export const getAccessToken = () => {
+  const { userInfo } = useUserStore()
+  return userInfo.token
+}
+export const TerminalEnum = {
+  UNKNOWN: 0, // 未知, 目的：在无法解析到 terminal 时，使用它
+  WECHAT_MINI_PROGRAM: 10, //微信小程序
+  WECHAT_WAP: 11, // 微信公众号
+  H5: 20, // H5 网页
+  APP: 31, // 手机 App
+}
+export const getTerminal = () => {
+  const platformType = uni.getAppBaseInfo().uniPlatform
+  // 与后端terminal枚举一一对应
+  switch (platformType) {
+    case 'app':
+      return TerminalEnum.APP
+    case 'web':
+      return TerminalEnum.H5
+    case 'mp-weixin':
+      return TerminalEnum.WECHAT_MINI_PROGRAM
+    default:
+      return TerminalEnum.UNKNOWN
+  }
+}

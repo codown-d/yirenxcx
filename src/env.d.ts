@@ -27,6 +27,8 @@ interface ImportMetaEnv {
   /** 是否清除console */
   readonly VITE_DELETE_CONSOLE: string
   // 更多环境变量...
+  //租户id
+  readonly VITE_APP_SHOPRO_TENANT_ID: number
 }
 
 interface ImportMeta {

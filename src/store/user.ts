@@ -72,9 +72,9 @@ export const useUserStore = defineStore(
         const loginData: AppAuthLoginReqVO = {
           mobile,
           password,
-          socialType: 0, // 非社交登录
-          socialCode: '',
-          socialState: '',
+          // socialType: 0, // 非社交登录
+          // socialCode: '',
+          // socialState: '',
         }
 
         const res: CommonResultAppAuthLoginRespVO = await login({
