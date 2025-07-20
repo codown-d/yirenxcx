@@ -90,9 +90,13 @@ const goBack = () => {
 }
 
 // 显示切换确认
+/**
+ * Toggles the user's role between 'seeking' and 'employer' and redirects to the index page.
+ * @param {any} role - The target role to switch to (currently unused in implementation)
+ */
 const showSwitchConfirm = (role: any) => {
   setRole(currentUserRole.value === RoleEmu.seeking ? RoleEmu.employer : RoleEmu.seeking)
-  // switchTab('/index/index')
-  navigateBack()
+  switchTab('/index/index')
+  // navigateBack()
 }
 </script>

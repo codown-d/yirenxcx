@@ -1,31 +1,35 @@
 <template>
-  <wd-cell :title="title" :custom-class="className">
-    <wd-select-picker
-      v-model="selectVal"
-      use-default-slot
-      :columns="columns"
-      @confirm="handleConfirm"
-      custom-class="text-left"
-    >
-      <view class="text-right">
-        <slot v-if="$slots.default"></slot>
-        <wd-icon
-          v-else
-          name="arrow-right"
-          custom-style="color: var(--wot-cell-arrow-color, rgba(0, 0, 0, 0.25));font-size: var(--wot-cell-icon-size, 16px);"
-        ></wd-icon>
-      </view>
-    </wd-select-picker>
-  </wd-cell>
-  <view class="flex flex-wrap gap-2 mt-2 mb-1">
+  <view class="py-[10px]">
+    <wd-cell :title="title" :custom-class="className">
+      <wd-select-picker
+        v-model="selectVal"
+        use-default-slot
+        :columns="columns"
+        @confirm="handleConfirm"
+        custom-class="text-left"
+      >
+        <view class="text-right">
+          <slot v-if="$slots.default" />
+          <view v-else>
+            <text class="text-[#bfbfbf] mr-[10px]">请选择</text>
+            <wd-icon
+              name="arrow-right"
+              custom-style="color: var(--wot-cell-arrow-color, rgba(0, 0, 0, 0.25));font-size: var(--wot-cell-icon-size, 16px);"
+            ></wd-icon>
+          </view>
+        </view>
+      </wd-select-picker>
+    </wd-cell>
+  </view>
+  <view class="flex flex-wrap gap-2 mb-1" v-if="selectedItems.length > 0">
     <wd-tag
       custom-class="px-2 py-1 rounded-1"
       v-for="item in selectedItems"
       :key="item.value"
       type="primary"
     >
-      <view class="flex gap-1 items-center">
-        <text class="text-[28rpx]">{{ item.label }}</text>
+      <view class="flex gap-1 items-center py-[4rpx] px-1">
+        <text class="text-[24rpx]">{{ item.label }}</text>
         <wd-icon name="close-normal" custom-class="text-4" @click="handleClose(item)"></wd-icon>
       </view>
     </wd-tag>
@@ -33,7 +37,7 @@
 </template>
 
 <script lang="ts" setup>
-interface Column {
+export interface Column {
   label: string
   value: string
 }

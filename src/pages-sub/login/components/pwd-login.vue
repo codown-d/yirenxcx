@@ -62,7 +62,7 @@
             </wd-input>
             <wd-button
               :disabled="smsCountdown > 0"
-              @click="sendSmsCode"
+              @click="sendSmsCodeFn"
               size="small"
               type="primary"
               plain
@@ -98,17 +98,12 @@ import { ref, computed } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG, FORM_CONFIG } from '@/constant/login'
-import { login, smsLogin, sendSmsCode as sendSms } from '@/service/index/yonghuApPrenzheng'
-import type {
-  AppAuthLoginReqVO,
-  AppAuthSmsLoginReqVO,
-  AppAuthSmsSendReqVO,
-  CommonResultAppAuthLoginRespVO,
-} from '@/service/index/types'
+import { AppAuthSmsSendReqVO, CommonResultAppAuthLoginRespVO, sendSmsCode } from '@/service/app'
+import { useUserStore } from '@/store'
+import { switchTab } from '@/utils'
 
+const { loginWithPassword, loginWithSms } = useUserStore()
 // 页面状态
-const showLoginForm = ref(false)
-const showRoleSelection = ref(false)
 const currentTab = ref<'password' | 'sms'>('password')
 const activeTabIndex = ref(0)
 const loginLoading = ref(false)
@@ -116,8 +111,8 @@ const smsCountdown = ref(0)
 
 // 登录表单数据
 const loginForm = ref({
-  phone: '',
-  password: '',
+  phone: '13333916701',
+  password: 'aa123456',
   smsCode: '',
 })
 const props = defineProps({
@@ -150,7 +145,7 @@ const handleTabChange = (index: number) => {
 }
 
 // 发送短信验证码
-const sendSmsCode = async () => {
+const sendSmsCodeFn = async () => {
   if (!loginForm.value.phone) {
     toast.error('请输入手机号')
     return
@@ -170,7 +165,7 @@ const sendSmsCode = async () => {
       scene: 3, // 登录场景
     }
 
-    const res = await sendSms({
+    const res = await sendSmsCode({
       body: smsData,
     })
 
@@ -227,61 +222,13 @@ const handleLogin = async () => {
   try {
     loginLoading.value = true
     toast.loading('登录中...')
-
     let loginResponse: CommonResultAppAuthLoginRespVO
-
     if (currentTab.value === 'password') {
-      // 密码登录
-      const loginData: AppAuthLoginReqVO = {
-        mobile: loginForm.value.phone,
-        password: loginForm.value.password,
-        socialType: 0, // 非社交登录
-        socialCode: '',
-        socialState: '',
-      }
-
-      loginResponse = await login({
-        body: loginData,
-      })
+      loginResponse = await loginWithPassword(loginForm.value.phone, loginForm.value.password)
     } else {
-      // 短信验证码登录
-      const smsLoginData: AppAuthSmsLoginReqVO = {
-        mobile: loginForm.value.phone,
-        code: loginForm.value.smsCode,
-        socialType: 0, // 非社交登录
-        socialCode: '',
-        socialState: '',
-      }
-
-      loginResponse = await smsLogin({
-        body: smsLoginData,
-      })
+      loginResponse = await loginWithSms(loginForm.value.phone, loginForm.value.smsCode)
     }
-
-    if (loginResponse.code === 0 && loginResponse.data) {
-      const { accessToken, userId, refreshToken, expiresTime } = loginResponse.data
-
-      // 保存登录信息到本地存储
-      uni.setStorageSync('token', accessToken)
-      uni.setStorageSync('refreshToken', refreshToken)
-      uni.setStorageSync('userId', userId)
-      uni.setStorageSync('expiresTime', expiresTime)
-
-      toast.success('登录成功')
-
-      // 登录成功后跳转到首页
-      setTimeout(() => {
-        uni.switchTab({
-          url: '/pages/index/index',
-        })
-      }, 1000)
-    } else {
-      throw new Error(loginResponse.msg || '登录失败')
-    }
-  } catch (error) {
-    console.error('登录失败:', error)
-    const errorMessage = error instanceof Error ? error.message : '登录失败，请重试'
-    toast.error(errorMessage)
+    switchTab('/index/index')
   } finally {
     loginLoading.value = false
   }

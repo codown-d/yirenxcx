@@ -1,14 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  login,
-  smsLogin,
-  logout as apiLogout,
-  weixinMiniAppLogin,
-  refreshToken,
-} from '@/service/index/yonghuApPrenzheng'
-import { getUserInfo as apiGetUserInfo } from '@/service/index/yonghuApPyonghugerenzhongxin'
+
 import type {
   AppAuthLoginReqVO,
   AppAuthSmsLoginReqVO,
@@ -16,22 +9,25 @@ import type {
   AppMemberUserInfoRespVO,
   CommonResultAppAuthLoginRespVO,
   CommonResultAppMemberUserInfoRespVO,
-} from '@/service/index/types'
+} from '@/service/app/types'
+import { getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
 
 // 用户信息类型定义
 interface UserInfo extends AppMemberUserInfoRespVO {
   token?: string
   refreshToken?: string
   expiresTime?: string
+  userId: number
 }
 
 // 初始化状态
 const userInfoState: UserInfo = {
   id: 0,
+  userId: 0,
   nickname: '',
   avatar: '/static/images/default-avatar.png',
   mobile: '',
-  sex: 0,
+  sex: 1,
   point: 0,
   experience: 0,
   brokerageEnabled: false,
@@ -72,9 +68,9 @@ export const useUserStore = defineStore(
         const loginData: AppAuthLoginReqVO = {
           mobile,
           password,
-          socialType: 0, // 非社交登录
-          socialCode: '',
-          socialState: '',
+          // socialType: 0, // 非社交登录
+          // socialCode: '',
+          // socialState: '',
         }
 
         const res: CommonResultAppAuthLoginRespVO = await login({
@@ -98,7 +94,7 @@ export const useUserStore = defineStore(
           })
 
           toast.success('登录成功')
-          await getUserInfo()
+          await getUserInfoFn()
           return res
         } else {
           throw new Error(res.msg || '登录失败')
@@ -119,9 +115,9 @@ export const useUserStore = defineStore(
         const smsLoginData: AppAuthSmsLoginReqVO = {
           mobile,
           code,
-          socialType: 0, // 非社交登录
-          socialCode: '',
-          socialState: '',
+          // socialType: 0, // 非社交登录
+          // socialCode: '',
+          // socialState: '',
         }
 
         const res: CommonResultAppAuthLoginRespVO = await smsLogin({
@@ -145,7 +141,7 @@ export const useUserStore = defineStore(
           })
 
           toast.success('登录成功')
-          await getUserInfo()
+          await getUserInfoFn()
           return res
         } else {
           throw new Error(res.msg || '登录失败')
@@ -160,9 +156,9 @@ export const useUserStore = defineStore(
     /**
      * 获取用户信息
      */
-    const getUserInfo = async () => {
+    const getUserInfoFn = async () => {
       try {
-        const res: CommonResultAppMemberUserInfoRespVO = await apiGetUserInfo({})
+        const res: CommonResultAppMemberUserInfoRespVO = await getUserInfo({})
 
         if (res.code === 0 && res.data) {
           const userData = res.data
@@ -182,7 +178,7 @@ export const useUserStore = defineStore(
      */
     const logout = async () => {
       try {
-        await apiLogout({})
+        // await apiLogout({})
         removeUserInfo()
         toast.success('退出登录成功')
       } catch (error) {
@@ -194,7 +190,7 @@ export const useUserStore = defineStore(
     /**
      * 微信小程序登录
      */
-    const wxLogin = async () => {
+    const wxLogin = async (code) => {
       try {
         // 获取微信小程序登录的code
         const wxLoginRes = await new Promise<UniApp.LoginRes>((resolve, reject) => {
@@ -205,12 +201,13 @@ export const useUserStore = defineStore(
           })
         })
 
-        console.log('微信登录code', wxLoginRes.code)
+        console.log('微信登录code', wxLoginRes.code, code)
 
         const loginData: AppAuthWeixinMiniAppLoginReqVO = {
           loginCode: wxLoginRes.code,
-          phoneCode: '', // 普通微信登录不需要手机号
-          state: 'miniapp_login',
+          phoneCode: code, // 普通微信登录不需要手机号
+          // state: 'miniapp_login',
+          state: 'miniapp_phone_login',
         }
 
         const res: CommonResultAppAuthLoginRespVO = await weixinMiniAppLogin({
@@ -234,7 +231,7 @@ export const useUserStore = defineStore(
           })
 
           toast.success('微信登录成功')
-          await getUserInfo()
+          await getUserInfoFn()
           return res
         } else {
           throw new Error(res.msg || '微信登录失败')
@@ -278,7 +275,7 @@ export const useUserStore = defineStore(
       loginWithPassword,
       loginWithSms,
       wxLogin,
-      getUserInfo,
+      getUserInfo: getUserInfoFn,
       logout,
       setUserInfo,
       removeUserInfo,

@@ -9,7 +9,7 @@
 </route>
 
 <template>
-  <view class="bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+  <view class="">
     <wx-login
       v-if="showType === 'wechat'"
       @onChange="onChange"
@@ -77,6 +77,7 @@ import WxLogin from './components/wx-login.vue'
 import PwdLogin from './components/pwd-login.vue'
 import RegisterForm from './components/register.vue'
 import ForgotPasswordForm from './components/forgot-password.vue'
+import { switchTab } from '@/utils'
 
 // 页面状态
 const showType = ref<'wechat' | 'pwd' | 'register' | 'forgot'>('wechat')
@@ -111,9 +112,7 @@ const handleRegisterSuccess = (userInfo: { phone: string; realName: string }) =>
   // 注册成功后可以跳转到身份选择或直接登录
   setTimeout(() => {
     // 这里可以跳转到首页或身份选择页面
-    uni.switchTab({
-      url: '/pages/index/index',
-    })
+    switchTab('/index/index')
   }, 1500)
 }
 

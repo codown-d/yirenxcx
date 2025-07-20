@@ -1,4 +1,5 @@
 import { CustomRequestOptions } from '@/interceptors/request'
+import { useUserStore } from '@/store'
 
 /**
  * 请求方法: 主要是对 uni.request 的封装，去适配 openapi-ts-request 的 request 方法
@@ -66,11 +67,12 @@ export default function request<T = unknown>(
     requestOptions.query = requestOptions.params
     delete requestOptions.params
   }
-
-  if (options.headers) {
-    requestOptions.header = options.headers
-    delete requestOptions.headers
+  requestOptions.header = {
+    ...options.headers,
+    'tenant-id': 1,
+    Authorization: `Bearer ${uni.getStorageSync('token')}`,
   }
+  delete requestOptions.headers
 
   return http<T>(requestOptions)
 }

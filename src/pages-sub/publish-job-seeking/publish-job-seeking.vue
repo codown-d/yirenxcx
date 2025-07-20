@@ -191,12 +191,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  publishJobSeeking,
-  getSkillOptions,
-  getAdvantageOptions,
-  type PublishJobSeekingRequest,
-} from '@/service/index/jobSeeking'
+
 import {
   educationColumns,
   experienceColumns,
@@ -208,11 +203,17 @@ import {
 } from '@/constant/jobSeeking'
 import { ItemProps } from '../job-filter/job-filter.vue'
 import { useCategoriesStore, useLocationStore } from '@/store'
+import { createJobSeeker1, YRZPJobSeekerCreateReqVO } from '@/service/app'
 const { getLocation, removeLocation, locations } = useLocationStore()
 const { categories, removeCategory, getCategory } = useCategoriesStore()
 
 // 表单数据
-const formData = reactive({
+const formData = ref<YRZPJobSeekerCreateReqVO>({
+  userId: uni.getStorageSync('userId'),
+  realName: uni.getStorageSync('realName'),
+  gender: uni.getStorageSync('gender'),
+  age: uni.getStorageSync('age'),
+  category: '',
   title: '',
   description: '',
   expectedSalary: '',
@@ -224,6 +225,15 @@ const formData = reactive({
   isPublic: true,
   skills: [],
   advantages: [],
+  specialty: '民族舞',
+  experience: 3,
+  height: 175,
+  weight: 65,
+  school: '北京舞蹈学院',
+  certificate: '舞蹈教师资格证',
+  award: '全国舞蹈大赛金奖',
+  status: 1,
+  isCertified: true,
 })
 let selectedLocations = ref<ItemProps[]>(locations)
 let selectedCategories = ref<ItemProps[]>(categories)
@@ -317,7 +327,7 @@ const publishJobSeekingInfo = async () => {
     loading.value = true
 
     // 构建提交数据
-    const submitData: PublishJobSeekingRequest = {
+    const submitData = {
       title: formData.title,
       description: formData.description,
       expectedSalary: formData.expectedSalary,
@@ -331,7 +341,7 @@ const publishJobSeekingInfo = async () => {
       isPublic: formData.isPublic,
     }
 
-    const res = await publishJobSeeking({ body: submitData })
+    const res = await createJobSeeker1({ body: submitData })
 
     if (res.code === 0) {
       toast.success('发布成功')

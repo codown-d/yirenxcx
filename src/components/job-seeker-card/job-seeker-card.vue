@@ -108,7 +108,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
-console.log('props', props)
 const emit = defineEmits<{
   click: [seeker: JobSeeker]
   favorite: [seeker: JobSeeker, isFavorited: boolean]

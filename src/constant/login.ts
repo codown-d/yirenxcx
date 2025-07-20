@@ -1,7 +1,6 @@
 /**
  * 登录页面相关常量配置
  */
-import { ForumPost } from '@/service/index/forum'
 import { DEFAULT_AVATARS } from './images'
 
 // 登录页面基础配置
@@ -144,7 +143,7 @@ export const hotTopics = [
     isFollowed: false,
   },
 ] // 帖子列表数据
-export const postList: ForumPost[] = [
+export const postList = [
   {
     id: '1',
     author: {
