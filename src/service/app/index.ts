@@ -3,6 +3,8 @@
 export * from './types';
 export * from './displayEnumLabel';
 
+export * from './yonghuappguanlihoutaiyonghuleixing';
+export * from './yonghuappguanlihoutaiyonghuleixing.vuequery';
 export * from './yirenzhipinApPxiaoxi';
 export * from './yirenzhipinApPxiaoxi.vuequery';
 export * from './yirenzhipinyonghuApPzhiwei';

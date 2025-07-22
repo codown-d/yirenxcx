@@ -5,8 +5,8 @@ import { CustomRequestOptions } from '@/interceptors/request';
 
 import * as API from './types';
 
-/** 创建用户类型 POST /admin-api/yirenzhipin/user-type/create */
-export async function createUserType1({
+/** 创建用户类型 POST /app-api/yirenzhipin/user-type/create */
+export async function createUserType({
   body,
   options,
 }: {
@@ -14,7 +14,7 @@ export async function createUserType1({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultLong>(
-    '/admin-api/yirenzhipin/user-type/create',
+    '/app-api/yirenzhipin/user-type/create',
     {
       method: 'POST',
       headers: {
@@ -26,17 +26,17 @@ export async function createUserType1({
   );
 }
 
-/** 删除用户类型 DELETE /admin-api/yirenzhipin/user-type/delete */
-export async function deleteUserType1({
+/** 删除用户类型 DELETE /app-api/yirenzhipin/user-type/delete */
+export async function deleteUserType({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.deleteUserType1Params;
+  params: API.deleteUserTypeParams;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultBoolean>(
-    '/admin-api/yirenzhipin/user-type/delete',
+    '/app-api/yirenzhipin/user-type/delete',
     {
       method: 'DELETE',
       params: {
@@ -47,16 +47,16 @@ export async function deleteUserType1({
   );
 }
 
-/** 导出用户类型 Excel GET /admin-api/yirenzhipin/user-type/export-excel */
-export async function exportUserTypeExcel1({
+/** 导出用户类型 Excel GET /app-api/yirenzhipin/user-type/export-excel */
+export async function exportUserTypeExcel({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.exportUserTypeExcel1Params;
+  params: API.exportUserTypeExcelParams;
   options?: CustomRequestOptions;
 }) {
-  return request<unknown>('/admin-api/yirenzhipin/user-type/export-excel', {
+  return request<unknown>('/app-api/yirenzhipin/user-type/export-excel', {
     method: 'GET',
     params: {
       ...params,
@@ -65,17 +65,17 @@ export async function exportUserTypeExcel1({
   });
 }
 
-/** 获得用户类型 GET /admin-api/yirenzhipin/user-type/get */
-export async function getUserType1({
+/** 获得用户类型 GET /app-api/yirenzhipin/user-type/get */
+export async function getUserType({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getUserType1Params;
+  params: API.getUserTypeParams;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultUserTypeRespVO>(
-    '/admin-api/yirenzhipin/user-type/get',
+    '/app-api/yirenzhipin/user-type/get',
     {
       method: 'GET',
       params: {
@@ -86,17 +86,17 @@ export async function getUserType1({
   );
 }
 
-/** 获得用户类型列表 GET /admin-api/yirenzhipin/user-type/list */
-export async function getUserTypeList1({
+/** 获得用户类型列表 GET /app-api/yirenzhipin/user-type/list */
+export async function getUserTypeList({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getUserTypeList1Params;
+  params: API.getUserTypeListParams;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultListUserTypeRespVO>(
-    '/admin-api/yirenzhipin/user-type/list',
+    '/app-api/yirenzhipin/user-type/list',
     {
       method: 'GET',
       params: {
@@ -107,17 +107,17 @@ export async function getUserTypeList1({
   );
 }
 
-/** 获得用户类型分页 GET /admin-api/yirenzhipin/user-type/page */
-export async function getUserTypePage1({
+/** 获得用户类型分页 GET /app-api/yirenzhipin/user-type/page */
+export async function getUserTypePage({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getUserTypePage1Params;
+  params: API.getUserTypePageParams;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultPageResultUserTypeRespVO>(
-    '/admin-api/yirenzhipin/user-type/page',
+    '/app-api/yirenzhipin/user-type/page',
     {
       method: 'GET',
       params: {
@@ -128,8 +128,8 @@ export async function getUserTypePage1({
   );
 }
 
-/** 更新用户类型 PUT /admin-api/yirenzhipin/user-type/update */
-export async function updateUserType1({
+/** 更新用户类型 PUT /app-api/yirenzhipin/user-type/update */
+export async function updateUserType({
   body,
   options,
 }: {
@@ -137,7 +137,7 @@ export async function updateUserType1({
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultBoolean>(
-    '/admin-api/yirenzhipin/user-type/update',
+    '/app-api/yirenzhipin/user-type/update',
     {
       method: 'PUT',
       headers: {

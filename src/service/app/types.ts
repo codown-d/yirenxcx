@@ -2033,12 +2033,100 @@ export type AppMemberUserUpdatePasswordReqVO = {
 };
 
 export type AppMemberUserUpdateReqVO = {
+  /** id */
+  id: number;
   /** 用户昵称 */
   nickname: string;
   /** 头像 */
   avatar: string;
   /** 性别 */
   sex: number;
+  /** 手机号 */
+  mobile?: string;
+  /** 加密后的密码 */
+  password?: string;
+  /** 帐号状态 */
+  status?: number;
+  /** 注册 IP */
+  registerIp?: string;
+  /** 注册终端 */
+  registerTerminal?: number;
+  /** 最后登录IP */
+  loginIp?: string;
+  /** 最后登录时间 */
+  loginDate?: string;
+  /** 真实名字 */
+  name?: string;
+  /** 出生日期 */
+  birthday?: string;
+  /** 所在地 */
+  areaId?: number;
+  /** 用户备注 */
+  mark?: string;
+  /** 邮箱地址 */
+  email?: string;
+  /** 所在地区 */
+  location?: string;
+  /** 年龄 */
+  age?: number;
+  /** 积分 */
+  point?: number;
+  /** 会员标签列表 */
+  tagIds?: number[];
+  /** 会员级别编号 */
+  levelId?: number;
+  /** 会员经验 */
+  experience?: number;
+  /** 用户分组编号 */
+  groupId?: number;
+  /** 专业特长 */
+  teChang?: string;
+  /** 毕业院校 */
+  biYeYuanXiao?: string;
+  /** 个人简介 */
+  jianJie?: string;
+  /** 技能标签 */
+  tags?: string;
+  /** 获奖经历 */
+  huoJiangJiLi?: string;
+  /** 代表作 */
+  daiBiaoZuo?: string;
+  /** 个人简介图片 */
+  jianJieImages?: string;
+  /** 个人简介视频 */
+  jianJieVideos?: string;
+  /** 专业技能视频 */
+  jiNengVideos?: string;
+  /** 期望薪资 */
+  qiWangXinZi?: string;
+  /** 工作类型 */
+  workType?: string;
+  /** 公司名称 */
+  companyName?: string;
+  /** 工作级别 */
+  workLavel?: string;
+  /** 从事行业 */
+  involved?: string;
+  /** 人员规模 */
+  personNumber?: string;
+  /** 网络地址 */
+  networkAddress?: string;
+  /** 详细地址 */
+  xiangXiAddress?: string;
+  /** 成立时间 */
+  chengLiTime?: string;
+  /** 公司简介 */
+  companyInfo?: string;
+  /** 公司文化 */
+  companyCulture?: string;
+  /** 公司福利 */
+  benefits?: string;
+  /** 招聘信息 */
+  recruitment?: string;
+  /** 公司图片 */
+  companyImages?: string;
+  /** 公司视频 */
+  companyVideos?: string;
 };
 
 export type AppOrderExpressTrackRespDTO = {
@@ -9673,6 +9761,11 @@ export type deleteUserParams = {
   id: number;
 };
 
+export type deleteUserType1Params = {
+  /** 编号 */
+  id: number;
+};
+
 export type deleteUserTypeParams = {
   /** 编号 */
   id: number;
@@ -10918,6 +11011,15 @@ export type exportUserListParams = {
   pageNo: number;
   /** 每页条数，最大值为 100 */
   pageSize: number;
+};
+
+export type exportUserTypeExcel1Params = {
+  /** 用户编号 */
+  userId?: number;
+  /** 用户类型 */
+  userType?: number;
+  /** 创建时间 */
+  createTime?: string[];
 };
 
 export type exportUserTypeExcelParams = {
@@ -13375,12 +13477,36 @@ export type getJobSeekerPage1Params = {
   category?: string;
   /** 专业 */
   specialty?: string;
+  /** 个人优势 */
+  advantage?: string;
+  /** 工作经验(年) */
+  experience?: string;
   /** 状态 */
   status?: number;
   /** 是否认证 */
   isCertified?: boolean;
   /** 创建时间 */
   createTime?: string[];
+  /** 求职标题 */
+  title?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 职位领域 */
+  jobSpecific?: string;
+  /** 位置 */
+  location?: string;
+  /** 薪资范围-最低 */
+  salaryMin: number;
+  /** 薪资范围-最高 */
+  salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 其他选项 */
+  other?: string;
   /** 页码，从 1 开始 */
   pageNo: number;
   /** 每页条数，最大值为 100 */
@@ -15117,9 +15243,32 @@ export type getUserParams = {
   id: number;
 };
 
+export type getUserType1Params = {
+  /** 编号 */
+  id: number;
+};
+
+export type getUserTypeList1Params = {
+  /** 编号列表 */
+  ids: number[];
+};
+
 export type getUserTypeListParams = {
   /** 编号列表 */
   ids: number[];
+};
+
+export type getUserTypePage1Params = {
+  /** 用户编号 */
+  userId?: number;
+  /** 用户类型 */
+  userType?: number;
+  /** 创建时间 */
+  createTime?: string[];
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
 };
 
 export type getUserTypePageParams = {
@@ -15136,8 +15285,9 @@ export type getUserTypePageParams = {
 };
 
 export type getUserTypeParams = {
+  userId: number;
   /** 编号 */
-  id: number;
+  id: unknown;
 };
 
 export type getWalletPageParams = {
@@ -20886,14 +21036,14 @@ export type UserSimpleRespVO = {
 export type UserTypeCreateReqVO = {
   /** 用户编号 */
   userId: number;
-  /** 用户类型 */
+  /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
 };
 
 export type UserTypeRespVO = {
   /** 用户编号 */
   userId: number;
-  /** 用户类型 */
+  /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
   /** 主键 */
   id: number;
@@ -20904,7 +21054,7 @@ export type UserTypeRespVO = {
 export type UserTypeUpdateReqVO = {
   /** 用户编号 */
   userId: number;
-  /** 用户类型 */
+  /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
   /** 主键 */
   id: number;
@@ -21061,6 +21211,24 @@ export type YRZPForumPostCreateAppReqVO = {
   content: string;
   /** 用户id */
   userId: number;
+  /** 帖子分类 */
+  category?: string;
+  /** 心情状态 */
+  moodStatus?: string;
+  /** 话题标签 */
+  tags?: string;
+  /** 上传图片 */
+  images?: string;
+  /** 上传视频 */
+  video?: string;
+  /** 位置信息 */
+  location?: string;
+  /** 可见性设置 */
+  visibilitySetting?: string;
+  /** 允许评论 */
+  allowed?: number;
+  /** 匿名发布 */
+  anonymity?: number;
 };
 
 export type YRZPForumPostCreateReqVO = {
@@ -21228,30 +21396,56 @@ export type YRZPJobCreateReqVO = {
   employerId: number;
   /** 公司编号 */
   companyId: number;
+  /** 公司名称 */
+  companyName?: string;
+  /** 公司简介 */
+  companyInfo?: string;
   /** 职位分类编号 */
   categoryId: number;
   /** 职位名称 */
   title: string;
   /** 职位描述 */
   description: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 职位类型 */
+  performanceType?: string;
+  /** 职位领域 */
+  performanceDomain?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
   salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: string;
   /** 学历要求 */
   educationRequirementName?: string;
   /** 学历要求 */
-  educationRequirement?: number;
+  educationRequirement?: string;
   /** 招聘人数 */
   headcount: number;
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
   status: number;
+  /** 具体要求 */
+  requirementDetails?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 宣传图片 */
+  advertiseImages?: string;
+  /** 宣传视频 */
+  advertiseVideos?: string;
+  /** 联系方式 */
+  phone?: string;
+  /** 其他选项 */
+  other?: string;
 };
 
 export type YRZPJobDO = {
@@ -21263,20 +21457,35 @@ export type YRZPJobDO = {
   id?: number;
   employerId?: number;
   companyId?: number;
+  companyName?: string;
+  companyInfo?: string;
   categoryId?: number;
   title?: string;
   description?: string;
+  jobType?: string;
+  jobDomain?: string;
+  performanceType?: string;
+  performanceDomain?: string;
   city?: string;
   address?: string;
+  location?: string;
+  phone?: string;
   salaryMin?: number;
   salaryMax?: number;
+  workType?: string;
   experienceRequirement?: string;
-  educationRequirement?: number;
-  jobType?: number;
+  educationRequirement?: string;
+  headcount?: number;
+  benefits?: string;
+  requirementDetails?: string;
+  comeToTime?: string;
+  advertiseImages?: string;
+  advertiseVideos?: string;
   status?: number;
   contactName?: string;
   contactMobile?: string;
   contactEmail?: string;
+  other?: string;
 };
 
 export type YRZPJobRespVO = {
@@ -21284,38 +21493,62 @@ export type YRZPJobRespVO = {
   employerId: number;
   /** 公司编号 */
   companyId: number;
+  /** 公司名称 */
+  companyName?: string;
+  /** 公司简介 */
+  companyInfo?: string;
   /** 职位分类编号 */
   categoryId: number;
   /** 职位名称 */
   title: string;
   /** 职位描述 */
   description: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 职位类型 */
+  performanceType?: string;
+  /** 职位领域 */
+  performanceDomain?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
   salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: string;
   /** 学历要求 */
   educationRequirementName?: string;
   /** 学历要求 */
-  educationRequirement?: number;
+  educationRequirement?: string;
   /** 招聘人数 */
   headcount: number;
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
   status: number;
+  /** 具体要求 */
+  requirementDetails?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 宣传图片 */
+  advertiseImages?: string;
+  /** 宣传视频 */
+  advertiseVideos?: string;
+  /** 联系方式 */
+  phone?: string;
+  /** 其他选项 */
+  other?: string;
   /** 主键 */
   id: number;
   /** 创建时间 */
   createTime: string;
   /** 更新时间 */
   updateTime: string;
-  /** 公司名称 */
-  companyName?: string;
   /** 职位分类名称 */
   categoryName?: string;
 };
@@ -21333,8 +21566,10 @@ export type YRZPJobSeekerCreateReqVO = {
   category: string;
   /** 专业 */
   specialty: string;
+  /** 个人优势 */
+  advantage?: string;
   /** 工作经验(年) */
-  experience: number;
+  experience: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -21355,6 +21590,26 @@ export type YRZPJobSeekerCreateReqVO = {
   contactMobile: string;
   /** 个人简介 */
   description?: string;
+  /** 求职标题 */
+  title?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 职位领域 */
+  jobSpecific?: string;
+  /** 位置 */
+  location?: string;
+  /** 薪资范围-最低 */
+  salaryMin: number;
+  /** 薪资范围-最高 */
+  salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 其他选项 */
+  other?: string;
 };
 
 export type YRZPJobSeekerDO = {
@@ -21370,7 +21625,7 @@ export type YRZPJobSeekerDO = {
   age?: number;
   category?: string;
   specialty?: string;
-  experience?: number;
+  experience?: string;
   height?: number;
   weight?: number;
   education?: string;
@@ -21381,6 +21636,17 @@ export type YRZPJobSeekerDO = {
   isCertified?: boolean;
   contactMobile?: string;
   description?: string;
+  advantage?: string;
+  title?: string;
+  jobType?: string;
+  jobDomain?: string;
+  jobSpecific?: string;
+  location?: string;
+  salaryMin?: number;
+  salaryMax?: number;
+  workType?: string;
+  comeToTime?: string;
+  other?: string;
 };
 
 export type YRZPJobSeekerRespVO = {
@@ -21396,8 +21662,10 @@ export type YRZPJobSeekerRespVO = {
   category: string;
   /** 专业 */
   specialty: string;
+  /** 个人优势 */
+  advantage?: string;
   /** 工作经验(年) */
-  experience: number;
+  experience: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -21418,6 +21686,26 @@ export type YRZPJobSeekerRespVO = {
   contactMobile: string;
   /** 个人简介 */
   description?: string;
+  /** 求职标题 */
+  title?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 职位领域 */
+  jobSpecific?: string;
+  /** 位置 */
+  location?: string;
+  /** 薪资范围-最低 */
+  salaryMin: number;
+  /** 薪资范围-最高 */
+  salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 其他选项 */
+  other?: string;
   /** 主键 */
   id: number;
   /** 创建时间 */
@@ -21437,8 +21725,10 @@ export type YRZPJobSeekerUpdateReqVO = {
   category: string;
   /** 专业 */
   specialty: string;
+  /** 个人优势 */
+  advantage?: string;
   /** 工作经验(年) */
-  experience: number;
+  experience: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -21459,6 +21749,26 @@ export type YRZPJobSeekerUpdateReqVO = {
   contactMobile: string;
   /** 个人简介 */
   description?: string;
+  /** 求职标题 */
+  title?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 职位领域 */
+  jobSpecific?: string;
+  /** 位置 */
+  location?: string;
+  /** 薪资范围-最低 */
+  salaryMin: number;
+  /** 薪资范围-最高 */
+  salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 其他选项 */
+  other?: string;
   /** 主键 */
   id: number;
 };
@@ -21468,30 +21778,56 @@ export type YRZPJobUpdateReqVO = {
   employerId: number;
   /** 公司编号 */
   companyId: number;
+  /** 公司名称 */
+  companyName?: string;
+  /** 公司简介 */
+  companyInfo?: string;
   /** 职位分类编号 */
   categoryId: number;
   /** 职位名称 */
   title: string;
   /** 职位描述 */
   description: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 职位类型 */
+  performanceType?: string;
+  /** 职位领域 */
+  performanceDomain?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
   salaryMax: number;
+  /** 工作性质 */
+  workType?: string;
   /** 经验要求(年) */
-  experienceRequirement?: number;
+  experienceRequirement?: string;
   /** 学历要求 */
   educationRequirementName?: string;
   /** 学历要求 */
-  educationRequirement?: number;
+  educationRequirement?: string;
   /** 招聘人数 */
   headcount: number;
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
   status: number;
+  /** 具体要求 */
+  requirementDetails?: string;
+  /** 到岗时间 */
+  comeToTime?: string;
+  /** 宣传图片 */
+  advertiseImages?: string;
+  /** 宣传视频 */
+  advertiseVideos?: string;
+  /** 联系方式 */
+  phone?: string;
+  /** 其他选项 */
+  other?: string;
   /** 主键 */
   id: number;
 };

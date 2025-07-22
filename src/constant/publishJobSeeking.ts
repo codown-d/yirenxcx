@@ -1,10 +1,92 @@
+import { generatePostColumns } from '@/utils/generatePostColumns'
+
+export const ALL_CATEGORIES_DISPLAY = [
+  {
+    name: '台前',
+    categories: [
+      {
+        name: '演员',
+        children: ['舞蹈类', '表演类', '武术类', '杂技类', '音乐类', '模特类'],
+      },
+      {
+        name: '主持/互动',
+        children: ['驻场主持人', '角色扮演互动员', '古装NPC'],
+      },
+    ],
+  },
+  {
+    name: '幕后',
+    categories: [
+      {
+        name: '艺术创作',
+        children: [
+          '导演',
+          '分幕编剧',
+          '舞蹈编排师',
+          '服装设计师',
+          '道具造型师',
+          '舞美设计师',
+          '特效设计师',
+        ],
+      },
+      {
+        name: '技术制作',
+        children: [
+          '灯光控制师',
+          '音响工程师',
+          '舞台机械操作员',
+          '焰火控制员',
+          '水景特效师',
+          '多媒体投影师',
+          '道具制作师',
+          '武器维护员',
+          '动物演员驯导师',
+        ],
+      },
+      {
+        name: '支持保障',
+        children: ['舞台监督', '演出场记', '替补演员'],
+      },
+    ],
+  },
+  {
+    name: '运营',
+    categories: [
+      {
+        name: '游客服务',
+        children: ['票务', '接待', '客户服务'],
+      },
+      {
+        name: '安全管理',
+        children: ['紧急救护员', '设备安全检查员'],
+      },
+      {
+        name: '市场营销',
+        children: ['宣传策划', '新媒体运营', '票务渠道营销'],
+      },
+      {
+        name: '综合支持',
+        children: ['产品开发', '广告招商', '数据运营', '人力资源', '后勤', '工程维修'],
+      },
+    ],
+  },
+]
+export const postColumns = generatePostColumns(ALL_CATEGORIES_DISPLAY)
 // 选择器数据
 export const salaryColumns = [
-  { label: '3-5K', value: '3-5K' },
-  { label: '5-8K', value: '5-8K' },
-  { label: '8-10K', value: '8-10K' },
-  { label: '10K以上', value: '10K以上' },
-  { label: '面议', value: '面议' },
+  { label: '3-5K', value: '3000-5000' },
+  { label: '5-8K', value: '5000-8000' },
+  { label: '8-10K', value: '8000-10000' },
+  { label: '10K以上', value: '10000-999999999' },
+  { label: '面议', value: '' },
+]
+
+export const salaryColumns2 = [
+  { label: '3-5K', value: '3-5' },
+  { label: '5-8K', value: '5-8' },
+  { label: '8-10K', value: '8-10' },
+  { label: '10K以上', value: '10-9999' },
+  { label: '面议', value: '' },
 ]
 
 export const jobTypeColumns = [

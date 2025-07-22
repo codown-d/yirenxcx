@@ -37,31 +37,8 @@
             :auto-height="true"
           />
         </wd-cell>
-        <wd-cell
-          title="期望职位"
-          custom-class="mt-2"
-          is-link
-          to="/pages-sub/job-category-select/job-category-select"
-        ></wd-cell>
-        <view class="py-2 flex flex-wrap gap-2" v-if="selectedCategories.length">
-          <tag
-            v-for="category in selectedCategories"
-            :label="category?.label"
-            :value="category?.value"
-            :key="category?.value"
-            @on-remove="removeCategory(category.value)"
-          ></tag>
-        </view>
-        <wd-cell title="位置" is-link to="/pages-sub/location-select/location-select"></wd-cell>
-        <view class="py-2 flex flex-wrap gap-2" v-if="selectedLocations.length">
-          <tag
-            v-for="item in selectedLocations"
-            :label="item.label"
-            :value="item.value"
-            :key="item.value"
-            @on-remove="removeLocation(item.value)"
-          ></tag>
-        </view>
+        <post-picker title="期望职位" :modelValue="formData.post"></post-picker>
+        <fg-location-picker title="工作地点" :modelValue="formData.location"></fg-location-picker>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -82,7 +59,7 @@
         <!-- 工作性质 -->
         <wd-cell title="工作性质">
           <wd-picker
-            v-model="formData.jobType"
+            v-model="formData.workType"
             :columns="jobTypeColumns"
             placeholder="请选择工作性质"
             prop="jobType"
@@ -92,7 +69,7 @@
         <!-- 到岗时间 -->
         <wd-cell title="到岗时间">
           <wd-picker
-            v-model="formData.availableTime"
+            v-model="formData.comeToTime"
             :columns="availableTimeColumns"
             placeholder="请选择到岗时间"
             prop="availableTime"
@@ -108,7 +85,7 @@
         <!-- 工作经验 -->
         <wd-cell title="工作经验">
           <wd-picker
-            v-model="formData.workExperience"
+            v-model="formData.experience"
             :columns="experienceColumns"
             placeholder="请选择工作经验"
             prop="workExperience"
@@ -125,19 +102,13 @@
           />
         </wd-cell>
 
-        <!-- 专业技能 -->
-        <select-picker
-          :columns="skillActions"
-          v-model="formData.skills"
-          title="专业技能"
-        ></select-picker>
-
+        <wd-cell title="专业技能" vertical custom-class="mt-4">
+          <wd-input v-model="formData.specialty" no-border placeholder="请输入技能" />
+        </wd-cell>
         <!-- 个人优势 -->
-        <select-picker
-          v-model="formData.advantages"
-          :columns="advantageActions"
-          title="个人优势"
-        ></select-picker>
+        <wd-cell title="个人优势" vertical custom-class="mt-4">
+          <wd-input v-model="formData.advantage" no-border placeholder="请输入个人优势" />
+        </wd-cell>
       </wd-card>
 
       <!-- 联系方式 -->
@@ -147,12 +118,7 @@
       <wd-card>
         <!-- 联系方式 -->
         <wd-cell title="联系方式" vertical>
-          <wd-input
-            no-border
-            v-model="formData.contactInfo"
-            placeholder="请输入手机号/微信号"
-            prop="contactInfo"
-          />
+          <wd-input no-border v-model="formData.contactMobile" placeholder="请输入手机号/微信号" />
         </wd-cell>
       </wd-card>
 
@@ -163,7 +129,7 @@
       <wd-card>
         <!-- 是否公开 -->
         <wd-cell title="公开工作">
-          <wd-switch v-model="formData.isPublic" />
+          <wd-switch v-model="formData.other" />
         </wd-cell>
       </wd-card>
     </wd-form>
@@ -189,57 +155,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
-
 import {
   educationColumns,
   experienceColumns,
   jobTypeColumns,
   availableTimeColumns,
   salaryColumns,
-  skillActions,
-  advantageActions,
-} from '@/constant/jobSeeking'
-import { ItemProps } from '../job-filter/job-filter.vue'
+} from '@/constant'
 import { useCategoriesStore, useLocationStore } from '@/store'
-import { createJobSeeker1, YRZPJobSeekerCreateReqVO } from '@/service/app'
-const { getLocation, removeLocation, locations } = useLocationStore()
+import { createJobSeeker } from '@/service/app'
+import { navigateBack } from '@/utils'
+const { getLocation, locations } = useLocationStore()
 const { categories, removeCategory, getCategory } = useCategoriesStore()
 
 // 表单数据
-const formData = ref<YRZPJobSeekerCreateReqVO>({
-  userId: uni.getStorageSync('userId'),
-  realName: uni.getStorageSync('realName'),
-  gender: uni.getStorageSync('gender'),
-  age: uni.getStorageSync('age'),
-  category: '',
+const formData = ref({
   title: '',
   description: '',
-  expectedSalary: '',
   jobType: '',
-  availableTime: '',
-  workExperience: '',
+  jobDomain: '',
+  jobSpecific: '',
+  salaryMin: '',
+  salaryMax: '',
+  workType: '',
+  comeToTime: '',
+  experience: '',
   education: '',
-  contactInfo: '',
-  isPublic: true,
-  skills: [],
-  advantages: [],
-  specialty: '民族舞',
-  experience: 3,
-  height: 175,
-  weight: 65,
-  school: '北京舞蹈学院',
-  certificate: '舞蹈教师资格证',
-  award: '全国舞蹈大赛金奖',
-  status: 1,
-  isCertified: true,
-})
-let selectedLocations = ref<ItemProps[]>(locations)
-let selectedCategories = ref<ItemProps[]>(categories)
-
-watch(formData, (val) => {
-  console.log('表单数据变化', val)
+  specialty: '',
+  contactMobile: '',
+  isCertified: '',
+  post: [],
+  location: [],
+  advantage: '',
+  other: '',
+  expectedSalary: '',
 })
 
 // 表单验证规则
@@ -247,121 +198,53 @@ const rules = {
   title: [{ required: true, message: '请输入求职标题' }],
   description: [{ required: true, message: '请输入个人简介' }],
   expectedSalary: [{ required: true, message: '请选择期望薪资' }],
-  jobType: [{ required: true, message: '请选择工作性质' }],
   contactInfo: [{ required: true, message: '请输入联系方式' }],
 }
 
 // 响应式数据
 const formRef = ref()
 const loading = ref(false)
-const selectedSkills = ref<string[]>([])
-const selectedAdvantages = ref<string[]>([])
 
-// 页面加载
-onMounted(() => {
-  loadSkillOptions()
-  loadAdvantageOptions()
-})
-// 加载技能选项
-const loadSkillOptions = async () => {
-  try {
-    const res = await getSkillOptions()
-    if (res.code === 0 && res.data) {
-      // 更新技能选项
-      skillActions.splice(
-        0,
-        skillActions.length,
-        ...res.data.map((item) => ({
-          label: item.label,
-          value: item.value,
-        })),
-      )
-    }
-  } catch (error) {
-    console.error('加载技能选项失败:', error)
-  }
-}
-
-// 加载优势选项
-const loadAdvantageOptions = async () => {
-  try {
-    const res = await getAdvantageOptions()
-    if (res.code === 0 && res.data) {
-      // 更新优势选项
-      advantageActions.splice(
-        0,
-        advantageActions.length,
-        ...res.data.map((item) => ({
-          label: item.label,
-          value: item.value,
-        })),
-      )
-    }
-  } catch (error) {
-    console.error('加载优势选项失败:', error)
-  }
-}
-
-// 保存草稿
 const saveDraft = () => {
-  uni.showModal({
-    title: '提示',
-    content: '确定要取消发布吗？',
-    success: (res) => {
-      if (res.confirm) {
-        uni.navigateBack()
-      }
-    },
-  })
+  navigateBack()
 }
-
+const postData = computed(() => {
+  let { post, location, expectedSalary, ...restData } = formData.value
+  let [salaryMin, salaryMax] = expectedSalary.split('-')
+  return {
+    ...restData,
+    jobType: post[0],
+    jobDomain: post[1],
+    jobSpecific: post[2],
+    salaryMin,
+    salaryMax,
+    location: location.join(','),
+  }
+})
 // 发布求职信息
 const publishJobSeekingInfo = async () => {
   try {
-    // 表单验证
     const valid = await formRef.value.validate()
     if (!valid) {
       return
     }
-
     loading.value = true
-
-    // 构建提交数据
-    const submitData = {
-      title: formData.title,
-      description: formData.description,
-      expectedSalary: formData.expectedSalary,
-      jobType: formData.jobType,
-      availableTime: formData.availableTime,
-      workExperience: formData.workExperience,
-      education: formData.education,
-      skills: formData.skills,
-      advantages: formData.advantages,
-      contactInfo: formData.contactInfo,
-      isPublic: formData.isPublic,
-    }
-
-    const res = await createJobSeeker1({ body: submitData })
-
+    const res = await createJobSeeker({ body: postData.value })
     if (res.code === 0) {
       toast.success('发布成功')
-
       // 延迟跳转
-      setTimeout(() => {
-        uni.navigateBack()
-      }, 1500)
+      navigateBack()
     } else {
       toast.error(res.msg || '发布失败')
     }
   } catch (error) {
-    console.error('发布失败:', error)
     toast.error('网络错误，请稍后重试')
   } finally {
     loading.value = false
   }
 }
 onShow(() => {
-  selectedCategories.value = getCategory()
-  selectedLocations.value = getLocation()
+  // selectedCategories.value = getCategory()
+  // selectedLocations.value = getLocation()
 })
 </script>

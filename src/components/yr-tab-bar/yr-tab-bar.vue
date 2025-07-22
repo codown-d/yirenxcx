@@ -70,6 +70,10 @@ let tabList = ref([
 
 const change = ({ value }) => {
   if (value === 2) {
+    if (!uni.getStorageSync('token')) {
+      navigateToSub('/login/login')
+      return
+    }
     return role === RoleEmu.seeking
       ? navigateToSub('/publish-job-seeking/publish-job-seeking')
       : navigateToSub('/publish-recruitment/publish-recruitment')
