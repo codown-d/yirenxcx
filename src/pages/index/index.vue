@@ -199,7 +199,7 @@ const handleSearch = (val) => {
 onLoad(async () => {
   let res = await getBannerList({ params: { position: 1 } })
   swiperList.value = res.data.map((item) => item.picUrl)
-  navigateToSub('/publish-recruitment/publish-recruitment')
+  navigateToSub('/online-resume/online-resume')
 })
 onShow(() => {
   seekerList.value = []

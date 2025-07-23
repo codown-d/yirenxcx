@@ -207,7 +207,7 @@ export const useUserStore = defineStore(
           loginCode: wxLoginRes.code,
           phoneCode: code, // 普通微信登录不需要手机号
           // state: 'miniapp_login',
-          state: 'miniapp_phone_login',
+          state: 'default',
         }
 
         const res: CommonResultAppAuthLoginRespVO = await weixinMiniAppLogin({

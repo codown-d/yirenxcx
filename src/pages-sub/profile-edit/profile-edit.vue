@@ -9,7 +9,7 @@
 </route>
 
 <template>
-  <view class="mx-4 mt-2">
+  <view class="mx-4 mt-2 mb-16">
     <!-- 基本信息 -->
     <text class="text-base font-semibold text-gray-900 block mb-4">基本信息</text>
     <wd-form ref="form" :model="userForm">
@@ -60,19 +60,13 @@
       <wd-cell title="性别">
         <wd-picker v-model="value" :columns="genderColumns" />
       </wd-cell>
-
-      <!-- 保存按钮 -->
-      <wd-button
-        :disabled="loading"
-        block
-        :round="false"
-        :loading="loading"
-        @click="saveProfile"
-        custom-class="mt-4"
-      >
-        {{ loading ? '保存中...' : '保存' }}
-      </wd-button>
     </wd-form>
+  </view>
+  <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
+    <!-- 保存按钮 -->
+    <wd-button :disabled="loading" block :round="false" :loading="loading" @click="saveProfile">
+      {{ loading ? '保存中...' : '保存' }}
+    </wd-button>
   </view>
 </template>
 

@@ -168,9 +168,10 @@ import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
+import { AppMemberUserInfoRespVO, getUserInfo } from '@/service/app'
 
 // 用户信息
-const userInfo = ref({
+const userInfo = ref<AppMemberUserInfoRespVO>({
   name: '李小华',
   avatar: '/static/images/default-avatar.png',
   completeness: 85,
@@ -197,9 +198,14 @@ onMounted(() => {
 })
 
 // 加载用户数据
-const loadUserData = () => {
+const loadUserData = async () => {
   // 这里可以从API获取真实数据
-  console.log('加载用户数据')
+  let res = await getUserInfo({})
+  console.log(res)
+  if (res.code === 200) {
+    userInfo.value = res.data
+    console.log('加载用户数据')
+  }
 }
 
 // 升级VIP

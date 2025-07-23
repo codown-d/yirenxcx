@@ -67,6 +67,7 @@ export default function request<T = unknown>(
     requestOptions.query = requestOptions.params
     delete requestOptions.params
   }
+  console.log('requestOptions: ', uni.getStorageSync('token'))
   requestOptions.header = {
     ...options.headers,
     'tenant-id': 1,
