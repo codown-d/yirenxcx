@@ -385,6 +385,8 @@ const saveResume = async () => {
   }
   let res = await updateUser({ body: userInfo.value })
   toast.success('简历保存成功')
-  navigateBack()
+  setTimeout(() => {
+    navigateBack()
+  }, 500)
 }
 </script>

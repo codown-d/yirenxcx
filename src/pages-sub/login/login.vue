@@ -77,7 +77,7 @@ import WxLogin from './components/wx-login.vue'
 import PwdLogin from './components/pwd-login.vue'
 import RegisterForm from './components/register.vue'
 import ForgotPasswordForm from './components/forgot-password.vue'
-import { switchTab } from '@/utils'
+import { navigateBack, switchTab } from '@/utils'
 
 // 页面状态
 const showType = ref<'wechat' | 'pwd' | 'register' | 'forgot'>('wechat')
@@ -112,7 +112,8 @@ const handleRegisterSuccess = (userInfo: { phone: string; realName: string }) =>
   // 注册成功后可以跳转到身份选择或直接登录
   setTimeout(() => {
     // 这里可以跳转到首页或身份选择页面
-    switchTab('/index/index')
+    // switchTab('/index/index')
+    navigateBack()
   }, 1500)
 }
 

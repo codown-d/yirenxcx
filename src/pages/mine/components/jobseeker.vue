@@ -121,17 +121,20 @@
     <!-- 功能按钮 -->
     <view class="mx-3 mb-3">
       <view class="flex justify-between gap-2">
-        <view class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5">
-          <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
-          <text>简历预览</text>
-        </view>
-        <view
-          @click="publishJob"
+        <navigate-to
           class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
+          to-sub="/online-resume/online-resume"
+        >
+          <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
+          <text>在线简历</text>
+        </navigate-to>
+        <navigate-to
+          class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
+          to-sub="/publish-job-seeking/publish-job-seeking"
         >
           <image src="/static/images/fbqz.png" mode="scaleToFill" class="w-7 h-7" />
           <text>发布求职</text>
-        </view>
+        </navigate-to>
       </view>
     </view>
 
@@ -139,25 +142,12 @@
     <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
       <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
       <view class="flex justify-between">
-        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToMyFollows">
-          <wd-icon name="heart" custom-class="text-gray-600 text-7" />
-          <text class="text-[28rpx] text-gray-600 block">我的关注</text>
-        </view>
-        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToContract">
-          <wd-icon name="setting" custom-class="text-gray-600 text-7" />
-          <text class="text-[28rpx] text-gray-600 block">违约公示</text>
-        </view>
-        <view class="flex items-center justify-center flex-col flex-1 gap-2" @click="goToSettings">
-          <wd-icon name="setting" custom-class="text-gray-600 text-7" />
-          <text class="text-[28rpx] text-gray-600 block">设置</text>
-        </view>
-        <view
-          class="flex items-center justify-center flex-col flex-1 gap-2"
-          @click="contactService"
-        >
-          <wd-icon name="phone" custom-class="text-gray-600 text-7" />
-          <text class="text-[28rpx] text-gray-600 block">联系客服</text>
-        </view>
+        <navigate-to v-for="item in tools" :to-sub="item.path">
+          <view class="flex items-center justify-center flex-col flex-1 gap-2">
+            <wd-icon :name="item.icon" custom-class="text-gray-600 text-7" />
+            <text class="text-[28rpx] text-gray-600 block">{{ item.name }}</text>
+          </view>
+        </navigate-to>
       </view>
     </view>
   </view>
@@ -182,6 +172,29 @@ const userInfo = ref<AppMemberUserInfoRespVO>({
   location: '北京市朝阳区',
 })
 
+let tools = ref([
+  {
+    name: '我的关注',
+    icon: 'heart',
+    path: '/my-follows/my-follows',
+  },
+  {
+    name: '违约公示',
+    icon: 'star',
+    path: '/violation-notice/violation-notice',
+  },
+
+  {
+    name: '设置',
+    icon: 'setting',
+    path: '/profile-settings/profile-settings',
+  },
+  {
+    name: '联系客服',
+    icon: 'phone',
+    path: '',
+  },
+])
 // 统计数据
 const stats = ref({
   browsed: 156,
@@ -225,7 +238,7 @@ const previewResume = () => {
 
 // 发布求职
 const publishJob = () => {
-  navigateToSub('/publish-job-seeking/publish-job-seeking')
+  navigateToSub('')
 }
 
 // 跳转到我的关注
