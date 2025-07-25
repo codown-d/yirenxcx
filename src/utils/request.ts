@@ -1,5 +1,6 @@
 import { CustomRequestOptions } from '@/interceptors/request'
-import { getAccessToken, getTerminal } from '.'
+import { useUserStore } from '@/store'
+import { navigateToSub } from '.'
 
 export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
 /**
@@ -8,6 +9,8 @@ export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
  * @returns 返回 Promise 对象
  */
 const http = <T>(options: CustomRequestOptions) => {
+  // 1. 获取用户信息
+  const { removeUserInfo } = useUserStore()
   // 1. 返回 Promise 对象
   return new Promise<T>((resolve, reject) => {
     uni.request({
@@ -19,13 +22,17 @@ const http = <T>(options: CustomRequestOptions) => {
       // 响应成功
       success(res) {
         // 状态码 2xx，参考 axios 的设计
-        if (res.statusCode >= 200 && res.statusCode < 300) {
+        if (res.statusCode >= 200 && res.statusCode < 300 && res.data.code === 0) {
           // 2.1 提取核心数据 res.data
           resolve(res.data as T)
-        } else if (res.statusCode === 401) {
+        } else if (res.statusCode === 401 || res.data.code === 401) {
           // 401错误  -> 清理用户信息，跳转到登录页
-          // userStore.clearUserInfo()
-          // uni.navigateTo({ url: '/pages/login/login' })
+          removeUserInfo()
+          navigateToSub('/login/login')
+          uni.showToast({
+            icon: 'none',
+            title: '登录已失效',
+          })
           reject(res)
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
@@ -68,20 +75,13 @@ export default function request<T = unknown>(
     requestOptions.query = requestOptions.params
     delete requestOptions.params
   }
-
-  if (options.headers) {
-    // requestOptions.header = options.headers
-    requestOptions.header = {
-      ...requestOptions.header,
-      ...options.headers,
-      Authorization: getAccessToken(),
-      terminal: getTerminal(),
-      Accept: '*/*',
-      'tenant-id': tenantId,
-    }
-    console.log(requestOptions.header)
-    delete requestOptions.headers
+  console.log('requestOptions: ', uni.getStorageSync('token'))
+  requestOptions.header = {
+    ...options.headers,
+    'tenant-id': 1,
+    Authorization: `Bearer ${uni.getStorageSync('token')}`,
   }
+  delete requestOptions.headers
 
   return http<T>(requestOptions)
 }

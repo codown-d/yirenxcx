@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
-import { navigateTo } from './utils'
 
 onLaunch(() => {
   console.log('App Launch')
@@ -16,7 +15,6 @@ onHide(() => {
 })
 </script>
 
-<custom-tab-bar v-if="isTabPage()" />
 <style lang="scss">
 /* stylelint-disable selector-type-no-unknown */
 button::after {
@@ -102,5 +100,9 @@ image {
       padding-bottom: 0;
     }
   }
+}
+.wd-calendar__cell,
+.wd-col-picker__cell {
+  padding-right: 0 !important;
 }
 </style>

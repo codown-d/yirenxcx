@@ -36,14 +36,13 @@
       >
         <view class="px-4">
           <!-- 搜索栏 -->
-          <search placeholder="请输入职位名称" class-name="mt-2" />
+          <search placeholder="请输入职位名称" class-name="mt-2" @confirm="handleSearch" />
           <!-- 招聘横幅 -->
-          <view class="relative my-3 rounded-3 overflow-hidden h-40">
+          <view class="relative mt-3 rounded-3 overflow-hidden h-40" v-if="swiperList.length">
             <wd-swiper :list="swiperList" autoplay></wd-swiper>
           </view>
-
           <!-- 筛选标签 -->
-          <scroll-view class="whitespace-nowrap" scroll-x>
+          <scroll-view class="whitespace-nowrap mt-3" scroll-x>
             <view class="flex items-center justify-between">
               <view class="flex gap-3">
                 <view
@@ -67,17 +66,19 @@
             </view>
           </scroll-view>
           <!-- 推荐招聘职位标题 -->
-          <view class="py-4">
-            <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
-          </view>
-          <!-- 职位列表 -->
-
-          <job-card v-for="job in jobList" :key="job.id" :job-data="job" />
+          <template v-if="jobList.length">
+            <view class="py-4">
+              <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
+            </view>
+            <job-card v-for="job in jobList" :key="job.id" :job-data="job" />
+          </template>
           <!-- 推荐招聘职位标题 -->
-          <view class="py-4">
-            <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
-          </view>
-          <job-seeker-card v-for="seeker in seekerList" :key="seeker.id" :seeker-data="seeker" />
+          <template v-if="seekerList.length">
+            <view class="py-4">
+              <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
+            </view>
+            <job-seeker-card v-for="seeker in seekerList" :key="seeker.id" :seeker-data="seeker" />
+          </template>
         </view>
       </view>
     </scroll-view>
@@ -86,8 +87,11 @@
     <view class="flex flex-col gap-3 rounded-3 bg-linear-100 p-5 w-[260px]">
       <view class="text-primary font-bold text-4 text-center">请选择您的身份</view>
       <view class="text-[14px] text-center">注册后浏览更多信息</view>
-      <view class="flex flex-col gap-3 mt-3" @click="handleClick">
-        <view class="bg-[#F5F6FA] rounded-[6px] flex items-center">
+      <view class="flex flex-col gap-3 mt-3">
+        <view
+          class="bg-[#F5F6FA] rounded-[6px] flex items-center"
+          @click="handleClick(RoleEmu.seeking)"
+        >
           <wd-img :width="88" :height="76" src="/static/images/yiren.png" custom-class="mr-5" />
           <view>
             <view class="text-[#252525]">薏人</view>
@@ -97,7 +101,10 @@
             </view>
           </view>
         </view>
-        <view class="bg-[#F5F6FA] rounded-[6px] flex items-center">
+        <view
+          class="bg-[#F5F6FA] rounded-[6px] flex items-center"
+          @click="handleClick(RoleEmu.employer)"
+        >
           <wd-img :width="88" :height="76" src="/static/images/zp.png" custom-class="mr-5" />
           <view>
             <view class="text-[#252525]">我来招聘</view>
@@ -125,30 +132,24 @@
 <script lang="ts" setup>
 import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/constant/recruitment'
 import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
-
 import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
+import { RoleEmu, useRoleStore, useUserStore } from '@/store'
+import { getBannerList, getJobPage, getJobSeekerPage } from '@/service/app'
 
 const { safeAreaInsets } = getSystemInfoSync()
+const { userInfo } = useUserStore()
+const { getRole, setRole } = useRoleStore()
+
 // 响应式数据
 const opacity = ref(0)
 
-const searchKeyword = ref('')
-
 const show = ref(false)
 const activeFilterTag = ref('all')
-const activeTab = ref('recruit')
 const jobList = ref<JobPosition[]>(JOB_POSITIONS)
 const seekerList = ref<JobSeeker[]>(JOB_SEEKERS)
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
+const isShowPopup = ref(false)
 
-// 计算属性
-const filteredJobs = computed(() => {
-  if (activeFilterTag.value === 'all') {
-    return jobList.value
-  }
-  // 这里可以根据不同的筛选条件进行过滤
-  return jobList.value
-})
 const swiperList = ref([
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
@@ -156,9 +157,11 @@ const swiperList = ref([
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/moon.jpg',
   'https://registry.npmmirror.com/wot-design-uni-assets/*/files/meng.jpg',
 ])
-function handleClick(e) {
-  console.log(e)
-  navigateToSub('/login/login')
+function handleClick(type) {
+  setRole(type)
+  setTimeout(() => {
+    navigateToSub('/login/login')
+  }, 0)
 }
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {
@@ -178,60 +181,31 @@ const handleFilterChange = (tagId: string) => {
   console.log('切换筛选标签:', tagId)
 }
 
-const handleJobClick = (job: JobPosition) => {
-  console.log('点击职位:', job.title)
-  uni.showToast({
-    title: `查看职位: ${job.title}`,
-    icon: 'none',
-  })
-}
-
-const handleJobFavorite = (job: JobPosition, isFavorited: boolean) => {
-  const action = isFavorited ? '收藏' : '取消收藏'
-  console.log(`${action}职位:`, job.title)
-  uni.showToast({
-    title: `${action}: ${job.title}`,
-    icon: 'none',
-  })
-}
-
-const handleTabChange = (tabId: string) => {
-  if (tabId === activeTab.value) return
-
-  activeTab.value = tabId
-  console.log('切换标签:', tabId)
-
-  // 根据不同标签进行页面跳转
-  switch (tabId) {
-    case 'message':
-      uni.showToast({ title: '消息功能开发中', icon: 'none' })
-      break
-    case 'add':
-      uni.showToast({ title: '发布功能开发中', icon: 'none' })
-      break
-    case 'forum':
-      uni.showToast({ title: '论坛功能开发中', icon: 'none' })
-      break
-    case 'mine':
-      uni.showToast({ title: '我的功能开发中', icon: 'none' })
-      break
+let getDataFn = async (keyword?: string) => {
+  let pageSize = !userInfo.token ? 6 : 10
+  let roleType = getRole()
+  if (roleType === RoleEmu.employer) {
+    let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
+    seekerList.value = res.data.list
+  } else if (roleType === RoleEmu.seeking) {
+    let res = await getJobPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
+    jobList.value = res.data.list
   }
+  console.log(123456, getRole(), userInfo.token)
 }
-const isShowPopup = ref(false)
-
-// 生命周期
-onLoad(() => {
-  console.log('招聘页面加载完成')
-  // navigateToSub('/login/login')
-  // uni.setTabBarItem({
-  //   index: 0, // 第几个 tabBar 项，从 0 开始
-  //   text: '首页', // 修改显示文字
-  //   success(res) {
-  //     console.log('修改成功', res)
-  //   },
-  //   fail(err) {
-  //     console.error('修改失败', err)
-  //   },
-  // })
+const handleSearch = (val) => {
+  getDataFn(val)
+}
+onLoad(async () => {
+  let res = await getBannerList({ params: { position: 1 } })
+  swiperList.value = res.data.map((item) => item.picUrl)
+  navigateToSub('/online-resume/online-resume')
+})
+onShow(() => {
+  seekerList.value = []
+  jobList.value = []
+  getDataFn()
+  show.value = false
+  isShowPopup.value = false
 })
 </script>

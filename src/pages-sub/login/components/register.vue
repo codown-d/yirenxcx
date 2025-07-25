@@ -103,8 +103,7 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, REGISTER_CONFIG } from '@/constant'
-import { sendSmsCode as sendSms } from '@/service/index/yonghuApPrenzheng'
-import type { AppAuthSmsSendReqVO, AuthRegisterReqVO } from '@/service/index/types'
+import { sendSms } from '@/service/app'
 
 // 类型定义
 interface RegisterRequest {

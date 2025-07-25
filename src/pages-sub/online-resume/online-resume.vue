@@ -9,18 +9,22 @@
 </route>
 
 <template>
-  <view class="mt-4">
+  <view class="mt-4 pb-16">
     <!-- 用户基本信息卡片 -->
     <wd-form ref="form" :model="userInfo">
       <wd-card>
         <!-- 头像和基本信息 -->
         <view class="mb-4">
           <view class="flex items-center">
-            <image :src="userInfo.avatar" mode="aspectFill" class="w-16 h-16 rounded-full mr-4" />
+            <image
+              :src="userInfo.avatar"
+              mode="aspectFill"
+              class="bg-gray-100 w-16 h-16 rounded-full mr-4"
+            />
             <view class="flex-1 flex items-center justify-between">
               <view class="flex flex-col gap-">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
-                <view class="">{{ userInfo.age }}岁 · {{ userInfo.education }}</view>
+                <view class="">{{ userInfo.age }}岁 · {{ userInfo.teChang }}</view>
               </view>
               <view @click="goToProfileEdit">
                 <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
@@ -31,7 +35,7 @@
             <view class="flex gap-1">
               <wd-icon name="phone" custom-class="text-4"></wd-icon>
               <text class="text-sm text-gray-500 mb-1">
-                {{ userInfo.phone }}
+                {{ userInfo.mobile }}
               </text>
             </view>
             <view class="flex gap-1">
@@ -42,13 +46,59 @@
             </view>
           </view>
         </view>
-        <wd-divider></wd-divider>
+        <view>
+          <wd-divider custom-class="!px-0"></wd-divider>
+        </view>
         <!-- 个人简介 -->
-        <wd-cell title="个人简介" vertical class="mt-4">
-          <wd-textarea v-model="userInfo.introduction" placeholder="请输入个人简介" />
+        <wd-cell title="自我介绍" vertical custom-class="mt-4 mb-2">
+          <wd-textarea
+            v-model="userInfo.jianJie"
+            placeholder="请输入个人简介"
+            auto-height
+            no-border
+          />
         </wd-cell>
       </wd-card>
 
+      <!-- 个人展示 -->
+      <view class="flex items-center justify-between mb-3 px-4 mt-1">
+        <text class="text-base font-semibold text-gray-800">个人展示</text>
+      </view>
+      <wd-card>
+        <!-- 个人展示项目 -->
+        <view v-for="(item, index) in showcase" :key="index" class="mb-4 last:mb-0">
+          <view class="flex items-center justify-between mb-2">
+            <text class="text-sm font-medium text-gray-700">{{ item.title }}</text>
+          </view>
+          <text class="text-xs text-gray-500 block mb-3">{{ item.description }}</text>
+
+          <!-- 图片展示区域 -->
+          <view class="grid grid-cols-3 gap-2">
+            <view
+              v-for="(photo, photoIndex) in item.list"
+              :key="photoIndex"
+              @click="previewImage(photo, item.list)"
+              class="relative aspect-square bg-gray-100 rounded-2 overflow-hidden"
+            >
+              <image
+                v-if="photo.type === ShowcasePhotoEmu.Image"
+                :src="photo.url"
+                mode="aspectFill"
+                class="w-full h-full"
+              />
+              <view
+                v-else-if="photo.type === ShowcasePhotoEmu.Video"
+                class="w-full h-full bg-gray-200 flex items-center justify-center"
+              >
+                <wd-icon name="play-circle-filled" size="24px" color="#666" />
+              </view>
+              <view v-else class="w-full h-full bg-gray-200 flex items-center justify-center">
+                <wd-icon name="add" size="24px" color="#999" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </wd-card>
       <!-- 技能标签 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">技能标签</text>
@@ -57,16 +107,15 @@
       <wd-card>
         <view class="flex flex-wrap gap-2">
           <view
-            v-for="(skill, index) in userInfo.skills"
+            v-for="(skill, index) in skills"
             :key="index"
-            class="flex items-center bg-green-50 text-green-600 text-sm px-3 py-1.5 rounded-full border border-green-200"
+            class="flex items-center bg-green-50 text-green-600 text-sm px-2 py-1 rounded-1 border border-green-200"
           >
             <text class="mr-1">{{ skill }}</text>
             <wd-icon name="close" size="14px" @click="removeSkill(index)" />
           </view>
         </view>
       </wd-card>
-
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">代表作品</text>
@@ -75,7 +124,7 @@
       <wd-card>
         <view class="flex flex-wrap gap-2">
           <view
-            v-for="(work, index) in userInfo.works"
+            v-for="(work, index) in []"
             :key="index"
             class="flex items-center justify-between p-3 bg-gray-50 rounded-2 mb-2 last:mb-0"
           >
@@ -88,77 +137,18 @@
         </view>
       </wd-card>
 
-      <!-- 个人展示 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">个人展示</text>
-      </view>
-      <wd-card>
-        <!-- 个人展示项目 -->
-        <view v-for="(item, index) in userInfo.showcase" :key="index" class="mb-4 last:mb-0">
-          <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">{{ item.title }}</text>
-            <text class="text-xs text-gray-400">{{ item.count }}</text>
-          </view>
-          <text class="text-xs text-gray-500 block mb-3">{{ item.description }}</text>
-
-          <!-- 图片展示区域 -->
-          <view class="grid grid-cols-3 gap-2">
-            <view
-              v-for="(photo, photoIndex) in item.photos"
-              :key="photoIndex"
-              class="relative aspect-square bg-gray-100 rounded-2 overflow-hidden"
-              @click="previewImage(photo, item.photos)"
-            >
-              <image
-                v-if="photo.type === 'image'"
-                :src="photo.url"
-                mode="aspectFill"
-                class="w-full h-full"
-              />
-              <view
-                v-else-if="photo.type === 'video'"
-                class="w-full h-full bg-gray-200 flex items-center justify-center"
-              >
-                <wd-icon name="play-circle-filled" size="24px" color="#666" />
-              </view>
-              <view v-else class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <wd-icon name="add" size="24px" color="#999" />
-              </view>
-            </view>
-          </view>
-        </view>
-      </wd-card>
-
-      <!-- 求职意向 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">求职意向</text>
-      </view>
-      <wd-card>
-        <view class="space-y-2">
-          <view class="flex items-center" v-if="false">
-            <text class="text-sm text-gray-500 w-20">期望职位：</text>
-            <text class="text-sm text-gray-700">{{ userInfo.jobIntention.position }}</text>
-          </view>
-          <wd-cell title="期望薪资">
-            <wd-picker :columns="columns" v-model="userInfo.jobIntention.salary" />
-          </wd-cell>
-          <view class="flex items-center" v-if="false">
-            <text class="text-sm text-gray-500 w-20">工作地点：</text>
-            <text class="text-sm text-gray-700">{{ userInfo.jobIntention.location }}</text>
-          </view>
-        </view>
-      </wd-card>
-
       <!-- 操作按钮 -->
-      <view class="gap-4 flex mt-4 mx-4">
-        <!-- 预览简历按钮 -->
-        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
-          预览简历
-        </wd-button>
-        <!-- 保存按钮 -->
-        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
-          保存
-        </wd-button>
+      <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
+        <view class="gap-4 flex mx-4">
+          <!-- 预览简历按钮 -->
+          <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
+            预览简历
+          </wd-button>
+          <!-- 保存按钮 -->
+          <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
+            保存
+          </wd-button>
+        </view>
       </view>
     </wd-form>
   </view>
@@ -167,166 +157,148 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  DEFAULT_RESUME_DATA,
-  SKILL_CATEGORIES,
-  type UserResumeInfo,
-  type ShowcasePhoto,
-} from '@/constant/resume'
-import { navigateToSub } from '@/utils'
+import { ShowcasePhotoEmu, SKILL_CATEGORIES, type ShowcasePhoto } from '@/constant/resume'
+import { navigateBack, navigateToSub } from '@/utils'
+import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/app'
 
 // 用户信息数据
-const userInfo = ref<UserResumeInfo>({
-  ...DEFAULT_RESUME_DATA,
-  id: '1',
-  name: '李小华',
-  age: 24,
-  education: '北京舞蹈学院',
-  phone: '138****8888',
-  email: '138****8888',
-  avatar: '/static/images/default-avatar.png',
-  introduction:
-    '我是一名专业的古典舞演员，拥有扎实的舞蹈基础和丰富的舞台表演经验。热爱舞蹈艺术，善于表达情感，具有良好的团队合作精神。',
-  skills: ['古典舞', '民族舞', '芭蕾基础', '现代舞'],
-  works: [
-    {
-      id: '1',
-      title: '《梅花三弄》主要演员',
-      description: '古典舞剧',
-      type: 'performance',
-      date: '2023-10',
-    },
-    {
-      id: '2',
-      title: '《春江花月夜》独舞',
-      description: '个人作品',
-      type: 'performance',
-      date: '2023-08',
-    },
-  ],
-  showcase: [
-    {
-      id: '1',
-      title: '个人展示图片 (最多4张)',
-      count: '4个',
-      description: '展示您的形象、舞台风采或专业照片',
-      category: 'personal',
-      photos: [
-        { type: 'image', url: '/static/images/avatar.jpg' },
-        { type: 'video', url: '/static/videos/dance1.mp4' },
-        { type: 'add', url: '' },
-      ],
-    },
-    {
-      id: '2',
-      title: '自我介绍视频 (1个)',
-      count: '1个',
-      description: '展示您的形象、舞台风采或专业照片',
-      category: 'stage',
-      photos: [
-        { type: 'image', url: '/static/images/avatar.jpg' },
-        { type: 'image', url: '/static/images/avatar.jpg' },
-        { type: 'add', url: '' },
-      ],
-    },
-    {
-      id: '3',
-      title: '专业技能视频 (最多3个)',
-      count: '3个',
-      description: '展示您的专业技能、表演片段或作品集锦',
-      category: 'stage',
-      photos: [
-        { type: 'image', url: '/static/images/avatar.jpg' },
-        { type: 'image', url: '/static/images/avatar.jpg' },
-        { type: 'add', url: '' },
-      ],
-    },
-  ],
-  jobIntention: {
-    position: '舞蹈演员',
-    salary: '8000-12000元',
-    location: '北京市',
-    workType: 'full-time',
-  },
-  completeness: 85,
-  status: 'published',
-  createdAt: '2024-01-01',
-  updatedAt: '2024-01-15',
+const userInfo = ref<AppMemberUserUpdateReqVO>({
+  id: 1,
+  nickname: '李四',
+  avatar: 'https://www.iocoder.cn/x.png',
+  sex: 1,
+  mobile: '13333916701',
+  password: '$2a$04$Fwk//mDrb91IYYzbRsUSM.WGxX9Q6P/ZEe97eNMzA8wp8McyfgoKu',
+  status: 0,
+  registerIp: '192.168.1.1',
+  registerTerminal: 10,
+  loginIp: '192.168.1.1',
+  loginDate: '2023-01-01T16:00:00',
+  name: '张三',
+  birthday: '1990-01-01T00:00:00',
+  areaId: 110101,
+  mark: '优质客户',
+  email: 'example@iocoder.cn',
+  location: '北京市海淀区',
+  age: 30,
+  point: 100,
+  tagIds: [1, 2, 3],
+  levelId: 1,
+  experience: 500,
+  groupId: 2,
+  teChang: 'Java开发',
+  biYeYuanXiao: '清华大学',
+  jianJie: '5年Java开发经验，精通Spring Boot',
+  tags: 'Java,Spring,MySQL',
+  huoJiangJiLi: '2021年度优秀员工',
+  daiBiaoZuo: '芋道源码开源项目',
+  jianJieImages: 'https://www.iocoder.cn/images/1.png,https://www.iocoder.cn/images/2.png',
+  jianJieVideos: 'https://www.iocoder.cn/videos/1.mp4',
+  jiNengVideos: 'https://www.iocoder.cn/videos/2.mp4',
+  qiWangXinZi: '15k-25k',
+  workType: '全职',
+  companyName: '芋道科技有限公司',
+  workLavel: '高级',
+  involved: '互联网/IT',
+  personNumber: '100-499人',
+  networkAddress: 'https://www.iocoder.cn',
+  xiangXiAddress: '北京市朝阳区xxx大厦',
+  chengLiTime: '2018年',
+  companyInfo: '芋道源码是一家专注于...',
+  companyCulture: '创新、激情、诚信...',
+  benefits: '五险一金、带薪年假、免费零食...',
+  recruitment: '招聘Java开发工程师5名...',
+  companyImages:
+    'https://www.iocoder.cn/images/company1.png,https://www.iocoder.cn/images/company2.png',
+  companyVideos: 'https://www.iocoder.cn/videos/company.mp4',
 })
-const columns = ref([
-  {
-    label: '不限',
-    value: '不限',
+const skills = ref(['Java', 'Spring', 'MySQL'])
+watch(
+  () => userInfo.value,
+  (value) => {
+    skills.value = value.tags.split(',').map((item) => {
+      return item
+    })
   },
-  {
-    label: '3000以下',
-    value: '3000以下',
-  },
-  {
-    label: '3000-5000',
-    value: '3000-5000',
-  },
-  {
-    label: '5000-8000',
-    value: '5000-8000',
-  },
-  {
-    label: '8000-12000',
-    value: '8000-12000',
-  },
-  {
-    label: '12000-20000',
-    value: '12000-20000',
-  },
-  {
-    label: '20000以上',
-    value: '20000以上',
-  },
-])
-// 跳转到个人资料编辑
+)
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
-const handleConfirm = () => {
-  console.log('confirm')
-}
-// 计算简历完整度
-const completenessPercentage = computed(() => {
-  let score = 0
-  const maxScore = 100
-
-  // 基本信息 (30分)
-  if (userInfo.value.name) score += 5
-  if (userInfo.value.phone) score += 5
-  if (userInfo.value.email) score += 5
-  if (userInfo.value.education) score += 5
-  if (userInfo.value.introduction) score += 10
-
-  // 技能标签 (20分)
-  score += Math.min(userInfo.value.skills.length * 4, 20)
-
-  // 代表作品 (20分)
-  score += Math.min(userInfo.value.works.length * 10, 20)
-
-  // 个人展示 (20分)
-  const hasPhotos = userInfo.value.showcase.some((item) =>
-    item.photos.some((photo) => photo.type !== 'add'),
-  )
-  if (hasPhotos) score += 20
-
-  // 求职意向 (10分)
-  if (userInfo.value.jobIntention.position) score += 10
-
-  return Math.min(score, maxScore)
-})
-
 onMounted(() => {
   loadUserData()
 })
 
+const showcase = computed(() => {
+  let jianJieImagesArr = userInfo.value.jianJieImages.split(',')
+  let jianJieVideos = userInfo.value.jianJieVideos.split(',')
+  let jiNengVideos = userInfo.value.jiNengVideos.split(',')
+  return [
+    {
+      title: '个人展示图片 (最多4张)',
+      count: 4,
+      description: '展示您的形象、舞台风采或专业照片',
+      list: jianJieImagesArr.reduce((list, item, index) => {
+        list.push({
+          type: ShowcasePhotoEmu.Image,
+          url: item,
+        })
+        if (jianJieImagesArr.length < 4 && index == jianJieImagesArr.length - 1) {
+          list.push({
+            type: ShowcasePhotoEmu.Add,
+            url: item,
+          })
+        }
+        return list
+      }, []),
+    },
+    {
+      title: '自我介绍视频 (1个)',
+      count: 1,
+      description: '展示您的形象、舞台风采或专业照片',
+      list: jianJieVideos.reduce((list, item, index) => {
+        list.push({
+          type: ShowcasePhotoEmu.Video,
+          url: item,
+        })
+        if (jianJieVideos.length < 1 && index == jianJieVideos.length - 1) {
+          list.push({
+            type: ShowcasePhotoEmu.Add,
+            url: item,
+          })
+        }
+        return list
+      }, []),
+    },
+    {
+      title: '专业技能视频 (最多3个)',
+      count: 3,
+      description: '展示您的专业技能、表演片段或作品集锦',
+      list: jiNengVideos.reduce((list, item, index) => {
+        list.push({
+          type: ShowcasePhotoEmu.Video,
+          url: item,
+        })
+        if (jiNengVideos.length < 3 && index == jiNengVideos.length - 1) {
+          list.push({
+            type: ShowcasePhotoEmu.Add,
+            url: item,
+          })
+        }
+        return list
+      }, []),
+    },
+  ]
+})
+
 // 加载用户数据
-const loadUserData = () => {
-  console.log('加载用户简历数据')
+const loadUserData = async () => {
+  // 这里可以从API获取真实数据
+  let res = await getUserInfo({})
+  console.log(res)
+  if (res.code === 200) {
+    userInfo.value = res.data
+    console.log('加载用户数据')
+  }
 }
 
 // 添加技能
@@ -341,9 +313,9 @@ const addSkill = () => {
         itemList: category.skills,
         success: (skillRes) => {
           const skill = category.skills[skillRes.tapIndex]
-          if (!userInfo.value.skills.includes(skill)) {
-            userInfo.value.skills.push(skill)
-            toast.success(`已添加技能：${skill}`)
+          console.log(skills.value, skill)
+          if (!skills.value.includes(skill)) {
+            skills.value.push(skill)
           } else {
             toast.info('该技能已存在')
           }
@@ -355,9 +327,7 @@ const addSkill = () => {
 
 // 移除技能
 const removeSkill = (index: number) => {
-  const skill = userInfo.value.skills[index]
-  userInfo.value.skills.splice(index, 1)
-  toast.success(`已移除技能：${skill}`)
+  skills.value = skills.value.splice(index, 1)
 }
 
 // 添加作品
@@ -370,14 +340,14 @@ const addWork = () => {
 }
 
 // 预览图片
-const previewImage = (photo: ShowcasePhoto, photos: ShowcasePhoto[]) => {
-  if (photo.type === 'image') {
+const previewImage = (photo: ShowcasePhoto, photos) => {
+  if (photo.type === ShowcasePhotoEmu.Image) {
     const urls = photos.filter((p) => p.type === 'image').map((p) => p.url)
     uni.previewImage({
       urls,
       current: photo.url,
     })
-  } else if (photo.type === 'video') {
+  } else if (photo.type === ShowcasePhotoEmu.Video) {
     toast.info('播放视频功能开发中')
     // 这里可以实现视频播放功能
   } else {
@@ -389,25 +359,6 @@ const previewImage = (photo: ShowcasePhoto, photos: ShowcasePhoto[]) => {
       success: (res) => {
         // 这里应该上传图片到服务器
         toast.success('图片上传成功')
-        // 临时添加到展示中
-        const showcaseIndex = userInfo.value.showcase.findIndex((item) =>
-          item.photos.some((p) => p === photo),
-        )
-        if (showcaseIndex !== -1) {
-          const photoIndex = userInfo.value.showcase[showcaseIndex].photos.findIndex(
-            (p) => p === photo,
-          )
-          if (photoIndex !== -1) {
-            userInfo.value.showcase[showcaseIndex].photos[photoIndex] = {
-              type: 'image',
-              url: res.tempFilePaths[0],
-            }
-            // 如果还有空位，添加新的添加按钮
-            if (userInfo.value.showcase[showcaseIndex].photos.length < 6) {
-              userInfo.value.showcase[showcaseIndex].photos.push({ type: 'add', url: '' })
-            }
-          }
-        }
       },
     })
   }
@@ -422,26 +373,20 @@ const previewResume = () => {
 }
 
 // 保存简历
-const saveResume = () => {
+const saveResume = async () => {
   // 验证必填信息
   if (!userInfo.value.name.trim()) {
     toast.error('请填写姓名')
     return
   }
-  if (!userInfo.value.phone.trim()) {
+  if (!userInfo.value.mobile.trim()) {
     toast.error('请填写联系电话')
     return
   }
-
-  // 更新时间
-  userInfo.value.updatedAt = new Date().toISOString().split('T')[0]
-
-  // 这里应该调用API保存数据
+  let res = await updateUser({ body: userInfo.value })
   toast.success('简历保存成功')
-
-  // 可以返回上一页或跳转到简历列表
   setTimeout(() => {
-    uni.navigateBack()
-  }, 1500)
+    navigateBack()
+  }, 500)
 }
 </script>

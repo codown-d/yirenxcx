@@ -1,0 +1,99 @@
+/* eslint-disable */
+// @ts-ignore
+import request from '@/utils/request';
+import { CustomRequestOptions } from '@/interceptors/request';
+
+import * as API from './types';
+
+/** 创建招聘职位 POST /app-api/yirenzhipin/job/create */
+export async function createJob({
+  body,
+  options,
+}: {
+  body: API.YRZPJobCreateReqVO;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultLong>('/app-api/yirenzhipin/job/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** 删除招聘职位 DELETE /app-api/yirenzhipin/job/delete */
+export async function deleteJob({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.deleteJobParams;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultBoolean>('/app-api/yirenzhipin/job/delete', {
+    method: 'DELETE',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 获得招聘职位 GET /app-api/yirenzhipin/job/get */
+export async function getJob({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.getJobParams;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultYRZPJobDO>('/app-api/yirenzhipin/job/get', {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}
+
+/** 获得职位分页 GET /app-api/yirenzhipin/job/page */
+export async function getJobPage({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.getJobPageParams;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultPageResultYRZPJobDO>(
+    '/app-api/yirenzhipin/job/page',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+
+/** 更新招聘职位 PUT /app-api/yirenzhipin/job/update */
+export async function updateJob({
+  body,
+  options,
+}: {
+  body: API.YRZPJobUpdateReqVO;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultBoolean>('/app-api/yirenzhipin/job/update', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}

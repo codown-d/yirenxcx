@@ -172,8 +172,7 @@ import { toast } from '@/utils/toast'
 import { categoryActions, visibilityActions, availableTopics, availableMoods } from '@/constant'
 import { useLocationStore } from '@/store'
 import { navigateToSub } from '@/utils'
-import { createForumPost } from '@/service/index/yirenzhipinApPluntantiezi'
-import type { YRZPForumPostCreateAppReqVO } from '@/service/index/types'
+import { createForumPost, YRZPForumPostCreateAppReqVO } from '@/service/app'
 const { getLocation } = useLocationStore()
 
 // 页面状态

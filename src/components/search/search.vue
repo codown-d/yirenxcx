@@ -36,12 +36,16 @@ defineProps({
 
 let searchKeyword = ref('')
 
-const emit = defineEmits(['confirm', 'input'])
+const emit = defineEmits<{
+  (e: 'confirm', value: string): void
+  (e: 'input', value: string): void
+}>()
 const onConfirm = () => {
   emit('confirm', searchKeyword.value)
 }
-const onInput = (e: any) => {
-  searchKeyword.value = e.detail.value
+const onInput = (e) => {
+  console.log(e)
+  searchKeyword.value = e.value
   emit('input', searchKeyword.value)
 }
 const onClear = () => {

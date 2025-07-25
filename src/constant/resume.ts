@@ -43,9 +43,14 @@ export interface ShowcaseItem {
   category: 'personal' | 'stage' | 'training' | 'award'
 }
 
+export enum ShowcasePhotoEmu {
+  Image = 'Image',
+  Video = 'Video',
+  Add = 'Add',
+}
 // 展示照片接口
 export interface ShowcasePhoto {
-  type: 'image' | 'video' | 'add'
+  type: ShowcasePhotoEmu
   url: string
   thumbnail?: string
   description?: string

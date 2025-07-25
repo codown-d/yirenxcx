@@ -103,8 +103,7 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, FORGOT_PASSWORD_CONFIG } from '@/constant'
-import { sendSmsCode as sendSms, validateSmsCode } from '@/service/index/yonghuApPrenzheng'
-import type { AppAuthSmsSendReqVO, AppAuthSmsValidateReqVO } from '@/service/index/types'
+import { sendSms } from '@/service/app'
 
 // 类型定义
 interface ResetPasswordRequest {

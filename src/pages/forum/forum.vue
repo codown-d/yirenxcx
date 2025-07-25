@@ -172,8 +172,6 @@ import { toast } from '@/utils/toast'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 
 import { tabCategory, hotTopics as hotList, postList as pl } from '@/constant'
-import { getForumPostPage, getForumPost } from '@/service/index/yirenzhipinApPluntantiezi'
-import type { YRZPForumPostRespAppVO } from '@/service/index/types'
 
 // 临时类型定义，应该从service中获取
 interface ForumTopic {

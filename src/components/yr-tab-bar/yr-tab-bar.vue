@@ -22,7 +22,7 @@
 import { RoleEmu, useRoleStore } from '@/store'
 import { navigateToSub, switchTab } from '@/utils'
 
-let { role } = useRoleStore()
+let { role, getRole } = useRoleStore()
 const props = defineProps({
   tabIndex: {
     type: Number,
@@ -36,7 +36,7 @@ let tabList = ref([
     selectedIconPath: '/static/tabbar/indexH.png',
     pagePath: '/index/index',
     value: 0,
-    text: '薏仁',
+    text: !uni.getStorageSync('token') ? '薏仁' : getRole() === RoleEmu.employer ? '薏人' : '招聘',
   },
   {
     iconPath: '/static/tabbar/msg.png',
@@ -70,6 +70,10 @@ let tabList = ref([
 
 const change = ({ value }) => {
   if (value === 2) {
+    if (!uni.getStorageSync('token')) {
+      navigateToSub('/login/login')
+      return
+    }
     return role === RoleEmu.seeking
       ? navigateToSub('/publish-job-seeking/publish-job-seeking')
       : navigateToSub('/publish-recruitment/publish-recruitment')
@@ -77,4 +81,11 @@ const change = ({ value }) => {
   let node = tabList.value[value].pagePath
   switchTab(node)
 }
+onShow(() => {
+  tabList.value[0].text = !uni.getStorageSync('token')
+    ? '薏仁'
+    : getRole() === RoleEmu.employer
+      ? '薏人'
+      : '招聘'
+})
 </script>
