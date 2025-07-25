@@ -293,8 +293,6 @@ const loadPostList = async (isRefresh = false) => {
       if (hasMore.value) {
         currentPage.value++
       }
-    } else {
-      toast.error(res.msg || '加载失败')
     }
   } finally {
     loading.value = false

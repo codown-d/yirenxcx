@@ -157,20 +157,12 @@ export const useUserStore = defineStore(
      * 获取用户信息
      */
     const getUserInfoFn = async () => {
-      try {
-        const res: CommonResultAppMemberUserInfoRespVO = await getUserInfo({})
-
-        if (res.code === 0 && res.data) {
-          const userData = res.data
-          setUserInfo(userData)
-          uni.setStorageSync('userInfo', userData)
-          return res
-        } else {
-          throw new Error(res.msg || '获取用户信息失败')
-        }
-      } catch (error) {
-        console.error('获取用户信息失败:', error)
-        throw error
+      const res: CommonResultAppMemberUserInfoRespVO = await getUserInfo({})
+      if (res.code === 0 && res.data) {
+        const userData = res.data
+        setUserInfo(userData)
+        uni.setStorageSync('userInfo', userData)
+        return res
       }
     }
     /**

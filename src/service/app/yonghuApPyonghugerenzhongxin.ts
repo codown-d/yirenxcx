@@ -11,13 +11,10 @@ export async function getUserInfo({
 }: {
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultAppMemberUserInfoRespVO>(
-    '/app-api/member/user/get',
-    {
-      method: 'GET',
-      ...(options || {}),
-    }
-  );
+  return request<API.CommonResultMemberUserDO>('/app-api/member/user/get', {
+    method: 'GET',
+    ...(options || {}),
+  });
 }
 
 /** 重置密码 用户忘记密码时使用 PUT /app-api/member/user/reset-password */

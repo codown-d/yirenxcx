@@ -34,3 +34,16 @@ export const REGEX_PATTERNS = {
   PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{6,20}$/,
   ID_CARD: /^[1-9]\d{5}(18|19|20)\d{2}((0[1-9])|(1[0-2]))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/,
 }
+
+// 正则表达式常量
+export const AGE = new Array(34).fill('').map((_, index) => {
+  return {
+    label: `${index + 16}`,
+    value: `${index + 16}`,
+  }
+})
+export const SEX = [
+  { label: '女', value: '女' },
+  { label: '男', value: '男' },
+  { label: '保密', value: '保密' },
+]

@@ -1,7 +1,7 @@
 <template>
   <wd-cell :title="title" :custom-class="className" title-width="60px">
     <wd-col-picker
-      v-model="value"
+      v-model="pickerValue"
       :columns="area"
       :column-change="columnChange"
       @confirm="handleConfirm"
@@ -17,7 +17,7 @@ const props = defineProps({
     required: true,
   },
   modelValue: {
-    type: Array,
+    type: Array<string>,
     default: () => [],
   },
   className: {
@@ -25,17 +25,9 @@ const props = defineProps({
     default: '',
   },
 })
-
-const value = ref([])
-const area = ref<any[]>([
-  colPickerData.map((item) => {
-    return {
-      value: item.value,
-      label: item.text,
-    }
-  }),
-])
-
+console.log(props, 'props.modelValue')
+const pickerValue = ref([])
+const area = ref<any[]>([])
 const columnChange = ({ selectedItem, resolve, finish }) => {
   const areaData = findChildrenByCode(colPickerData, selectedItem.value)
   if (areaData && areaData.length) {
@@ -58,14 +50,31 @@ function handleConfirm({ value }) {
 watch(
   () => props.modelValue,
   (val) => {
-    value.value = val
+    console.log(val)
+    pickerValue.value = val
+    area.value = [
+      colPickerData.map((item) => {
+        return {
+          value: item.value,
+          label: item.text,
+        }
+      }),
+      ...val.map((item) => {
+        return findChildrenByCode(colPickerData, item)!.map((item) => {
+          return {
+            value: item.value,
+            label: item.text,
+          }
+        })
+      }),
+    ]
   },
   { immediate: true },
 )
 
 const emit = defineEmits(['update:modelValue'])
 
-watch(value, (val) => {
+watch(pickerValue, (val) => {
   emit('update:modelValue', val)
 })
 </script>

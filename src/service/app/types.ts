@@ -1981,27 +1981,6 @@ export type AppMemberSignInRecordSummaryRespVO = {
   todaySignIn: boolean;
 };
 
-export type AppMemberUserInfoRespVO = {
-  /** 用户编号 */
-  id: number;
-  /** 用户昵称 */
-  nickname: string;
-  /** 用户头像 */
-  avatar: string;
-  /** 用户手机号 */
-  mobile: string;
-  /** 用户性别 */
-  sex: number;
-  /** 积分 */
-  point: number;
-  /** 经验值 */
-  experience: number;
-  /** 用户等级 */
-  level?: Level;
-  /** 是否成为推广员 */
-  brokerageEnabled: boolean;
-};
-
 export type AppMemberUserResetPasswordReqVO = {
   /** 新密码 */
   password: string;
@@ -4879,12 +4858,6 @@ export type CommonResultAppMemberSignInRecordSummaryRespVO = {
   msg?: string;
 };
 
-export type CommonResultAppMemberUserInfoRespVO = {
-  code?: number;
-  data?: AppMemberUserInfoRespVO;
-  msg?: string;
-};
-
 export type CommonResultAppPayOrderSubmitRespVO = {
   code?: number;
   data?: AppPayOrderSubmitRespVO;
@@ -6323,6 +6296,12 @@ export type CommonResultMemberSummaryRespVO = {
 export type CommonResultMemberTagRespVO = {
   code?: number;
   data?: MemberTagRespVO;
+  msg?: string;
+};
+
+export type CommonResultMemberUserDO = {
+  code?: number;
+  data?: MemberUserDO;
   msg?: string;
 };
 
@@ -15627,17 +15606,6 @@ export type KnowledgeSegment = {
   documentName: string;
 };
 
-export type Level = {
-  /** 等级编号 */
-  id: number;
-  /** 等级名称 */
-  name: string;
-  /** 等级 */
-  level: number;
-  /** 等级图标 */
-  icon?: string;
-};
-
 export type likeForumCommentParams = {
   /** 编号 */
   id: number;
@@ -16204,6 +16172,62 @@ export type MemberTerminalStatisticsRespVO = {
   terminal: number;
   /** 会员数量 */
   userCount: number;
+};
+
+export type MemberUserDO = {
+  createTime?: string;
+  updateTime?: string;
+  creator?: string;
+  updater?: string;
+  deleted?: boolean;
+  tenantId?: number;
+  id?: number;
+  mobile?: string;
+  password?: string;
+  status?: number;
+  registerIp?: string;
+  registerTerminal?: number;
+  loginIp?: string;
+  loginDate?: string;
+  nickname?: string;
+  avatar?: string;
+  name?: string;
+  sex?: number;
+  birthday?: string;
+  areaId?: number;
+  mark?: string;
+  email?: string;
+  location?: string;
+  age?: number;
+  point?: number;
+  tagIds?: number[];
+  levelId?: number;
+  experience?: number;
+  groupId?: number;
+  teChang?: string;
+  biYeYuanXiao?: string;
+  jianJie?: string;
+  tags?: string;
+  huoJiangJiLi?: string;
+  daiBiaoZuo?: string;
+  jianJieImages?: string;
+  jianJieVideos?: string;
+  jiNengVideos?: string;
+  qiWangXinZi?: string;
+  workType?: string;
+  companyName?: string;
+  workLavel?: string;
+  involved?: string;
+  personNumber?: string;
+  networkAddress?: string;
+  xiangXiAddress?: string;
+  chengLiTime?: string;
+  companyInfo?: string;
+  companyCulture?: string;
+  benefits?: string;
+  recruitment?: string;
+  companyImages?: string;
+  companyVideos?: string;
 };
 
 export type MemberUserRespVO = {

@@ -104,5 +104,6 @@ image {
 .wd-calendar__cell,
 .wd-col-picker__cell {
   padding-right: 0 !important;
+  padding-left: 0 !important ;
 }
 </style>
