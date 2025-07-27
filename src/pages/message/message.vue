@@ -128,7 +128,7 @@
       </view>
     </view>
 
-    <custom-tab-bar :tab-index="1"></custom-tab-bar>
+    <yr-tab-bar :tab-index="1"></yr-tab-bar>
   </view>
 </template>
 

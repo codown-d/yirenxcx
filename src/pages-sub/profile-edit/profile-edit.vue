@@ -29,7 +29,7 @@
       <!-- 姓名 -->
       <wd-cell title="姓名" vertical>
         <wd-input
-          v-model="userForm.nickname"
+          v-model="userForm.name"
           placeholder="请输入姓名"
           :rules="[{ required: true, message: '请填写用户名' }]"
         />
@@ -68,7 +68,7 @@
       <wd-cell title="年龄">
         <view class="flex items-center justify-end">
           <wd-input
-            custom-class="w-10"
+            custom-class="w-16"
             v-model="userForm.age"
             placeholder="请输入年龄"
             type="number"
@@ -79,9 +79,7 @@
       </wd-cell>
 
       <!-- 性别 -->
-      <wd-cell title="性别">
-        <wd-picker v-model="userForm.sex" :columns="SEX" />
-      </wd-cell>
+      <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
     </wd-form>
   </view>
 
@@ -102,7 +100,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { getUserInfo, MemberUserDO, updateUser, updateUserInfo } from '@/service/app'
+import { getUserInfo, updateUser } from '@/service/app'
 import { SEX } from '@/constant'
 import { getEnvBaseUploadUrl, navigateBack } from '@/utils'
 import { merge } from 'lodash'
@@ -156,7 +154,7 @@ const saveProfile = async () => {
     loading.value = true
     const res = await updateUser({ body: merge({}, userForm.value, {}) })
     if (res.code === 0) {
-      toast.success('个人资料保存成功')
+      toast.success('保存成功')
       setTimeout(() => {
         navigateBack()
       }, 500)

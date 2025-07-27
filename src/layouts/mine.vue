@@ -1,7 +1,7 @@
 <template>
   <wd-config-provider :themeVars="theme">
     <view class="text-[#252525]">
-      <scroll-view :scroll-y="true" class="h-100vh" @scroll="handleScroll">
+      <scroll-view :scroll-y="true" @scroll="handleScroll">
         <view
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',

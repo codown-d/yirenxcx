@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
+import { navigateTo } from './utils'
 
 onLaunch(() => {
   console.log('App Launch')
 })
 onShow(() => {
-  // uni?.onTabBarMidButtonTap?.(() => {
-  //   navigateTo('/publish-info/publish-info')
-  // })
+  uni?.onTabBarMidButtonTap?.(() => {
+    navigateTo('/publish-info/publish-info')
+  })
 })
 onHide(() => {
   console.log('App Hide')
@@ -105,5 +106,8 @@ image {
 .wd-col-picker__cell {
   padding-right: 0 !important;
   padding-left: 0 !important ;
+}
+.wd-cell__right {
+  flex: none !important;
 }
 </style>

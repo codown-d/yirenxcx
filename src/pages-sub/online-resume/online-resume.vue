@@ -33,16 +33,10 @@
           </view>
           <view class="flex gap-5 mt-2">
             <view class="flex gap-1">
-              <wd-icon name="phone" custom-class="text-4"></wd-icon>
-              <text class="text-sm text-gray-500 mb-1">
-                {{ userInfo.mobile }}
-              </text>
+              <yr-img-title url="dianhua.svg" :title="userInfo.mobile" />
             </view>
             <view class="flex gap-1">
-              <wd-icon name="mail" custom-class="text-4"></wd-icon>
-              <text class="text-sm text-gray-500">
-                {{ userInfo.email }}
-              </text>
+              <yr-img-title url="youxiang.svg" :title="userInfo.email" />
             </view>
           </view>
         </view>
@@ -60,45 +54,6 @@
         </wd-cell>
       </wd-card>
 
-      <!-- 个人展示 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">个人展示</text>
-      </view>
-      <wd-card>
-        <!-- 个人展示项目 -->
-        <view v-for="(item, index) in showcase" :key="index" class="mb-4 last:mb-0">
-          <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">{{ item.title }}</text>
-          </view>
-          <text class="text-xs text-gray-500 block mb-3">{{ item.description }}</text>
-
-          <!-- 图片展示区域 -->
-          <view class="grid grid-cols-3 gap-2">
-            <view
-              v-for="(photo, photoIndex) in item.list"
-              :key="photoIndex"
-              @click="previewImage(photo, item.list)"
-              class="relative aspect-square bg-gray-100 rounded-2 overflow-hidden"
-            >
-              <image
-                v-if="photo.type === ShowcasePhotoEmu.Image"
-                :src="photo.url"
-                mode="aspectFill"
-                class="w-full h-full"
-              />
-              <view
-                v-else-if="photo.type === ShowcasePhotoEmu.Video"
-                class="w-full h-full bg-gray-200 flex items-center justify-center"
-              >
-                <wd-icon name="play-circle-filled" size="24px" color="#666" />
-              </view>
-              <view v-else class="w-full h-full bg-gray-200 flex items-center justify-center">
-                <wd-icon name="add" size="24px" color="#999" />
-              </view>
-            </view>
-          </view>
-        </view>
-      </wd-card>
       <!-- 技能标签 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">技能标签</text>
@@ -107,7 +62,7 @@
       <wd-card>
         <view class="flex flex-wrap gap-2">
           <view
-            v-for="(skill, index) in skills"
+            v-for="(skill, index) in tags"
             :key="index"
             class="flex items-center bg-green-50 text-green-600 text-sm px-2 py-1 rounded-1 border border-green-200"
           >
@@ -121,22 +76,87 @@
         <text class="text-base font-semibold text-gray-800">代表作品</text>
         <wd-icon name="add-circle" custom-class="text-5" @click="addWork" />
       </view>
-      <wd-card>
+      <wd-card v-if="daiBiaoZuo.length">
         <view class="flex flex-wrap gap-2">
           <view
-            v-for="(work, index) in []"
+            v-for="(work, index) in daiBiaoZuo"
             :key="index"
-            class="flex items-center justify-between p-3 bg-gray-50 rounded-2 mb-2 last:mb-0"
+            class="flex items-center justify-between py-3 px-4 bg-[#E9F7F4] rounded-2 mb-2 last:mb-0 w-full"
           >
-            <view class="flex items-center flex-1">
-              <view class="w-2 h-2 bg-primary rounded-full mr-3"></view>
-              <text class="text-sm text-gray-700 flex-1">{{ work.title }}</text>
-            </view>
-            <wd-icon name="arrow-right" size="16px" color="#999" />
+            <text class="text-sm text-[#248069]">{{ work }}</text>
+            <wd-icon
+              name="close-normal"
+              custom-class="text-5 text-[#248069]"
+              @click.stop="removeDaiBiaoZuo(index)"
+            ></wd-icon>
           </view>
         </view>
       </wd-card>
+      <!-- 个人展示 -->
+      <view class="flex items-center justify-between mb-3 px-4 mt-1">
+        <text class="text-base font-semibold text-gray-800">个人展示</text>
+      </view>
+      <wd-card>
+        <!-- 个人展示项目 -->
+        <view class="mb-4 last:mb-0">
+          <view class="flex items-center justify-between mb-2">
+            <text class="text-sm font-medium text-gray-700">个人展示图片 (最多4张)</text>
+          </view>
+          <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
 
+          <!-- 图片展示区域 -->
+          <yr-upload
+            :limit="4"
+            :file-list="jianJieImages"
+            @change="(val) => changeUpload(val, 'jianJieImages')"
+          ></yr-upload>
+        </view>
+        <view class="mb-4 last:mb-0">
+          <view class="flex items-center justify-between mb-2">
+            <text class="text-sm font-medium text-gray-700">自我介绍视频 (1个)</text>
+          </view>
+          <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
+
+          <!-- 图片展示区域 -->
+          <yr-upload
+            :limit="1"
+            :file-list="jianJieVideos"
+            accept="video"
+            @change="(val) => changeUpload(val, 'jianJieVideos')"
+          ></yr-upload>
+        </view>
+        <view class="mb-4 last:mb-0">
+          <view class="flex items-center justify-between mb-2">
+            <text class="text-sm font-medium text-gray-700">专业技能视频 (最多3个)</text>
+          </view>
+          <text class="text-xs text-gray-500 block mb-3">展示您的专业技能、表演片段或作品集锦</text>
+
+          <!-- 图片展示区域 -->
+          <yr-upload
+            :limit="3"
+            accept="video"
+            :file-list="jiNengVideos"
+            @change="(val) => changeUpload(val, 'jiNengVideos')"
+          ></yr-upload>
+        </view>
+      </wd-card>
+      <!-- 求职意向 -->
+      <view class="flex items-center justify-between mb-3 px-4 mt-1">
+        <text class="text-base font-semibold text-gray-800">求职意向</text>
+      </view>
+      <wd-card>
+        <yr-picker
+          :columns="salaryColumns"
+          v-model="userInfo.qiWangXinZi"
+          title="期望薪资"
+        ></yr-picker>
+
+        <yr-picker
+          :columns="jobTypeColumns"
+          v-model="userInfo.workType"
+          title="工作性质"
+        ></yr-picker>
+      </wd-card>
       <!-- 操作按钮 -->
       <yr-page-footer>
         <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
@@ -151,213 +171,93 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { ShowcasePhotoEmu, SKILL_CATEGORIES, type ShowcasePhoto } from '@/constant/resume'
-import { navigateBack, navigateToSub } from '@/utils'
-import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/app'
+import { navigateToSub } from '@/utils'
+import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
+import { merge } from 'lodash'
+import { useMessage } from 'wot-design-uni'
+import {
+  educationColumns,
+  experienceColumns,
+  jobTypeColumns,
+  availableTimeColumns,
+  salaryColumns,
+} from '@/constant'
 
 // 用户信息数据
-const userInfo = ref<AppMemberUserUpdateReqVO>({
-  id: 1,
-  nickname: '李四',
-  avatar: 'https://www.iocoder.cn/x.png',
-  sex: 1,
-  mobile: '13333916701',
-  password: '$2a$04$Fwk//mDrb91IYYzbRsUSM.WGxX9Q6P/ZEe97eNMzA8wp8McyfgoKu',
-  status: 0,
-  registerIp: '192.168.1.1',
-  registerTerminal: 10,
-  loginIp: '192.168.1.1',
-  loginDate: '2023-01-01T16:00:00',
-  name: '张三',
-  birthday: '1990-01-01T00:00:00',
-  areaId: 110101,
-  mark: '优质客户',
-  email: 'example@iocoder.cn',
-  location: '北京市海淀区',
-  age: 30,
-  point: 100,
-  tagIds: [1, 2, 3],
-  levelId: 1,
-  experience: 500,
-  groupId: 2,
-  teChang: 'Java开发',
-  biYeYuanXiao: '清华大学',
-  jianJie: '5年Java开发经验，精通Spring Boot',
-  tags: 'Java,Spring,MySQL',
-  huoJiangJiLi: '2021年度优秀员工',
-  daiBiaoZuo: '芋道源码开源项目',
-  jianJieImages: 'https://www.iocoder.cn/images/1.png,https://www.iocoder.cn/images/2.png',
-  jianJieVideos: 'https://www.iocoder.cn/videos/1.mp4',
-  jiNengVideos: 'https://www.iocoder.cn/videos/2.mp4',
-  qiWangXinZi: '15k-25k',
-  workType: '全职',
-  companyName: '芋道科技有限公司',
-  workLavel: '高级',
-  involved: '互联网/IT',
-  personNumber: '100-499人',
-  networkAddress: 'https://www.iocoder.cn',
-  xiangXiAddress: '北京市朝阳区xxx大厦',
-  chengLiTime: '2018年',
-  companyInfo: '芋道源码是一家专注于...',
-  companyCulture: '创新、激情、诚信...',
-  benefits: '五险一金、带薪年假、免费零食...',
-  recruitment: '招聘Java开发工程师5名...',
-  companyImages:
-    'https://www.iocoder.cn/images/company1.png,https://www.iocoder.cn/images/company2.png',
-  companyVideos: 'https://www.iocoder.cn/videos/company.mp4',
+const userInfo = ref<MemberUserDO>({
+  qiWangXinZi: '',
 })
-const skills = ref(['Java', 'Spring', 'MySQL'])
+const jianJieImages = ref([])
+const jianJieVideos = ref([])
+const jiNengVideos = ref([])
+const daiBiaoZuo = ref([])
+const tags = ref([])
+
 watch(
   () => userInfo.value,
   (value) => {
-    skills.value = value.tags.split(',').map((item) => {
-      return item
-    })
+    tags.value = value.tags.split(',')
+    daiBiaoZuo.value = value.daiBiaoZuo.split(',')
+    jianJieImages.value = userInfo.value.jianJieImages?.split(',').map((item) => ({
+      url: item,
+    }))
+    jianJieVideos.value = userInfo.value.jianJieVideos?.split(',').map((item) => ({
+      url: item,
+    }))
+    jiNengVideos.value = userInfo.value.jiNengVideos?.split(',').map((item) => ({
+      url: item,
+    }))
   },
 )
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
-onMounted(() => {
-  loadUserData()
-})
 
-const showcase = computed(() => {
-  let jianJieImagesArr = userInfo.value.jianJieImages.split(',')
-  let jianJieVideos = userInfo.value.jianJieVideos.split(',')
-  let jiNengVideos = userInfo.value.jiNengVideos.split(',')
-  return [
-    {
-      title: '个人展示图片 (最多4张)',
-      count: 4,
-      description: '展示您的形象、舞台风采或专业照片',
-      list: jianJieImagesArr.reduce((list, item, index) => {
-        list.push({
-          type: ShowcasePhotoEmu.Image,
-          url: item,
-        })
-        if (jianJieImagesArr.length < 4 && index == jianJieImagesArr.length - 1) {
-          list.push({
-            type: ShowcasePhotoEmu.Add,
-            url: item,
-          })
-        }
-        return list
-      }, []),
-    },
-    {
-      title: '自我介绍视频 (1个)',
-      count: 1,
-      description: '展示您的形象、舞台风采或专业照片',
-      list: jianJieVideos.reduce((list, item, index) => {
-        list.push({
-          type: ShowcasePhotoEmu.Video,
-          url: item,
-        })
-        if (jianJieVideos.length < 1 && index == jianJieVideos.length - 1) {
-          list.push({
-            type: ShowcasePhotoEmu.Add,
-            url: item,
-          })
-        }
-        return list
-      }, []),
-    },
-    {
-      title: '专业技能视频 (最多3个)',
-      count: 3,
-      description: '展示您的专业技能、表演片段或作品集锦',
-      list: jiNengVideos.reduce((list, item, index) => {
-        list.push({
-          type: ShowcasePhotoEmu.Video,
-          url: item,
-        })
-        if (jiNengVideos.length < 3 && index == jiNengVideos.length - 1) {
-          list.push({
-            type: ShowcasePhotoEmu.Add,
-            url: item,
-          })
-        }
-        return list
-      }, []),
-    },
-  ]
-})
-
-// 加载用户数据
-const loadUserData = async () => {
-  // 这里可以从API获取真实数据
-  let res = await getUserInfo({})
-  console.log(res)
-  if (res.code === 200) {
-    userInfo.value = res.data
-    console.log('加载用户数据')
+const changeUpload = (list: Array<any>, key: string) => {
+  console.log(list, key)
+  if (key == 'jianJieVideos') {
+    jianJieVideos.value = list
+  } else if (key == 'jianJieImages') {
+    jianJieImages.value = list
+  } else {
+    jiNengVideos.value = list
   }
 }
-
-// 添加技能
-const addSkill = () => {
-  // 这里可以打开技能选择弹窗
-  uni.showActionSheet({
-    itemList: SKILL_CATEGORIES.map((cat) => cat.label),
-    success: (res) => {
-      const category = SKILL_CATEGORIES[res.tapIndex]
-      // 显示该分类下的技能选项
-      uni.showActionSheet({
-        itemList: category.skills,
-        success: (skillRes) => {
-          const skill = category.skills[skillRes.tapIndex]
-          console.log(skills.value, skill)
-          if (!skills.value.includes(skill)) {
-            skills.value.push(skill)
-          } else {
-            toast.info('该技能已存在')
-          }
-        },
-      })
-    },
-  })
+// 加载用户数据
+const loadUserData = async () => {
+  let res = await getUserInfo({})
+  userInfo.value = res.data
 }
 
 // 移除技能
 const removeSkill = (index: number) => {
-  skills.value = skills.value.splice(index, 1)
+  tags.value.splice(index, 1)
 }
-
+const removeDaiBiaoZuo = (index: number) => {
+  daiBiaoZuo.value.splice(index, 1)
+}
+// 添加技能
+let tagValue = ref('')
+const addSkill = async () => {
+  let res = await message.prompt({
+    title: '请输入技能标签',
+    inputValue: tagValue.value,
+    inputPattern: /^(?!\s*$).+/,
+  })
+  tags.value.push(res.value)
+}
 // 添加作品
-const addWork = () => {
-  // 这里可以跳转到添加作品页面
-  toast.info('跳转到添加作品页面')
-  // uni.navigateTo({
-  //   url: '/pages-sub/add-work/add-work'
-  // })
-}
-
-// 预览图片
-const previewImage = (photo: ShowcasePhoto, photos) => {
-  if (photo.type === ShowcasePhotoEmu.Image) {
-    const urls = photos.filter((p) => p.type === 'image').map((p) => p.url)
-    uni.previewImage({
-      urls,
-      current: photo.url,
-    })
-  } else if (photo.type === ShowcasePhotoEmu.Video) {
-    toast.info('播放视频功能开发中')
-    // 这里可以实现视频播放功能
-  } else {
-    // 添加展示内容
-    uni.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: (res) => {
-        // 这里应该上传图片到服务器
-        toast.success('图片上传成功')
-      },
-    })
-  }
+const message = useMessage()
+let workValue = ref('')
+const addWork = async () => {
+  let res = await message.prompt({
+    title: '请输入代表作品名称',
+    inputValue: workValue.value,
+    inputPattern: /^(?!\s*$).+/,
+  })
+  daiBiaoZuo.value.push(res.value)
 }
 
 // 预览简历
@@ -368,21 +268,23 @@ const previewResume = () => {
   // })
 }
 
-// 保存简历
 const saveResume = async () => {
-  // 验证必填信息
-  if (!userInfo.value.name.trim()) {
-    toast.error('请填写姓名')
-    return
-  }
-  if (!userInfo.value.mobile.trim()) {
-    toast.error('请填写联系电话')
-    return
-  }
-  let res = await updateUser({ body: userInfo.value })
-  toast.success('简历保存成功')
+  await updateUser({
+    body: merge({}, userInfo.value, {
+      jianJieImages: jianJieImages.value.map((p) => p.url).join(','),
+      jianJieVideos: jianJieVideos.value.map((p) => p.url).join(','),
+      jiNengVideos: jiNengVideos.value.map((p) => p.url).join(','),
+      tags: tags.value.join(','),
+      daiBiaoZuo: daiBiaoZuo.value.join(','),
+    }),
+  })
+  toast.success('保存成功')
   setTimeout(() => {
-    navigateBack()
+    // navigateBack()
   }, 500)
 }
+
+onShow(() => {
+  loadUserData()
+})
 </script>

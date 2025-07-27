@@ -66,11 +66,11 @@
           />
         </wd-cell>
 
-        <select-picker
+        <yr-select-picker
           :columns="benefitsOptions"
           v-model="formData.benefits"
           title="福利待遇"
-        ></select-picker>
+        ></yr-select-picker>
       </wd-card>
 
       <!-- 个人背景 -->
@@ -96,11 +96,11 @@
           />
         </wd-cell>
 
-        <select-picker
+        <yr-select-picker
           :columns="advantageActions"
           v-model="formData.requirementDetails"
           title="具体要求"
-        ></select-picker>
+        ></yr-select-picker>
       </wd-card>
 
       <!-- 联系方式 -->

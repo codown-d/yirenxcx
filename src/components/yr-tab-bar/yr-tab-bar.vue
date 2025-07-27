@@ -2,24 +2,25 @@
   <wd-tabbar
     fixed
     :model-value="tabbar"
-    :bordered="false"
+    bordered
     safeAreaInsetBottom
     placeholder
     @change="change"
+    custom-class="!z-1000"
   >
     <wd-tabbar-item
       v-for="tab in tabList"
       :key="tab.pagePath"
       :title="tab.text"
-      custom-class="!text-[24rpx]"
+      custom-class="!text-[28rpx]"
     >
       <template #icon>
-        <wd-img
-          height="40rpx"
-          width="40rpx"
-          :custom-class="tab.value === 2 ? '!w-[80rpx] !h-[80rpx]' : 'mb-1'"
+        <image
+          mode="widthFix"
+          class="w-[32px]"
+          :class="tab.value === 2 ? '!w-[80rpx] !h-[80rpx]' : ''"
           :src="tabbar === tab.value ? tab.selectedIconPath : tab.iconPath"
-        ></wd-img>
+        ></image>
       </template>
     </wd-tabbar-item>
   </wd-tabbar>
@@ -27,8 +28,8 @@
 
 <script lang="ts" setup>
 import { RoleEmu, useRoleStore } from '@/store'
-import { navigateToSub, switchTab } from '@/utils'
-
+import { navigateTo, navigateToSub, switchTab } from '@/utils'
+import { onShow } from '@dcloudio/uni-app'
 let { role, getRole } = useRoleStore()
 const props = defineProps({
   tabIndex: {
@@ -57,7 +58,7 @@ let tabList = ref([
     selectedIconPath: '/static/tabbar/addH.png',
     pagePath: '/publish-job-seeking/publish-job-seeking',
     value: 2,
-    text: '123 ',
+    text: '',
   },
   {
     iconPath: '/static/tabbar/luntan.png',
@@ -76,6 +77,7 @@ let tabList = ref([
 ])
 
 const change = ({ value }) => {
+  console.log(value)
   if (value === 2) {
     if (!uni.getStorageSync('token')) {
       navigateToSub('/login/login')
@@ -86,8 +88,11 @@ const change = ({ value }) => {
       : navigateToSub('/publish-recruitment/publish-recruitment')
   }
   let node = tabList.value[value].pagePath
-  switchTab(node)
+  setTimeout(() => {
+    switchTab(node)
+  }, 0)
 }
+
 onShow(() => {
   tabList.value[0].text = !uni.getStorageSync('token')
     ? '薏仁'

@@ -126,7 +126,7 @@
       </view>
     </view>
   </wd-popup>
-  <custom-tab-bar :tab-index="0"></custom-tab-bar>
+  <yr-tab-bar :tab-index="0"></yr-tab-bar>
 </template>
 
 <script lang="ts" setup>
@@ -134,7 +134,7 @@ import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/const
 import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
 import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { getBannerList, getJobPage, getJobSeekerPage } from '@/service/app'
+import { getBannerList, getJobPage, getJobSeekerPage, YRZPJobDO } from '@/service/app'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -145,7 +145,7 @@ const opacity = ref(0)
 
 const show = ref(false)
 const activeFilterTag = ref('all')
-const jobList = ref<JobPosition[]>(JOB_POSITIONS)
+const jobList = ref<YRZPJobDO[]>([])
 const seekerList = ref<JobSeeker[]>(JOB_SEEKERS)
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)

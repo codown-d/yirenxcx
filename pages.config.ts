@@ -23,11 +23,8 @@ export default defineUniPages({
     custom: true,
     color: '#999999',
     selectedColor: '#018d71',
-    backgroundColor: '#F8F8F8',
-    borderStyle: 'black',
-    height: '50px',
-    fontSize: '10px',
-    iconWidth: '24px',
+    fontSize: '12px',
+    iconWidth: '30px',
     spacing: '3px',
     list: [
       {
@@ -42,7 +39,6 @@ export default defineUniPages({
         pagePath: 'pages/message/message',
         text: '消息',
       },
-
       {
         iconPath: 'static/tabbar/luntan.png',
         selectedIconPath: 'static/tabbar/luntanH.png',

@@ -19,11 +19,8 @@
     "custom": true,
     "color": "#999999",
     "selectedColor": "#018d71",
-    "backgroundColor": "#F8F8F8",
-    "borderStyle": "black",
-    "height": "50px",
-    "fontSize": "10px",
-    "iconWidth": "24px",
+    "fontSize": "12px",
+    "iconWidth": "30px",
     "spacing": "3px",
     "list": [
       {
@@ -89,6 +86,15 @@
         "navigationBarTitleText": "意仁直聘"
       },
       "isTab": true
+    },
+    {
+      "path": "pages/plus/plus",
+      "type": "page",
+      "layout": "blank",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "论坛"
+      }
     },
     {
       "path": "pages/index/job-seeking/job-seeking",

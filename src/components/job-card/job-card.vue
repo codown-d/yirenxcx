@@ -13,27 +13,27 @@
     <view class="flex items-center justify-between mb-2">
       <view class="flex items-center">
         <text class="text-4 font-bold text-gray-900 mr-3">{{ jobData.title }}</text>
-        <view v-if="jobData.isUrgent" class="bg-red-500 text-white text-3 px-1 py-[4rpx] rounded-1">
-          急聘
+        <view v-if="jobData.workType" class="bg-red-500 text-white text-3 px-1 py-[4rpx] rounded-1">
+          {{ jobData.workType }}
         </view>
       </view>
-      <text class="text-4 font-bold text-teal-600">{{ jobData.salary }}</text>
+      <yr-salary :salaryMin="jobData.salaryMin" :salaryMax="jobData.salaryMax" />
     </view>
 
     <!-- 标签列表 -->
     <view class="flex flex-wrap gap-2 mb-2">
       <view
-        v-for="tag in jobData.tags"
+        v-for="tag in requirementDetails"
         :key="tag"
         class="bg-teal-50 text-teal-600 text-3 px-2 py-1 rounded-1"
       >
         {{ tag }}
       </view>
     </view>
-    <view class="flex items-start justify-between gap-3 mb-2">
+    <view class="flex items-start justify-between gap-3 mb-3">
       <view class="flex flex-wrap gap-2">
         <view
-          v-for="tag in jobData.requirements"
+          v-for="tag in benefits"
           :key="tag"
           class="bg-[#F5F6FA] text-[#555555] text-3 px-2 py-1 rounded-1"
         >
@@ -52,18 +52,12 @@
     <!-- 底部信息：公司、地点、时间 -->
     <view class="flex items-center justify-between">
       <view class="flex items-center gap-4">
-        <view class="flex items-center">
-          <wd-icon name="evaluation" custom-class="text-4 mr-1"></wd-icon>
-          <text class="text-3 text-gray-600">{{ jobData.company }}</text>
-        </view>
-        <view class="flex items-center">
-          <wd-icon name="location" custom-class="text-4 mr-1"></wd-icon>
-          <text class="text-3 text-gray-600">{{ jobData.location }}</text>
-        </view>
+        <yr-img-title :title="jobData.companyName" url="jigou.svg" />
+        <yr-img-title :title="jobData.location" url="weizhi.svg" />
       </view>
 
       <view class="flex items-center gap-3">
-        <text class="text-3 text-gray-400">{{ jobData.publishTime }}</text>
+        <text class="text-3 text-gray-400">{{ updateTime }}</text>
       </view>
     </view>
   </view>
@@ -73,9 +67,15 @@
 import { ref, watch } from 'vue'
 import type { JobPosition } from '@/constant/recruitment'
 import { navigateToSub } from '@/utils'
+import { YRZPJobDO } from '@/service/app'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/zh-cn' // 如果你想显示中文
 
+dayjs.extend(relativeTime)
+dayjs.locale('zh-cn') // 设置为中文（可选）
 interface Props {
-  jobData: JobPosition
+  jobData: YRZPJobDO
   favorited?: boolean
 }
 
@@ -83,12 +83,22 @@ const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
 
+const isFavorited = ref(props.favorited)
+const benefits = computed(() => {
+  console.log(props)
+  return props.jobData.benefits.split(',')
+})
+const requirementDetails = computed(() => {
+  console.log(props)
+  return props.jobData.requirementDetails.split(',')
+})
+const updateTime = computed(() => {
+  return dayjs(props.jobData.updateTime).fromNow()
+})
 const emit = defineEmits<{
   click: [job: JobPosition]
   favorite: [job: JobPosition, isFavorited: boolean]
 }>()
-
-const isFavorited = ref(props.favorited)
 
 // 监听favorited属性变化
 watch(

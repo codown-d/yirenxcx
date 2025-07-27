@@ -121,6 +121,7 @@
     "@esbuild/darwin-x64": "0.25.5",
     "@iconify-json/carbon": "^1.2.4",
     "@rollup/rollup-darwin-x64": "^4.28.0",
+    "@types/lodash": "^4.17.20",
     "@types/node": "^20.17.9",
     "@types/wechat-miniprogram": "^3.4.8",
     "@uni-helper/uni-types": "1.0.0-alpha.3",
