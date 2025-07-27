@@ -12,7 +12,6 @@
             type="number"
             :maxlength="11"
             clearable
-            class="px-6"
           >
             <template #prefix>
               <wd-icon name="phone" size="16px" color="#999" />
@@ -24,7 +23,6 @@
             type="text"
             show-password
             clearable
-            class="px-6"
           >
             <template #prefix>
               <wd-icon name="secured" size="16px" color="#999" />
@@ -40,7 +38,6 @@
             type="number"
             :maxlength="11"
             clearable
-            class="px-6"
           >
             <template #prefix>
               <wd-icon name="phone" size="16px" color="#999" />
@@ -54,7 +51,6 @@
               type="number"
               :maxlength="6"
               clearable
-              class="flex-1 px-6"
             >
               <template #prefix>
                 <wd-icon name="secured" size="16px" color="#999" />

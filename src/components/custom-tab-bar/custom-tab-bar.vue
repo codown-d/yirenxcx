@@ -1,10 +1,17 @@
 <template>
-  <wd-tabbar fixed :model-value="tabbar" bordered safeAreaInsetBottom placeholder @change="change">
+  <wd-tabbar
+    fixed
+    :model-value="tabbar"
+    :bordered="false"
+    safeAreaInsetBottom
+    placeholder
+    @change="change"
+  >
     <wd-tabbar-item
       v-for="tab in tabList"
       :key="tab.pagePath"
       :title="tab.text"
-      custom-class="pt-[12rpx] !text-[24rpx]"
+      custom-class="!text-[24rpx]"
     >
       <template #icon>
         <wd-img
@@ -50,7 +57,7 @@ let tabList = ref([
     selectedIconPath: '/static/tabbar/addH.png',
     pagePath: '/publish-job-seeking/publish-job-seeking',
     value: 2,
-    text: '',
+    text: '123 ',
   },
   {
     iconPath: '/static/tabbar/luntan.png',

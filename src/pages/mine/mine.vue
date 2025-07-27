@@ -10,10 +10,21 @@
 </route>
 <template>
   <view class="h-full" style="background: rgba(245, 246, 250, 1)">
-    <wd-navbar :bordered="false" fixed safeAreaInsetTop>
+    <wd-navbar
+      :bordered="false"
+      fixed
+      safeAreaInsetTop
+      :custom-style="`background-color:rgb(245, 246, 250)`"
+    >
       <template #capsule>
-        <wd-button plain hairline size="small" @click="changeRole">
-          <wd-icon name="translate-bold" size="22px"></wd-icon>
+        <wd-button
+          plain
+          hairline
+          size="small"
+          @click="changeRole"
+          custom-class="flex items-center "
+          icon="translate-bold"
+        >
           切换为{{ roleLabel }}
         </wd-button>
       </template>
@@ -23,7 +34,7 @@
     <employer v-else></employer>
     <view class="pb-safe"></view>
 
-    <yr-tab-bar :tab-index="4"></yr-tab-bar>
+    <custom-tab-bar :tab-index="4"></custom-tab-bar>
     <!-- 底部安全区域 -->
   </view>
 </template>

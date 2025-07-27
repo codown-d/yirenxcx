@@ -13,21 +13,7 @@
     <view class="bg-[#F5F6FA] h-2"></view>
     <!-- 位置 -->
     <wd-cell-group>
-      <wd-cell
-        title="位置"
-        is-link
-        to="/pages-sub/location-select/location-select"
-        value="添加位置"
-      ></wd-cell>
-      <view class="px-4 flex flex-wrap gap-2">
-        <tag
-          v-for="item in selectedLocations"
-          :label="item.label"
-          :value="item.value"
-          :key="item.value"
-          @on-remove="removeLocation(item.value)"
-        ></tag>
-      </view>
+      <fg-location-picker title="位置" :modelValue="selectedLocations"></fg-location-picker>
       <wd-cell
         title="职业类别"
         value="查看全部"
@@ -93,16 +79,15 @@
     </view>
 
     <!-- 底部按钮 -->
-    <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-      <view class="flex gap-3">
-        <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">
-          取消
-        </wd-button>
-        <wd-button type="primary" custom-class="flex-1" :round="false" @click="confirmFilter">
-          确定
-        </wd-button>
-      </view>
-    </view>
+
+    <yr-page-footer>
+      <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">
+        取消
+      </wd-button>
+      <wd-button type="primary" custom-class="flex-1" :round="false" @click="confirmFilter">
+        确定
+      </wd-button>
+    </yr-page-footer>
   </view>
 </template>
 

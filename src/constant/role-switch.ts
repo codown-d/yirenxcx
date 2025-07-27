@@ -2,7 +2,6 @@
  * 角色切换页面相关常量配置
  */
 import { RoleEmu } from '@/store'
-import { DEFAULT_AVATARS } from './images'
 
 // 角色切换页面配置
 export const ROLE_SWITCH_CONFIG = {
@@ -21,14 +20,14 @@ export const USER_ROLES = [
     key: RoleEmu.seeking,
     name: '意人',
     description: '找工作 投简历',
-    avatar: DEFAULT_AVATARS.jobseeker,
+    avatar: '/static/images/yiren.png',
     features: '发布求职信息·查看求职者简历·适请面试·管理招聘流程',
   },
   {
     key: RoleEmu.employer,
     name: '老板',
     description: '招人才 发职位',
-    avatar: DEFAULT_AVATARS.employer,
+    avatar: '/static/images/zp.png',
     features: '发布招聘信息·查看求职者简历·邀请面试·管理招聘流程',
   },
 ]

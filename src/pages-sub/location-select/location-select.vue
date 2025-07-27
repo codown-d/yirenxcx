@@ -62,22 +62,20 @@
     </view>
 
     <!-- 底部按钮 -->
-    <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
-      <view class="flex gap-3">
-        <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetSelection">
-          取消
-        </wd-button>
-        <wd-button
-          type="primary"
-          custom-class="flex-1"
-          :round="false"
-          @click="confirmSelection"
-          :disabled="!locationRef.district"
-        >
-          确定
-        </wd-button>
-      </view>
-    </view>
+    <yr-page-footer>
+      <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetSelection">
+        取消
+      </wd-button>
+      <wd-button
+        type="primary"
+        custom-class="flex-1"
+        :round="false"
+        @click="confirmSelection"
+        :disabled="!locationRef.district"
+      >
+        确定
+      </wd-button>
+    </yr-page-footer>
   </view>
 </template>
 

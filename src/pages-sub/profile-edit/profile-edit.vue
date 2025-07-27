@@ -66,13 +66,16 @@
 
       <!-- 年龄 -->
       <wd-cell title="年龄">
-        <wd-input
-          v-model="userForm.age"
-          placeholder="请输入年龄"
-          type="number"
-          no-border
-          :rules="[{ required: true, message: '请填写年龄' }]"
-        />
+        <view class="flex items-center justify-end">
+          <wd-input
+            custom-class="w-10"
+            v-model="userForm.age"
+            placeholder="请输入年龄"
+            type="number"
+            no-border
+            :rules="[{ required: true, message: '请填写年龄' }]"
+          />
+        </view>
       </wd-cell>
 
       <!-- 性别 -->
@@ -81,12 +84,19 @@
       </wd-cell>
     </wd-form>
   </view>
-  <view class="fixed z-9 bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
-    <!-- 保存按钮 -->
-    <wd-button :disabled="loading" block :round="false" :loading="loading" @click="saveProfile">
+
+  <yr-page-footer>
+    <wd-button
+      :disabled="loading"
+      block
+      custom-class="w-full"
+      :round="false"
+      :loading="loading"
+      @click="saveProfile"
+    >
       {{ loading ? '保存中...' : '保存' }}
     </wd-button>
-  </view>
+  </yr-page-footer>
 </template>
 
 <script setup lang="ts">

@@ -52,7 +52,7 @@
           <text class="text-3">{{ userInfo.location }}</text>
         </view>
       </view>
-      <wd-divider></wd-divider>
+      <wd-divider custom-class="px-0" />
       <!-- 统计数据 -->
       <view class="flex justify-between mt-4">
         <view class="text-center flex-1">

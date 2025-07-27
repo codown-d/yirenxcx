@@ -20,7 +20,7 @@
           :key="role.key"
           class="flex items-center rounded-8 mb-4 flex-col gap-4"
         >
-          <image :src="role.avatar" mode="aspectFit" class="w-40 h-40 rounded-full" />
+          <image :src="role.avatar" mode="aspectFill" class="w-40 h-40 rounded-full bg-[#F5F6FA]" />
           <view class="flex-1 flex flex-col items-center justify-center gap-1">
             <view class="text-4 text-gray-800 font-bold">{{ role.name }}</view>
             <view class="text-3 text-gray-600">{{ role.description }}</view>
@@ -66,7 +66,7 @@ import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
 import { RoleEmu, useRoleStore } from '@/store'
 import { navigateBack, switchTab } from '@/utils'
 const { setRole, getRole } = useRoleStore()
-
+console.log(getRole(), 23)
 const currentUserRole = ref<RoleEmu>(getRole())
 
 // 当前角色信息

@@ -138,18 +138,14 @@
       </wd-card>
 
       <!-- 操作按钮 -->
-      <view class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 !pb-safe">
-        <view class="gap-4 flex mx-4">
-          <!-- 预览简历按钮 -->
-          <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
-            预览简历
-          </wd-button>
-          <!-- 保存按钮 -->
-          <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
-            保存
-          </wd-button>
-        </view>
-      </view>
+      <yr-page-footer>
+        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
+          预览简历
+        </wd-button>
+        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
+          保存
+        </wd-button>
+      </yr-page-footer>
     </wd-form>
   </view>
 </template>

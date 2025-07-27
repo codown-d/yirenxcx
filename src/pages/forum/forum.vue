@@ -162,7 +162,7 @@
     </view>
 
     <!-- 底部导航 -->
-    <yr-tab-bar :tab-index="3"></yr-tab-bar>
+    <custom-tab-bar :tab-index="3"></custom-tab-bar>
   </view>
 </template>
 

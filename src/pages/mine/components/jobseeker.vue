@@ -16,18 +16,18 @@
               <wd-icon name="arrow-right" size="22px"></wd-icon>
             </view>
           </view>
-          <text class="text-[22rpx] text-gray-500 block mb-1">
-            资料完整度{{ userInfo.completeness }}%，完善资料获得更多机会
+          <text class="text-[22rpx] text-gray-500 block mb-1" v-if="false">
+            资料完整度{{ userInfo.completeness || 80 }}%，完善资料获得更多机会
           </text>
         </view>
       </view>
 
       <!-- 专业信息 -->
       <view class="mb-2">
-        <text class="text-4">{{ userInfo.profession }}</text>
+        <text class="text-4">专业：{{ userInfo.teChang }}</text>
         <view class="flex flex-wrap gap-2 mb-3 mt-2">
           <wd-tag
-            v-for="(tag, index) in userInfo.skills"
+            v-for="(tag, index) in tags"
             custom-class="!text-3 !text-[#555555] !px-2 !py-1"
             bg-color="#F5F6FA"
             :key="index"
@@ -40,19 +40,19 @@
       <!-- 基本信息 -->
       <view class="flex items-center text-gray-500 justify-between mb-4">
         <view class="flex items-center">
-          <wd-icon name="time" custom-class="mr-1 text-4"></wd-icon>
+          <image class="w-3 mr-1" src="/static/images/jingyan.svg" mode="widthFix" />
           <text class="text-3">{{ userInfo.experience }}</text>
         </view>
         <view class="flex items-center">
-          <wd-icon name="school" custom-class="mr-1 text-4"></wd-icon>
-          <text class="text-3">{{ userInfo.education }}</text>
+          <image class="w-3 mr-1" src="/static/images/school.svg" mode="widthFix" />
+          <text class="text-3">{{ userInfo.biYeYuanXiao }}</text>
         </view>
         <view class="flex items-center">
-          <wd-icon name="location" custom-class="mr-1 text-4"></wd-icon>
+          <image class="w-3 mr-1" src="/static/images/weizhi.svg" mode="widthFix" />
           <text class="text-3">{{ userInfo.location }}</text>
         </view>
       </view>
-      <wd-divider></wd-divider>
+      <wd-divider custom-class="!px-0" />
       <!-- 统计数据 -->
       <view class="flex justify-between mt-4">
         <view class="text-center flex-1">
@@ -158,19 +158,11 @@ import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { AppMemberUserInfoRespVO, getUserInfo } from '@/service/app'
+import { MemberTagRespVO, MemberUserDO } from '@/service/app'
 
+const { getUserInfo } = useUserStore()
 // 用户信息
-const userInfo = ref<AppMemberUserInfoRespVO>({
-  name: '李小华',
-  avatar: '/static/images/default-avatar.png',
-  completeness: 85,
-  profession: '专业古典舞演员',
-  skills: ['古典舞', '民族舞', '芭蕾基础'],
-  experience: '3年经验',
-  education: '北京舞蹈学院',
-  location: '北京市朝阳区',
-})
+const userInfo = ref<MemberUserDO>({})
 
 let tools = ref([
   {
@@ -203,23 +195,16 @@ const stats = ref({
   interviewed: 156,
 })
 
-const userStore = useUserStore()
-
-onMounted(() => {
-  // 加载用户数据
-  loadUserData()
-})
-
 // 加载用户数据
 const loadUserData = async () => {
-  // 这里可以从API获取真实数据
-  let res = await getUserInfo({})
-  console.log(res)
-  if (res.code === 200) {
-    userInfo.value = res.data
-    console.log('加载用户数据')
-  }
+  let res = await getUserInfo()
+  userInfo.value = res.data
+  console.log(res.data)
 }
+const tags = computed(() => {
+  console.log(userInfo.value)
+  return userInfo.value.tags?.split(',')
+})
 
 // 升级VIP
 const upgradeVip = () => {
@@ -234,11 +219,6 @@ const goToOnlineResume = () => {
 // 预览简历
 const previewResume = () => {
   toast.info('预览简历')
-}
-
-// 发布求职
-const publishJob = () => {
-  navigateToSub('')
 }
 
 // 跳转到我的关注
@@ -263,4 +243,7 @@ const goToSettings = () => {
 const contactService = () => {
   toast.info('联系客服')
 }
+onShow(() => {
+  loadUserData()
+})
 </script>

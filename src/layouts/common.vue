@@ -1,9 +1,6 @@
 <template>
   <wd-config-provider :themeVars="theme">
-    <view
-      class="text-[#252525]"
-      :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'"
-    >
+    <view class="text-[#252525]" :style="headerStyle">
       <scroll-view :scroll-y="true" class="h-100vh" @scroll="handleScroll">
         <wd-navbar
           :bordered="false"
@@ -16,12 +13,12 @@
           :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
         ></wd-navbar>
         <view
+          class="overflow-hidden"
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',
           }"
         >
           <slot></slot>
-
           <view class="pb-safe"></view>
         </view>
       </scroll-view>
@@ -37,16 +34,25 @@ import type { ConfigProviderThemeVars } from 'wot-design-uni'
 import { getSystemInfoSync } from '@/utils'
 import { useNavigation } from '@/hooks'
 import { navigateBack } from '@/utils'
+import PLATFORM from '@/utils/platform'
 
 const theme: ConfigProviderThemeVars = { ...themeVars }
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { title, getCurrentPage } = useNavigation()
 const { isTab = false, style } = getCurrentPage()
+let { isH5 } = PLATFORM
 const handleClickLeft = () => {
   navigateBack()
 }
 const opacity = ref(0)
+const headerStyle = computed(() => {
+  if (isH5) {
+    return 'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'
+  } else {
+    return 'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'
+  }
+})
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {
     opacity.value = 1
