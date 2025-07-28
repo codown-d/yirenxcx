@@ -19,7 +19,8 @@
             }"
           >
             <slot></slot>
-            <view class="pb-safe"></view>
+
+            <yr-margin-footer />
           </view>
         </view>
       </scroll-view>
@@ -48,11 +49,7 @@ const handleClickLeft = () => {
 }
 const opacity = ref(0)
 const headerStyle = computed(() => {
-  if (isH5) {
-    return 'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'
-  } else {
-    return 'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'
-  }
+  return 'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 10%,rgba(245, 246, 250, 1) 50%);'
 })
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {

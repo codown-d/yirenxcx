@@ -1,7 +1,9 @@
 <template>
-  <view :class="`flex item-center ${className}`">
-    <image class="w-[18px] h-[16px] mr-1" :src="imgUrl" mode="scaleToFill" v-if="url" />
-    <text class="text-3 text-[#8C8C8C] middle">{{ title }}</text>
+  <view :class="`flex items-center ${className}`">
+    <view class="w-[18px] h-[16px] relative mr-1">
+      <image class="w-[18px] h-[16px] absolute top-0" :src="imgUrl" mode="scaleToFill" v-if="url" />
+    </view>
+    <text class="text-[14px] text-[#8C8C8C] h-[20px] leading-[24px]">{{ title }}</text>
   </view>
 </template>
 <script lang="ts" setup>

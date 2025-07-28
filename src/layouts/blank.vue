@@ -1,6 +1,7 @@
 <template>
   <wd-config-provider :themeVars="theme">
     <slot></slot>
+    <yr-margin-footer />
     <wd-toast />
     <wd-message-box />
   </wd-config-provider>

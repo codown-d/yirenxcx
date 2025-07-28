@@ -9,13 +9,12 @@
 </route>
 
 <template>
-  <view class="mx-4 mt-2 mb-16">
+  <view class="mx-4 mt-2">
     <!-- 基本信息 -->
     <text class="text-base font-semibold text-gray-900 block mb-4">基本信息</text>
     <wd-form ref="form" :model="userForm" errorType="toast">
       <!-- 头像 -->
-      <view class="flex justify-between items-center px-4">
-        <view>头像</view>
+      <wd-cell title="头像">
         <wd-upload
           :file-list="userForm.avatarC"
           custom-class="rounded-full"
@@ -24,7 +23,7 @@
           :action="uploadUrl"
           @change="handleChange"
         ></wd-upload>
-      </view>
+      </wd-cell>
 
       <!-- 姓名 -->
       <wd-cell title="姓名" vertical>
@@ -64,11 +63,13 @@
       <!-- 所在地区 -->
       <fg-location-picker title="工作地点" :modelValue="userForm.locationC"></fg-location-picker>
 
+      <!-- 性别 -->
+      <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
       <!-- 年龄 -->
       <wd-cell title="年龄">
         <view class="flex items-center justify-end">
           <wd-input
-            custom-class="w-16"
+            custom-class="w-20"
             v-model="userForm.age"
             placeholder="请输入年龄"
             type="number"
@@ -77,9 +78,6 @@
           />
         </view>
       </wd-cell>
-
-      <!-- 性别 -->
-      <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
     </wd-form>
   </view>
 
@@ -87,7 +85,7 @@
     <wd-button
       :disabled="loading"
       block
-      custom-class="w-full"
+      custom-class="w-full "
       :round="false"
       :loading="loading"
       @click="saveProfile"

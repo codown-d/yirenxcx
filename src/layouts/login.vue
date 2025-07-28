@@ -22,7 +22,7 @@
         >
           <slot></slot>
 
-          <view class="pb-safe"></view>
+          <yr-margin-footer />
         </view>
       </scroll-view>
     </view>

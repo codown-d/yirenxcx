@@ -50,20 +50,20 @@
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1">
-        <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.browsed }}</text>
-        <text class="text-3 text-gray-500">简历浏览</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.browsed }}</text>
+        <text class="text-4 text-gray-500">简历浏览</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.followed }}</text>
-        <text class="text-3 text-gray-500">获得关注</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.followed }}</text>
+        <text class="text-4 text-gray-500">获得关注</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.applied }}</text>
-        <text class="text-3 text-gray-500">投递简历</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.applied }}</text>
+        <text class="text-4 text-gray-500">投递简历</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-5 font-bold text-gray-800 block pb-2">{{ stats.interviewed }}</text>
-        <text class="text-3 text-gray-500">面试邀请</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.interviewed }}</text>
+        <text class="text-4 text-gray-500">面试邀请</text>
       </view>
     </view>
   </view>
@@ -71,18 +71,18 @@
   <!-- 快捷功能 -->
   <view class="mx-3 mb-3 flex items-center justify-between bg-white rounded-2 px-4 py-4">
     <view class="flex items-center gap-2 flex-col" @click="goToMyFollows">
-      <wd-icon name="heart" custom-class="text-gray-600 text-7" />
+      <wd-icon name="heart" custom-class="text-[#252525] text-8" />
       <text class="text-4 font-medium text-gray-600">我的关注</text>
     </view>
     <wd-divider vertical></wd-divider>
     <view class="flex items-center gap-2 flex-col" @click="goToMyCollections">
-      <wd-icon name="star" custom-class="text-gray-600 text-7" />
+      <wd-icon name="star" custom-class="text-[#252525] text-8" />
       <text class="text-4 font-medium text-gray-600">我的收藏</text>
     </view>
 
     <wd-divider vertical></wd-divider>
     <view class="flex items-center gap-2 flex-col">
-      <wd-icon name="share" custom-class="text-gray-600 text-7" />
+      <image class="w-[36px] h-[36px]" src="/static/images/zuji.svg" mode="scaleToFill" />
       <text class="text-4 font-medium text-gray-600">我的足迹</text>
     </view>
   </view>
@@ -138,7 +138,7 @@
     <view class="flex justify-between">
       <navigate-to v-for="item in tools" :to-sub="item.path" :key="item.icon">
         <view class="flex items-center justify-center flex-col flex-1 gap-2">
-          <wd-icon :name="item.icon" custom-class="text-gray-600 text-7" />
+          <image :src="item.icon" mode="scaleToFill" class="w-7 h-7" />
           <text class="text-[28rpx] text-gray-600 block">{{ item.name }}</text>
         </view>
       </navigate-to>
@@ -160,23 +160,23 @@ const userInfo = ref<MemberUserDO>({})
 let tools = ref([
   {
     name: '我的关注',
-    icon: 'heart',
+    icon: '/static/images/guanzhu.svg',
     path: '/my-follows/my-follows',
   },
   {
     name: '违约公示',
-    icon: 'star',
+    icon: '/static/images/weiyuegongshi.svg',
     path: '/violation-notice/violation-notice',
   },
 
   {
     name: '设置',
-    icon: 'setting',
+    icon: '/static/images/shezhi.svg',
     path: '/profile-settings/profile-settings',
   },
   {
     name: '联系客服',
-    icon: 'phone',
+    icon: '/static/images/kefu.svg',
     path: '',
   },
 ])

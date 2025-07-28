@@ -8,8 +8,6 @@
           }"
         >
           <slot></slot>
-
-          <!-- 底部安全区域 -->
         </view>
       </scroll-view>
     </view>

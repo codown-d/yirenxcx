@@ -26,6 +26,7 @@
     </wd-navbar>
     <jobseeker v-if="roleType === RoleEmu.seeking"></jobseeker>
     <employer v-else></employer>
+    <yr-margin-footer />
   </view>
   <yr-tab-bar :tab-index="4"></yr-tab-bar>
 </template>
