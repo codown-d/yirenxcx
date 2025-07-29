@@ -35,7 +35,7 @@
           />
         </wd-cell>
         <post-picker title="职位类别" :modelValue="formData.post"></post-picker>
-        <fg-location-picker title="工作地点" :modelValue="formData.location"></fg-location-picker>
+        <yr-location-picker title="工作地点" v-model="formData.location"></yr-location-picker>
         <wd-cell title="报名截止时间" custom-class="pr-0">
           <wd-calendar v-model="formData.comeToTime" custom-class="pr-0" />
         </wd-cell>

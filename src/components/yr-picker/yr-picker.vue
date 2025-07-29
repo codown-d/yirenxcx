@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 export interface Column {
   label: string
-  value: string
+  value: string | number
 }
 const props = defineProps({
   title: {
@@ -24,8 +24,8 @@ const props = defineProps({
     default: () => [],
   },
   modelValue: {
-    type: Array,
-    default: () => [],
+    type: [String, Number],
+    default: () => '',
   },
   placeholder: {
     type: String,
@@ -34,6 +34,10 @@ const props = defineProps({
   className: {
     type: String,
     default: '',
+  },
+  multiple: {
+    type: Boolean,
+    default: false,
   },
 })
 
@@ -45,14 +49,19 @@ const emit = defineEmits(['update:modelValue'])
 const handleConfirm = ({ selectedItems: items, value }: any) => {
   selectVal.value = value
   selectedItems.value = items
+  console.log(value)
   emit('update:modelValue', selectVal.value)
 }
 
 watch(
   () => props.modelValue,
   (val) => {
-    selectVal.value = val
-    selectedItems.value = props.columns.filter((item) => val.includes(item.value))
+    let arr = [val]
+    if (typeof val === 'string') {
+      arr = (val + '').split(',').filter((item) => item)
+    }
+    selectVal.value = arr
+    selectedItems.value = props.columns.filter((item) => arr.includes(item.value))
   },
 )
 </script>

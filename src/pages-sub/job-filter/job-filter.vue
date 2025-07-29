@@ -13,7 +13,7 @@
     <view class="bg-[#F5F6FA] h-2"></view>
     <!-- 位置 -->
     <wd-cell-group>
-      <fg-location-picker title="位置" :modelValue="selectedLocations"></fg-location-picker>
+      <yr-location-picker title="位置" v-model="selectedLocations"></yr-location-picker>
       <wd-cell
         title="职业类别"
         value="查看全部"

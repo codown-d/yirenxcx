@@ -1,79 +1,79 @@
 <template>
-  <view class="py-[10px]">
-    <wd-cell :title="title" :custom-class="className">
-      <icon-text
-        @on-click="getLoginLogPage"
-        @on-close="handleClose(selectedItems[0])"
-        :text="selectedLocation"
-      ></icon-text>
-    </wd-cell>
-  </view>
-  <view class="py-2 flex flex-wrap gap-2" v-if="selectedItems.length && mode === 'multiple'">
-    <tag
-      v-for="item in selectedItems"
-      :label="item.label"
-      :value="item.value"
-      :key="item.value"
-      @on-remove="handleClose(item)"
-    ></tag>
-  </view>
+  <wd-cell :title="title" :custom-class="className" title-width="60px">
+    <wd-col-picker
+      v-model="pickerValue"
+      :columns="area"
+      :column-change="columnChange"
+      @confirm="handleConfirm"
+    ></wd-col-picker>
+  </wd-cell>
 </template>
 <script lang="ts" setup>
-import { navigateToSub } from '@/utils'
-import { Column } from '../select-picker/select-picker.vue'
-import { useLocationStore } from '@/store'
-const { getLocation } = useLocationStore()
-
+import { useColPickerData } from '@/hooks/useColPickerData'
+const { colPickerData, findChildrenByCode } = useColPickerData()
 const props = defineProps({
   title: {
     type: String,
     required: true,
   },
   modelValue: {
-    type: Array,
-    default: () => [],
-  },
-  mode: {
     type: String,
-    default: '',
-  },
-  placeholder: {
-    type: String,
-    default: '请输入',
+    default: () => '',
   },
   className: {
     type: String,
     default: '',
   },
 })
-
-let selectedItems = ref<Column[]>([])
-
-const emit = defineEmits(['update:modelValue'])
-
-const selectedLocation = computed(() => {
-  return selectedItems.value.map((i) => i.label).join(' / ')
-})
-const handleClose = (item) => {
-  selectedItems.value = selectedItems.value.filter((i) => i.value !== item.value)
-  emit(
-    'update:modelValue',
-    selectedItems.value.map((i) => i.value),
-  )
+const pickerValue = ref([])
+const area = ref<any[]>([])
+const columnChange = ({ selectedItem, resolve, finish }) => {
+  const areaData = findChildrenByCode(colPickerData, selectedItem.value)
+  if (areaData && areaData.length) {
+    resolve(
+      areaData.map((item) => {
+        return {
+          value: item.value,
+          label: item.text,
+        }
+      }),
+    )
+  } else {
+    finish()
+  }
 }
-const getLoginLogPage = () => {
-  navigateToSub('/location-select/location-select')
-}
+
 watch(
   () => props.modelValue,
   (val) => {
-    setSelectedItems()
+    const arr = val.split(',').filter((item) => item)
+    pickerValue.value = arr
+    area.value = [
+      colPickerData.map((item) => {
+        return {
+          value: item.value,
+          label: item.text,
+        }
+      }),
+      ...arr.slice(0, -1).map((item) => {
+        return findChildrenByCode(colPickerData, item)!.map((item) => {
+          return {
+            value: item.value,
+            label: item.text,
+          }
+        })
+      }),
+    ]
   },
+  { immediate: true },
 )
-const setSelectedItems = () => {
-  selectedItems.value = getLocation()
+
+const emit = defineEmits(['update:modelValue'])
+
+// watch(pickerValue, (val) => {
+//   emit('update:modelValue', val)
+// })
+function handleConfirm({ value }) {
+  emit('update:modelValue', value.join(','))
 }
-onShow(() => {
-  setSelectedItems()
-})
 </script>

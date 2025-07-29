@@ -38,7 +38,7 @@
           />
         </wd-cell>
         <post-picker title="期望职位" :modelValue="formData.post"></post-picker>
-        <fg-location-picker title="工作地点" :modelValue="formData.location"></fg-location-picker>
+        <yr-location-picker title="工作地点" v-model="formData.locationCode"></yr-location-picker>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -186,7 +186,7 @@ const formData = ref({
   contactMobile: '',
   isCertified: '',
   post: [],
-  location: [],
+  locationCode: '',
   advantage: '',
   other: '',
   expectedSalary: '',
@@ -208,7 +208,7 @@ const saveDraft = () => {
   navigateBack()
 }
 const postData = computed(() => {
-  let { post, location, expectedSalary, ...restData } = formData.value
+  let { post, expectedSalary, ...restData } = formData.value
   let [salaryMin, salaryMax] = expectedSalary.split('-')
   return {
     ...restData,
@@ -217,7 +217,6 @@ const postData = computed(() => {
     jobSpecific: post[2],
     salaryMin,
     salaryMax,
-    location: location.join(','),
   }
 })
 // 发布求职信息

@@ -26,9 +26,9 @@ const props = defineProps({
     type: Number,
     default: 1,
   },
-  fileList: {
-    type: Array as PropType<UploadFile[]>,
-    default: () => [],
+  modelValue: {
+    type: String,
+    default: () => '',
   },
   accept: {
     type: String as PropType<UploadFileType>,
@@ -41,12 +41,17 @@ const uploadUrl = computed(() => {
   return `${getEnvBaseUploadUrl()}/app-api/infra/file/upload`
 })
 watch(
-  () => props.fileList,
+  () => props.modelValue,
   (val) => {
     list.value = val
+      .split(',')
+      .filter((item) => item)
+      .map((item) => {
+        return { url: item }
+      })
   },
 )
-const emit = defineEmits(['change'])
+const emit = defineEmits(['update:modelValue'])
 const handleChange = async ({ fileList = [] }) => {
   list.value = fileList.map((item) => {
     if (item.percent === 100) {
@@ -55,6 +60,7 @@ const handleChange = async ({ fileList = [] }) => {
       return { url: item.url }
     }
   })
-  emit('change', list.value)
+  console.log(list.value, list.value.map((item) => (item as UploadFile).url).join(','))
+  emit('update:modelValue', list.value.map((item) => (item as UploadFile).url).join(','))
 }
 </script>

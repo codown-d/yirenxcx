@@ -173,17 +173,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { navigateToSub } from '@/utils'
+import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { merge } from 'lodash'
 import { useMessage } from 'wot-design-uni'
-import {
-  educationColumns,
-  experienceColumns,
-  jobTypeColumns,
-  availableTimeColumns,
-  salaryColumns,
-} from '@/constant'
+import { jobTypeColumns, salaryColumns } from '@/constant'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -280,7 +274,7 @@ const saveResume = async () => {
   })
   toast.success('保存成功')
   setTimeout(() => {
-    // navigateBack()
+    navigateBack()
   }, 500)
 }
 

@@ -38,12 +38,12 @@ export const REGEX_PATTERNS = {
 // 正则表达式常量
 export const AGE = new Array(34).fill('').map((_, index) => {
   return {
-    label: `${index + 16}`,
+    label: `${index + 16} 岁`,
     value: `${index + 16}`,
   }
 })
 export const SEX = [
-  { label: '女', value: '女' },
-  { label: '男', value: '男' },
-  { label: '保密', value: '保密' },
+  { label: '女', value: 1 },
+  { label: '男', value: 2 },
+  { label: '保密', value: 0 },
 ]

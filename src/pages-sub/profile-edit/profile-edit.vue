@@ -15,14 +15,7 @@
     <wd-form ref="form" :model="userForm" errorType="toast">
       <!-- 头像 -->
       <wd-cell title="头像">
-        <wd-upload
-          :file-list="userForm.avatarC"
-          custom-class="rounded-full"
-          :limit="1"
-          image-mode="aspectFill"
-          :action="uploadUrl"
-          @change="handleChange"
-        ></wd-upload>
+        <yr-upload :limit="1" v-model="userForm.avatar"></yr-upload>
       </wd-cell>
 
       <!-- 姓名 -->
@@ -61,23 +54,13 @@
         />
       </wd-cell>
       <!-- 所在地区 -->
-      <fg-location-picker title="工作地点" :modelValue="userForm.locationC"></fg-location-picker>
-
+      <yr-location-picker title="所在地区" v-model="userForm.locationCode"></yr-location-picker>
+      <!-- 性别 -->
+      <yr-picker v-model="userForm.sex" :columns="SEX" title="学历水平" v-if="false"></yr-picker>
       <!-- 性别 -->
       <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
       <!-- 年龄 -->
-      <wd-cell title="年龄">
-        <view class="flex items-center justify-end">
-          <wd-input
-            custom-class="w-20"
-            v-model="userForm.age"
-            placeholder="请输入年龄"
-            type="number"
-            no-border
-            :rules="[{ required: true, message: '请填写年龄' }]"
-          />
-        </view>
-      </wd-cell>
+      <yr-picker v-model="userForm.age" :columns="AGE" title="年龄"></yr-picker>
     </wd-form>
   </view>
 
@@ -96,36 +79,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { getUserInfo, updateUser } from '@/service/app'
-import { SEX } from '@/constant'
-import { getEnvBaseUploadUrl, navigateBack } from '@/utils'
+import { SEX, AGE } from '@/constant'
+import { navigateBack } from '@/utils'
 import { merge } from 'lodash'
 
 const userForm = ref<any>({
   avatar: undefined,
-  avatarC: [],
   nickname: '',
   mobile: '',
   email: '',
   location: '',
-  locationC: [],
+  locationCode: '',
   sex: undefined,
   biYeYuanXiao: '',
   age: undefined,
   teChang: '',
 })
 const form = ref()
-const uploadUrl = computed(() => {
-  return `${getEnvBaseUploadUrl()}/app-api/infra/file/upload`
-})
-const handleChange = async ({ fileList = [] }) => {
-  let file = fileList[0]
-  if (file.percent === 100) {
-    userForm.value.avatar = JSON.parse(file.response).data
-  }
-}
+
+// 是否有请求正在进行
 // 加载状态
 const loading = ref(false)
 
@@ -133,24 +108,18 @@ const loading = ref(false)
 const loadUserInfo = async () => {
   const res = await getUserInfo({})
   if (res.code === 0 && res.data) {
-    userForm.value = merge(res.data, {
-      locationC: [],
-      avatarC: [
-        {
-          url: res.data.avatar,
-        },
-      ],
-    })
+    userForm.value = res.data
   }
 }
 
 // 保存个人资料
 const saveProfile = async () => {
   await form.value.validate()
-  console.log(userForm.value, 1234566)
   try {
     loading.value = true
-    const res = await updateUser({ body: merge({}, userForm.value, {}) })
+    const res = await updateUser({
+      body: merge({}, userForm.value),
+    })
     if (res.code === 0) {
       toast.success('保存成功')
       setTimeout(() => {
