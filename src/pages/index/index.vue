@@ -66,18 +66,25 @@
             </view>
           </scroll-view>
           <!-- 推荐招聘职位标题 -->
-          <template v-if="jobList.length">
+          <template v-if="role === RoleEmu.seeking || !userInfo.token">
             <view class="py-4">
               <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
             </view>
-            <job-card v-for="job in jobList" :key="job.id" :job-data="job" />
+            <job-card v-for="job in jobList" :key="job.id" :job-data="job" v-if="jobList.length" />
+            <yr-nodata v-else></yr-nodata>
           </template>
           <!-- 推荐招聘职位标题 -->
-          <template v-if="seekerList.length">
+          <template v-if="role === RoleEmu.employer || !userInfo.token">
             <view class="py-4">
               <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
             </view>
-            <job-seeker-card v-for="seeker in seekerList" :key="seeker.id" :seeker-data="seeker" />
+            <job-seeker-card
+              v-for="seeker in seekerList"
+              :key="seeker.id"
+              :seeker-data="seeker"
+              v-if="seekerList.length"
+            />
+            <yr-nodata v-else></yr-nodata>
           </template>
         </view>
       </view>
@@ -144,6 +151,7 @@ const { getRole, setRole } = useRoleStore()
 const opacity = ref(0)
 
 const show = ref(false)
+let role = ref(getRole())
 const activeFilterTag = ref('all')
 const jobList = ref<YRZPJobDO[]>([])
 const seekerList = ref<JobSeeker[]>(JOB_SEEKERS)
@@ -183,11 +191,10 @@ const handleFilterChange = (tagId: string) => {
 
 let getDataFn = async (keyword?: string) => {
   let pageSize = !userInfo.token ? 6 : 10
-  let roleType = getRole()
-  if (roleType === RoleEmu.employer) {
+  if (role.value === RoleEmu.employer) {
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     seekerList.value = res.data.list
-  } else if (roleType === RoleEmu.seeking) {
+  } else if (role.value === RoleEmu.seeking) {
     let res = await getJobPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list
   }
@@ -199,11 +206,11 @@ const handleSearch = (val) => {
 onLoad(async () => {
   let res = await getBannerList({ params: { position: 1 } })
   swiperList.value = res.data.map((item) => item.picUrl)
-  navigateToSub('/profile-edit/profile-edit')
 })
 onShow(() => {
   seekerList.value = []
   jobList.value = []
+  role.value = getRole()
   getDataFn()
   show.value = false
   isShowPopup.value = false

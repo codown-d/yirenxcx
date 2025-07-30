@@ -56,7 +56,7 @@
       <!-- 所在地区 -->
       <yr-location-picker title="所在地区" v-model="userForm.locationCode"></yr-location-picker>
       <!-- 性别 -->
-      <yr-picker v-model="userForm.sex" :columns="SEX" title="学历水平" v-if="false"></yr-picker>
+      <yr-picker v-model="userForm.xueLi" :columns="XUELI" title="学历水平"></yr-picker>
       <!-- 性别 -->
       <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
       <!-- 年龄 -->
@@ -82,7 +82,7 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { getUserInfo, updateUser } from '@/service/app'
-import { SEX, AGE } from '@/constant'
+import { SEX, AGE, XUELI } from '@/constant'
 import { navigateBack } from '@/utils'
 import { merge } from 'lodash'
 

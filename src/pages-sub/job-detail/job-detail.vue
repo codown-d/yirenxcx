@@ -9,7 +9,7 @@
 </route>
 
 <template>
-  <view class="min-h-screen pt-2 bg-gray-50">
+  <view class="min-h-screen pt-2">
     <!-- 职位基本信息 -->
     <view class="bg-white mx-3 mt-3 rounded-2 p-4">
       <view class="flex items-center justify-between mb-3">
@@ -19,30 +19,10 @@
 
       <!-- 职位标签 -->
       <view class="grid grid-cols-2 gap-3 mb-3">
-        <view class="flex justify-start items-center gap-1 text-[#555555]">
-          <wd-icon name="gift" custom-class="text-4 mr-1 text-[#555555] text-base"></wd-icon>
-          <text class="text-[#555555] text-xs">
-            {{ jobDetail.experience }}
-          </text>
-        </view>
-        <view class="flex justify-start items-center gap-1 text-[#555555]">
-          <wd-icon name="gift" custom-class="text-4 mr-1 text-[#555555] text-base"></wd-icon>
-          <text class="text-[#555555] text-xs">
-            {{ jobDetail.education }}
-          </text>
-        </view>
-        <view class="flex justify-start items-center gap-1 text-[#555555]">
-          <wd-icon name="gift" custom-class="text-4 mr-1 text-[#555555] text-base"></wd-icon>
-          <text class="text-[#555555] text-xs">
-            {{ jobDetail.positionSituation }}
-          </text>
-        </view>
-        <view class="flex justify-start items-center gap-1 text-[#555555]">
-          <wd-icon name="gift" custom-class="text-4 mr-1 text-[#555555] text-base"></wd-icon>
-          <text class="text-[#555555] text-xs">
-            {{ jobDetail.workTime }}
-          </text>
-        </view>
+        <yr-img-title url="jingyan.svg" :title="jobDetail.experience" />
+        <yr-img-title url="zhuanye.svg" :title="jobDetail.education" />
+        <yr-img-title url="ljdg.svg" :title="jobDetail.positionSituation" />
+        <yr-img-title url="time.svg" :title="jobDetail.workTime" />
       </view>
 
       <view class="pt-4">
@@ -52,27 +32,18 @@
       <view class="mt-2">
         <text class="text-sm text-gray">演员要求</text>
         <view class="flex flex-wrap gap-2 mt-2">
-          <view
-            v-for="skill in jobDetail.requirements"
-            :key="skill"
-            class="bg-gray-50 text-gray text-xs px-2 py-1 rounded-1"
-          >
+          <view v-for="skill in jobDetail.requirements" :key="skill" class="tag-default">
             {{ skill }}
           </view>
         </view>
       </view>
-      <view class="text-3 text-gray-600 leading-relaxed">
-        {{ jobDetail.requirements }}
-      </view>
-    </view>
-
-    <!-- 福利待遇 -->
-    <view class="bg-white mx-3 mt-3 rounded-3 p-4">
-      <text class="text-4 font-bold text-gray-800 block mb-3">福利/待遇</text>
-      <view class="flex flex-wrap gap-2">
-        <wd-tag v-for="benefit in jobDetail.benefits" :key="benefit" type="info" size="small" plain>
-          {{ benefit }}
-        </wd-tag>
+      <view class="mt-4">
+        <text class="text-sm text-gray">福利/待遇</text>
+        <view class="flex flex-wrap gap-2 mt-2">
+          <view v-for="benefit in jobDetail.benefits" :key="benefit" class="tag-default">
+            {{ benefit }}
+          </view>
+        </view>
       </view>
     </view>
 
@@ -102,10 +73,14 @@
     <view class="bg-white mx-3 mt-3 rounded-3 p-4">
       <view class="flex items-center justify-between mb-3">
         <view class="flex items-center">
-          <image :src="jobDetail.company.logo" class="w-12 h-12 rounded-2 mr-3" mode="aspectFill" />
+          <image
+            :src="jobDetail.company.logo"
+            class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
+            mode="aspectFill"
+          />
           <view>
-            <text class="text-4 font-bold text-gray-800 block">{{ jobDetail.company.name }}</text>
-            <text class="text-3 text-gray-500">{{ jobDetail.company.scale }}</text>
+            <text class="text-4 font-bold text-gray-800 block">jobDetail.company.name</text>
+            <text class="text-3 text-gray-500">jobDetail.company.scale</text>
           </view>
         </view>
         <wd-icon name="arrow-right" size="16px" color="#999" @click="goToCompany" />
@@ -117,43 +92,44 @@
       <text class="text-4 font-bold text-gray-800 block mb-3">即将项目</text>
       <view class="space-y-3">
         <view
-          v-for="project in jobDetail.upcomingProjects"
+          v-for="project in 2"
           :key="project.id"
-          class="flex items-center"
+          class="flex items-center bg-[#EEF5F3] p-[6px] rounded-[6px]"
         >
-          <image :src="project.image" class="w-12 h-12 rounded-2 mr-3" mode="aspectFill" />
+          <image
+            :src="project.image"
+            class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
+            mode="aspectFill"
+          />
           <view class="flex-1">
-            <text class="text-3 font-medium text-gray-800 block">{{ project.title }}</text>
-            <text class="text-2 text-gray-500">{{ project.date }} • {{ project.location }}</text>
+            <text class="text-3 font-medium text-gray-800 block">project.title</text>
+            <text class="text-2 text-gray-500">project.date • project.location</text>
           </view>
         </view>
       </view>
     </view>
 
     <!-- 相似职位 -->
-    <view class="bg-white mx-3 mt-3 rounded-3 p-4 mb-20">
+    <view class="bg-white mx-3 mt-3 rounded-3 p-4 mb-5">
       <text class="text-4 font-bold text-gray-800 block mb-3">相似职位</text>
       <view class="space-y-3">
-        <view
-          v-for="similarJob in jobDetail.similarJobs"
-          :key="similarJob.id"
-          class="border border-gray-100 rounded-2 p-3"
-          @click="goToJob(similarJob.id)"
-        >
-          <view class="flex items-start justify-between mb-2">
-            <text class="text-3 font-medium text-gray-800 flex-1">{{ similarJob.title }}</text>
-            <text class="text-3 font-bold text-primary">{{ similarJob.salary }}</text>
+        <template v-for="similarJob in 2" :key="similarJob.id">
+          <view class="border border-gray-100 rounded-2 p-3" @click="goToJob(similarJob.id)">
+            <view class="flex items-start justify-between mb-3">
+              <text class="text-4 font-medium text-gray-800 flex-1">similarJob.title</text>
+              <text class="text-3 font-bold text-primary">similarJob.salary</text>
+            </view>
+            <yr-img-title url="time.svg" :title="jobDetail.workTime" />
           </view>
-          <text class="text-2 text-gray-500">{{ similarJob.company }}</text>
-        </view>
+          <wd-divider custom-class="!px-0" v-if="similarJob !== 2"></wd-divider>
+        </template>
       </view>
     </view>
 
     <!-- 底部操作栏 -->
-    <view
-      class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 safe-area-inset-bottom"
-    >
-      <view class="flex items-center justify-between gap-3">
+
+    <yr-page-footer>
+      <view class="flex items-center justify-between gap-3 w-full">
         <view class="flex items-center gap-4">
           <view @click="toggleFavorite">
             <wd-icon
@@ -170,14 +146,26 @@
             />
           </view>
         </view>
-        <wd-button type="success" custom-class="flex-1" :round="false" @click="handleContact">
+        <wd-button
+          type="success"
+          block
+          custom-class="flex-1 "
+          :round="false"
+          @click="handleContact"
+        >
           立即联系
         </wd-button>
-        <wd-button type="primary" custom-class="flex-1" :round="false" @click="handleApply">
+        <wd-button
+          type="primary"
+          block
+          custom-class="flex-1 !bg-[#EC9508]"
+          :round="false"
+          @click="handleApply"
+        >
           立即申请
         </wd-button>
       </view>
-    </view>
+    </yr-page-footer>
   </view>
 </template>
 

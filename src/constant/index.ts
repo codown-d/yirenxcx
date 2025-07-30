@@ -47,3 +47,8 @@ export const SEX = [
   { label: '男', value: 2 },
   { label: '保密', value: 0 },
 ]
+export const XUELI = [
+  { label: '本科', value: 1 },
+  { label: '专科', value: 2 },
+  { label: '保密', value: 0 },
+]

@@ -34,6 +34,7 @@ export default defineConfig({
   shortcuts: [
     {
       center: 'flex justify-center items-center',
+      'tag-default': 'bg-gray-50 text-gray text-xs px-2 py-1 rounded-1',
     },
   ],
   rules: [
