@@ -91,16 +91,16 @@ export function getJobNextTimesQueryOptions(options: {
 }
 
 /** 获得定时任务分页 GET /admin-api/infra/job/page */
-export function getJobPage2QueryOptions(options: {
+export function getJobPage3QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobPage2Params;
+  params: API.getJobPage3Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getJobPage2(queryKey[1] as typeof options);
+      return apis.getJobPage3(queryKey[1] as typeof options);
     },
-    queryKey: ['getJobPage2', options],
+    queryKey: ['getJobPage3', options],
   });
 }
 

@@ -65,13 +65,14 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import type { JobPosition } from '@/constant/recruitment'
 import { navigateToSub } from '@/utils'
 import { YRZPJobDO } from '@/service/app'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn' // 如果你想显示中文
+import { useConnect } from '@/hooks'
 
+const { createGuanLianFn } = useConnect()
 dayjs.extend(relativeTime)
 dayjs.locale('zh-cn') // 设置为中文（可选）
 interface Props {
@@ -95,10 +96,7 @@ const requirementDetails = computed(() => {
 const updateTime = computed(() => {
   return dayjs(props.jobData.updateTime).fromNow()
 })
-const emit = defineEmits<{
-  click: [job: JobPosition]
-  favorite: [job: JobPosition, isFavorited: boolean]
-}>()
+const emit = defineEmits(['click', 'favorite'])
 
 // 监听favorited属性变化
 watch(
@@ -114,7 +112,9 @@ const handleCardClick = () => {
 }
 
 const handleFavorite = () => {
-  isFavorited.value = !isFavorited.value
-  emit('favorite', props.jobData, isFavorited.value)
+  createGuanLianFn({ guanZhuJobId: props.jobData.id }, () => {
+    isFavorited.value = !isFavorited.value
+    emit('favorite', props.jobData, isFavorited.value)
+  })
 }
 </script>

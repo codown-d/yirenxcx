@@ -103,23 +103,3 @@ export function getUserTypePage1QueryOptions(options: {
     queryKey: ['getUserTypePage1', options],
   });
 }
-
-/** 更新用户类型 PUT /admin-api/yirenzhipin/user-type/update */
-export function useUpdateUserType1Mutation(options?: {
-  onSuccess?: (value?: API.CommonResultBoolean) => void;
-  onError?: (error?: DefaultError) => void;
-}) {
-  const { onSuccess, onError } = options || {};
-
-  const response = useMutation({
-    mutationFn: apis.updateUserType1,
-    onSuccess(data: API.CommonResultBoolean) {
-      onSuccess?.(data);
-    },
-    onError(error) {
-      onError?.(error);
-    },
-  });
-
-  return response;
-}

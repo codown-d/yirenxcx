@@ -172,114 +172,44 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { getSystemInfoSync } from '@/utils'
-import { JOB_POSITIONS, JobPosition } from '@/constant'
-import { recordJobView } from '@/types/jobDetail'
+import { createZuJi, getJob1, YRZPJobDO } from '@/service/app'
+import { useConnect } from '@/hooks'
+const { createGuanLianFn } = useConnect()
 
-const { safeAreaInsets } = getSystemInfoSync()
-
-// 页面状态
-const isFavorited = ref(false)
 const isStarred = ref(false)
 const loading = ref(false)
-const jobDetail = ref<JobPosition>()
-const jobId = ref('1') // 从路由参数获取
+const jobDetail = ref<YRZPJobDO>()
+const jobId = ref()
 
 // 页面加载
 onLoad((options) => {
   if (options?.id) {
     jobId.value = options.id
     loadJobDetail()
-    // 记录浏览
-    recordView()
+    createZuJi({ body: { jobId: jobId.value } })
   }
 })
+
 // 加载职位详情
 const loadJobDetail = async () => {
   try {
     loading.value = true
-    const res = await getJobDetail({
-      params: { jobId: jobId.value },
+    const res = await getJob1({
+      params: { id: jobId.value },
     })
-
     if (res.code === 0) {
       jobDetail.value = res.data
-    } else {
-      toast.error(res.msg || '获取职位详情失败')
-    }
-  } catch (error) {
-    // 模拟从API获取数据
-    const seeker = JOB_POSITIONS.find((item) => item.id === jobId.value)
-    if (seeker) {
-      jobDetail.value = seeker
     }
   } finally {
     loading.value = false
   }
 }
 
-// 记录浏览
-const recordView = async () => {
-  try {
-    toast.success('记录接口未调试 暂无接口')
-  } catch (error) {
-    console.error('记录浏览失败:', error)
-  }
-}
-
-// 返回上一页
-const handleBack = () => {
-  uni.navigateBack()
-}
-
-// 分享
-const handleShare = async () => {
-  try {
-    const res = await shareJob({
-      body: {
-        jobId: jobId.value,
-        platform: 'wechat',
-      },
-    })
-
-    if (res.code === 0) {
-      toast.success('分享成功')
-    } else {
-      toast.error(res.msg || '分享失败')
-    }
-  } catch (error) {
-    console.error('分享失败:', error)
-    toast.error('分享失败')
-  }
-}
-
-// 更多操作
-const handleMore = () => {
-  uni.showActionSheet({
-    itemList: ['举报职位', '复制链接', '不感兴趣'],
-    success: (res) => {
-      switch (res.tapIndex) {
-        case 0:
-          handleReport()
-          break
-        case 1:
-          handleCopyLink()
-          break
-        case 2:
-          handleNotInterested()
-          break
-      }
-    },
-  })
-}
-
-// 帮助
-const handleHelp = () => {
-  toast.info('帮助功能')
-}
-
 // 切换收藏状态
 const toggleFavorite = async () => {
+  createGuanLianFn({ guanZhuJobSeekerId: props.seekerData.id }, () => {
+    isFavorited.value = !isFavorited.value
+  })
   try {
     const action = isFavorited.value ? 'remove' : 'add'
     const res = await toggleJobFavorite({

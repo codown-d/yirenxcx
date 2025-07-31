@@ -60,12 +60,12 @@ export async function getJob({
 }
 
 /** 获得职位分页 GET /app-api/yirenzhipin/job/page */
-export async function getJobPage({
+export async function getJobPage1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobPageParams;
+  params: API.getJobPage1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultPageResultYRZPJobDO>(

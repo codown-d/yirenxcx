@@ -127,24 +127,3 @@ export async function getUserTypePage1({
     }
   );
 }
-
-/** 更新用户类型 PUT /admin-api/yirenzhipin/user-type/update */
-export async function updateUserType1({
-  body,
-  options,
-}: {
-  body: API.UserTypeUpdateReqVO;
-  options?: CustomRequestOptions;
-}) {
-  return request<API.CommonResultBoolean>(
-    '/admin-api/yirenzhipin/user-type/update',
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: body,
-      ...(options || {}),
-    }
-  );
-}

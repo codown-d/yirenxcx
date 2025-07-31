@@ -9,14 +9,21 @@
 </route>
 
 <template>
-  <view class="mt-2 px-4">
+  <view class="px-4 h-[80vh]">
     <!-- 搜索和筛选 -->
     <view class="flex items-center gap-3">
-      <view class="flex-1"><search /></view>
-      <view class="flex items-center w-13 justify-end" @click="showFilterMenu">
-        <text class="text-sm text-gray-600 mr-1">{{ filterText }}</text>
-        <wd-icon name="arrow-down"></wd-icon>
-      </view>
+      <view class="flex-1"><search @confirm="handleSearch" /></view>
+      <wd-picker
+        :columns="filterColumns"
+        v-model="filterText"
+        use-default-slot
+        @confirm="confirmFilter"
+      >
+        <view class="flex items-center justify-end">
+          <text class="text-sm text-gray-600 mr-1">{{ filterText }}</text>
+          <wd-icon name="arrow-down"></wd-icon>
+        </view>
+      </wd-picker>
     </view>
 
     <!-- 违规记录列表 -->
@@ -78,22 +85,25 @@
         {{ loading ? '加载中...' : '加载更多' }}
       </wd-button>
     </view>
-    <view class="flex flex-col">
-      <view class="text-center mb-2">
-        <text class="text-sm text-gray-600">本月共处理违规案例 {{ monthlyStats.total }} 起</text>
+    <yr-page-footer>
+      <view class="flex flex-col justify-center w-full">
+        <view class="text-center mb-2">
+          <text class="text-sm text-gray-600">本月共处理违规案例 {{ monthlyStats.total }} 起</text>
+        </view>
+        <view class="text-center mb-4">
+          <text class="text-xs text-gray-500">平台致力于为用户提供安全、诚信的求职招聘环境</text>
+        </view>
       </view>
-      <view class="text-center mb-4">
-        <text class="text-xs text-gray-500">平台致力于为用户提供安全、诚信的求职招聘环境</text>
-      </view>
-    </view>
+    </yr-page-footer>
+
     <!-- 底部统计和举报 -->
-    <view class="fixed left-0 right-0 bottom-4 z-10 p-4 bg-white shadow-sm">
+    <view class="fixed left-0 right-0 bottom-4 z-10 p-4 bg-white shadow-sm" v-if="false">
       <view class="text-center flex justify-center justify-between">
         <view class="text-left">
           <text class="text-sm text-gray-600 block mb-2">发现违规行为？</text>
           <text class="text-xs text-gray-500 block">请及时举报，共同维护平台秩序</text>
         </view>
-        <wd-button type="primary" :round="false" @click="showReportDialog">
+        <wd-button type="primary" :round="false">
           <wd-icon name="warning"></wd-icon>
           我要举报
         </wd-button>
@@ -105,56 +115,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-
-// 模拟接口
-const getViolationList = async (params: any) => {
-  return {
-    code: 0,
-    data: {
-      list: [
-        {
-          id: '1',
-          type: 'spam',
-          title: '垃圾信息举报',
-          description: '发布垃圾广告信息',
-          status: 'processed' as const,
-          createTime: '2024-01-01 10:00',
-          processTime: '2024-01-01 12:00',
-          result: '举报成功，已处理',
-        },
-      ],
-      total: 1,
-      hasMore: false,
-    },
-    msg: 'success',
-  }
-}
-
-const getViolationStats = async () => {
-  return {
-    code: 0,
-    data: {
-      total: 10,
-      processed: 8,
-      processing: 2,
-      pending: 0,
-      monthlyTotal: 5,
-    },
-    msg: 'success',
-  }
-}
-
-const getViolationTypes = async () => {
-  return {
-    code: 0,
-    data: [
-      { id: 'spam', name: '垃圾信息', description: '发布垃圾广告等' },
-      { id: 'harassment', name: '骚扰行为', description: '恶意骚扰他人' },
-      { id: 'fraud', name: '欺诈行为', description: '虚假信息欺诈' },
-    ],
-    msg: 'success',
-  }
-}
+import { getWeiGuiPage, YRZPWeiGuiRespAppVO } from '@/service/app'
 
 const submitReport = async (params: any) => {
   return {
@@ -165,37 +126,6 @@ const submitReport = async (params: any) => {
     },
     msg: 'success',
   }
-}
-
-// 数据类型定义
-interface ViolationRecord {
-  id: string
-  type: string
-  title: string
-  description: string
-  status: 'pending' | 'processing' | 'processed' | 'rejected'
-  createTime: string
-  processTime?: string
-  result?: string
-  reportedUser?: string
-  reportedContent?: string
-}
-
-interface ViolationTag {
-  id: string
-  name: string
-  description: string
-  label?: string
-  value?: string
-}
-
-interface ViolationListParams {
-  page?: number
-  pageSize?: number
-  keyword?: string
-  type?: string
-  status?: string
-  filter?: string
 }
 
 interface ReportRequest {
@@ -215,16 +145,13 @@ interface MonthlyStats {
 }
 
 // 响应式数据
-const searchKeyword = ref('')
-const violationList = ref<ViolationRecord[]>([])
+const violationList = ref<YRZPWeiGuiRespAppVO[]>([])
 const loading = ref(false)
 const hasMore = ref(true)
 const currentPage = ref(1)
-const pageSize = ref(10)
-const currentFilter = ref('all')
+const pageSize = ref(20)
+let filter = ref({ type: 'all' })
 
-// 筛选相关
-const showFilterPicker = ref(false)
 const filterColumns = ref([
   [
     { label: '全部', value: 'all' },
@@ -245,15 +172,13 @@ const monthlyStats = ref<MonthlyStats>({
 
 // 计算属性
 const filterText = computed(() => {
-  const option = filterColumns.value[0].find((item) => item.value === currentFilter.value)
+  const option = filterColumns.value[0].find((item) => item.value === filter.value.type)
   return option?.label || '全部'
 })
 
 // 页面加载
 onMounted(() => {
   loadViolationList()
-  loadViolationStats()
-  loadViolationTypes()
 })
 
 // 获取标签样式
@@ -293,219 +218,45 @@ const getStatusText = (status: string) => {
       return '待处理'
   }
 }
-
 // 加载违规记录列表
-const loadViolationList = async (reset = false) => {
-  if (loading.value) return
-
+const loadViolationList = async (reset = false, keyword = '') => {
+  if (reset) {
+    currentPage.value = 1
+  }
+  loading.value = true
   try {
-    loading.value = true
+    let res = await getWeiGuiPage({
+      params: {
+        ...filter.value,
+        pageNo: currentPage.value,
+        pageSize: pageSize.value,
+      },
+    })
 
-    if (reset) {
-      currentPage.value = 1
-      violationList.value = []
+    loading.value = false
+    currentPage.value = currentPage.value + 1
+    if (res.data.list.length < pageSize.value) {
+      hasMore.value = false
     }
-
-    // 调用真实的API接口
-    const params: ViolationListParams = {
-      page: currentPage.value,
-      pageSize: pageSize.value,
-      keyword: searchKeyword.value.trim() || undefined,
-      filter: currentFilter.value !== 'all' ? currentFilter.value : undefined,
-    }
-
-    const res = await getViolationList({ params })
-
-    if (res.code === 0 && res.data) {
-      const newData = res.data.list || []
-
-      if (reset) {
-        violationList.value = newData
-      } else {
-        violationList.value.push(...newData)
-      }
-
-      hasMore.value = res.data.hasMore
-      currentPage.value++
-      return
-    } else {
-      toast.error(res.msg || '获取违规记录失败')
-      return
-    }
-  } catch (error) {
-    console.error('加载违规记录失败:', error)
-    toast.error('加载失败，请重试')
+    violationList.value = res.data.list
   } finally {
     loading.value = false
   }
 }
 
-// 加载违规统计信息
-const loadViolationStats = async () => {
-  try {
-    const res = await getViolationStats()
-    if (res.code === 0 && res.data) {
-      monthlyStats.value = {
-        total: res.data.monthlyTotal || res.data.total || 3,
-        processed: res.data.processed || 2,
-        processing: res.data.processing || 1,
-        pending: res.data.pending || 0,
-      }
-    }
-  } catch (error) {
-    console.error('加载统计信息失败:', error)
-    // 使用默认值
-    monthlyStats.value = {
-      total: 3,
-      processed: 2,
-      processing: 1,
-    }
-  }
-}
-
-// 加载违规类型
-const loadViolationTypes = async () => {
-  try {
-    const res = await getViolationTypes()
-    if (res.code === 0 && res.data) {
-      // 更新筛选选项
-      const typeOptions = res.data.map((item) => ({
-        label: item.label,
-        value: item.value,
-      }))
-
-      filterColumns.value[0] = [
-        { label: '全部', value: 'all' },
-        { label: '已处理', value: 'processed' },
-        { label: '处理中', value: 'processing' },
-        { label: '待处理', value: 'pending' },
-        ...typeOptions,
-      ]
-    }
-  } catch (error) {
-    console.error('加载违规类型失败:', error)
-  }
-}
-
-// 搜索输入
-const onSearchInput = () => {
-  // 可以添加防抖逻辑
-}
-
 // 执行搜索
-const handleSearch = () => {
+const handleSearch = (val) => {
+  filter.value = { ...filter.value, keyword: val }
   loadViolationList(true)
 }
-
-// 显示筛选菜单
-const showFilterMenu = () => {
-  showFilterPicker.value = true
-}
-
-// 筛选确认
-const onFilterConfirm = (value: any) => {
-  currentFilter.value = value.selectedOptions[0].value
-  showFilterPicker.value = false
+const confirmFilter = ({ value }) => {
+  console.log(value)
+  filter.value = { ...filter.value, type: value }
   loadViolationList(true)
 }
 
 // 加载更多
 const loadMore = () => {
   loadViolationList(false)
-}
-
-// 显示更多菜单
-const showMoreMenu = () => {
-  uni.showActionSheet({
-    itemList: ['分享', '收藏', '举报问题'],
-    success: (res) => {
-      switch (res.tapIndex) {
-        case 0:
-          toast.info('分享功能开发中')
-          break
-        case 1:
-          toast.info('收藏功能开发中')
-          break
-        case 2:
-          showReportDialog()
-          break
-      }
-    },
-  })
-}
-
-// 显示设置
-const showSettings = () => {
-  toast.info('设置功能开发中')
-}
-
-// 显示举报对话框
-const showReportDialog = () => {
-  uni.showActionSheet({
-    itemList: ['举报用户违规', '举报职位违规', '举报帖子违规', '其他违规行为'],
-    success: (res) => {
-      const reportTypes = [
-        { type: 'user', title: '举报用户违规' },
-        { type: 'job', title: '举报职位违规' },
-        { type: 'post', title: '举报帖子违规' },
-        { type: 'other', title: '其他违规行为' },
-      ]
-
-      const selectedType = reportTypes[res.tapIndex]
-      showReportForm(selectedType.type as 'user' | 'job' | 'post' | 'other')
-    },
-  })
-}
-
-// 显示举报表单
-const showReportForm = (targetType: 'user' | 'job' | 'post' | 'other') => {
-  uni.showModal({
-    title: '举报违规行为',
-    content: '请详细描述您发现的违规行为，我们会及时处理',
-    confirmText: '提交举报',
-    editable: true,
-    placeholderText: '请详细描述违规行为...',
-    success: async (res) => {
-      if (res.confirm && res.content) {
-        await submitReportRequest(targetType, res.content)
-      }
-    },
-  })
-}
-
-// 提交举报请求
-const submitReportRequest = async (
-  targetType: 'user' | 'job' | 'post' | 'other',
-  description: string,
-) => {
-  try {
-    loading.value = true
-
-    const reportData: ReportRequest = {
-      targetType,
-      violationType: '其他违规',
-      description: description.trim(),
-      reporterContact: '', // 可以从用户信息中获取
-    }
-
-    const res = await submitReport({ body: reportData })
-
-    if (res.code === 0) {
-      toast.success('举报提交成功，我们会及时处理')
-      uni.showModal({
-        title: '举报成功',
-        content: `举报编号：${res.data.reportCode}\n请保存此编号以便查询处理进度`,
-        showCancel: false,
-        confirmText: '知道了',
-      })
-    } else {
-      toast.error(res.msg || '举报提交失败')
-    }
-  } catch (error) {
-    console.error('提交举报失败:', error)
-    toast.error('网络错误，请稍后重试')
-  } finally {
-    loading.value = false
-  }
 }
 </script>

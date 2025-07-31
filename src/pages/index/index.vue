@@ -141,7 +141,7 @@ import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/const
 import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
 import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { getBannerList, getJobPage, getJobSeekerPage, YRZPJobDO } from '@/service/app'
+import { getBannerList, getJobPage, getJobPage1, getJobSeekerPage, YRZPJobDO } from '@/service/app'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -195,7 +195,7 @@ let getDataFn = async (keyword?: string) => {
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     seekerList.value = res.data.list
   } else if (role.value === RoleEmu.seeking) {
-    let res = await getJobPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
+    let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list
   }
   console.log(123456, getRole(), userInfo.token)

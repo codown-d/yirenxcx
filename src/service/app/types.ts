@@ -2046,6 +2046,8 @@ export type AppMemberUserUpdateReqVO = {
   email?: string;
   /** 所在地区 */
   location?: string;
+  /** 所在地区编码 */
+  locationCode?: string;
   /** 年龄 */
   age?: number;
   /** 积分 */
@@ -2062,6 +2064,8 @@ export type AppMemberUserUpdateReqVO = {
   teChang?: string;
   /** 毕业院校 */
   biYeYuanXiao?: string;
+  /** 学历 */
+  xueLi?: string;
   /** 个人简介 */
   jianJie?: string;
   /** 技能标签 */
@@ -2106,6 +2110,24 @@ export type AppMemberUserUpdateReqVO = {
   companyImages?: string;
   /** 公司视频 */
   companyVideos?: string;
+  /** 是否已认证 */
+  attestation?: string;
+  /** 简历浏览 */
+  jianLiLiuLan?: number;
+  /** 获得关注 */
+  guanZhu?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
 };
 
 export type AppOrderExpressTrackRespDTO = {
@@ -2818,6 +2840,41 @@ export type AppTradeProductSettlementRespVO = {
   skus: Sku[];
   /** 满减送活动信息 */
   rewardActivity: RewardActivity;
+};
+
+export type AppYrzpGuanLianCreateReqVO = {
+  /** 关注求职者id */
+  guanZhuJobSeekerId?: number;
+  /** 收藏求职者id */
+  shouCangJobSeekerId?: number;
+  /** 收藏职位id */
+  shouCangJobId?: number;
+  /** 关注职位id */
+  guanZhuJobId?: number;
+  /** 点赞帖子id */
+  tieZiId?: number;
+  /** 点赞评论id */
+  pingLunId?: number;
+};
+
+export type AppYrzpZuJiCreateReqVO = {
+  /** 职位id */
+  jobId?: number;
+  /** 求职者id */
+  skeerId?: number;
+};
+
+export type AppYrzpZuJiRespVO = {
+  /** 编号 */
+  id: number;
+  /** 会员id */
+  userId?: number;
+  /** 职位id */
+  jobId?: number;
+  /** 求职者id */
+  skeerId?: number;
+  /** 创建时间 */
+  createTime?: string;
 };
 
 export type AreaNodeRespVO = {
@@ -4648,6 +4705,12 @@ export type CommandStat = {
   usec: number;
 };
 
+export type CommonResult = {
+  code?: number;
+  data?: Record<string, unknown>;
+  msg?: string;
+};
+
 export type CommonResultAfterSaleDetailRespVO = {
   code?: number;
   data?: AfterSaleDetailRespVO;
@@ -4945,6 +5008,12 @@ export type CommonResultAppTradeOrderItemRespVO = {
 export type CommonResultAppTradeOrderSettlementRespVO = {
   code?: number;
   data?: AppTradeOrderSettlementRespVO;
+  msg?: string;
+};
+
+export type CommonResultAppYrzpZuJiRespVO = {
+  code?: number;
+  data?: AppYrzpZuJiRespVO;
   msg?: string;
 };
 
@@ -5596,6 +5665,12 @@ export type CommonResultListAppTradeProductSettlementRespVO = {
   msg?: string;
 };
 
+export type CommonResultListAppYrzpZuJiRespVO = {
+  code?: number;
+  data?: AppYrzpZuJiRespVO[];
+  msg?: string;
+};
+
 export type CommonResultListAreaNodeRespVO = {
   code?: number;
   data?: AreaNodeRespVO[];
@@ -6197,6 +6272,12 @@ export type CommonResultListUserTypeRespVO = {
   msg?: string;
 };
 
+export type CommonResultListYrzpGuanLianDO = {
+  code?: number;
+  data?: YrzpGuanLianDO[];
+  msg?: string;
+};
+
 export type CommonResultListYRZPJobCategoryRespVO = {
   code?: number;
   data?: YRZPJobCategoryRespVO[];
@@ -6206,6 +6287,12 @@ export type CommonResultListYRZPJobCategoryRespVO = {
 export type CommonResultListYRZPMessageSessionRespAppVO = {
   code?: number;
   data?: YRZPMessageSessionRespAppVO[];
+  msg?: string;
+};
+
+export type CommonResultListYRZPWeiGuiRespAppVO = {
+  code?: number;
+  data?: YRZPWeiGuiRespAppVO[];
   msg?: string;
 };
 
@@ -6240,6 +6327,12 @@ export type CommonResultMapIntegerLong = {
 };
 
 export type CommonResultMapStringLong = {
+  code?: number;
+  data?: Record<string, unknown>;
+  msg?: string;
+};
+
+export type CommonResultMapStringObject = {
   code?: number;
   data?: Record<string, unknown>;
   msg?: string;
@@ -6620,6 +6713,12 @@ export type CommonResultPageResultAppSeckillActivityRespVO = {
 export type CommonResultPageResultAppTradeOrderPageItemRespVO = {
   code?: number;
   data?: PageResultAppTradeOrderPageItemRespVO;
+  msg?: string;
+};
+
+export type CommonResultPageResultAppYrzpZuJiRespVO = {
+  code?: number;
+  data?: PageResultAppYrzpZuJiRespVO;
   msg?: string;
 };
 
@@ -7319,6 +7418,18 @@ export type CommonResultPageResultYRZPMessageRespVO = {
   msg?: string;
 };
 
+export type CommonResultPageResultYRZPWeiGuiRespAppVO = {
+  code?: number;
+  data?: PageResultYRZPWeiGuiRespAppVO;
+  msg?: string;
+};
+
+export type CommonResultPageResultYRZPWeiGuiRespVO = {
+  code?: number;
+  data?: PageResultYRZPWeiGuiRespVO;
+  msg?: string;
+};
+
 export type CommonResultPayAppRespVO = {
   code?: number;
   data?: PayAppRespVO;
@@ -7583,6 +7694,12 @@ export type CommonResultYRZPForumPostRespVO = {
   msg?: string;
 };
 
+export type CommonResultYrzpGuanLianRespVO = {
+  code?: number;
+  data?: YrzpGuanLianRespVO;
+  msg?: string;
+};
+
 export type CommonResultYRZPJobApplicationRespVO = {
   code?: number;
   data?: YRZPJobApplicationRespVO;
@@ -7616,6 +7733,18 @@ export type CommonResultYRZPJobSeekerRespVO = {
 export type CommonResultYRZPMessageRespVO = {
   code?: number;
   data?: YRZPMessageRespVO;
+  msg?: string;
+};
+
+export type CommonResultYRZPWeiGuiRespAppVO = {
+  code?: number;
+  data?: YRZPWeiGuiRespAppVO;
+  msg?: string;
+};
+
+export type CommonResultYRZPWeiGuiRespVO = {
+  code?: number;
+  data?: YRZPWeiGuiRespVO;
   msg?: string;
 };
 
@@ -9482,6 +9611,11 @@ export type deleteGroupParams = {
   id: number;
 };
 
+export type deleteGuanLianParams = {
+  /** 编号 */
+  id: number;
+};
+
 export type deleteImageMyParams = {
   /** 绘画编号 */
   id: number;
@@ -9751,6 +9885,11 @@ export type deleteUserTypeParams = {
 };
 
 export type deleteWalletRechargePackageParams = {
+  /** 编号 */
+  id: number;
+};
+
+export type deleteWeiGuiParams = {
   /** 编号 */
   id: number;
 };
@@ -10997,6 +11136,20 @@ export type exportUserTypeExcel1Params = {
   userId?: number;
   /** 用户类型 */
   userType?: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 创建时间 */
   createTime?: string[];
 };
@@ -11006,6 +11159,20 @@ export type exportUserTypeExcelParams = {
   userId?: number;
   /** 用户类型 */
   userType?: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 创建时间 */
   createTime?: string[];
 };
@@ -13241,6 +13408,16 @@ export type getGroupParams = {
   id: number;
 };
 
+export type getGuanLianParams = {
+  /** 编号 */
+  id: number;
+};
+
+export type getGuanZhuJobSeekerParams = {
+  /** 查询的字段  */
+  field: string;
+};
+
 export type getHeadCombinationRecordListParams = {
   /** 拼团活动编号 */
   activityId?: number;
@@ -13390,6 +13567,21 @@ export type getJobNextTimesParams = {
 };
 
 export type getJobPage1Params = {
+  /** 职位类别编号 */
+  categoryId?: number;
+  /** 关键词 */
+  keyword?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getJobPage2Params = {
   /** 职位标题 */
   title?: string;
   /** 公司编号 */
@@ -13408,7 +13600,7 @@ export type getJobPage1Params = {
   pageSize: number;
 };
 
-export type getJobPage2Params = {
+export type getJobPage3Params = {
   /** 任务名称，模糊匹配 */
   name?: string;
   /** 任务状态，参见 JobStatusEnum 枚举 */
@@ -13422,14 +13614,8 @@ export type getJobPage2Params = {
 };
 
 export type getJobPageParams = {
-  /** 职位类别编号 */
-  categoryId?: number;
-  /** 关键词 */
-  keyword?: string;
-  /** 页码，从 1 开始 */
-  pageNo: number;
-  /** 每页条数，最大值为 100 */
-  pageSize: number;
+  str: string;
+  userId: number;
 };
 
 export type getJobParams = {
@@ -13497,6 +13683,12 @@ export type getJobSeekerPageParams = {
   typeId?: number;
   /** 关键词 */
   keyword?: string;
+  /** 职位类型 */
+  jobType?: string;
+  /** 职位领域 */
+  jobDomain?: string;
+  /** 职位领域 */
+  jobSpecific?: string;
   /** 页码，从 1 开始 */
   pageNo: number;
   /** 每页条数，最大值为 100 */
@@ -15242,6 +15434,20 @@ export type getUserTypePage1Params = {
   userId?: number;
   /** 用户类型 */
   userType?: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 创建时间 */
   createTime?: string[];
   /** 页码，从 1 开始 */
@@ -15255,6 +15461,20 @@ export type getUserTypePageParams = {
   userId?: number;
   /** 用户类型 */
   userType?: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 创建时间 */
   createTime?: string[];
   /** 页码，从 1 开始 */
@@ -15342,6 +15562,54 @@ export type getWalletTransactionSummaryParams = {
   times: unknown;
 };
 
+export type getWeiGui1Params = {
+  /** 编号 */
+  id: number;
+};
+
+export type getWeiGuiListByJobIdParams = {
+  /** 岗位编号 */
+  jobId: number;
+};
+
+export type getWeiGuiListBySeekerIdParams = {
+  /** 求职者编号 */
+  seekerId: number;
+};
+
+export type getWeiGuiPage1Params = {
+  /** 敏感词 */
+  minGanCi?: string;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+  /** 创建时间 */
+  createTime?: string[];
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getWeiGuiPageParams = {
+  /** 敏感词 */
+  minGanCi?: string;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getWeiGuiParams = {
+  /** 编号 */
+  id: number;
+};
+
 export type getWorkflowPageParams = {
   /** 名称 */
   name?: string;
@@ -15371,6 +15639,23 @@ export type getWritePageParams = {
   platform?: string;
   /** 创建时间 */
   createTime?: string[];
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getZuJiByJobParams = {
+  /** 职位编号 */
+  jobId: number;
+};
+
+export type getZuJiBySkeerParams = {
+  /** 求职者编号 */
+  skeerId: number;
+};
+
+export type getZuJiPageParams = {
   /** 页码，从 1 开始 */
   pageNo: number;
   /** 每页条数，最大值为 100 */
@@ -16198,6 +16483,7 @@ export type MemberUserDO = {
   mark?: string;
   email?: string;
   location?: string;
+  locationCode?: string;
   age?: number;
   point?: number;
   tagIds?: number[];
@@ -16215,6 +16501,7 @@ export type MemberUserDO = {
   jiNengVideos?: string;
   qiWangXinZi?: string;
   workType?: string;
+  xueLi?: string;
   companyName?: string;
   workLavel?: string;
   involved?: string;
@@ -16228,6 +16515,16 @@ export type MemberUserDO = {
   recruitment?: string;
   companyImages?: string;
   companyVideos?: string;
+  attestation?: number;
+  jianLiLiuLan?: number;
+  guanZhu?: number;
+  touDiJianLi?: number;
+  mianShiYaoQing?: number;
+  qiYeLiuLan?: number;
+  zhiWeiLiuLan?: number;
+  shouDaoJianLi?: number;
+  mianShiAnPai?: number;
+  vipEndTime?: string;
 };
 
 export type MemberUserRespVO = {
@@ -17122,6 +17419,13 @@ export type PageResultAppTradeOrderPageItemRespVO = {
   total: number;
 };
 
+export type PageResultAppYrzpZuJiRespVO = {
+  /** 数据 */
+  list: AppYrzpZuJiRespVO[];
+  /** 总量 */
+  total: number;
+};
+
 export type PageResultArticleCategoryRespVO = {
   /** 数据 */
   list: ArticleCategoryRespVO[];
@@ -17930,6 +18234,20 @@ export type PageResultYRZPMessageRespAppVO = {
 export type PageResultYRZPMessageRespVO = {
   /** 数据 */
   list: YRZPMessageRespVO[];
+  /** 总量 */
+  total: number;
+};
+
+export type PageResultYRZPWeiGuiRespAppVO = {
+  /** 数据 */
+  list: YRZPWeiGuiRespAppVO[];
+  /** 总量 */
+  total: number;
+};
+
+export type PageResultYRZPWeiGuiRespVO = {
+  /** 数据 */
+  list: YRZPWeiGuiRespVO[];
   /** 总量 */
   total: number;
 };
@@ -19385,6 +19703,15 @@ export type pushParams = {
 export type putCustomerPoolParams = {
   /** 客户编号 */
   id: number;
+};
+
+export type QiYeRenZhengReqVO = {
+  /** 接收者用户编号 */
+  userId: string;
+  licenseNo?: string;
+  entName?: string;
+  legalPersonName?: string;
+  legalPersonCertNo?: string;
 };
 
 export type receiveAfterSaleParams = {
@@ -20910,6 +21237,18 @@ export type updateNotifyMessageReadParams = {
   ids: number[];
 };
 
+export type updateParams = {
+  guanZhuId: number;
+  /** 修改的字段 */
+  field: string;
+  /** 修改的字段对应的id */
+  guanLianId: unknown;
+};
+
+export type updateUserTypeParams = {
+  columnType: string;
+};
+
 export type uploadFile1Params = {
   /** 文件目录 */
   directory?: string;
@@ -21062,6 +21401,20 @@ export type UserTypeCreateReqVO = {
   userId: number;
   /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
 };
 
 export type UserTypeRespVO = {
@@ -21069,6 +21422,20 @@ export type UserTypeRespVO = {
   userId: number;
   /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 主键 */
   id: number;
   /** 创建时间 */
@@ -21080,6 +21447,20 @@ export type UserTypeUpdateReqVO = {
   userId: number;
   /** 用户类型（1：求职者；2：招聘者） */
   userType: number;
+  /** 企业浏览 */
+  qiYeLiuLan?: number;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: number;
+  /** 收到简历 */
+  shouDaoJianLi?: number;
+  /** 面试安排 */
+  mianShiAnPai?: number;
+  /** 简历浏览 */
+  jianLiLiulan?: number;
+  /** 投递简历 */
+  touDiJianLi?: number;
+  /** 面试邀请 */
+  mianShiYaoQing?: number;
   /** 主键 */
   id: number;
 };
@@ -21323,6 +21704,51 @@ export type YRZPForumPostUpdateReqVO = {
   id: number;
 };
 
+export type YrzpGuanLianCreateReqVO = {
+  /** 会员id */
+  userId?: number;
+  /** 关注求职者id */
+  guanZhuJobSeekerId?: number;
+  /** 收藏求职者id */
+  shouCangJobSeekerId?: number;
+  /** 收藏职位id */
+  shouCangJobId?: number;
+  /** 关注职位id */
+  guanZhuJobId?: number;
+};
+
+export type YrzpGuanLianDO = {
+  createTime?: string;
+  updateTime?: string;
+  creator?: string;
+  updater?: string;
+  deleted?: boolean;
+  userId?: number;
+  guanZhuJobSeekerId?: number;
+  shouCangJobSeekerId?: number;
+  shouCangJobId?: number;
+  guanZhuJobId?: number;
+  tieZiId?: number;
+  pingLunId?: number;
+};
+
+export type YrzpGuanLianRespVO = {
+  /** 会员id */
+  userId?: number;
+  /** 关注求职者id */
+  guanZhuJobSeekerId?: number;
+  /** 收藏求职者id */
+  shouCangJobSeekerId?: number;
+  /** 收藏职位id */
+  shouCangJobId?: number;
+  /** 关注职位id */
+  guanZhuJobId?: number;
+  /** 编号 */
+  id: number;
+  /** 创建时间 */
+  createTime?: string;
+};
+
 export type YRZPJobApplicationCreateReqVO = {
   /** 求职者编号 */
   jobSeekerId: number;
@@ -21436,6 +21862,8 @@ export type YRZPJobCreateReqVO = {
   jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 工作地点编码 */
+  locationCode: string;
   /** 职位类型 */
   performanceType?: string;
   /** 职位领域 */
@@ -21493,6 +21921,7 @@ export type YRZPJobDO = {
   city?: string;
   address?: string;
   location?: string;
+  locationCode?: string;
   phone?: string;
   salaryMin?: number;
   salaryMax?: number;
@@ -21505,6 +21934,7 @@ export type YRZPJobDO = {
   comeToTime?: string;
   advertiseImages?: string;
   advertiseVideos?: string;
+  views?: number;
   status?: number;
   contactName?: string;
   contactMobile?: string;
@@ -21533,6 +21963,8 @@ export type YRZPJobRespVO = {
   jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 工作地点编码 */
+  locationCode: string;
   /** 职位类型 */
   performanceType?: string;
   /** 职位领域 */
@@ -21624,6 +22056,8 @@ export type YRZPJobSeekerCreateReqVO = {
   jobSpecific?: string;
   /** 位置 */
   location?: string;
+  /** 位置编码 */
+  locationCode?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
@@ -21666,6 +22100,7 @@ export type YRZPJobSeekerDO = {
   jobDomain?: string;
   jobSpecific?: string;
   location?: string;
+  locationCode?: string;
   salaryMin?: number;
   salaryMax?: number;
   workType?: string;
@@ -21720,6 +22155,8 @@ export type YRZPJobSeekerRespVO = {
   jobSpecific?: string;
   /** 位置 */
   location?: string;
+  /** 位置编码 */
+  locationCode?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
@@ -21783,6 +22220,8 @@ export type YRZPJobSeekerUpdateReqVO = {
   jobSpecific?: string;
   /** 位置 */
   location?: string;
+  /** 位置编码 */
+  locationCode?: string;
   /** 薪资范围-最低 */
   salaryMin: number;
   /** 薪资范围-最高 */
@@ -21818,6 +22257,8 @@ export type YRZPJobUpdateReqVO = {
   jobDomain?: string;
   /** 工作地点 */
   location: string;
+  /** 工作地点编码 */
+  locationCode: string;
   /** 职位类型 */
   performanceType?: string;
   /** 职位领域 */
@@ -21854,6 +22295,8 @@ export type YRZPJobUpdateReqVO = {
   other?: string;
   /** 主键 */
   id: number;
+  /** 职位浏览量 */
+  views?: number;
 };
 
 export type YRZPMessageCreateReqVO = {
@@ -21945,4 +22388,58 @@ export type YRZPMessageSessionRespAppVO = {
   unreadCount: number;
   /** 在线状态 */
   online: boolean;
+};
+
+export type YRZPWeiGuiCreateReqVO = {
+  /** 敏感词 */
+  minGanCi: string;
+  /** 当前登录用户id */
+  userId?: number;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+};
+
+export type YRZPWeiGuiRespAppVO = {
+  /** 主键 */
+  id: number;
+  /** 当前登录用户id */
+  userId?: number;
+  /** 敏感词 */
+  minGanCi: string;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+  /** 创建时间 */
+  createTime: string;
+};
+
+export type YRZPWeiGuiRespVO = {
+  /** 敏感词 */
+  minGanCi: string;
+  /** 当前登录用户id */
+  userId?: number;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+  /** 主键 */
+  id: number;
+  /** 创建时间 */
+  createTime: string;
+};
+
+export type YRZPWeiGuiUpdateReqVO = {
+  /** 敏感词 */
+  minGanCi: string;
+  /** 当前登录用户id */
+  userId?: number;
+  /** 岗位违规 */
+  jobId?: number;
+  /** 求职者违规 */
+  seekerId?: number;
+  /** 主键 */
+  id: number;
 };

@@ -99,6 +99,8 @@
 import { ref, watch } from 'vue'
 import type { JobSeeker } from '@/constant/job-seeking'
 import { navigateToSub } from '@/utils'
+import { useConnect } from '@/hooks'
+const { createGuanLianFn } = useConnect()
 
 interface Props {
   seekerData: JobSeeker
@@ -129,8 +131,10 @@ const handleCardClick = () => {
 }
 
 const handleFavorite = () => {
-  isFavorited.value = !isFavorited.value
-  emit('favorite', props.seekerData, isFavorited.value)
+  createGuanLianFn({ guanZhuJobSeekerId: props.seekerData.id }, () => {
+    isFavorited.value = !isFavorited.value
+    emit('favorite', props.seekerData, isFavorited.value)
+  })
 }
 
 const handleContact = () => {

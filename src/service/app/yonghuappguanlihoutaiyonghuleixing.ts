@@ -130,9 +130,12 @@ export async function getUserTypePage({
 
 /** 更新用户类型 PUT /app-api/yirenzhipin/user-type/update */
 export async function updateUserType({
+  params,
   body,
   options,
 }: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: API.updateUserTypeParams;
   body: API.UserTypeUpdateReqVO;
   options?: CustomRequestOptions;
 }) {
@@ -142,6 +145,9 @@ export async function updateUserType({
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+      },
+      params: {
+        ...params,
       },
       data: body,
       ...(options || {}),

@@ -63,16 +63,16 @@ export function getJobQueryOptions(options: {
 }
 
 /** 获得职位分页 GET /app-api/yirenzhipin/job/page */
-export function getJobPageQueryOptions(options: {
+export function getJobPage1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobPageParams;
+  params: API.getJobPage1Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getJobPage(queryKey[1] as typeof options);
+      return apis.getJobPage1(queryKey[1] as typeof options);
     },
-    queryKey: ['getJobPage', options],
+    queryKey: ['getJobPage1', options],
   });
 }
 
