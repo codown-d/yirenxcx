@@ -6290,6 +6290,12 @@ export type CommonResultListYRZPMessageSessionRespAppVO = {
   msg?: string;
 };
 
+export type CommonResultListYRZPWeiGuiDO = {
+  code?: number;
+  data?: YRZPWeiGuiDO[];
+  msg?: string;
+};
+
 export type CommonResultListYRZPWeiGuiRespAppVO = {
   code?: number;
   data?: YRZPWeiGuiRespAppVO[];
@@ -7733,18 +7739,6 @@ export type CommonResultYRZPJobSeekerRespVO = {
 export type CommonResultYRZPMessageRespVO = {
   code?: number;
   data?: YRZPMessageRespVO;
-  msg?: string;
-};
-
-export type CommonResultYRZPWeiGuiRespAppVO = {
-  code?: number;
-  data?: YRZPWeiGuiRespAppVO;
-  msg?: string;
-};
-
-export type CommonResultYRZPWeiGuiRespVO = {
-  code?: number;
-  data?: YRZPWeiGuiRespVO;
   msg?: string;
 };
 
@@ -13616,6 +13610,8 @@ export type getJobPage3Params = {
 export type getJobPageParams = {
   str: string;
   userId: number;
+  jobId?: number;
+  seekerId?: number;
 };
 
 export type getJobParams = {
@@ -15562,11 +15558,6 @@ export type getWalletTransactionSummaryParams = {
   times: unknown;
 };
 
-export type getWeiGui1Params = {
-  /** 编号 */
-  id: number;
-};
-
 export type getWeiGuiListByJobIdParams = {
   /** 岗位编号 */
   jobId: number;
@@ -15606,8 +15597,12 @@ export type getWeiGuiPageParams = {
 };
 
 export type getWeiGuiParams = {
-  /** 编号 */
-  id: number;
+  /** 用户编号 */
+  userId: number;
+  /** 职位编号 */
+  jobId: number;
+  /** 求职编号 */
+  seekerId: number;
 };
 
 export type getWorkflowPageParams = {
@@ -21239,10 +21234,7 @@ export type updateNotifyMessageReadParams = {
 
 export type updateParams = {
   guanZhuId: number;
-  /** 修改的字段 */
   field: string;
-  /** 修改的字段对应的id */
-  guanLianId: unknown;
 };
 
 export type updateUserTypeParams = {
@@ -22398,6 +22390,19 @@ export type YRZPWeiGuiCreateReqVO = {
   /** 岗位违规 */
   jobId?: number;
   /** 求职者违规 */
+  seekerId?: number;
+};
+
+export type YRZPWeiGuiDO = {
+  createTime?: string;
+  updateTime?: string;
+  creator?: string;
+  updater?: string;
+  deleted?: boolean;
+  id?: number;
+  userId?: number;
+  minGanCi?: string;
+  jobId?: number;
   seekerId?: number;
 };
 

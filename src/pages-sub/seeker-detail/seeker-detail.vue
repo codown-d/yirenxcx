@@ -1,6 +1,6 @@
 <route lang="json5">
 {
-  layout: 'common',
+  layout: 'default',
   style: {
     navigationBarTitleText: '求职者详情',
     navigationStyle: 'custom',
@@ -160,37 +160,30 @@
       </view>
     </view>
     <!-- 底部操作栏 -->
-    <view class="h-[81px]">
-      <view
-        class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 safe-area-inset-bottom"
-      >
-        <view class="flex items-center gap-6">
-          <!-- 收藏按钮 -->
-          <view @click="handleFavorite">
-            <wd-icon
-              :name="isFavorited ? 'heart-filled' : 'heart'"
-              :color="isFavorited ? '#ff4757' : '#999'"
-              custom-class="text-7"
-            />
-          </view>
+    <yr-page-footer>
+      <view class="flex items-center gap-6 w-full">
+        <!-- 收藏按钮 -->
+        <view @click="handleFavorite">
+          <wd-icon
+            :name="isFavorited ? 'heart-filled' : 'heart'"
+            :color="isFavorited ? '#ff4757' : '#999'"
+            custom-class="text-7"
+          />
+        </view>
 
-          <!-- 评分按钮 -->
-          <view @click="handleRate">
-            <wd-icon
-              :name="isFavorited ? 'star-filled' : 'star'"
-              :color="isFavorited ? '#ff4757' : '#999'"
-              custom-class="text-7"
-            />
-          </view>
-          <view class="flex-1">
-            <!-- 立即联系按钮 -->
-            <wd-button type="primary" block :round="false" @click="handleContact">
-              立即联系
-            </wd-button>
-          </view>
+        <view @click="handleCollect">
+          <wd-icon
+            :name="collect ? 'star-filled' : 'star'"
+            :color="collect ? '#ff4757' : '#999'"
+            custom-class="text-7"
+          />
+        </view>
+        <view class="flex-1">
+          <!-- 立即联系按钮 -->
+          <wd-button type="primary" block :round="false" @click="handleContact">立即联系</wd-button>
         </view>
       </view>
-    </view>
+    </yr-page-footer>
   </view>
 </template>
 
@@ -198,55 +191,38 @@
 import { ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
-import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
+import { createZuJi, getJobSeekerByUserId, YRZPJobSeekerRespVO } from '@/service/app'
+
+const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
 // 页面参数
-const seekerId = ref('')
-const seekerInfo = ref<JobSeeker>({} as JobSeeker)
+const seekerId = ref()
+const seekerInfo = ref<YRZPJobSeekerRespVO>({})
 const isFavorited = ref(false)
+const collect = ref(false)
 
-// 页面加载
 onLoad((options) => {
-  if (options?.id) {
+  if (options?.seekerId) {
     console.log('options', options)
-    seekerId.value = options.id
-    loadSeekerDetail()
+    seekerId.value = options.seekerId
+    loadSeekerDetail(options.seekerId)
+    getData()
   }
 })
-
+let getData = async () => {
+  createZuJi({ body: { skeerId: seekerId.value } })
+  let resGuanZhu = await getGuanZhuJobSeekerFn({ field: 'guanZhuJobSeekerId' })
+  isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobSeekerId === seekerId.value)
+  let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobSeekerId' })
+  collect.value = resShouCang.some((item2) => item2.shouCangJobSeekerId === seekerId.value)
+}
 // 加载求职者详情
-const loadSeekerDetail = () => {
-  // 模拟从API获取数据
-  const seeker = JOB_SEEKERS.find((item) => item.id === seekerId.value)
-  if (seeker) {
-    seekerInfo.value = {
-      ...seeker,
-      school: '北京舞蹈学院',
-      major: '本科 • 古典舞专业',
-      graduationTime: '2015.09 - 2019.06',
-      portfolio: [
-        '/static/images/portfolio1.jpg',
-        '/static/images/portfolio2.jpg',
-        '/static/images/portfolio3.jpg',
-      ],
-      works: [
-        { id: '1', title: '《丝路花雨》', role: '主要舞者' },
-        { id: '2', title: '《孔雀》', role: '独舞' },
-      ],
-    }
-  }
+const loadSeekerDetail = async (userId) => {
+  let res = await getJobSeekerByUserId({ params: { userId } })
+  seekerInfo.value = res.data
 }
 
 // 收藏
-const handleFavorite = () => {
-  isFavorited.value = !isFavorited.value
-  toast.success(isFavorited.value ? '已收藏' : '已取消收藏')
-}
-
-// 评分
-const handleRate = () => {
-  toast.success('评分功能')
-}
 
 // 联系
 const handleContact = () => {
@@ -271,6 +247,16 @@ const previewImage = (current: string, urls: string[]) => {
   uni.previewImage({
     current,
     urls,
+  })
+}
+const handleCollect = () => {
+  changeConnect({ shouCangJobSeekerId: Number(seekerId.value) }, collect.value, () => {
+    collect.value = !collect.value
+  })
+}
+const handleFavorite = () => {
+  changeConnect({ guanZhuJobSeekerId: Number(seekerId.value) }, isFavorited.value, () => {
+    isFavorited.value = !isFavorited.value
   })
 }
 </script>

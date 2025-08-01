@@ -9,7 +9,7 @@
 </route>
 
 <template>
-  <view class="min-h-screen bg-[#F5F6FA] overflow-hidden">
+  <view class="min-h-screen overflow-hidden">
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">基本信息</text>
     </view>

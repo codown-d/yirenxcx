@@ -14,7 +14,7 @@ export async function getWeiGui({
   params: API.getWeiGuiParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultYRZPWeiGuiRespAppVO>(
+  return request<API.CommonResultListYRZPWeiGuiDO>(
     '/app-api/yirenzhipin/app-wei-gui/get',
     {
       method: 'GET',

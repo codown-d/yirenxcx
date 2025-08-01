@@ -56,9 +56,7 @@
         <yr-img-title :title="jobData.location" url="weizhi.svg" />
       </view>
 
-      <view class="flex items-center gap-3">
-        <text class="text-3 text-gray-400">{{ updateTime }}</text>
-      </view>
+      <yr-time-now :time="Number(jobData.createTime)" />
     </view>
   </view>
 </template>
@@ -67,14 +65,8 @@
 import { ref, watch } from 'vue'
 import { navigateToSub } from '@/utils'
 import { YRZPJobDO } from '@/service/app'
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import 'dayjs/locale/zh-cn' // 如果你想显示中文
 import { useConnect } from '@/hooks'
-
-const { createGuanLianFn } = useConnect()
-dayjs.extend(relativeTime)
-dayjs.locale('zh-cn') // 设置为中文（可选）
+const { changeConnect } = useConnect()
 interface Props {
   jobData: YRZPJobDO
   favorited?: boolean
@@ -93,12 +85,6 @@ const requirementDetails = computed(() => {
   console.log(props)
   return props.jobData.requirementDetails.split(',')
 })
-const updateTime = computed(() => {
-  return dayjs(props.jobData.updateTime).fromNow()
-})
-const emit = defineEmits(['click', 'favorite'])
-
-// 监听favorited属性变化
 watch(
   () => props.favorited,
   (newVal) => {
@@ -106,13 +92,14 @@ watch(
   },
 )
 
+const emit = defineEmits(['click', 'favorite'])
 const handleCardClick = () => {
   emit('click', props.jobData)
   navigateToSub(`/job-detail/job-detail?id=${props.jobData.id}`)
 }
 
 const handleFavorite = () => {
-  createGuanLianFn({ guanZhuJobId: props.jobData.id }, () => {
+  changeConnect({ guanZhuJobId: props.jobData.id }, isFavorited.value, () => {
     isFavorited.value = !isFavorited.value
     emit('favorite', props.jobData, isFavorited.value)
   })

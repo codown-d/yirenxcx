@@ -66,87 +66,9 @@
             <wd-tab :title="`${category.label}`"></wd-tab>
           </block>
         </wd-tabs>
-
-        <!-- 帖子列表 -->
-        <view class="mx-4 mt-3 space-y-3">
-          <view
-            v-for="post in postList"
-            :key="post.id"
-            class="bg-white rounded-3 p-4"
-            @click="goToPostDetail(post.id)"
-          >
-            <!-- 用户信息 -->
-            <view class="flex items-center justify-between mb-3">
-              <view class="flex items-center">
-                <image
-                  :src="post.author.avatar"
-                  class="w-10 h-10 rounded-full mr-3"
-                  mode="aspectFill"
-                />
-                <view>
-                  <text class="text-3 font-medium text-gray-800 block">{{ post.author.name }}</text>
-                  <text class="text-2 text-gray-500">{{ post.author.title }}</text>
-                </view>
-              </view>
-              <view class="flex items-center">
-                <text class="text-2 text-gray-400">{{ post.publishTime }}</text>
-                <wd-icon name="more-horizontal" size="16px" color="#ccc" class="ml-2" />
-              </view>
-            </view>
-
-            <!-- 帖子内容 -->
-            <view class="mb-3">
-              <text class="text-3 text-gray-800 leading-relaxed">{{ post.content }}</text>
-            </view>
-
-            <!-- 图片展示 -->
-            <view v-if="post.images && post.images.length > 0" class="mb-3">
-              <view class="flex gap-2">
-                <image
-                  v-for="(image, index) in post.images.slice(0, 3)"
-                  :key="index"
-                  :src="image"
-                  class="w-20 h-20 rounded-2 flex-shrink-0"
-                  mode="aspectFill"
-                  @click.stop="previewImage(post.images, index)"
-                />
-              </view>
-            </view>
-
-            <!-- 话题标签 -->
-            <view v-if="post.topics && post.topics.length > 0" class="mb-3">
-              <view class="flex flex-wrap gap-2">
-                <wd-tag v-for="topic in post.topics" :key="topic" type="primary" size="small" plain>
-                  {{ topic }}
-                </wd-tag>
-              </view>
-            </view>
-
-            <!-- 互动数据 -->
-            <view class="flex items-center justify-between">
-              <view class="flex items-center gap-4">
-                <view class="flex items-center" @click.stop="toggleLike(post.id)">
-                  <wd-icon
-                    :name="post.isLiked ? 'heart-filled' : 'heart'"
-                    :color="post.isLiked ? '#ff4757' : '#999'"
-                    size="16px"
-                  />
-                  <text class="text-2 text-gray-500 ml-1">{{ post.likeCount }}</text>
-                </view>
-                <view class="flex items-center" @click.stop="goToComments(post.id)">
-                  <wd-icon name="chat" size="16px" color="#999" />
-                  <text class="text-2 text-gray-500 ml-1">{{ post.commentCount }}</text>
-                </view>
-              </view>
-              <view class="flex items-center" @click.stop="sharePost(post.id)">
-                <wd-icon name="share" size="16px" color="#999" />
-                <text class="text-2 text-gray-500 ml-1">{{ post.shareCount }}</text>
-              </view>
-            </view>
-          </view>
-        </view>
-
-        <!-- 加载更多 -->
+        <template v-for="item in postList" :key="item.id">
+          <posts :post="item"></posts>
+        </template>
         <wd-loadmore :state="loading ? 'loading' : 'finished'"></wd-loadmore>
       </view>
     </scroll-view>
@@ -172,6 +94,8 @@ import { toast } from '@/utils/toast'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 
 import { tabCategory, hotTopics as hotList, postList as pl } from '@/constant'
+import { getForumPost1, getForumPostPage1, YRZPForumPostRespVO } from '@/service/app'
+import posts from '@/pages/forum/components/posts.vue'
 
 // 临时类型定义，应该从service中获取
 interface ForumTopic {
@@ -254,7 +178,7 @@ const selectedCategory = ref('hot')
 const currentPage = ref(1)
 const pageSize = ref(10)
 const hotTopics = ref<ForumTopic[]>(hotList)
-const postList = ref<ForumPost[]>(pl)
+const postList = ref<YRZPForumPostRespVO[]>([])
 
 // 加载热门话题
 const loadHotTopics = async () => {
@@ -278,7 +202,7 @@ const loadPostList = async (isRefresh = false) => {
       postList.value = []
     }
 
-    const res = await getForumPosts({
+    const res = await getForumPostPage1({
       params: {
         category: selectedCategory.value,
         page: currentPage.value,

@@ -47,27 +47,6 @@ export async function deleteWeiGui({
   );
 }
 
-/** 获得违规信息 GET /admin-api/yirenzhipin/wei-gui/get */
-export async function getWeiGui1({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getWeiGui1Params;
-  options?: CustomRequestOptions;
-}) {
-  return request<API.CommonResultYRZPWeiGuiRespVO>(
-    '/admin-api/yirenzhipin/wei-gui/get',
-    {
-      method: 'GET',
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
-}
-
 /** 获得违规信息分页 GET /admin-api/yirenzhipin/wei-gui/page */
 export async function getWeiGuiPage1({
   params,

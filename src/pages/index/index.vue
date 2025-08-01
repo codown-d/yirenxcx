@@ -70,7 +70,13 @@
             <view class="py-4">
               <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
             </view>
-            <job-card v-for="job in jobList" :key="job.id" :job-data="job" v-if="jobList.length" />
+            <job-card
+              v-for="job in jobList"
+              :key="job.id"
+              :job-data="job"
+              v-if="jobList.length"
+              :favorited="job.favorited"
+            />
             <yr-nodata v-else></yr-nodata>
           </template>
           <!-- 推荐招聘职位标题 -->
@@ -82,6 +88,7 @@
               v-for="seeker in seekerList"
               :key="seeker.id"
               :seeker-data="seeker"
+              :favorited="seeker.favorited"
               v-if="seekerList.length"
             />
             <yr-nodata v-else></yr-nodata>
@@ -141,7 +148,14 @@ import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/const
 import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
 import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { getBannerList, getJobPage, getJobPage1, getJobSeekerPage, YRZPJobDO } from '@/service/app'
+import {
+  getBannerList,
+  getJobPage,
+  getJobPage1,
+  getJobSeekerPage,
+  YRZPJobDO,
+  YRZPJobSeekerDO,
+} from '@/service/app'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -154,17 +168,11 @@ const show = ref(false)
 let role = ref(getRole())
 const activeFilterTag = ref('all')
 const jobList = ref<YRZPJobDO[]>([])
-const seekerList = ref<JobSeeker[]>(JOB_SEEKERS)
+const seekerList = ref<YRZPJobSeekerDO[]>()
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)
 
-const swiperList = ref([
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/capybara.jpg',
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/panda.jpg',
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/moon.jpg',
-  'https://registry.npmmirror.com/wot-design-uni-assets/*/files/meng.jpg',
-])
+const swiperList = ref([])
 function handleClick(type) {
   setRole(type)
   setTimeout(() => {
@@ -189,17 +197,35 @@ const handleFilterChange = (tagId: string) => {
   console.log('切换筛选标签:', tagId)
 }
 
+const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
+  let resJobSeeker = await getGuanZhuJobSeekerFn({
+    field: 'guanZhuJobSeekerId',
+  })
+  let resJob = await getGuanZhuJobSeekerFn({
+    field: 'guanZhuJobId',
+  })
   let pageSize = !userInfo.token ? 6 : 10
   if (role.value === RoleEmu.employer) {
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
-    seekerList.value = res.data.list
+    seekerList.value = res.data.list.map((item) => {
+      return {
+        ...item,
+        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
+      }
+    })
   } else if (role.value === RoleEmu.seeking) {
     let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
-    jobList.value = res.data.list
+    jobList.value = res.data.list.map((item) => {
+      return {
+        ...item,
+        favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
+      }
+    })
   }
   console.log(123456, getRole(), userInfo.token)
 }
+
 const handleSearch = (val) => {
   getDataFn(val)
 }
@@ -208,10 +234,10 @@ onLoad(async () => {
   swiperList.value = res.data.map((item) => item.picUrl)
 })
 onShow(() => {
-  seekerList.value = []
-  jobList.value = []
   role.value = getRole()
   getDataFn()
+  seekerList.value = []
+  jobList.value = []
   show.value = false
   isShowPopup.value = false
 })

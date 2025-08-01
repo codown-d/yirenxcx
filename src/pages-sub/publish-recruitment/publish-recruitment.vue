@@ -9,7 +9,7 @@
 </route>
 
 <template>
-  <view class="min-h-screen bg-[#F5F6FA]">
+  <view class="min-h-screen">
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">职位信息</text>
     </view>

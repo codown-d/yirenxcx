@@ -155,7 +155,7 @@
         {
           "path": "job-detail/job-detail",
           "type": "page",
-          "layout": "common",
+          "layout": "default",
           "style": {
             "navigationBarTitleText": "职位详情",
             "navigationStyle": "custom"
@@ -263,7 +263,7 @@
         {
           "path": "seeker-detail/seeker-detail",
           "type": "page",
-          "layout": "common",
+          "layout": "default",
           "style": {
             "navigationBarTitleText": "求职者详情",
             "navigationStyle": "custom"

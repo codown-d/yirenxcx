@@ -48,20 +48,6 @@ export function useDeleteWeiGuiMutation(options?: {
   return response;
 }
 
-/** 获得违规信息 GET /admin-api/yirenzhipin/wei-gui/get */
-export function getWeiGui1QueryOptions(options: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getWeiGui1Params;
-  options?: CustomRequestOptions;
-}) {
-  return queryOptions({
-    queryFn: async ({ queryKey }) => {
-      return apis.getWeiGui1(queryKey[1] as typeof options);
-    },
-    queryKey: ['getWeiGui1', options],
-  });
-}
-
 /** 获得违规信息分页 GET /admin-api/yirenzhipin/wei-gui/page */
 export function getWeiGuiPage1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)

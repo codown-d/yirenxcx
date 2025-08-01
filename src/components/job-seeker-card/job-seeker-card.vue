@@ -20,15 +20,15 @@
       <!-- 头像 -->
       <wd-img
         :src="seekerData?.avatar || '/static/images/default-avatar.png'"
-        custom-class="w-16 h-16 rounded-full bg-gray-100"
+        custom-class="w-16 h-16 rounded-full bg-gray-100 overflow-hidden shadow"
       />
       <!-- 基本信息 -->
       <view class="flex-1">
         <view class="flex mb-1 justify-between">
-          <view class="flex items-center">
-            <text class="text-base font-semibold text-gray-800 mr-2">{{ seekerData.name }}</text>
+          <view class="flex items-center mt-2">
+            <text class="text-base font-semibold text-gray-800 mr-2">{{ seekerData.title }}</text>
             <!-- 认证标识 -->
-            <view v-if="seekerData?.isVerified">
+            <view v-if="seekerData?.isCertified">
               <wd-tag type="primary" custom-class="!px-[12rpx] !py-[4rpx] !rounded-[2px] !text-3">
                 认证
               </wd-tag>
@@ -48,7 +48,7 @@
         </view>
         <view class="mb-1">
           <text class="text-sm text-gray-600">
-            {{ seekerData.age }}岁 • {{ seekerData.profession }} • {{ seekerData.experience }}
+            {{ seekerData.age }}岁 • {{ seekerData.category }} • {{ seekerData.experience }}
           </text>
         </view>
       </view>
@@ -57,68 +57,42 @@
     <!-- 标签列表 -->
     <view class="flex flex-wrap gap-1.5 mb-2">
       <view
-        v-for="tag in seekerData.tags"
+        v-for="tag in tags"
         :key="tag"
         class="bg-green-50 text-green-600 text-xs px-2 py-1 rounded-1 border border-green-100"
       >
         {{ tag }}
       </view>
     </view>
-    <view class="flex items-center text-3 text-gray-400 mb-2">
-      <wd-icon name="evaluation" custom-class="text-4 mr-1"></wd-icon>
-      <text v-if="seekerData.education">{{ seekerData.education }}</text>
-    </view>
+    <yr-img-title :title="seekerData.school + ' ' + seekerData.specialty" url="school.svg" />
     <!-- 联系方式和期望薪资 -->
-    <view v-if="seekerData.phone || seekerData.expectedSalary" class="mb-3">
-      <view class="flex items-center justify-between text-sm">
-        <view>
-          <wd-icon name="call" custom-class="text-4 mr-1"></wd-icon>
-          <text v-if="seekerData.phone" class="text-gray-600">
-            {{ seekerData.phone }}
-          </text>
-        </view>
-
-        <text v-if="seekerData.expectedSalary" class="text-primary font-medium">
-          {{ seekerData.expectedSalary }}
-        </text>
-      </view>
-    </view>
-
-    <!-- 发布时间和操作按钮 -->
-    <view class="flex justify-between items-center">
-      <text class="text-xs text-gray-400">{{ seekerData.publishTime }}</text>
-      <view class="flex items-center gap-2">
-        <!-- 联系按钮 -->
-        <wd-button type="primary" size="small" @click.stop="handleContact">联系</wd-button>
-      </view>
+    <view class="flex items-center justify-between text-sm mt-2">
+      <yr-img-title :title="seekerData.contactMobile" url="lxdh.svg" />
+      <yr-time-now :time="Number(seekerData.createTime)" />
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import type { JobSeeker } from '@/constant/job-seeking'
-import { navigateToSub } from '@/utils'
 import { useConnect } from '@/hooks'
-const { createGuanLianFn } = useConnect()
+import { YRZPJobSeekerDO } from '@/service/app'
+import { navigateToSub } from '@/utils'
+const { changeConnect } = useConnect()
 
 interface Props {
-  seekerData: JobSeeker
+  seekerData: YRZPJobSeekerDO
   favorited?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
-const emit = defineEmits<{
-  click: [seeker: JobSeeker]
-  favorite: [seeker: JobSeeker, isFavorited: boolean]
-  contact: [seeker: JobSeeker]
-}>()
 
 const isFavorited = ref(props.favorited)
-
-// 监听favorited属性变化
+const tags = computed(() => {
+  return [props.seekerData.advantage, props.seekerData.certificate]
+})
 watch(
   () => props.favorited,
   (newVal) => {
@@ -126,20 +100,16 @@ watch(
   },
 )
 
+const emit = defineEmits(['click', 'favorite', 'contact'])
 const handleCardClick = () => {
   emit('click', props.seekerData)
+  navigateToSub(`/seeker-detail/seeker-detail?seekerId=${props.seekerData.id}`)
 }
 
 const handleFavorite = () => {
-  createGuanLianFn({ guanZhuJobSeekerId: props.seekerData.id }, () => {
+  changeConnect({ guanZhuJobSeekerId: props.seekerData.id }, isFavorited.value, () => {
     isFavorited.value = !isFavorited.value
-    emit('favorite', props.seekerData, isFavorited.value)
+    emit('favorite', isFavorited.value)
   })
-}
-
-const handleContact = () => {
-  emit('contact', props.seekerData)
-  console.log('handleContact', props)
-  navigateToSub(`/seeker-detail/seeker-detail?id=${props.seekerData.id}`)
 }
 </script>
