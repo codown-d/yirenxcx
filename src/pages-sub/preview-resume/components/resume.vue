@@ -1,13 +1,3 @@
-<route lang="json5" type="page">
-{
-  layout: 'common',
-  style: {
-    navigationBarTitleText: '在线简历',
-    navigationStyle: 'custom',
-  },
-}
-</route>
-
 <template>
   <view class="mt-4 pb-16">
     <!-- 用户基本信息卡片 -->
@@ -25,9 +15,6 @@
               <view class="flex flex-col gap-">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
                 <view class="">{{ userInfo.age }}岁 · {{ userInfo.teChang }}</view>
-              </view>
-              <view @click="goToProfileEdit">
-                <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
               </view>
             </view>
           </view>
@@ -57,7 +44,6 @@
       <!-- 技能标签 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">技能标签</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
         <view class="flex flex-wrap gap-2">
@@ -67,14 +53,12 @@
             class="flex items-center bg-green-50 text-green-600 text-sm px-2 py-1 rounded-1 border border-green-200"
           >
             <text class="mr-1">{{ skill }}</text>
-            <wd-icon name="close" size="14px" @click="removeSkill(index)" />
           </view>
         </view>
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">代表作品</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addWork" />
       </view>
       <wd-card v-if="daiBiaoZuo.length">
         <view class="flex flex-wrap gap-2">
@@ -84,11 +68,6 @@
             class="flex items-center justify-between py-3 px-4 bg-[#E9F7F4] rounded-2 mb-2 last:mb-0 w-full"
           >
             <text class="text-sm text-[#248069]">{{ work }}</text>
-            <wd-icon
-              name="close-normal"
-              custom-class="text-5 text-[#248069]"
-              @click.stop="removeDaiBiaoZuo(index)"
-            ></wd-icon>
           </view>
         </view>
       </wd-card>
@@ -105,7 +84,7 @@
           <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
 
           <!-- 图片展示区域 -->
-          <yr-upload v-model="userInfo.jianJieImages" :limit="4"></yr-upload>
+          <yr-upload v-model="userInfo.jianJieImages" disabled></yr-upload>
         </view>
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
@@ -114,7 +93,7 @@
           <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
 
           <!-- 图片展示区域 -->
-          <yr-upload :limit="1" v-model="userInfo.jianJieVideos" accept="video"></yr-upload>
+          <yr-upload v-model="userInfo.jianJieVideos" disabled accept="video"></yr-upload>
         </view>
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
@@ -123,7 +102,7 @@
           <text class="text-xs text-gray-500 block mb-3">展示您的专业技能、表演片段或作品集锦</text>
 
           <!-- 图片展示区域 -->
-          <yr-upload :limit="3" accept="video" v-model="userInfo.jiNengVideos"></yr-upload>
+          <yr-upload accept="video" disabled v-model="userInfo.jiNengVideos"></yr-upload>
         </view>
       </wd-card>
       <!-- 求职意向 -->
@@ -134,24 +113,17 @@
         <yr-picker
           :columns="salaryColumns"
           v-model="userInfo.qiWangXinZi"
+          disabled
           title="期望薪资"
         ></yr-picker>
 
         <yr-picker
           :columns="jobTypeColumns"
+          disabled
           v-model="userInfo.workType"
           title="工作性质"
         ></yr-picker>
       </wd-card>
-      <!-- 操作按钮 -->
-      <yr-page-footer>
-        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
-          预览简历
-        </wd-button>
-        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
-          保存
-        </wd-button>
-      </yr-page-footer>
     </wd-form>
   </view>
 </template>
@@ -159,7 +131,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { navigateBack, navigateTo, navigateToSub } from '@/utils'
+import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { merge } from 'lodash'
 import { useMessage } from 'wot-design-uni'
@@ -220,7 +192,10 @@ const addWork = async () => {
 
 // 预览简历
 const previewResume = () => {
-  navigateToSub('/preview-resume/preview-resume?id=' + userInfo.value.id)
+  toast.info('跳转到简历预览页面')
+  // uni.navigateTo({
+  //   url: '/pages-sub/resume-preview/resume-preview?id=' + userInfo.value.id
+  // })
 }
 
 const saveResume = async () => {

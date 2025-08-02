@@ -1,9 +1,11 @@
 <template>
   <wd-cell :title="title" :custom-class="className" title-width="60px">
     <wd-col-picker
+      style="--wot-input-disabled-color: #4d4d4d"
       v-model="pickerValue"
       :columns="area"
       :column-change="columnChange"
+      :disabled="disabled"
       @confirm="handleConfirm"
     ></wd-col-picker>
   </wd-cell>
@@ -23,6 +25,10 @@ const props = defineProps({
   className: {
     type: String,
     default: '',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 })
 const pickerValue = ref([])

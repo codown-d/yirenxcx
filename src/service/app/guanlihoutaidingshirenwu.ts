@@ -60,12 +60,12 @@ export async function exportJobExcel({
 }
 
 /** 获得定时任务 GET /admin-api/infra/job/get */
-export async function getJob2({
+export async function getJob1({
   params,
   options,
 }: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJob2Params;
+  params: API.getJob1Params;
   options?: CustomRequestOptions;
 }) {
   return request<API.CommonResultJobRespVO>('/admin-api/infra/job/get', {

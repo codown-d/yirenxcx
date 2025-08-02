@@ -62,20 +62,6 @@ export function getJobSeeker1QueryOptions(options: {
   });
 }
 
-/** 获得指定用户的求职者信息 GET /admin-api/yirenzhipin/job-seeker/get-by-user-id */
-export function getJobSeekerByUserIdQueryOptions(options: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobSeekerByUserIdParams;
-  options?: CustomRequestOptions;
-}) {
-  return queryOptions({
-    queryFn: async ({ queryKey }) => {
-      return apis.getJobSeekerByUserId(queryKey[1] as typeof options);
-    },
-    queryKey: ['getJobSeekerByUserId', options],
-  });
-}
-
 /** 获得求职者信息分页 GET /admin-api/yirenzhipin/job-seeker/page */
 export function getJobSeekerPage1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)

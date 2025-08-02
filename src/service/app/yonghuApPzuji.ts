@@ -26,28 +26,22 @@ export async function createZuJi({
   );
 }
 
-/** 获得足迹 GET /app-api/yirenzhipin/app/zu-ji/get-by-job */
+/** 获得职位足迹 GET /app-api/yirenzhipin/app/zu-ji/get-by-job */
 export async function getZuJiByJob({
-  params,
   options,
 }: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getZuJiByJobParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultAppYrzpZuJiRespVO>(
+  return request<API.CommonResultListYrzpZuJiDO>(
     '/app-api/yirenzhipin/app/zu-ji/get-by-job',
     {
       method: 'GET',
-      params: {
-        ...params,
-      },
       ...(options || {}),
     }
   );
 }
 
-/** 获得足迹 GET /app-api/yirenzhipin/app/zu-ji/get-by-skeer */
+/** 获得求职者足迹 GET /app-api/yirenzhipin/app/zu-ji/get-by-skeer */
 export async function getZuJiBySkeer({
   params,
   options,
@@ -56,7 +50,7 @@ export async function getZuJiBySkeer({
   params: API.getZuJiBySkeerParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultAppYrzpZuJiRespVO>(
+  return request<API.CommonResultListYrzpZuJiDO>(
     '/app-api/yirenzhipin/app/zu-ji/get-by-skeer',
     {
       method: 'GET',

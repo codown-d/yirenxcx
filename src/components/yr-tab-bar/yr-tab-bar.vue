@@ -98,6 +98,6 @@ onShow(() => {
     ? '薏仁'
     : getRole() === RoleEmu.employer
       ? '薏人'
-      : '招聘'
+      : '求职'
 })
 </script>

@@ -41,27 +41,6 @@ export async function deleteJob1({
   });
 }
 
-/** 获得招聘职位 GET /admin-api/yirenzhipin/job/get */
-export async function getJob1({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJob1Params;
-  options?: CustomRequestOptions;
-}) {
-  return request<API.CommonResultYRZPJobRespVO>(
-    '/admin-api/yirenzhipin/job/get',
-    {
-      method: 'GET',
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
-}
-
 /** 获得招聘职位分页 GET /admin-api/yirenzhipin/job/page */
 export async function getJobPage2({
   params,

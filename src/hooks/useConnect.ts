@@ -3,11 +3,15 @@ import {
   createGuanLian,
   getGuanZhuJobSeeker,
   getGuanZhuJobSeekerParams,
+  getJob,
+  getJobSeekerByUserId,
   update,
   updateParams,
 } from '@/service/app'
+import { RoleEmu, useRoleStore } from '@/store'
 
 export function useConnect() {
+  const { getRole } = useRoleStore()
   const createGuanLianFn = async (
     data: AppYrzpGuanLianCreateReqVO,
     callbalck?: (arg: any) => void,
@@ -40,5 +44,65 @@ export function useConnect() {
       updateFn(result, fn)
     }
   }
-  return { changeConnect, getGuanZhuJobSeekerFn }
+  const getGuanZhu = async () => {
+    if (getRole() === RoleEmu.employer) {
+      let res = await getGuanZhuJobSeeker({
+        params: {
+          field: 'guanZhuJobSeekerId',
+        },
+      })
+      console.log(res)
+      let userInfos = await getJobSeekerByUserId({
+        params: {
+          userIds: res.data.map((e) => e.guanZhuId),
+        },
+      })
+      return userInfos.data
+    } else {
+      let res = await getGuanZhuJobSeeker({
+        params: {
+          field: 'guanZhuJobId',
+        },
+      })
+      let jobInfos = await getJob({
+        params: {
+          ids: res.data.map((e) => e.guanZhuId),
+        },
+      })
+      return jobInfos.data
+    }
+  }
+  const getShouCang = async () => {
+    if (getRole() === RoleEmu.employer) {
+      let res = await getGuanZhuJobSeeker({
+        params: {
+          field: 'shouCangJobSeekerId',
+        },
+      })
+      console.log(res)
+      let userInfos = await getJobSeekerByUserId({
+        params: {
+          userIds: res.data.map((e) => e.guanZhuId),
+        },
+      })
+      return userInfos.data
+    } else {
+      let res = await getGuanZhuJobSeeker({
+        params: {
+          field: 'shouCangJobId',
+        },
+      })
+      let jobInfos = await getJob({
+        params: {
+          ids: res.data.map((e) => e.guanZhuId),
+        },
+      })
+      return jobInfos.data
+    }
+  }
+  return {
+    changeConnect,
+    getGuanZhu,
+    getGuanZhuJobSeekerFn,
+  }
 }

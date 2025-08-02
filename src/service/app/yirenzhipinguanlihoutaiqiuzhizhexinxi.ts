@@ -68,27 +68,6 @@ export async function getJobSeeker1({
   );
 }
 
-/** 获得指定用户的求职者信息 GET /admin-api/yirenzhipin/job-seeker/get-by-user-id */
-export async function getJobSeekerByUserId({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJobSeekerByUserIdParams;
-  options?: CustomRequestOptions;
-}) {
-  return request<API.CommonResultYRZPJobSeekerRespVO>(
-    '/admin-api/yirenzhipin/job-seeker/get-by-user-id',
-    {
-      method: 'GET',
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
-}
-
 /** 获得求职者信息分页 GET /admin-api/yirenzhipin/job-seeker/page */
 export async function getJobSeekerPage1({
   params,

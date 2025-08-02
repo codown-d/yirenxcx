@@ -63,16 +63,16 @@ export function exportJobExcelQueryOptions(options: {
 }
 
 /** 获得定时任务 GET /admin-api/infra/job/get */
-export function getJob2QueryOptions(options: {
+export function getJob1QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJob2Params;
+  params: API.getJob1Params;
   options?: CustomRequestOptions;
 }) {
   return queryOptions({
     queryFn: async ({ queryKey }) => {
-      return apis.getJob2(queryKey[1] as typeof options);
+      return apis.getJob1(queryKey[1] as typeof options);
     },
-    queryKey: ['getJob2', options],
+    queryKey: ['getJob1', options],
   });
 }
 

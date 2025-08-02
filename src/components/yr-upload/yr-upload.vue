@@ -35,6 +35,7 @@ const props = defineProps({
     default: 'image',
   },
 })
+console.log(props)
 
 const list = ref([])
 const uploadUrl = computed(() => {
@@ -60,7 +61,6 @@ const handleChange = async ({ fileList = [] }) => {
       return { url: item.url }
     }
   })
-  console.log(list.value, list.value.map((item) => (item as UploadFile).url).join(','))
   emit('update:modelValue', list.value.map((item) => (item as UploadFile).url).join(','))
 }
 </script>

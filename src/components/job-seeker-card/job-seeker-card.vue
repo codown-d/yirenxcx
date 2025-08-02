@@ -103,7 +103,7 @@ watch(
 const emit = defineEmits(['click', 'favorite', 'contact'])
 const handleCardClick = () => {
   emit('click', props.seekerData)
-  navigateToSub(`/seeker-detail/seeker-detail?seekerId=${props.seekerData.id}`)
+  navigateToSub(`/user-info/user-info?seekerId=${props.seekerData.id}`)
 }
 
 const handleFavorite = () => {

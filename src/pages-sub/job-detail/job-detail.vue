@@ -15,15 +15,15 @@
       <view class="bg-white rounded-2 p-4">
         <view class="flex items-center justify-between mb-3">
           <text class="text-5 font-bold text-gray-800 block mb-2">{{ jobDetail.title }}</text>
-          <text class="text-4 font-bold text-primary">{{ jobDetail.salary }}</text>
+          <yr-salary :salaryMax="jobDetail.salaryMax" :salaryMin="jobDetail.salaryMin" />
         </view>
 
         <!-- 职位标签 -->
         <view class="grid grid-cols-2 gap-3 mb-3">
-          <yr-img-title url="jingyan.svg" :title="jobDetail.experience" />
-          <yr-img-title url="zhuanye.svg" :title="jobDetail.education" />
-          <yr-img-title url="ljdg.svg" :title="jobDetail.positionSituation" />
-          <yr-img-title url="time.svg" :title="jobDetail.workTime" />
+          <yr-img-title url="jingyan.svg" :title="jobDetail.experienceRequirement" />
+          <yr-img-title url="zhuanye.svg" :title="jobDetail.educationRequirement" />
+          <yr-img-title url="ljdg.svg" :title="jobDetail.comeToTime" />
+          <yr-img-title url="time.svg" :title="jobDetail.workType" />
         </view>
 
         <view class="pt-4">
@@ -33,7 +33,7 @@
         <view class="mt-2">
           <text class="text-sm text-gray">演员要求</text>
           <view class="flex flex-wrap gap-2 mt-2">
-            <view v-for="skill in jobDetail.requirements" :key="skill" class="tag-default">
+            <view v-for="skill in requirementDetails" :key="skill" class="tag-default">
               {{ skill }}
             </view>
           </view>
@@ -41,7 +41,7 @@
         <view class="mt-4">
           <text class="text-sm text-gray">福利/待遇</text>
           <view class="flex flex-wrap gap-2 mt-2">
-            <view v-for="benefit in jobDetail.benefits" :key="benefit" class="tag-default">
+            <view v-for="benefit in benefits" :key="benefit" class="tag-default">
               {{ benefit }}
             </view>
           </view>
@@ -52,21 +52,7 @@
       <view class="bg-white mt-3 rounded-3 p-4">
         <text class="text-4 font-bold text-gray-800 block mb-3">职位描述</text>
         <view class="text-3 text-gray-600 leading-relaxed">
-          <text class="block mb-2">{{ jobDetail.description }}</text>
-
-          <text class="block font-medium mb-2 mt-4">职位包含：</text>
-          <view class="pl-3">
-            <text v-for="(item, index) in jobDetail.jobIncludes" :key="index" class="block mb-1">
-              • {{ item }}
-            </text>
-          </view>
-
-          <text class="block font-medium mb-2 mt-4">工作时间安排：</text>
-          <view class="pl-3">
-            <text v-for="(time, index) in jobDetail.workSchedule" :key="index" class="block mb-1">
-              • {{ time }}
-            </text>
-          </view>
+          <text class="block mb-2">{{ jobDetail?.description }}</text>
         </view>
       </view>
 
@@ -75,13 +61,13 @@
         <view class="flex items-center justify-between mb-3">
           <view class="flex items-center">
             <image
-              :src="jobDetail.company.logo"
+              :src="jobDetail.companyLogo"
               class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
               mode="aspectFill"
             />
             <view>
-              <text class="text-4 font-bold text-gray-800 block">jobDetail.company.name</text>
-              <text class="text-3 text-gray-500">jobDetail.company.scale</text>
+              <text class="text-4 font-bold text-gray-800 block">{{ jobDetail.companyName }}</text>
+              <text class="text-3 text-gray-500">{{ jobDetail.companyInfo }}</text>
             </view>
           </view>
           <wd-icon name="arrow-right" size="16px" color="#999" @click="goToCompany" />
@@ -89,7 +75,7 @@
       </view>
 
       <!-- 即将项目 -->
-      <view class="bg-white mt-3 rounded-3 p-4">
+      <view class="bg-white mt-3 rounded-3 p-4" v-if="false">
         <text class="text-4 font-bold text-gray-800 block mb-3">即将项目</text>
         <view class="space-y-3">
           <view
@@ -114,16 +100,21 @@
       <view class="bg-white mt-3 rounded-3 p-4 mb-5">
         <text class="text-4 font-bold text-gray-800 block mb-3">相似职位</text>
         <view class="space-y-3">
-          <template v-for="similarJob in 2" :key="similarJob.id">
-            <view class="border border-gray-100 rounded-2 p-3" @click="goToJob(similarJob.id)">
-              <view class="flex items-start justify-between mb-3">
-                <text class="text-4 font-medium text-gray-800 flex-1">similarJob.title</text>
-                <text class="text-3 font-bold text-primary">similarJob.salary</text>
+          <template v-if="similarJobList.length">
+            <template v-for="(similarJob, index) in similarJobList" :key="similarJob.id">
+              <view class="border border-gray-100 rounded-2 p-3" @click="goToJob(similarJob.id)">
+                <view class="flex items-start justify-between mb-3">
+                  <text class="text-4 font-medium text-gray-800 flex-1">
+                    {{ similarJob.title }}
+                  </text>
+                  <yr-salary :salaryMax="jobDetail.salaryMax" :salaryMin="jobDetail.salaryMin" />
+                </view>
+                <yr-img-title url="time.svg" :title="jobDetail.description" />
               </view>
-              <yr-img-title url="time.svg" :title="jobDetail.workTime" />
-            </view>
-            <wd-divider custom-class="!px-0" v-if="similarJob !== 2"></wd-divider>
+              <wd-divider custom-class="!px-0" v-if="similarJobList.length == index"></wd-divider>
+            </template>
           </template>
+          <yr-nodata v-else />
         </view>
       </view>
 
@@ -174,15 +165,27 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { createZuJi, getJob1, YRZPJobDO } from '@/service/app'
+import {
+  createLiJiTouDi,
+  createZuJi,
+  getJob,
+  getJob1,
+  getJobPage1,
+  getUserByIds,
+  getUserInfo,
+  YRZPJobDO,
+} from '@/service/app'
 import { useConnect } from '@/hooks'
+import { merge } from 'lodash'
+import { navigateTo } from '@/utils'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
 const loading = ref(false)
-const jobDetail = ref<YRZPJobDO>()
+const jobDetail = ref<YRZPJobDO>({})
 const jobId = ref()
 let isFavorited = ref(false)
 let collect = ref(false)
+const similarJobList = ref([])
 
 // 页面加载
 onLoad((options) => {
@@ -195,22 +198,35 @@ onLoad((options) => {
 let getData = async () => {
   createZuJi({ body: { jobId: jobId.value } })
   let resGuanZhu = await getGuanZhuJobSeekerFn({ field: 'guanZhuJobId' })
-  isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobSeekerId === jobId.value)
+  isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobId.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
-  collect.value = resShouCang.some((item2) => item2.shouCangJobSeekerId === jobId.value)
+  collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobId.value)
+  let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
+  similarJobList.value = res.data.list.filter((it) => it.id != jobId.value).slice(0, 3)
 }
 // 加载职位详情
 const loadJobDetail = async () => {
   try {
     loading.value = true
-    const res = await getJob1({
-      params: { id: jobId.value },
+    const res = await getJob({
+      params: { ids: jobId.value },
     })
-    jobDetail.value = res.data
+    console.log(123, res)
+    let userInfo = await getUserByIds({ params: { userIds: res.data[0].companyId } })
+    console.log(userInfo)
+    let { companyName, companyInfo, companyLogo = '' } = userInfo.data
+    jobDetail.value = merge(res.data[0] || {}, { companyName, companyInfo, companyLogo })
   } finally {
     loading.value = false
   }
 }
+const requirementDetails = computed(() => {
+  console.log(jobDetail.value)
+  return jobDetail.value?.requirementDetails?.split(',')
+})
+const benefits = computed(() => {
+  return jobDetail.value?.benefits?.split(',')
+})
 // 切换收藏状态
 
 // 立即联系
@@ -229,10 +245,9 @@ const handleContact = () => {
 // 立即申请
 const handleApply = async () => {
   try {
-    const res = await applyJob({
+    const res = await createLiJiTouDi({
       body: {
-        jobId: jobId.value,
-        coverLetter: '我对这个职位很感兴趣，希望能有机会面试。',
+        toJobId: jobId.value,
       },
     })
 
@@ -247,11 +262,8 @@ const handleApply = async () => {
   }
 }
 
-// 查看公司详情
 const goToCompany = () => {
-  uni.navigateTo({
-    url: `/pages-sub/company-detail/company-detail?id=${jobDetail.value.company.id}`,
-  })
+  navigateTo(`/company-detail/company-detail?id=${jobDetail.value.companyId}`)
 }
 
 // 查看相似职位
@@ -262,12 +274,12 @@ const goToJob = (jobId: string) => {
 }
 //
 const handleCollect = () => {
-  changeConnect({ shouCangJobSeekerId: Number(jobId.value) }, collect.value, () => {
+  changeConnect({ shouCangJobId: Number(jobId.value) }, collect.value, () => {
     collect.value = !collect.value
   })
 }
 const handleFavorite = () => {
-  changeConnect({ guanZhuJobSeekerId: Number(jobId.value) }, isFavorited.value, () => {
+  changeConnect({ guanZhuJobId: Number(jobId.value) }, isFavorited.value, () => {
     isFavorited.value = !isFavorited.value
   })
 }

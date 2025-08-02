@@ -5011,12 +5011,6 @@ export type CommonResultAppTradeOrderSettlementRespVO = {
   msg?: string;
 };
 
-export type CommonResultAppYrzpZuJiRespVO = {
-  code?: number;
-  data?: AppYrzpZuJiRespVO;
-  msg?: string;
-};
-
 export type CommonResultArticleCategoryRespVO = {
   code?: number;
   data?: ArticleCategoryRespVO;
@@ -6104,6 +6098,12 @@ export type CommonResultListMemberTerminalStatisticsRespVO = {
   msg?: string;
 };
 
+export type CommonResultListMemberUserDO = {
+  code?: number;
+  data?: MemberUserDO[];
+  msg?: string;
+};
+
 export type CommonResultListMenuRespVO = {
   code?: number;
   data?: MenuRespVO[];
@@ -6284,6 +6284,24 @@ export type CommonResultListYRZPJobCategoryRespVO = {
   msg?: string;
 };
 
+export type CommonResultListYRZPJobDO = {
+  code?: number;
+  data?: YRZPJobDO[];
+  msg?: string;
+};
+
+export type CommonResultListYRZPJobSeekerDO = {
+  code?: number;
+  data?: YRZPJobSeekerDO[];
+  msg?: string;
+};
+
+export type CommonResultListYRZPLiJiTouDiRespVO = {
+  code?: number;
+  data?: YRZPLiJiTouDiRespVO[];
+  msg?: string;
+};
+
 export type CommonResultListYRZPMessageSessionRespAppVO = {
   code?: number;
   data?: YRZPMessageSessionRespAppVO[];
@@ -6299,6 +6317,12 @@ export type CommonResultListYRZPWeiGuiDO = {
 export type CommonResultListYRZPWeiGuiRespAppVO = {
   code?: number;
   data?: YRZPWeiGuiRespAppVO[];
+  msg?: string;
+};
+
+export type CommonResultListYrzpZuJiDO = {
+  code?: number;
+  data?: YrzpZuJiDO[];
   msg?: string;
 };
 
@@ -7412,6 +7436,12 @@ export type CommonResultPageResultYRZPJobSeekerRespVO = {
   msg?: string;
 };
 
+export type CommonResultPageResultYRZPLiJiTouDiRespVO = {
+  code?: number;
+  data?: PageResultYRZPLiJiTouDiRespVO;
+  msg?: string;
+};
+
 export type CommonResultPageResultYRZPMessageRespAppVO = {
   code?: number;
   data?: PageResultYRZPMessageRespAppVO;
@@ -7718,21 +7748,21 @@ export type CommonResultYRZPJobCategoryRespVO = {
   msg?: string;
 };
 
-export type CommonResultYRZPJobDO = {
+export type CommonResultYRZPJobSeekerDO = {
   code?: number;
-  data?: YRZPJobDO;
-  msg?: string;
-};
-
-export type CommonResultYRZPJobRespVO = {
-  code?: number;
-  data?: YRZPJobRespVO;
+  data?: YRZPJobSeekerDO;
   msg?: string;
 };
 
 export type CommonResultYRZPJobSeekerRespVO = {
   code?: number;
   data?: YRZPJobSeekerRespVO;
+  msg?: string;
+};
+
+export type CommonResultYRZPLiJiTouDiRespVO = {
+  code?: number;
+  data?: YRZPLiJiTouDiRespVO;
   msg?: string;
 };
 
@@ -9667,6 +9697,21 @@ export type deleteKnowledgeParams = {
 export type deleteLevelParams = {
   /** 编号 */
   id: number;
+};
+
+export type deleteLiJiTouDi1Params = {
+  /** 编号 */
+  id: number;
+};
+
+export type deleteLiJiTouDiParams = {
+  /** 编号 */
+  id: number;
+};
+
+export type deleteLiJiTouDisParams = {
+  /** 编号集合 */
+  ids: number[];
 };
 
 export type deleteMailAccountParams = {
@@ -13483,11 +13528,6 @@ export type getJob1Params = {
   id: number;
 };
 
-export type getJob2Params = {
-  /** 编号 */
-  id: number;
-};
-
 export type getJobApplicationPageParams = {
   /** 职位编号 */
   jobId?: number;
@@ -13615,8 +13655,7 @@ export type getJobPageParams = {
 };
 
 export type getJobParams = {
-  /** 编号 */
-  id: number;
+  ids: number[];
 };
 
 export type getJobSeeker1Params = {
@@ -13625,8 +13664,7 @@ export type getJobSeeker1Params = {
 };
 
 export type getJobSeekerByUserIdParams = {
-  /** 用户编号 */
-  userId: number;
+  userIds: number[];
 };
 
 export type getJobSeekerPage1Params = {
@@ -13816,6 +13854,59 @@ export type getLevelRecordPageParams = {
 };
 
 export type getLevelRecordParams = {
+  /** 编号 */
+  id: number;
+};
+
+export type getLiJiTouDi1Params = {
+  /** 编号 */
+  id: number;
+};
+
+export type getLiJiTouDiListParams = {
+  /** 编号列表 */
+  ids: number[];
+};
+
+export type getLiJiTouDiPage1Params = {
+  /** 投递人员信息 */
+  fromUserId?: number;
+  /** 主动沟通职位id */
+  fromJobId?: number;
+  /** 主动沟通的求职者信息id */
+  fromSeekerId?: number;
+  /** 沟通职位id */
+  toJobId?: number;
+  /** 沟通求职者id */
+  toSeekerId?: number;
+  /** 创建时间 */
+  createTime?: string[];
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getLiJiTouDiPageParams = {
+  /** 投递人员信息 */
+  fromUserId?: number;
+  /** 主动沟通职位id */
+  fromJobId?: number;
+  /** 主动沟通的求职者信息id */
+  fromSeekerId?: number;
+  /** 沟通职位id */
+  toJobId?: number;
+  /** 沟通求职者id */
+  toSeekerId?: number;
+  /** 创建时间 */
+  createTime?: string[];
+  /** 页码，从 1 开始 */
+  pageNo: number;
+  /** 每页条数，最大值为 100 */
+  pageSize: number;
+};
+
+export type getLiJiTouDiParams = {
   /** 编号 */
   id: number;
 };
@@ -15345,6 +15436,10 @@ export type getUser1Params = {
   id: number;
 };
 
+export type getUserByIdsParams = {
+  userIds: number[];
+};
+
 export type getUserGroupPageParams = {
   /** 编号 */
   id?: number;
@@ -15640,13 +15735,7 @@ export type getWritePageParams = {
   pageSize: number;
 };
 
-export type getZuJiByJobParams = {
-  /** 职位编号 */
-  jobId: number;
-};
-
 export type getZuJiBySkeerParams = {
-  /** 求职者编号 */
   skeerId: number;
 };
 
@@ -18215,6 +18304,13 @@ export type PageResultYRZPJobSeekerDO = {
 export type PageResultYRZPJobSeekerRespVO = {
   /** 数据 */
   list: YRZPJobSeekerRespVO[];
+  /** 总量 */
+  total: number;
+};
+
+export type PageResultYRZPLiJiTouDiRespVO = {
+  /** 数据 */
+  list: YRZPLiJiTouDiRespVO[];
   /** 总量 */
   total: number;
 };
@@ -21932,6 +22028,7 @@ export type YRZPJobDO = {
   contactMobile?: string;
   contactEmail?: string;
   other?: string;
+  info?: string;
 };
 
 export type YRZPJobRespVO = {
@@ -22017,7 +22114,7 @@ export type YRZPJobSeekerCreateReqVO = {
   /** 个人优势 */
   advantage?: string;
   /** 工作经验(年) */
-  experience: string;
+  experience?: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -22051,9 +22148,9 @@ export type YRZPJobSeekerCreateReqVO = {
   /** 位置编码 */
   locationCode?: string;
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin?: number;
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax?: number;
   /** 工作性质 */
   workType?: string;
   /** 到岗时间 */
@@ -22098,6 +22195,7 @@ export type YRZPJobSeekerDO = {
   workType?: string;
   comeToTime?: string;
   other?: string;
+  info?: string;
 };
 
 export type YRZPJobSeekerRespVO = {
@@ -22116,7 +22214,7 @@ export type YRZPJobSeekerRespVO = {
   /** 个人优势 */
   advantage?: string;
   /** 工作经验(年) */
-  experience: string;
+  experience?: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -22150,9 +22248,9 @@ export type YRZPJobSeekerRespVO = {
   /** 位置编码 */
   locationCode?: string;
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin?: number;
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax?: number;
   /** 工作性质 */
   workType?: string;
   /** 到岗时间 */
@@ -22181,7 +22279,7 @@ export type YRZPJobSeekerUpdateReqVO = {
   /** 个人优势 */
   advantage?: string;
   /** 工作经验(年) */
-  experience: string;
+  experience?: string;
   /** 身高(cm) */
   height?: number;
   /** 体重(kg) */
@@ -22215,9 +22313,9 @@ export type YRZPJobSeekerUpdateReqVO = {
   /** 位置编码 */
   locationCode?: string;
   /** 薪资范围-最低 */
-  salaryMin: number;
+  salaryMin?: number;
   /** 薪资范围-最高 */
-  salaryMax: number;
+  salaryMax?: number;
   /** 工作性质 */
   workType?: string;
   /** 到岗时间 */
@@ -22289,6 +22387,51 @@ export type YRZPJobUpdateReqVO = {
   id: number;
   /** 职位浏览量 */
   views?: number;
+};
+
+export type YRZPLiJiTouDiCreateReqVO = {
+  /** 投递人员信息 */
+  fromUserId: number;
+  /** 主动沟通职位id */
+  fromJobId: number;
+  /** 主动沟通的求职者信息id */
+  fromSeekerId: number;
+  /** 沟通职位id */
+  toJobId: number;
+  /** 沟通求职者id */
+  toSeekerId: number;
+};
+
+export type YRZPLiJiTouDiRespVO = {
+  /** 投递人员信息 */
+  fromUserId: number;
+  /** 主动沟通职位id */
+  fromJobId: number;
+  /** 主动沟通的求职者信息id */
+  fromSeekerId: number;
+  /** 沟通职位id */
+  toJobId: number;
+  /** 沟通求职者id */
+  toSeekerId: number;
+  /** 主键 */
+  id: number;
+  /** 创建时间 */
+  createTime: string;
+};
+
+export type YRZPLiJiTouDiUpdateReqVO = {
+  /** 投递人员信息 */
+  fromUserId: number;
+  /** 主动沟通职位id */
+  fromJobId: number;
+  /** 主动沟通的求职者信息id */
+  fromSeekerId: number;
+  /** 沟通职位id */
+  toJobId: number;
+  /** 沟通求职者id */
+  toSeekerId: number;
+  /** 主键 */
+  id: number;
 };
 
 export type YRZPMessageCreateReqVO = {
@@ -22447,4 +22590,16 @@ export type YRZPWeiGuiUpdateReqVO = {
   seekerId?: number;
   /** 主键 */
   id: number;
+};
+
+export type YrzpZuJiDO = {
+  createTime?: string;
+  updateTime?: string;
+  creator?: string;
+  updater?: string;
+  deleted?: boolean;
+  id?: number;
+  userId?: number;
+  jobId?: number;
+  skeerId?: number;
 };

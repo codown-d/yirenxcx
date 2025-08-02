@@ -100,6 +100,7 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { MY_FOLLOWS_CONFIG, MOCK_FOLLOW_DATA } from '@/constant/my-follows'
+const { getGuanZhu } = useConnect()
 
 // 页面状态
 const followList = ref<any[]>([])
@@ -121,7 +122,8 @@ const loadFollowList = async (isLoadMore = false) => {
     loading.value = true
 
     // 模拟API请求
-    await new Promise((resolve) => setTimeout(resolve, 800))
+    let res = await getGuanZhu()
+    console.log(res)
 
     // 模拟分页数据
     const startIndex = (currentPage.value - 1) * pageSize

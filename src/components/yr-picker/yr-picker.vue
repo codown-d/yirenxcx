@@ -3,6 +3,7 @@
     <wd-picker
       v-model="selectVal"
       :columns="columns"
+      :disabled="disabled"
       @confirm="handleConfirm"
       custom-class="text-left"
     ></wd-picker>
@@ -36,6 +37,10 @@ const props = defineProps({
     default: '',
   },
   multiple: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
     type: Boolean,
     default: false,
   },

@@ -48,20 +48,6 @@ export function useDeleteJob1Mutation(options?: {
   return response;
 }
 
-/** 获得招聘职位 GET /admin-api/yirenzhipin/job/get */
-export function getJob1QueryOptions(options: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.getJob1Params;
-  options?: CustomRequestOptions;
-}) {
-  return queryOptions({
-    queryFn: async ({ queryKey }) => {
-      return apis.getJob1(queryKey[1] as typeof options);
-    },
-    queryKey: ['getJob1', options],
-  });
-}
-
 /** 获得招聘职位分页 GET /admin-api/yirenzhipin/job/page */
 export function getJobPage2QueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
