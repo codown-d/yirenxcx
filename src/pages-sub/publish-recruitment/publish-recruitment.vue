@@ -35,10 +35,8 @@
           />
         </wd-cell>
         <post-picker title="职位类别" :modelValue="formData.post"></post-picker>
-        <yr-location-picker title="工作地点" v-model="formData.location"></yr-location-picker>
-        <wd-cell title="报名截止时间" custom-class="pr-0">
-          <wd-calendar v-model="formData.comeToTime" custom-class="pr-0" />
-        </wd-cell>
+        <yr-location-picker title="工作地点" v-model="formData.locationCode"></yr-location-picker>
+        <yr-calendar title="报名截止时间" v-model="formData.comeToTime" />
       </wd-card>
 
       <!-- 求职期望 -->
@@ -126,7 +124,12 @@
       <wd-card>
         <!-- 是否公开 -->
         <wd-cell title="公开工作">
-          <wd-switch v-model="formData.isPublic" />
+          <wd-picker
+            v-model="formData.status"
+            :columns="experienceColumns"
+            placeholder="请选择"
+            prop="status"
+          />
         </wd-cell>
       </wd-card>
     </wd-form>
@@ -163,6 +166,7 @@ import {
 } from '@/constant'
 import { createJob } from '@/service/app'
 import { navigateBack } from '@/utils'
+import { merge } from 'lodash'
 
 // 表单数据
 const formData = ref<any>({
@@ -181,7 +185,8 @@ const formData = ref<any>({
   contactMobile: '',
   isCertified: '',
   post: [],
-  location: [],
+  location: '',
+  locationCode: '',
   advantage: '',
   other: '',
   expectedSalary: '',
@@ -200,7 +205,7 @@ const saveDraft = () => {
   navigateBack()
 }
 const postData = computed(() => {
-  let { post, location, expectedSalary, ...restData } = formData.value
+  let { post, location, expectedSalary, benefits, requirementDetails, ...restData } = formData.value
   let [salaryMin, salaryMax] = expectedSalary.split('-')
   return {
     ...restData,
@@ -209,7 +214,11 @@ const postData = computed(() => {
     jobSpecific: post[2],
     salaryMin,
     salaryMax,
-    location: location.join(','),
+    location: '',
+    benefits: benefits.join(','),
+    requirementDetails: requirementDetails.join(','),
+    status: 1,
+    headcount: 5,
   }
 })
 // 发布求职信息
@@ -222,7 +231,10 @@ const publishJobSeekingInfo = async () => {
     }
 
     loading.value = true
-    const res = await createJob({ body: postData.value })
+    console.log(postData.value)
+    const res = await createJob({
+      body: postData.value,
+    })
     if (res.code === 0) {
       toast.success('发布成功')
       // 延迟跳转
@@ -230,8 +242,6 @@ const publishJobSeekingInfo = async () => {
     } else {
       toast.error(res.msg || '发布失败')
     }
-  } catch (error) {
-    toast.error('网络错误，请稍后重试')
   } finally {
     loading.value = false
   }

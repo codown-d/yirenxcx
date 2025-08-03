@@ -65,6 +65,7 @@ const handleWechatPhoneAuth = async (e: any) => {
   }
   const { code } = e.detail
   await wxLogin(code)
+
   toast.success('授权登录成功')
   setTimeout(() => {
     switchTab('/index/index')

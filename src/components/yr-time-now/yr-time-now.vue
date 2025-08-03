@@ -21,6 +21,6 @@ defineProps({
   },
 })
 const updateTime = (time) => {
-  return dayjs(Number(time)).fromNow()
+  return dayjs(Number(time)).fromNow() === '几秒前' ? '' : dayjs(Number(time)).fromNow()
 }
 </script>

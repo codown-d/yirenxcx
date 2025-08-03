@@ -4,25 +4,28 @@ import { toast } from '@/utils/toast'
 
 import type {
   AppAuthLoginReqVO,
+  AppAuthLoginRespVO,
   AppAuthSmsLoginReqVO,
   AppAuthWeixinMiniAppLoginReqVO,
-  AppMemberUserInfoRespVO,
   CommonResultAppAuthLoginRespVO,
-  CommonResultAppMemberUserInfoRespVO,
 } from '@/service/app/types'
-import { getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
+import { genUserSig, getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
+import { loginIM } from '@/utils/im'
+import { RoleEmu, useRoleStore } from './role'
+import { useIm } from '@/hooks/useIm'
 
 // 用户信息类型定义
-interface UserInfo extends AppMemberUserInfoRespVO {
-  token?: string
-  refreshToken?: string
-  expiresTime?: string
+interface UserInfo extends AppAuthLoginRespVO {
+  token: string
+  refreshToken: string
+  expiresTime: string
   userId: number
+  avatar: string
+  nickname: string
 }
 
 // 初始化状态
 const userInfoState: UserInfo = {
-  id: 0,
   userId: 0,
   nickname: '',
   avatar: '/static/images/default-avatar.png',
@@ -39,6 +42,7 @@ const userInfoState: UserInfo = {
 export const useUserStore = defineStore(
   'user',
   () => {
+    let { imLogin } = useIm()
     // 定义用户信息
     const userInfo = ref<UserInfo>({ ...userInfoState })
 
@@ -95,9 +99,9 @@ export const useUserStore = defineStore(
 
           toast.success('登录成功')
           await getUserInfoFn()
+          await imLogin(userId)
           return res
         } else {
-          throw new Error(res.msg || '登录失败')
         }
       } catch (error) {
         console.error('密码登录失败:', error)
@@ -157,12 +161,12 @@ export const useUserStore = defineStore(
      * 获取用户信息
      */
     const getUserInfoFn = async () => {
-      const res: CommonResultAppMemberUserInfoRespVO = await getUserInfo({})
+      const res = await getUserInfo({})
       if (res.code === 0 && res.data) {
         const userData = res.data
-        setUserInfo(userData)
+        // setUserInfo(userData)
         uni.setStorageSync('userInfo', userData)
-        return res
+        return res.data
       }
     }
     /**
@@ -208,7 +212,6 @@ export const useUserStore = defineStore(
 
         if (res.code === 0 && res.data) {
           const { accessToken, userId, refreshToken, expiresTime } = res.data
-
           // 保存登录信息
           uni.setStorageSync('token', accessToken)
           uni.setStorageSync('refreshToken', refreshToken)
@@ -224,6 +227,8 @@ export const useUserStore = defineStore(
 
           toast.success('微信登录成功')
           await getUserInfoFn()
+
+          await imLogin(userId)
           return res
         } else {
           throw new Error(res.msg || '微信登录失败')

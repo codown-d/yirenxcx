@@ -83,6 +83,15 @@ importers:
       qs:
         specifier: 6.5.3
         version: 6.5.3
+      tim-js-sdk:
+        specifier: ^2.27.6
+        version: 2.27.6
+      tim-upload-plugin:
+        specifier: ^1.4.3
+        version: 1.4.3
+      tim-wx-sdk:
+        specifier: ^2.27.6
+        version: 2.27.6
       vue:
         specifier: ^3.5.15
         version: 3.5.15(typescript@5.7.2)
@@ -4879,6 +4888,15 @@ packages:
 
   throat@6.0.2:
     resolution: {integrity: sha512-WKexMoJj3vEuK0yFEapj8y64V0A6xcuPuK9Gt1d0R+dzCSJc0lHqQytAbSB4cDAK0dWh4T0E2ETkoLE2WZ41OQ==}
+
+  tim-js-sdk@2.27.6:
+    resolution: {integrity: sha512-UdeYxn9i4ksCrmcrCwesckvBu/EQA3rUMrIJU13H9Qvz7sY4aojZkwhZpsctAvmV1FxgfT593WNK/7y156EMLQ==}
+
+  tim-upload-plugin@1.4.3:
+    resolution: {integrity: sha512-3ZmbA36dr3eG9YGDon9MLBUtbNawYWkL+TBa+VS0Uviguc7PlVSOIVRG2C4irXX16slDT2Kj+HAZapp+Xqp2xg==}
+
+  tim-wx-sdk@2.27.6:
+    resolution: {integrity: sha512-zB+eRdmigdhEDeqrXC0bLJonUQZzS5uKNPLFtrje503WAnmuxVQjq/n4Zle4FYHG4FiKHKhsrVd0aCYXABlFEg==}
 
   timers-ext@0.1.8:
     resolution: {integrity: sha512-wFH7+SEAcKfJpfLPkrgMPvvwnEtj8W4IurvEyrKsDleXnKLCDw71w8jltvfLa8Rm4qQxxT4jmDBYbJG/z7qoww==}
@@ -11352,6 +11370,12 @@ snapshots:
       minimatch: 3.1.2
 
   throat@6.0.2: {}
+
+  tim-js-sdk@2.27.6: {}
+
+  tim-upload-plugin@1.4.3: {}
+
+  tim-wx-sdk@2.27.6: {}
 
   timers-ext@0.1.8:
     dependencies:

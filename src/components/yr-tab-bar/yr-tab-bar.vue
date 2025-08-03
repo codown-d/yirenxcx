@@ -83,7 +83,7 @@ const change = ({ value }) => {
       navigateToSub('/login/login')
       return
     }
-    return getRole() === RoleEmu.seeking
+    return getRole() === RoleEmu.seeker
       ? navigateToSub('/publish-job-seeking/publish-job-seeking')
       : navigateToSub('/publish-recruitment/publish-recruitment')
   }

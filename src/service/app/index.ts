@@ -325,6 +325,8 @@ export * from './guanlihoutaiAIsiweidaotu';
 export * from './guanlihoutaiAIsiweidaotu.vuequery';
 export * from './guanlihoutailiaotianxiaoxi';
 export * from './guanlihoutailiaotianxiaoxi.vuequery';
+export * from './yirenzhipinyonghuAppImtongxun';
+export * from './yirenzhipinyonghuAppImtongxun.vuequery';
 export * from './apPweiguixinxi';
 export * from './apPweiguixinxi.vuequery';
 export * from './yonghuAppzitimendian';

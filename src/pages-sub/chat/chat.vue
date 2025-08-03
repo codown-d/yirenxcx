@@ -1,510 +1,140 @@
 <route lang="json5" type="page">
 {
+  layout: 'blank',
   style: {
     navigationBarTitleText: '消息',
-    navigationStyle: 'default',
+    navigationStyle: 'custom',
   },
 }
 </route>
-
 <template>
-  <view class="min-h-screen bg-gray-50">
-    <!-- Tab切换 -->
-    <view class="bg-white">
-      <wd-tabs v-model="activeTab" @change="onTabChange">
-        <wd-tab title="聊天" name="chat"></wd-tab>
-        <wd-tab title="系统通知" name="system"></wd-tab>
-      </wd-tabs>
-    </view>
-
-    <!-- 聊天列表 -->
-    <view v-if="activeTab === 'chat'" class="px-4 py-2">
-      <view
-        v-for="(item, index) in chatList"
-        :key="item.id"
-        class="bg-white rounded-lg p-4 mb-3 shadow-sm"
-        @click="openChat(item)"
-      >
-        <view class="flex items-center">
-          <!-- 头像 -->
-          <view class="relative mr-3">
-            <image :src="item.avatar" mode="aspectFill" class="w-12 h-12 rounded-full" />
-            <!-- 未读消息数量 -->
-            <view
-              v-if="item.unreadCount > 0"
-              class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1"
-            >
-              {{ item.unreadCount > 99 ? '99+' : item.unreadCount }}
-            </view>
-          </view>
-
-          <!-- 消息内容 -->
-          <view class="flex-1 min-w-0">
-            <view class="flex items-center justify-between mb-1">
-              <text class="text-base font-medium text-gray-900 truncate">{{ item.name }}</text>
-              <text class="text-xs text-gray-400">{{ formatTime(item.lastMessageTime) }}</text>
-            </view>
-            <view class="flex items-center">
-              <!-- 招聘方标识 -->
-              <view
-                v-if="item.isRecruiter"
-                class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded mr-2 flex-shrink-0"
-              >
-                招聘方
-              </view>
-              <text class="text-sm text-gray-500 truncate">{{ item.lastMessage }}</text>
-            </view>
-          </view>
+  <view class="h-100vh">
+    <wd-navbar :bordered="false" safeAreaInsetTop fixed>
+      <template #left>
+        <view class="flex gap-2 items-center">
+          <wd-icon name="arrow-left" size="22px" @click="handleClickLeft"></wd-icon>
+          <view>{{ title }}</view>
         </view>
-      </view>
-
-      <!-- 空状态 -->
-      <view v-if="chatList.length === 0" class="text-center py-20">
-        <image
-          src="/static/images/empty-chat.png"
-          mode="aspectFit"
-          class="w-24 h-24 mx-auto mb-4"
-        />
-        <text class="text-gray-400 text-sm">暂无聊天记录</text>
-      </view>
-    </view>
-
-    <!-- 系统通知列表 -->
-    <view v-if="activeTab === 'system'" class="px-4 py-2">
+      </template>
+    </wd-navbar>
+    <scroll-view
+      class="h-100vh bg-[#F5F6FA] pt-4"
+      scroll-y
+      :scroll-into-view="scrollToId"
+      scroll-with-animation
+    >
       <view
-        v-for="(item, index) in systemNotifications"
-        :key="item.id"
-        class="bg-white rounded-lg p-4 mb-3 shadow-sm"
-        @click="openNotification(item)"
+        class="relative"
+        :style="{
+          paddingTop: safeAreaInsets?.top + 44 + 50 + 'px',
+        }"
       >
-        <view class="flex items-center">
-          <!-- 图标 -->
-          <view class="mr-3">
-            <view
-              class="w-12 h-12 rounded-lg flex items-center justify-center"
-              :class="getNotificationIconClass(item.type)"
-            >
-              <uni-icons
-                :type="getNotificationIcon(item.type)"
-                size="24"
-                :color="getNotificationIconColor(item.type)"
-              />
-            </view>
-          </view>
-
-          <!-- 通知内容 -->
-          <view class="flex-1 min-w-0">
-            <view class="flex items-center justify-between mb-1">
-              <text class="text-base font-medium text-gray-900 truncate">{{ item.title }}</text>
-              <text class="text-xs text-gray-400">{{ formatTime(item.createTime) }}</text>
-            </view>
-            <text class="text-sm text-gray-500 truncate">{{ item.content }}</text>
-          </view>
-
-          <!-- 未读标识 -->
-          <view v-if="!item.isRead" class="w-2 h-2 bg-red-500 rounded-full ml-2"></view>
+        <view
+          :style="{
+            paddingTop: safeAreaInsets?.top + 44 + 'px',
+          }"
+          class="fixed h-[50px] z-10 bg-[#fff] top-0 w-full flex items-center justify-center"
+        >
+          <Tool :type="toolType" :chatObjectId="chatObject.id" />
         </view>
-      </view>
-
-      <!-- 空状态 -->
-      <view v-if="systemNotifications.length === 0" class="text-center py-20">
-        <image
-          src="/static/images/empty-notification.png"
-          mode="aspectFit"
-          class="w-24 h-24 mx-auto mb-4"
+        <MessageItem
+          v-for="item in messageList"
+          :key="item.ID"
+          :message="item"
+          :selfId="item.selfId"
         />
-        <text class="text-gray-400 text-sm">暂无系统通知</text>
+        <view id="bottom-anchor" class="h-30"></view>
       </view>
-    </view>
+    </scroll-view>
 
-    <!-- 加载更多 -->
-    <view v-if="hasMore" class="flex justify-center py-4">
-      <wd-button class="text-primary text-sm" :disabled="loading" @click="loadMore">
-        {{ loading ? '加载中...' : '加载更多' }}
-      </wd-button>
-    </view>
+    <yr-page-footer>
+      <InputBox @send="sendMessage" class="flex-1 w-full" @send-file="sendFileFn" />
+    </yr-page-footer>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { toast } from '@/utils/toast'
-import dayjs from 'dayjs'
+import { ref } from 'vue'
+import MessageItem from './components/MessageItem.vue'
+import InputBox from './components/InputBox.vue'
+import { getSystemInfoSync, navigateBack } from '@/utils'
+import { RoleEmu, useRoleStore } from '@/store'
+import { getMessageList, sendImageMessage, sendTextMessage, setMsgCallback } from '@/utils/im'
+import { getJobPage, getUserByIds } from '@/service/app'
+import Tool from './components/tool.vue'
+import { find, merge } from 'lodash'
+const { safeAreaInsets } = getSystemInfoSync()
 
-// 临时类型定义
-interface ChatItem {
-  id: string
-  name: string
-  avatar: string
-  lastMessage: string
-  lastTime: string
-  unreadCount: number
-  isOnline?: boolean
-  type: 'user' | 'group'
-  conversationId?: string
-  userId?: string
+const messageList = ref([])
+const toUserID = ref() // 对方 ID，可通过路由传参获取
+const scrollToId = ref('bottom-anchor')
+const chatObject = ref()
+
+let { getRole } = useRoleStore()
+
+const handleClickLeft = () => {
+  navigateBack()
 }
-
-interface SystemNotification {
-  id: string
-  title: string
-  content: string
-  type:
-    | 'system'
-    | 'announcement'
-    | 'activity'
-    | 'job_recommendation'
-    | 'interview_invitation'
-    | 'application_update'
-    | 'system_update'
-    | 'promotion'
-  time: string
-  createTime?: string
-  isRead: boolean
-  icon?: string
-}
-
-interface ChatListParams {
-  page?: number
-  size?: number
-  pageSize?: number
-  type?: string
-  params?: any
-}
-
-interface NotificationListParams {
-  page?: number
-  size?: number
-  pageSize?: number
-  type?: string
-  params?: any
-}
-
-// 模拟接口
-const getChatList = async (params: ChatListParams) => {
-  return {
-    code: 0,
-    data: {
-      list: [
-        {
-          id: '1',
-          name: '张三',
-          avatar: '/static/images/avatar1.png',
-          lastMessage: '你好，请问这个职位还在招聘吗？',
-          lastTime: '10:30',
-          unreadCount: 2,
-          isOnline: true,
-          type: 'user' as const,
-        },
-      ],
-      total: 1,
-      hasMore: false,
-    },
-    msg: 'success',
-  }
-}
-
-const getNotificationList = async (params: NotificationListParams) => {
-  return {
-    code: 0,
-    data: {
-      list: [
-        {
-          id: '1',
-          title: '系统通知',
-          content: '您的简历已通过审核',
-          type: 'system' as const,
-          time: '2024-01-01 10:00',
-          isRead: false,
-          icon: 'bell',
-        },
-      ],
-      total: 1,
-      hasMore: false,
-    },
-    msg: 'success',
-  }
-}
-
-const markMessageAsRead = async (params: any) => {
-  return {
-    code: 0,
-    data: { success: true },
-    msg: 'success',
-  }
-}
-
-const markNotificationAsRead = async (params: any) => {
-  return {
-    code: 0,
-    data: { success: true },
-    msg: 'success',
-  }
-}
-
-const getUnreadCount = async () => {
-  return {
-    code: 0,
-    data: {
-      chatCount: 5,
-      notificationCount: 3,
-      total: 8,
-    },
-    msg: 'success',
-  }
-}
-
-// 响应式数据
-const activeTab = ref('chat')
-const chatList = ref<ChatItem[]>([])
-const systemNotifications = ref<SystemNotification[]>([])
-const loading = ref(false)
-const hasMore = ref(true)
-const currentPage = ref(1)
-const pageSize = ref(20)
-
-// 页面加载
-onMounted(() => {
-  loadChatList()
-  loadSystemNotifications()
+const toolType = computed(() => {
+  return toUserID.value?.indexOf(RoleEmu.employer) != -1 ? 'employer' : 'seeker'
 })
-
-// Tab切换
-const onTabChange = (tabName: string) => {
-  activeTab.value = tabName
-  if (tabName === 'chat' && chatList.value.length === 0) {
-    loadChatList()
-  } else if (tabName === 'system' && systemNotifications.value.length === 0) {
-    loadSystemNotifications()
-  }
+const scrollToBottom = () => {
+  scrollToId.value = ''
+  setTimeout(() => {
+    scrollToId.value = 'bottom-anchor'
+  }, 30)
 }
-
-// 加载聊天列表
-const loadChatList = async (reset = false) => {
-  if (loading.value) return
-
-  try {
-    loading.value = true
-
-    if (reset) {
-      currentPage.value = 1
-      chatList.value = []
-    }
-
-    // 调用真实的API接口
-    const params: ChatListParams = {
-      page: currentPage.value,
-      pageSize: pageSize.value,
-    }
-
-    const res = await getChatList({ params })
-
-    if (res.code === 0 && res.data) {
-      const newData = res.data.list || []
-
-      if (reset) {
-        chatList.value = newData
-      } else {
-        chatList.value.push(...newData)
-      }
-
-      hasMore.value = res.data.hasMore
-      currentPage.value++
-      return
-    } else {
-      toast.error(res.msg || '获取聊天列表失败')
-      return
-    }
-  } catch (error) {
-    console.error('加载聊天列表失败:', error)
-    toast.error('加载失败，请重试')
-  } finally {
-    loading.value = false
-  }
-}
-
-// 加载系统通知
-const loadSystemNotifications = async (reset = false) => {
-  if (loading.value) return
-
-  try {
-    loading.value = true
-
-    if (reset) {
-      currentPage.value = 1
-      systemNotifications.value = []
-    }
-
-    const params: NotificationListParams = {
-      page: currentPage.value,
-      pageSize: pageSize.value,
-    }
-
-    const res = await getNotificationList({ params })
-
-    if (res.code === 0 && res.data) {
-      const newData = res.data.list || []
-
-      if (reset) {
-        systemNotifications.value = newData
-      } else {
-        systemNotifications.value.push(...newData)
-      }
-
-      hasMore.value = newData.length === pageSize.value
-      currentPage.value++
-      return
-    } else {
-      toast.error(res.msg || '获取系统通知失败')
-      return
-    }
-  } catch (error) {
-    console.error('加载系统通知失败:', error)
-    toast.error('加载失败，请重试')
-  } finally {
-    loading.value = false
-  }
-}
-
-// 加载更多
-const loadMore = () => {
-  if (activeTab.value === 'chat') {
-    loadChatList(false)
-  } else {
-    loadSystemNotifications(false)
-  }
-}
-
-// 打开聊天
-const openChat = async (item: ChatItem) => {
-  try {
-    // 标记消息为已读
-    if (item.unreadCount > 0) {
-      await markMessageAsRead({
-        body: {
-          conversationId: item.conversationId,
-        },
-      })
-      item.unreadCount = 0
-    }
-  } catch (error) {
-    console.error('标记消息已读失败:', error)
-  }
-
-  // 跳转到聊天详情页面
-  uni.navigateTo({
-    url: `/pages-sub/chat-detail/chat-detail?conversationId=${item.conversationId}&userId=${item.userId}&name=${item.name}`,
+const title = computed(() => {
+  return toolType.value === RoleEmu.employer
+    ? chatObject.value?.companyName || '招聘方'
+    : chatObject.value?.name
+})
+let selfId = computed(() => {
+  let userInfo = uni.getStorageSync('userInfo')
+  return `im_${getRole()}_${userInfo.id}`
+})
+const sendMessage = async (text) => {
+  let userInfo = uni.getStorageSync('userInfo')
+  let res = await getJobPage({
+    params: {
+      str: text,
+      userId: userInfo.id,
+      userType: getRole(),
+    },
   })
+  let resText = await sendTextMessage(toUserID.value, res.data)
+  addMsg([resText.data.message])
 }
-
-// 打开通知详情
-const openNotification = async (item: SystemNotification) => {
-  try {
-    // 标记通知为已读
-    if (!item.isRead) {
-      await markNotificationAsRead({
-        body: {
-          notificationIds: [item.id],
-        },
-      })
-      item.isRead = true
-    }
-  } catch (error) {
-    console.error('标记通知已读失败:', error)
-  }
-
-  // 根据通知类型跳转到不同页面
-  switch (item.type) {
-    case 'job_recommendation':
-      toast.info('跳转到职位推荐页面')
-      // uni.navigateTo({
-      //   url: '/pages-sub/job-recommendation/job-recommendation'
-      // })
-      break
-    case 'interview_invitation':
-      toast.info('跳转到面试邀约页面')
-      // uni.navigateTo({
-      //   url: '/pages-sub/interview-invitation/interview-invitation'
-      // })
-      break
-    case 'application_update':
-      toast.info('跳转到申请状态页面')
-      // uni.navigateTo({
-      //   url: '/pages-sub/application-status/application-status'
-      // })
-      break
-    case 'system_update':
-      toast.info('跳转到系统更新页面')
-      // uni.navigateTo({
-      //   url: '/pages-sub/system-update/system-update'
-      // })
-      break
-    default:
-      toast.info('查看通知详情')
-  }
+let getMessageListFn = async (toUserID, count = 100) => {
+  if (!toUserID) return
+  let id = toUserID.split('_')[2] || ''
+  let chatUserInfo = await getUserByIds({ params: { userIds: id } })
+  chatObject.value = find(chatUserInfo.data, (v) => v.id == id)
+  let res = await getMessageList({
+    toUserID: toUserID,
+    count: count,
+    fromUserID: selfId.value,
+  })
+  addMsg(res.data.messageList)
 }
-
-// 获取通知图标
-const getNotificationIcon = (type: string) => {
-  switch (type) {
-    case 'job_recommendation':
-      return 'eye'
-    case 'interview_invitation':
-      return 'briefcase'
-    case 'application_update':
-      return 'email'
-    case 'system_update':
-      return 'gear'
-    default:
-      return 'info'
-  }
+const addMsg = (list) => {
+  const mappedMessages = list.map((item) => ({
+    ...item,
+    selfId: selfId.value,
+  }))
+  console.log(mappedMessages)
+  messageList.value.push(...mappedMessages)
+  scrollToBottom()
 }
-
-// 获取通知图标背景色
-const getNotificationIconClass = (type: string) => {
-  switch (type) {
-    case 'job_recommendation':
-      return 'bg-green-100'
-    case 'interview_invitation':
-      return 'bg-blue-100'
-    case 'application_update':
-      return 'bg-orange-100'
-    case 'system_update':
-      return 'bg-green-100'
-    default:
-      return 'bg-gray-100'
-  }
+const sendFileFn = async () => {
+  let res = await sendImageMessage(toUserID.value)
+  addMsg([res.data.message])
 }
-
-// 获取通知图标颜色
-const getNotificationIconColor = (type: string) => {
-  switch (type) {
-    case 'job_recommendation':
-      return '#059669'
-    case 'interview_invitation':
-      return '#3b82f6'
-    case 'application_update':
-      return '#f59e0b'
-    case 'system_update':
-      return '#059669'
-    default:
-      return '#6b7280'
+onLoad((option) => {
+  if (option.toUserID) {
+    toUserID.value = option.toUserID
+    setMsgCallback(addMsg)
+    getMessageListFn(toUserID.value)
   }
-}
-
-// 格式化时间
-const formatTime = (time: string) => {
-  const now = dayjs()
-  const messageTime = dayjs(time)
-
-  if (now.diff(messageTime, 'day') === 0) {
-    return messageTime.format('HH:mm')
-  } else if (now.diff(messageTime, 'day') === 1) {
-    return '昨天'
-  } else if (now.diff(messageTime, 'day') < 7) {
-    return messageTime.format('MM-DD')
-  } else {
-    return messageTime.format('YYYY-MM-DD')
-  }
-}
+})
 </script>

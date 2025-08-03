@@ -66,7 +66,7 @@
             </view>
           </scroll-view>
           <!-- 推荐招聘职位标题 -->
-          <template v-if="role === RoleEmu.seeking || !userInfo.token">
+          <template v-if="role === RoleEmu.seeker || !userInfo.token">
             <view class="py-4">
               <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
             </view>
@@ -104,7 +104,7 @@
       <view class="flex flex-col gap-3 mt-3">
         <view
           class="bg-[#F5F6FA] rounded-[6px] flex items-center"
-          @click="handleClick(RoleEmu.seeking)"
+          @click="handleClick(RoleEmu.seeker)"
         >
           <wd-img :width="88" :height="76" src="/static/images/yiren.png" custom-class="mr-5" />
           <view>
@@ -214,7 +214,7 @@ let getDataFn = async (keyword?: string) => {
         favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
       }
     })
-  } else if (role.value === RoleEmu.seeking) {
+  } else if (role.value === RoleEmu.seeker) {
     let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list.map((item) => {
       return {

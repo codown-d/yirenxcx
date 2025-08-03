@@ -133,16 +133,20 @@
       </wd-card>
     </wd-form>
   </view>
+  <yr-page-footer>
+    <wd-button type="success" block custom-class="flex-1 " :round="false" @click="handleContact">
+      立即联系
+    </wd-button>
+  </yr-page-footer>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
-import { merge } from 'lodash'
-import { useMessage } from 'wot-design-uni'
-import { jobTypeColumns, salaryColumns } from '@/constant'
+import { RoleEmu, useRoleStore } from '@/store'
+
+const { getRole } = useRoleStore()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -164,7 +168,9 @@ const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data
 }
-
+const handleContact = () => {
+  navigateToSub(`/chat/chat?toUserID=im_${RoleEmu.seeker}_${userInfo.value.id}`)
+}
 onShow(() => {
   loadUserData()
 })

@@ -38,7 +38,11 @@
           />
         </wd-cell>
         <post-picker title="期望职位" :modelValue="formData.post"></post-picker>
-        <yr-location-picker title="工作地点" v-model="formData.locationCode"></yr-location-picker>
+        <yr-location-picker
+          title="工作地点"
+          v-model="formData.locationCode"
+          @confirmLabel="(val) => (formData.location = val)"
+        ></yr-location-picker>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -127,9 +131,13 @@
         <text class="text-base font-bold text-gray-900">其他选项</text>
       </view>
       <wd-card>
-        <!-- 是否公开 -->
         <wd-cell title="公开工作">
-          <wd-switch v-model="formData.other" />
+          <wd-picker
+            v-model="formData.status"
+            :columns="experienceColumns"
+            placeholder="请选择"
+            prop="status"
+          />
         </wd-cell>
       </wd-card>
     </wd-form>
@@ -164,13 +172,11 @@ import {
   salaryColumns,
 } from '@/constant'
 import { useCategoriesStore, useLocationStore } from '@/store'
-import { createJobSeeker } from '@/service/app'
+import { createJobSeeker, YRZPJobSeekerCreateReqVO } from '@/service/app'
 import { navigateBack } from '@/utils'
-const { getLocation, locations } = useLocationStore()
-const { categories, removeCategory, getCategory } = useCategoriesStore()
 
 // 表单数据
-const formData = ref({
+const formData = ref<YRZPJobSeekerCreateReqVO>({
   title: '',
   description: '',
   jobType: '',
@@ -217,6 +223,8 @@ const postData = computed(() => {
     jobSpecific: post[2],
     salaryMin,
     salaryMax,
+    status: 1,
+    headcount: 5,
   }
 })
 // 发布求职信息

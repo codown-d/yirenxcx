@@ -6308,12 +6308,6 @@ export type CommonResultListYRZPMessageSessionRespAppVO = {
   msg?: string;
 };
 
-export type CommonResultListYRZPWeiGuiDO = {
-  code?: number;
-  data?: YRZPWeiGuiDO[];
-  msg?: string;
-};
-
 export type CommonResultListYRZPWeiGuiRespAppVO = {
   code?: number;
   data?: YRZPWeiGuiRespAppVO[];
@@ -11341,6 +11335,10 @@ export type FormTriggerSetting = {
   deleteFields?: string[];
 };
 
+export type genUserSigParams = {
+  userId: string;
+};
+
 export type getAccessTokenPageParams = {
   /** 用户编号 */
   userId: number;
@@ -13650,6 +13648,7 @@ export type getJobPage3Params = {
 export type getJobPageParams = {
   str: string;
   userId: number;
+  userType: string;
   jobId?: number;
   seekerId?: number;
 };
@@ -15692,12 +15691,12 @@ export type getWeiGuiPageParams = {
 };
 
 export type getWeiGuiParams = {
-  /** 用户编号 */
-  userId: number;
   /** 职位编号 */
   jobId: number;
   /** 求职编号 */
   seekerId: number;
+  /** 用户编号 */
+  userId: unknown;
 };
 
 export type getWorkflowPageParams = {
@@ -19905,7 +19904,6 @@ export type ResponseModel = {
   repCode?: string;
   repMsg?: string;
   repData?: Record<string, unknown>;
-  success?: boolean;
   repCodeEnum?:
     | 'SUCCESS'
     | 'ERROR'
@@ -19926,6 +19924,7 @@ export type ResponseModel = {
     | 'API_REQ_LOCK_GET_ERROR'
     | 'API_REQ_LIMIT_CHECK_ERROR'
     | 'API_REQ_LIMIT_VERIFY_ERROR';
+  success?: boolean;
 };
 
 export type revokeTokenParams = {
@@ -22533,19 +22532,6 @@ export type YRZPWeiGuiCreateReqVO = {
   /** 岗位违规 */
   jobId?: number;
   /** 求职者违规 */
-  seekerId?: number;
-};
-
-export type YRZPWeiGuiDO = {
-  createTime?: string;
-  updateTime?: string;
-  creator?: string;
-  updater?: string;
-  deleted?: boolean;
-  id?: number;
-  userId?: number;
-  minGanCi?: string;
-  jobId?: number;
   seekerId?: number;
 };
 

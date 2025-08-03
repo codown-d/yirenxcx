@@ -24,7 +24,7 @@
         </wd-button>
       </template>
     </wd-navbar>
-    <jobseeker v-if="roleType === RoleEmu.seeking"></jobseeker>
+    <jobseeker v-if="roleType === RoleEmu.seeker"></jobseeker>
     <employer v-else></employer>
     <yr-margin-footer />
   </view>
@@ -43,7 +43,7 @@ const changeRole = () => {
   navigateToSub('/role-switch/role-switch')
 }
 const roleLabel = computed(() => {
-  return getRole() === RoleEmu.seeking ? '招聘方' : '求职者'
+  return getRole() === RoleEmu.seeker ? '招聘方' : '求职者'
 })
 onShow(() => {
   roleType.value = getRole()

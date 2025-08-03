@@ -71,11 +71,12 @@
     {
       "path": "pages/message/message",
       "type": "page",
-      "layout": "mine",
+      "layout": "login",
       "style": {
         "navigationBarTitleText": "消息",
         "navigationStyle": "custom"
-      }
+      },
+      "isTab": true
     },
     {
       "path": "pages/mine/mine",
@@ -120,9 +121,10 @@
         {
           "path": "chat/chat",
           "type": "page",
+          "layout": "blank",
           "style": {
             "navigationBarTitleText": "消息",
-            "navigationStyle": "default"
+            "navigationStyle": "custom"
           }
         },
         {

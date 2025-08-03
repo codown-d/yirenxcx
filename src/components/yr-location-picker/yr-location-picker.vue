@@ -74,12 +74,14 @@ watch(
   { immediate: true },
 )
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'confirmLabel'])
 
 // watch(pickerValue, (val) => {
 //   emit('update:modelValue', val)
 // })
-function handleConfirm({ value }) {
+function handleConfirm({ value, selectedItems }) {
+  console.log(value, selectedItems)
   emit('update:modelValue', value.join(','))
+  emit('confirmLabel', selectedItems.map((i) => i.label).join(','))
 }
 </script>

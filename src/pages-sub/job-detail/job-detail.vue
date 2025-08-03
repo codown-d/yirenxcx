@@ -177,7 +177,8 @@ import {
 } from '@/service/app'
 import { useConnect } from '@/hooks'
 import { merge } from 'lodash'
-import { navigateTo } from '@/utils'
+import { navigateTo, navigateToSub } from '@/utils'
+import { RoleEmu } from '@/store'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
 const loading = ref(false)
@@ -231,15 +232,7 @@ const benefits = computed(() => {
 
 // 立即联系
 const handleContact = () => {
-  uni.makePhoneCall({
-    phoneNumber: '400-123-4567',
-    success: () => {
-      console.log('拨打电话成功')
-    },
-    fail: () => {
-      toast.error('拨打电话失败')
-    },
-  })
+  navigateToSub(`/chat/chat?toUserID=im_${RoleEmu.employer}_${jobDetail.value.companyId}`)
 }
 
 // 立即申请

@@ -63,9 +63,12 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
-import { RoleEmu, useRoleStore } from '@/store'
+import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import { navigateBack, switchTab } from '@/utils'
+import { useIm } from '@/hooks'
 const { setRole, getRole } = useRoleStore()
+const { getUserInfo } = useUserStore()
+let { imLogin } = useIm()
 console.log(getRole(), 23)
 const currentUserRole = ref<RoleEmu>(getRole())
 
@@ -94,8 +97,11 @@ const goBack = () => {
  * Toggles the user's role between 'seeking' and 'employer' and redirects to the index page.
  * @param {any} role - The target role to switch to (currently unused in implementation)
  */
-const showSwitchConfirm = (role: any) => {
-  setRole(currentUserRole.value === RoleEmu.seeking ? RoleEmu.employer : RoleEmu.seeking)
+const showSwitchConfirm = async (role: any) => {
+  setRole(currentUserRole.value === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker)
+  let res = await getUserInfo()
+  console.log(res)
+  await imLogin(res.id)
   switchTab('/index/index')
   // navigateBack()
 }

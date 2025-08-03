@@ -17,7 +17,7 @@ export const ROLE_SWITCH_CONFIG = {
 // 用户角色配置
 export const USER_ROLES = [
   {
-    key: RoleEmu.seeking,
+    key: RoleEmu.seeker,
     name: '意人',
     description: '找工作 投简历',
     avatar: '/static/images/yiren.png',
