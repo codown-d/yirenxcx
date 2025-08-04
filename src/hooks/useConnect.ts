@@ -51,10 +51,9 @@ export function useConnect() {
           field: 'guanZhuJobSeekerId',
         },
       })
-      console.log(res)
       let userInfos = await getJobSeekerByUserId({
         params: {
-          userIds: res.data.map((e) => e.guanZhuId),
+          userIds: res.data.map((e) => e.guanZhuJobSeekerId).join(','),
         },
       })
       return userInfos.data
@@ -66,7 +65,7 @@ export function useConnect() {
       })
       let jobInfos = await getJob({
         params: {
-          ids: res.data.map((e) => e.guanZhuId),
+          ids: res.data.map((e) => e.guanZhuJobId).join(','),
         },
       })
       return jobInfos.data

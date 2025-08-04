@@ -1,6 +1,6 @@
 <route lang="json5" type="page">
 {
-  layout: 'common',
+  layout: 'login',
   style: {
     navigationBarTitleText: ' ',
     navigationStyle: 'custom',
@@ -69,7 +69,6 @@ import { useIm } from '@/hooks'
 const { setRole, getRole } = useRoleStore()
 const { getUserInfo } = useUserStore()
 let { imLogin } = useIm()
-console.log(getRole(), 23)
 const currentUserRole = ref<RoleEmu>(getRole())
 
 // 当前角色信息
@@ -101,7 +100,7 @@ const showSwitchConfirm = async (role: any) => {
   setRole(currentUserRole.value === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker)
   let res = await getUserInfo()
   console.log(res)
-  await imLogin(res.id)
+  await imLogin(res.data.id)
   switchTab('/index/index')
   // navigateBack()
 }

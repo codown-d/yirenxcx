@@ -128,6 +128,16 @@
           }
         },
         {
+          "path": "employer-detail/employer-detail",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "公司详情",
+            "navigationStyle": "custom",
+            "className": "bg-bar-white"
+          }
+        },
+        {
           "path": "forum-publish/forum-publish",
           "type": "page",
           "layout": "common",
@@ -209,15 +219,6 @@
           }
         },
         {
-          "path": "online-resume/online-resume",
-          "type": "page",
-          "layout": "common",
-          "style": {
-            "navigationBarTitleText": "在线简历",
-            "navigationStyle": "custom"
-          }
-        },
-        {
           "path": "preview-resume/preview-resume",
           "type": "page",
           "layout": "common",
@@ -229,19 +230,11 @@
         {
           "path": "profile-edit/profile-edit",
           "type": "page",
-          "layout": "common",
+          "layout": "default",
           "style": {
-            "navigationBarTitleText": "个人资料",
-            "navigationStyle": "custom"
-          }
-        },
-        {
-          "path": "profile-settings/profile-settings",
-          "type": "page",
-          "layout": "common",
-          "style": {
-            "navigationBarTitleText": "个人资料",
-            "navigationStyle": "custom"
+            "navigationBarTitleText": "基本信息",
+            "navigationStyle": "custom",
+            "className": "bg-bar-white"
           }
         },
         {
@@ -265,10 +258,20 @@
         {
           "path": "role-switch/role-switch",
           "type": "page",
-          "layout": "common",
+          "layout": "login",
           "style": {
             "navigationBarTitleText": " ",
             "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "seeker-detail/seeker-detail",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "在线简历",
+            "navigationStyle": "custom",
+            "className": "bg-bar-white"
           }
         },
         {

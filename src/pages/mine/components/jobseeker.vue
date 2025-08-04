@@ -3,14 +3,14 @@
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
       <image
-        :src="userInfo.avatar"
+        :src="userInfo?.avatar"
         mode="aspectFill"
         class="mr-4 w-20 h-20 rounded-full bg-[#F5F6FA]"
       />
       <view class="flex-1">
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
-            <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
+            <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.name }}</text>
             <view class="bg-[#FFDD7E] text-[#B16D00] text-[20rpx] px-2 py-1 rounded-full">
               实名认证
             </view>
@@ -20,14 +20,14 @@
           </view>
         </view>
         <text class="text-[22rpx] text-gray-500 block mb-1" v-if="false">
-          资料完整度{{ userInfo.completeness || 80 }}%，完善资料获得更多机会
+          资料完整度{{ userInfo?.completeness || 80 }}%，完善资料获得更多机会
         </text>
       </view>
     </view>
 
     <!-- 专业信息 -->
     <view class="mb-2">
-      <text class="text-4">专业：{{ userInfo.teChang }}</text>
+      <text class="text-4">专业：{{ userInfo?.teChang }}</text>
       <view class="flex flex-wrap gap-2 mb-3 mt-2">
         <wd-tag
           v-for="(tag, index) in tags"
@@ -42,27 +42,33 @@
 
     <!-- 基本信息 -->
     <view class="flex items-center text-gray-500 justify-between mb-4">
-      <yr-img-title url="jingyan.svg" :title="userInfo.experience" />
-      <yr-img-title url="school.svg" :title="userInfo.biYeYuanXiao" />
-      <yr-img-title url="weizhi.svg" :title="userInfo.location" />
+      <yr-img-title url="jingyan.svg" :title="userInfo?.experience" />
+      <yr-img-title url="school.svg" :title="userInfo?.biYeYuanXiao" />
+      <yr-img-title url="weizhi.svg" :title="userInfo?.location" />
     </view>
     <wd-divider custom-class="!px-0" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
-      <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.browsed }}</text>
+      <view class="text-center flex-1" v-if="false">
+        <text class="text-6 font-bold text-gray-800 block pb-2">
+          {{ userInfo?.jianLiLiuLan || 0 }}
+        </text>
         <text class="text-4 text-gray-500">简历浏览</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.followed }}</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ userInfo?.guanZhu || 0 }}</text>
         <text class="text-4 text-gray-500">获得关注</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.applied }}</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">
+          {{ userInfo?.touDiJianLi || 0 }}
+        </text>
         <text class="text-4 text-gray-500">投递简历</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">{{ stats.interviewed }}</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">
+          {{ userInfo?.mianShiYaoQing || 0 }}
+        </text>
         <text class="text-4 text-gray-500">面试邀请</text>
       </view>
     </view>
@@ -147,15 +153,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { MemberTagRespVO, MemberUserDO } from '@/service/app'
+import { MemberUserDO } from '@/service/app'
 
 const { getUserInfo } = useUserStore()
 // 用户信息
-const userInfo = ref<MemberUserDO>({})
+const userInfo = ref<MemberUserDO>()
 
 let tools = ref([
   {
@@ -192,11 +198,11 @@ const stats = ref({
 const loadUserData = async () => {
   let res = await getUserInfo()
   userInfo.value = res.data
+  console.log(res)
   console.log(res.data)
 }
 const tags = computed(() => {
-  console.log(userInfo.value)
-  return userInfo.value.tags?.split(',')
+  return userInfo.value?.tags?.split(',')
 })
 
 // 升级VIP
@@ -206,7 +212,7 @@ const upgradeVip = () => {
 
 // 跳转到在线简历
 const goToOnlineResume = () => {
-  navigateToSub('/online-resume/online-resume')
+  navigateToSub('/personal-detail/personal-detail')
 }
 
 // 预览简历

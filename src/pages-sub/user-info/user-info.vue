@@ -146,8 +146,6 @@ import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { RoleEmu, useRoleStore } from '@/store'
 
-const { getRole } = useRoleStore()
-
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
   qiWangXinZi: '',

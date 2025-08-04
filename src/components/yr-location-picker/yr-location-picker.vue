@@ -52,7 +52,7 @@ const columnChange = ({ selectedItem, resolve, finish }) => {
 watch(
   () => props.modelValue,
   (val) => {
-    const arr = val.split(',').filter((item) => item)
+    const arr = (val || '').split(',').filter((item) => item)
     pickerValue.value = arr
     area.value = [
       colPickerData.map((item) => {
@@ -76,9 +76,6 @@ watch(
 
 const emit = defineEmits(['update:modelValue', 'confirmLabel'])
 
-// watch(pickerValue, (val) => {
-//   emit('update:modelValue', val)
-// })
 function handleConfirm({ value, selectedItems }) {
   console.log(value, selectedItems)
   emit('update:modelValue', value.join(','))

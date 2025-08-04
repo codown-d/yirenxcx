@@ -169,10 +169,8 @@ import {
   createLiJiTouDi,
   createZuJi,
   getJob,
-  getJob1,
   getJobPage1,
   getUserByIds,
-  getUserInfo,
   YRZPJobDO,
 } from '@/service/app'
 import { useConnect } from '@/hooks'

@@ -100,6 +100,7 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { MY_FOLLOWS_CONFIG, MOCK_FOLLOW_DATA } from '@/constant/my-follows'
+import { YRZPJobSeekerDO } from '@/service/app'
 const { getGuanZhu } = useConnect()
 
 // 页面状态

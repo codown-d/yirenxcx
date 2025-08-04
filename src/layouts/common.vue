@@ -3,7 +3,10 @@
     <view class="text-[#252525] relative">
       <scroll-view :scroll-y="true" class="h-100vh relative" @scroll="handleScroll">
         <view class="relative">
-          <view class="absolute top-0 h-full w-full z--1"></view>
+          <view
+            class="absolute top-0 h-full w-full z--1"
+            :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 100rpx,rgba(245, 246, 250, 1) 200px);'"
+          ></view>
           <wd-navbar
             :bordered="false"
             :left-arrow="!isTab"

@@ -35,7 +35,7 @@
           }"
           class="fixed h-[50px] z-10 bg-[#fff] top-0 w-full flex items-center justify-center"
         >
-          <Tool :type="toolType" :chatObjectId="chatObject.id" />
+          <Tool :type="toolType" :chat-object-id="chatObject.id" />
         </view>
         <MessageItem
           v-for="item in messageList"

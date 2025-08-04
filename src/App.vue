@@ -68,12 +68,17 @@ image {
   background: linear-gradient(
     180deg,
     rgba(56, 200, 164, 0.25) 0%,
-    rgba(56, 200, 164, 0) 20%,
-    rgba(255, 255, 255, 1) 50%
+    rgba(56, 200, 164, 0) 30%,
+    rgba(255, 255, 255, 1) 60%
   );
 }
+
 .bg-linear-100 {
   background: linear-gradient(180deg, #eefffa 10%, #ffffff 41.97%, #ffffff 100%);
+}
+.bg-bar-white {
+  background-color: #ffffff !important;
+  opacity: 1;
 }
 .wd-tag__text {
   white-space: nowrap !important;

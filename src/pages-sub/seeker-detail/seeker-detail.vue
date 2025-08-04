@@ -1,15 +1,15 @@
 <route lang="json5" type="page">
 {
-  layout: 'common',
+  layout: 'default',
   style: {
     navigationBarTitleText: '在线简历',
     navigationStyle: 'custom',
+    className: 'bg-bar-white',
   },
 }
 </route>
-
 <template>
-  <view class="mt-4 pb-16">
+  <view class="pb-16 pt-4">
     <!-- 用户基本信息卡片 -->
     <wd-form ref="form" :model="userInfo">
       <wd-card>
@@ -60,37 +60,20 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(skill, index) in tags"
-            :key="index"
-            class="flex items-center bg-green-50 text-green-600 text-sm px-2 py-1 rounded-1 border border-green-200"
-          >
-            <text class="mr-1">{{ skill }}</text>
-            <wd-icon name="close" size="14px" @click="removeSkill(index)" />
-          </view>
-        </view>
+        <yr-modal-picker v-model="userInfo.tags" ref="tagsRef" modal-title="请输入技能标签" />
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">代表作品</text>
         <wd-icon name="add-circle" custom-class="text-5" @click="addWork" />
       </view>
-      <wd-card v-if="daiBiaoZuo.length">
-        <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(work, index) in daiBiaoZuo"
-            :key="index"
-            class="flex items-center justify-between py-3 px-4 bg-[#E9F7F4] rounded-2 mb-2 last:mb-0 w-full"
-          >
-            <text class="text-sm text-[#248069]">{{ work }}</text>
-            <wd-icon
-              name="close-normal"
-              custom-class="text-5 text-[#248069]"
-              @click.stop="removeDaiBiaoZuo(index)"
-            ></wd-icon>
-          </view>
-        </view>
+      <wd-card>
+        <yr-modal-picker
+          v-model="userInfo.daiBiaoZuo"
+          ref="daiBiaoZuoRef"
+          modal-title="请输入代表作品"
+          className="w-full justify-between !px-4 !py-3"
+        />
       </wd-card>
       <!-- 个人展示 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
@@ -159,26 +142,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { navigateBack, navigateTo, navigateToSub } from '@/utils'
+import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
-import { merge } from 'lodash'
-import { useMessage } from 'wot-design-uni'
 import { jobTypeColumns, salaryColumns } from '@/constant'
 
 // 用户信息数据
-const userInfo = ref<MemberUserDO>({
-  qiWangXinZi: '',
-})
-const daiBiaoZuo = ref([])
-const tags = ref([])
+const userInfo = ref<MemberUserDO>({})
+const tagsRef = ref()
+const daiBiaoZuoRef = ref()
 
-watch(
-  () => userInfo.value,
-  (value) => {
-    tags.value = value.tags.split(',')
-    daiBiaoZuo.value = value.daiBiaoZuo.split(',')
-  },
-)
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
@@ -189,33 +161,11 @@ const loadUserData = async () => {
   userInfo.value = res.data
 }
 
-// 移除技能
-const removeSkill = (index: number) => {
-  tags.value.splice(index, 1)
-}
-const removeDaiBiaoZuo = (index: number) => {
-  daiBiaoZuo.value.splice(index, 1)
-}
-// 添加技能
-let tagValue = ref('')
 const addSkill = async () => {
-  let res = await message.prompt({
-    title: '请输入技能标签',
-    inputValue: tagValue.value,
-    inputPattern: /^(?!\s*$).+/,
-  })
-  tags.value.push(res.value)
+  tagsRef.value.addItem()
 }
-// 添加作品
-const message = useMessage()
-let workValue = ref('')
 const addWork = async () => {
-  let res = await message.prompt({
-    title: '请输入代表作品名称',
-    inputValue: workValue.value,
-    inputPattern: /^(?!\s*$).+/,
-  })
-  daiBiaoZuo.value.push(res.value)
+  daiBiaoZuoRef.value.addItem()
 }
 
 // 预览简历
@@ -225,10 +175,7 @@ const previewResume = () => {
 
 const saveResume = async () => {
   await updateUser({
-    body: merge({}, userInfo.value, {
-      tags: tags.value.join(','),
-      daiBiaoZuo: daiBiaoZuo.value.join(','),
-    }),
+    body: userInfo.value,
   })
   toast.success('保存成功')
   setTimeout(() => {

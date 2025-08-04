@@ -1,16 +1,16 @@
 <template>
   <wd-config-provider :themeVars="theme">
-    <view class="text-[#252525]">
+    <view class="text-[#252525] bg-[#F5F6FA]">
       <scroll-view :scroll-y="true" class="h-100vh" @scroll="handleScroll">
         <wd-navbar
           :bordered="false"
           :left-arrow="!isTab"
           :left-text="title"
-          :custom-class="` ${style.className}`"
+          :custom-class="`${style.className}`"
           fixed
           @click-left="handleClickLeft"
           safeAreaInsetTop
-          :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
+          :custom-style="`background-color: rgba(255,255,255, ${opacity})`"
         ></wd-navbar>
         <view
           class="bg-transparent"
@@ -19,7 +19,6 @@
           }"
         >
           <slot></slot>
-
           <yr-margin-footer />
         </view>
       </scroll-view>
@@ -41,6 +40,7 @@ const theme: ConfigProviderThemeVars = { ...themeVars }
 const { safeAreaInsets } = getSystemInfoSync()
 const { title, getCurrentPage } = useNavigation()
 const { isTab = false, style } = getCurrentPage()
+console.log(style, title)
 const handleClickLeft = () => {
   navigateBack()
 }

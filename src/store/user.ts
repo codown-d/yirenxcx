@@ -166,7 +166,7 @@ export const useUserStore = defineStore(
         const userData = res.data
         // setUserInfo(userData)
         uni.setStorageSync('userInfo', userData)
-        return res.data
+        return res
       }
     }
     /**

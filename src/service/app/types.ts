@@ -2017,7 +2017,9 @@ export type AppMemberUserUpdateReqVO = {
   /** 用户昵称 */
   nickname: string;
   /** 头像 */
-  avatar: string;
+  avatar?: string;
+  /** 公司logo */
+  logo?: string;
   /** 性别 */
   sex: number;
   /** 手机号 */
@@ -16598,6 +16600,7 @@ export type MemberUserDO = {
   recruitment?: string;
   companyImages?: string;
   companyVideos?: string;
+  logo?: string;
   attestation?: number;
   jianLiLiuLan?: number;
   guanZhu?: number;
@@ -19904,6 +19907,7 @@ export type ResponseModel = {
   repCode?: string;
   repMsg?: string;
   repData?: Record<string, unknown>;
+  success?: boolean;
   repCodeEnum?:
     | 'SUCCESS'
     | 'ERROR'
@@ -19924,7 +19928,6 @@ export type ResponseModel = {
     | 'API_REQ_LOCK_GET_ERROR'
     | 'API_REQ_LIMIT_CHECK_ERROR'
     | 'API_REQ_LIMIT_VERIFY_ERROR';
-  success?: boolean;
 };
 
 export type revokeTokenParams = {
@@ -21972,7 +21975,7 @@ export type YRZPJobCreateReqVO = {
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
-  status: number;
+  status: string;
   /** 具体要求 */
   requirementDetails?: string;
   /** 到岗时间 */
@@ -22074,7 +22077,7 @@ export type YRZPJobRespVO = {
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
-  status: number;
+  status: string;
   /** 具体要求 */
   requirementDetails?: string;
   /** 到岗时间 */
@@ -22127,7 +22130,7 @@ export type YRZPJobSeekerCreateReqVO = {
   /** 获奖情况 */
   award?: string;
   /** 状态 */
-  status: number;
+  status?: string;
   /** 是否认证 */
   isCertified?: boolean;
   /** 联系电话 */
@@ -22227,7 +22230,7 @@ export type YRZPJobSeekerRespVO = {
   /** 获奖情况 */
   award?: string;
   /** 状态 */
-  status: number;
+  status?: string;
   /** 是否认证 */
   isCertified?: boolean;
   /** 联系电话 */
@@ -22292,7 +22295,7 @@ export type YRZPJobSeekerUpdateReqVO = {
   /** 获奖情况 */
   award?: string;
   /** 状态 */
-  status: number;
+  status?: string;
   /** 是否认证 */
   isCertified?: boolean;
   /** 联系电话 */
@@ -22369,7 +22372,7 @@ export type YRZPJobUpdateReqVO = {
   /** 职位福利 */
   benefits?: string;
   /** 状态 */
-  status: number;
+  status: string;
   /** 具体要求 */
   requirementDetails?: string;
   /** 到岗时间 */

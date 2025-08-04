@@ -54,7 +54,7 @@ let props = defineProps({
   },
 })
 
-const emit = defineEmits(['onChange'])
+const emit = defineEmits(['onChange', 'register'])
 const loginLoading = ref(false)
 
 // 微信手机号授权登录（需要用户主动触发）
