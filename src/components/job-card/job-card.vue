@@ -20,27 +20,9 @@
       <yr-salary :salaryMin="jobData.salaryMin" :salaryMax="jobData.salaryMax" />
     </view>
 
-    <!-- 标签列表 -->
-    <view class="flex flex-wrap gap-2 mb-2">
-      <view
-        v-for="tag in requirementDetails"
-        :key="tag"
-        class="bg-teal-50 text-teal-600 text-3 px-2 py-1 rounded-1"
-      >
-        {{ tag }}
-      </view>
-    </view>
-    <view class="flex items-start justify-between gap-3 mb-3">
-      <view class="flex flex-wrap gap-2">
-        <view
-          v-for="tag in benefits"
-          :key="tag"
-          class="bg-[#F5F6FA] text-[#555555] text-3 px-2 py-1 rounded-1"
-        >
-          {{ tag }}
-        </view>
-      </view>
-      <!-- 收藏按钮 -->
+    <yr-tag-list v-model="jobData.requirementDetails" />
+    <view class="flex items-center justify-between gap-3 mb-3 mt-3">
+      <yr-tag-list v-model="jobData.benefits" class-name="!bg-[#F5F6FA] !text-[#555555]" />
       <view class="active:opacity-70 transition-opacity duration-200" @click.stop="handleFavorite">
         <wd-icon
           :name="isFavorited ? 'heart-filled' : 'heart'"
@@ -49,7 +31,6 @@
         />
       </view>
     </view>
-    <!-- 底部信息：公司、地点、时间 -->
     <view class="flex items-center justify-between">
       <view class="flex items-center gap-4">
         <yr-img-title :title="jobData.companyName" url="jigou.svg" />
@@ -77,14 +58,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const isFavorited = ref(props.favorited)
-const benefits = computed(() => {
-  console.log(props)
-  return props.jobData.benefits.split(',')
-})
-const requirementDetails = computed(() => {
-  console.log(props)
-  return props.jobData.requirementDetails.split(',')
-})
+
 watch(
   () => props.favorited,
   (newVal) => {
@@ -95,7 +69,8 @@ watch(
 const emit = defineEmits(['click', 'favorite'])
 const handleCardClick = () => {
   emit('click', props.jobData)
-  navigateToSub(`/job-detail/job-detail?id=${props.jobData.id}`)
+  console.log(props.jobData)
+  navigateToSub(`/job-detail/job-detail?id=${props.jobData.JobId}`)
 }
 
 const handleFavorite = () => {

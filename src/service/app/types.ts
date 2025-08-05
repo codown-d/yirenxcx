@@ -2130,6 +2130,8 @@ export type AppMemberUserUpdateReqVO = {
   shouDaoJianLi?: number;
   /** 面试安排 */
   mianShiAnPai?: number;
+  /** 工作经验 */
+  gongZuoJingYan?: string;
 };
 
 export type AppOrderExpressTrackRespDTO = {
@@ -16611,6 +16613,7 @@ export type MemberUserDO = {
   shouDaoJianLi?: number;
   mianShiAnPai?: number;
   vipEndTime?: string;
+  gongZuoJingYan?: string;
 };
 
 export type MemberUserRespVO = {
@@ -21954,7 +21957,7 @@ export type YRZPJobCreateReqVO = {
   location: string;
   /** 工作地点编码 */
   locationCode: string;
-  /** 职位类型 */
+  /** 演出类型 */
   performanceType?: string;
   /** 职位领域 */
   performanceDomain?: string;
@@ -22056,7 +22059,7 @@ export type YRZPJobRespVO = {
   location: string;
   /** 工作地点编码 */
   locationCode: string;
-  /** 职位类型 */
+  /** 演出类型 */
   performanceType?: string;
   /** 职位领域 */
   performanceDomain?: string;
@@ -22351,7 +22354,7 @@ export type YRZPJobUpdateReqVO = {
   location: string;
   /** 工作地点编码 */
   locationCode: string;
-  /** 职位类型 */
+  /** 演出类型 */
   performanceType?: string;
   /** 职位领域 */
   performanceDomain?: string;

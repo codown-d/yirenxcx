@@ -48,7 +48,7 @@
         </view>
         <view class="mb-1">
           <text class="text-sm text-gray-600">
-            {{ seekerData.age }}岁 • {{ seekerData.category }} • {{ seekerData.experience }}
+            {{ seekerData.age }}岁 • {{ seekerData.category }} • {{ seekerData.gongZuoJingYan }}
           </text>
         </view>
       </view>
@@ -56,16 +56,9 @@
 
     <!-- 标签列表 -->
     <view class="flex flex-wrap gap-1.5 mb-2">
-      <view
-        v-for="tag in tags"
-        :key="tag"
-        class="bg-green-50 text-green-600 text-xs px-2 py-1 rounded-1 border border-green-100"
-      >
-        {{ tag }}
-      </view>
+      <yr-tag-list v-model="seekerData.advantage" class-name="!bg-[#F5F6FA] !text-[#555555]" />
     </view>
-    <yr-img-title :title="seekerData.school + ' ' + seekerData.specialty" url="school.svg" />
-    <!-- 联系方式和期望薪资 -->
+    <yr-img-title :title="seekerData.biYeYuanXiao" url="school.svg" />
     <view class="flex items-center justify-between text-sm mt-2">
       <yr-img-title :title="seekerData.contactMobile" url="lxdh.svg" />
       <yr-time-now :time="Number(seekerData.createTime)" />
@@ -88,11 +81,10 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
+console.log(props)
 
 const isFavorited = ref(props.favorited)
-const tags = computed(() => {
-  return [props.seekerData.advantage, props.seekerData.certificate]
-})
+
 watch(
   () => props.favorited,
   (newVal) => {

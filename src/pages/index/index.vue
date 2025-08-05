@@ -84,7 +84,7 @@
             <view class="py-4">
               <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
             </view>
-            <job-seeker-card
+            <seeker-card
               v-for="seeker in seekerList"
               :key="seeker.id"
               :seeker-data="seeker"
@@ -144,18 +144,17 @@
 </template>
 
 <script lang="ts" setup>
-import { FILTER_TAGS, FilterTag, JOB_POSITIONS, type JobPosition } from '@/constant/recruitment'
-import { JOB_SEEKERS, type JobSeeker } from '@/constant/job-seeking'
-import { getSystemInfoSync, navigateTo, navigateToSub, switchTab } from '@/utils'
+import { FILTER_TAGS, FilterTag } from '@/constant/recruitment'
+import { getSystemInfoSync, navigateToSub } from '@/utils'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import {
   getBannerList,
-  getJobPage,
   getJobPage1,
   getJobSeekerPage,
   YRZPJobDO,
   YRZPJobSeekerDO,
 } from '@/service/app'
+import { merge } from 'lodash'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -209,16 +208,21 @@ let getDataFn = async (keyword?: string) => {
   if (role.value === RoleEmu.employer) {
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     seekerList.value = res.data.list.map((item) => {
+      let info = JSON.parse(item.info || '{}')
+      let obj = merge({}, item, info)
       return {
-        ...item,
+        ...obj,
         favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
       }
     })
+    console.log(seekerList.value)
   } else if (role.value === RoleEmu.seeker) {
     let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list.map((item) => {
+      let info = JSON.parse(item.info || '{}')
+      let obj = merge({}, item, info, { JobId: item.id })
       return {
-        ...item,
+        ...obj,
         favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
       }
     })

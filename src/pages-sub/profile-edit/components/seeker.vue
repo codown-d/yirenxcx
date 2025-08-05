@@ -2,9 +2,14 @@
   <view class="mx-4 mt-2">
     <!-- 基本信息 -->
     <text class="text-base font-semibold text-gray-900 block mb-4">基本信息</text>
-    <wd-form ref="form" :model="userForm" errorType="toast">
+    <wd-form
+      ref="form"
+      :model="userForm"
+      errorType="toast"
+      custom-class="rounded-2 overflow-hidden"
+    >
       <!-- 头像 -->
-      <wd-cell title="头像">
+      <wd-cell title="头像" custom-class="pt-2">
         <yr-upload :limit="1" v-model="userForm.avatar"></yr-upload>
       </wd-cell>
 
@@ -51,6 +56,13 @@
       <yr-picker v-model="userForm.sex" :columns="SEX" title="性别"></yr-picker>
       <!-- 年龄 -->
       <yr-picker v-model="userForm.age" :columns="AGE" title="年龄"></yr-picker>
+      <!-- 年龄 -->
+      <yr-picker
+        class="pb-2"
+        v-model="userForm.gongZuoJingYan"
+        :columns="experienceColumns"
+        title="工作经验"
+      ></yr-picker>
     </wd-form>
   </view>
 
@@ -72,7 +84,7 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/app'
-import { SEX, AGE, XUELI } from '@/constant'
+import { SEX, AGE, XUELI, experienceColumns } from '@/constant'
 import { navigateBack } from '@/utils'
 import { merge } from 'lodash'
 
@@ -82,6 +94,7 @@ const loading = ref(false)
 
 const loadUserInfo = async () => {
   const res = await getUserInfo({})
+  console.log(res.data)
   userForm.value = res.data
 }
 
@@ -90,13 +103,14 @@ const saveProfile = async () => {
   await form.value.validate()
   try {
     loading.value = true
+    console.log(userForm.value)
     const res = await updateUser({
       body: merge({}, userForm.value),
     })
     if (res.code === 0) {
       toast.success('保存成功')
       setTimeout(() => {
-        navigateBack()
+        // navigateBack()
       }, 500)
     }
   } finally {

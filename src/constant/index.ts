@@ -43,12 +43,12 @@ export const AGE = new Array(34).fill('').map((_, index) => {
   }
 })
 export const SEX = [
-  { label: '女', value: 1 },
-  { label: '男', value: 2 },
-  { label: '保密', value: 0 },
+  { label: '女', value: '女' },
+  { label: '男', value: '男' },
+  { label: '保密', value: '保密' },
 ]
 export const XUELI = [
-  { label: '本科', value: 1 },
-  { label: '专科', value: 2 },
-  { label: '保密', value: 0 },
+  { label: '本科', value: '本科' },
+  { label: '专科', value: '专科' },
+  { label: '保密', value: '保密' },
 ]

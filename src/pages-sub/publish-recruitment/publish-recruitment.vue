@@ -123,10 +123,10 @@
       </view>
       <wd-card>
         <!-- 是否公开 -->
-        <wd-cell title="公开工作">
+        <wd-cell title="到岗时间">
           <wd-picker
-            v-model="formData.status"
-            :columns="experienceColumns"
+            v-model="formData.comeToTime"
+            :columns="availableTimeColumns"
             placeholder="请选择"
             prop="status"
           />
@@ -163,10 +163,10 @@ import {
   salaryColumns,
   benefitsOptions,
   advantageActions,
+  availableTimeColumns,
 } from '@/constant'
 import { createJob } from '@/service/app'
 import { navigateBack } from '@/utils'
-import { merge } from 'lodash'
 
 // 表单数据
 const formData = ref<any>({

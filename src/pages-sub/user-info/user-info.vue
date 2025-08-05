@@ -24,7 +24,9 @@
             <view class="flex-1 flex items-center justify-between">
               <view class="flex flex-col">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
-                <view class="flex">{{ userInfo.age }}岁 · {{ userInfo.sex }}</view>
+                <view class="flex">
+                  {{ userInfo.age }}岁 · {{ userInfo.sex }} · {{ userInfo.gongZuoJingYan }}
+                </view>
               </view>
             </view>
           </view>
@@ -43,7 +45,7 @@
           <text class="text-[14px] text-gray-800">求职期望</text>
         </view>
         <view class="flex justify-between mb-4">
-          <view>{{ userInfo.workType }}</view>
+          <view class="text-[#000]">{{ userInfo.workType }}</view>
           <view class="text-[#248069]">{{ userInfo.qiWangXinZi }}</view>
         </view>
         <wd-divider custom-class="!px-0"></wd-divider>
@@ -84,7 +86,7 @@
             :key="item"
           >
             <image
-              class="w-full h-full rounded-2 overflow-hidden"
+              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
               :src="item"
               mode="scaleToFill"
             ></image>
@@ -98,7 +100,7 @@
             :key="item"
           >
             <video
-              class="w-full h-full rounded-2 overflow-hidden"
+              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
               :src="item"
               mode="aspectFill"
             ></video>

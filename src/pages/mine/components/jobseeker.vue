@@ -42,7 +42,7 @@
 
     <!-- 基本信息 -->
     <view class="flex items-center text-gray-500 justify-between mb-4">
-      <yr-img-title url="jingyan.svg" :title="userInfo?.experience" />
+      <yr-img-title url="jingyan.svg" :title="userInfo?.gongZuoJingYan" />
       <yr-img-title url="school.svg" :title="userInfo?.biYeYuanXiao" />
       <yr-img-title url="weizhi.svg" :title="userInfo?.location" />
     </view>
@@ -186,20 +186,11 @@ let tools = ref([
     path: '',
   },
 ])
-// 统计数据
-const stats = ref({
-  browsed: 156,
-  followed: 156,
-  applied: 156,
-  interviewed: 156,
-})
 
 // 加载用户数据
 const loadUserData = async () => {
   let res = await getUserInfo()
   userInfo.value = res.data
-  console.log(res)
-  console.log(res.data)
 }
 const tags = computed(() => {
   return userInfo.value?.tags?.split(',')
@@ -212,7 +203,7 @@ const upgradeVip = () => {
 
 // 跳转到在线简历
 const goToOnlineResume = () => {
-  navigateToSub('/personal-detail/personal-detail')
+  navigateToSub('/seeker-detail/seeker-detail')
 }
 
 // 预览简历

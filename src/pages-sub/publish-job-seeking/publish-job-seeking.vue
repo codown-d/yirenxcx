@@ -37,7 +37,7 @@
             :auto-height="true"
           />
         </wd-cell>
-        <post-picker title="期望职位" :modelValue="formData.post"></post-picker>
+        <post-picker title="期望职位" v-model="formData.post"></post-picker>
         <yr-location-picker
           title="工作地点"
           v-model="formData.locationCode"
@@ -106,13 +106,34 @@
           />
         </wd-cell>
 
-        <wd-cell title="专业技能" vertical custom-class="mt-4">
-          <wd-input v-model="formData.specialty" no-border placeholder="请输入技能" />
+        <wd-cell title="专业技能" custom-class="mt-4">
+          <view @click="chooseSkill" class="flex items-center">
+            <view class="flex text-[14px] text-[#bfbfbf] pr-2">请输入专业技能</view>
+            <wd-icon name="arrow-right" size="16px" custom-class="text-[#bfbfbf]"></wd-icon>
+          </view>
         </wd-cell>
+        <view class="mt-3">
+          <yr-modal-picker
+            v-model="formData.specialty"
+            ref="specialtyRef"
+            modal-title="请输入专业技能"
+          />
+        </view>
+
         <!-- 个人优势 -->
-        <wd-cell title="个人优势" vertical custom-class="mt-4">
-          <wd-input v-model="formData.advantage" no-border placeholder="请输入个人优势" />
+        <wd-cell title="个人优势" custom-class="mt-4">
+          <view @click="chooseAdvantage" class="flex items-center">
+            <view class="flex text-[14px] text-[#bfbfbf] pr-2">请输入个人优势</view>
+            <wd-icon name="arrow-right" size="16px" custom-class="text-[#bfbfbf]"></wd-icon>
+          </view>
         </wd-cell>
+        <view class="mt-3">
+          <yr-modal-picker
+            v-model="formData.advantage"
+            ref="advantageRef"
+            modal-title="请输入个人优势"
+          />
+        </view>
       </wd-card>
 
       <!-- 联系方式 -->
@@ -171,12 +192,11 @@ import {
   availableTimeColumns,
   salaryColumns,
 } from '@/constant'
-import { useCategoriesStore, useLocationStore } from '@/store'
 import { createJobSeeker, YRZPJobSeekerCreateReqVO } from '@/service/app'
 import { navigateBack } from '@/utils'
 
 // 表单数据
-const formData = ref<YRZPJobSeekerCreateReqVO>({
+const formData = ref<any>({
   title: '',
   description: '',
   jobType: '',
@@ -198,6 +218,18 @@ const formData = ref<YRZPJobSeekerCreateReqVO>({
   expectedSalary: '',
 })
 
+// 响应式数据
+const formRef = ref()
+const loading = ref(false)
+
+const specialtyRef = ref()
+const advantageRef = ref()
+const chooseSkill = () => {
+  specialtyRef.value.addItem()
+}
+const chooseAdvantage = () => {
+  advantageRef.value.addItem()
+}
 // 表单验证规则
 const rules = {
   title: [{ required: true, message: '请输入求职标题' }],
@@ -206,15 +238,12 @@ const rules = {
   contactInfo: [{ required: true, message: '请输入联系方式' }],
 }
 
-// 响应式数据
-const formRef = ref()
-const loading = ref(false)
-
 const saveDraft = () => {
   navigateBack()
 }
 const postData = computed(() => {
   let { post, expectedSalary, ...restData } = formData.value
+  console.log(post)
   let [salaryMin, salaryMax] = expectedSalary.split('-')
   return {
     ...restData,

@@ -1,8 +1,8 @@
 type CategoryNode = {
   name: string
-  categories: {
+  children: {
     name: string
-    children: string[]
+    children: { name: string }[]
   }[]
 }
 

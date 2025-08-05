@@ -1,6 +1,6 @@
 <template>
   <view :class="`flex ${className}`">
-    <view class="text-4 font-bold text-teal-600">{{ text }}</view>
+    <view class="text-[16px] font-bold text-teal-600">{{ text }}</view>
   </view>
 </template>
 <script lang="ts" setup>

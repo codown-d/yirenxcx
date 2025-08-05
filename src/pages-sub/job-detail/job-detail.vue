@@ -22,7 +22,7 @@
         <view class="grid grid-cols-2 gap-3 mb-3">
           <yr-img-title url="jingyan.svg" :title="jobDetail.experienceRequirement" />
           <yr-img-title url="zhuanye.svg" :title="jobDetail.educationRequirement" />
-          <yr-img-title url="ljdg.svg" :title="jobDetail.comeToTime" />
+          <yr-img-title url="ljdg.svg" :title="jobDetail.comeToTime || '立即到岗'" />
           <yr-img-title url="time.svg" :title="jobDetail.workType" />
         </view>
 
@@ -32,19 +32,19 @@
         <!-- 职位要求 -->
         <view class="mt-2">
           <text class="text-sm text-gray">演员要求</text>
-          <view class="flex flex-wrap gap-2 mt-2">
-            <view v-for="skill in requirementDetails" :key="skill" class="tag-default">
-              {{ skill }}
-            </view>
-          </view>
+          <yr-tag-list
+            v-model="jobDetail.requirementDetails"
+            class="mt-3"
+            class-name="!bg-[#F5F6FA] !text-[#555555]"
+          />
         </view>
         <view class="mt-4">
           <text class="text-sm text-gray">福利/待遇</text>
-          <view class="flex flex-wrap gap-2 mt-2">
-            <view v-for="benefit in benefits" :key="benefit" class="tag-default">
-              {{ benefit }}
-            </view>
-          </view>
+          <yr-tag-list
+            v-model="jobDetail.benefits"
+            class="mt-3"
+            class-name="!bg-[#F5F6FA] !text-[#555555]"
+          />
         </view>
       </view>
 
@@ -61,7 +61,7 @@
         <view class="flex items-center justify-between mb-3">
           <view class="flex items-center">
             <image
-              :src="jobDetail.companyLogo"
+              :src="jobDetail.logo"
               class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
               mode="aspectFill"
             />
@@ -102,16 +102,22 @@
         <view class="space-y-3">
           <template v-if="similarJobList.length">
             <template v-for="(similarJob, index) in similarJobList" :key="similarJob.id">
-              <view class="border border-gray-100 rounded-2 p-3" @click="goToJob(similarJob.id)">
+              <view
+                class="border border-gray-100 rounded-2 p-3 py-2"
+                @click="goToJob(similarJob.jobId)"
+              >
                 <view class="flex items-start justify-between mb-3">
                   <text class="text-4 font-medium text-gray-800 flex-1">
                     {{ similarJob.title }}
                   </text>
-                  <yr-salary :salaryMax="jobDetail.salaryMax" :salaryMin="jobDetail.salaryMin" />
+                  <yr-salary :salaryMax="similarJob.salaryMax" :salaryMin="similarJob.salaryMin" />
                 </view>
-                <yr-img-title url="time.svg" :title="jobDetail.description" />
+                <yr-img-title url="jigou.svg" :title="similarJob.companyName" />
               </view>
-              <wd-divider custom-class="!px-0" v-if="similarJobList.length == index"></wd-divider>
+              <wd-divider
+                custom-class="!px-0"
+                v-if="similarJobList.length - 1 != index"
+              ></wd-divider>
             </template>
           </template>
           <yr-nodata v-else />
@@ -201,7 +207,15 @@ let getData = async () => {
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobId.value)
   let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
-  similarJobList.value = res.data.list.filter((it) => it.id != jobId.value).slice(0, 3)
+
+  similarJobList.value = res.data.list.slice(0, 3).map((item) => {
+    let info = JSON.parse(item.info || '{}')
+    let obj = merge({}, item, info, { jobId: item.id })
+    return {
+      ...obj,
+    }
+  })
+  console.log(similarJobList.value)
 }
 // 加载职位详情
 const loadJobDetail = async () => {
@@ -210,17 +224,14 @@ const loadJobDetail = async () => {
     const res = await getJob({
       params: { ids: jobId.value },
     })
-    console.log(123, res)
-    let userInfo = await getUserByIds({ params: { userIds: res.data[0].companyId } })
-    console.log(userInfo)
-    let { companyName, companyInfo, companyLogo = '' } = userInfo.data
-    jobDetail.value = merge(res.data[0] || {}, { companyName, companyInfo, companyLogo })
+    let item = res.data[0]
+    let info = JSON.parse(item.info)
+    jobDetail.value = merge({}, item, info)
   } finally {
     loading.value = false
   }
 }
 const requirementDetails = computed(() => {
-  console.log(jobDetail.value)
   return jobDetail.value?.requirementDetails?.split(',')
 })
 const benefits = computed(() => {
