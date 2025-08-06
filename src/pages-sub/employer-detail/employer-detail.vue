@@ -66,11 +66,9 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker
-          v-model="userInfo.benefits"
-          ref="benefitRef"
-          modal-title="请输入福利待遇"
-        />
+        <yr-modal-picker v-model="userInfo.benefits" ref="benefitRef" modal-title="福利待遇">
+          <view></view>
+        </yr-modal-picker>
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
@@ -82,7 +80,9 @@
           v-model="userInfo.recruitment"
           ref="recruitmentRef"
           modal-title="请输入招聘要求"
-        />
+        >
+          <view></view>
+        </yr-modal-picker>
       </wd-card>
       <!-- 个人展示 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">

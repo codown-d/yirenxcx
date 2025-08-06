@@ -60,7 +60,9 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker v-model="userInfo.tags" ref="tagsRef" modal-title="请输入技能标签" />
+        <yr-modal-picker v-model="userInfo.tags" ref="tagsRef" modal-title="请输入技能标签">
+          <view></view>
+        </yr-modal-picker>
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
@@ -73,7 +75,9 @@
           ref="daiBiaoZuoRef"
           modal-title="请输入代表作品"
           className="w-full justify-between !px-4 !py-3"
-        />
+        >
+          <view></view>
+        </yr-modal-picker>
       </wd-card>
       <!-- 个人展示 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">

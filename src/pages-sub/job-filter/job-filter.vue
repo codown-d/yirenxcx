@@ -41,7 +41,7 @@
       </view>
       <view class="grid grid-cols-3 gap-3 px-4 pb-2">
         <wd-button
-          v-for="salary in salaryOptions"
+          v-for="salary in jobTypeColumns"
           :key="salary.value"
           :type="selectedSalary.includes(salary.value) ? 'primary' : 'info'"
           size="medium"
@@ -95,7 +95,7 @@
 import { ref } from 'vue'
 import { useLocationStore } from '@/store/locations'
 import { useCategoriesStore } from '@/store/categories'
-import { salaryColumns, salaryOptions, benefitsOptions } from '@/constant'
+import { salaryColumns, jobTypeColumns, benefitsOptions } from '@/constant'
 import { navigateBack } from '@/utils'
 
 export interface ItemProps {

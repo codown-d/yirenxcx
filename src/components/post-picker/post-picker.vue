@@ -5,11 +5,12 @@
       v-model="value"
       :column-change="onChangeDistrict"
       :display-format="displayFormat"
+      @confirm="handleConfirm"
     />
   </wd-cell>
 </template>
 <script lang="ts" setup>
-import { postColumns } from '@/constant'
+import { ALL_CATEGORIES_DISPLAY } from '@/constant'
 
 const props = defineProps({
   title: {
@@ -29,18 +30,55 @@ const props = defineProps({
 const value = ref([])
 
 const columns = ref([
-  postColumns[0],
-  postColumns[postColumns[0][0].value],
-  postColumns[postColumns[postColumns[0][0].value][0].value],
+  [
+    {
+      label: '台前',
+      value: '台前',
+    },
+    {
+      label: '幕后',
+      value: '幕后',
+    },
+    {
+      label: '运营',
+      value: '运营',
+    },
+  ],
+  ALL_CATEGORIES_DISPLAY.filter(
+    (category) => category.value.startsWith('台前-') && category.value.split('-').length == 2,
+  ),
+  ALL_CATEGORIES_DISPLAY.filter((category) => category.value.startsWith('台前-演员-')),
 ])
 
-const onChangeDistrict = (pickerView, value, columnIndex, resolve) => {
-  const item = value[columnIndex]
+let getColumn = (value) => {
+  let arr = ALL_CATEGORIES_DISPLAY.filter((data) => data.value.indexOf(value) === 0)
+  return arr.reduce(
+    (pre, current) => {
+      let len = current.value.split('-').length - 1
+      switch (len) {
+        case 0:
+          pre[0].push(current)
+          break
+        case 1:
+          pre[1].push(current)
+          break
+        case 2:
+          pre[2].push(current)
+          break
+      }
+
+      return pre
+    },
+    [[], [], []],
+  )
+}
+const onChangeDistrict = (pickerView, item, columnIndex, resolve) => {
+  let arr = getColumn(item[columnIndex].value)
   if (columnIndex === 0) {
-    pickerView.setColumnData(1, postColumns[item.value])
-    pickerView.setColumnData(2, postColumns[postColumns[item.value][0].value])
+    pickerView.setColumnData(1, arr[1])
+    pickerView.setColumnData(2, arr[2])
   } else if (columnIndex === 1) {
-    pickerView.setColumnData(2, postColumns[item.value])
+    pickerView.setColumnData(2, arr[2])
   }
   resolve()
 }
@@ -52,17 +90,17 @@ const displayFormat = (items) => {
     })
     .join('-')
 }
-watch(
-  () => props.modelValue,
-  (val) => {
-    value.value = val
-  },
-  { immediate: true },
-)
+// watch(
+//   () => props.modelValue,
+//   (val) => {
+//     value.value = val
+//   },
+//   { immediate: true },
+// )
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['confirmLabel'])
 
-watch(value, (val) => {
-  emit('update:modelValue', val)
-})
+const handleConfirm = (item) => {
+  emit('confirmLabel', item.value)
+}
 </script>

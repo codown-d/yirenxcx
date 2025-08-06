@@ -34,8 +34,12 @@
             :auto-height="true"
           />
         </wd-cell>
-        <post-picker title="职位类别" :modelValue="formData.post"></post-picker>
-        <yr-location-picker title="工作地点" v-model="formData.locationCode"></yr-location-picker>
+        <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
+        <yr-location-picker
+          title="工作地点"
+          @confirmLabel="(val) => (formData.location = val)"
+          v-model="formData.locationCode"
+        ></yr-location-picker>
         <yr-calendar title="报名截止时间" v-model="formData.comeToTime" />
       </wd-card>
 
@@ -63,12 +67,7 @@
             prop="jobType"
           />
         </wd-cell>
-
-        <yr-select-picker
-          :columns="benefitsOptions"
-          v-model="formData.benefits"
-          title="福利待遇"
-        ></yr-select-picker>
+        <yr-modal-picker v-model="formData.benefits" modal-title="福利待遇" />
       </wd-card>
 
       <!-- 个人背景 -->
@@ -93,12 +92,7 @@
             prop="education"
           />
         </wd-cell>
-
-        <yr-select-picker
-          :columns="advantageActions"
-          v-model="formData.requirementDetails"
-          title="具体要求"
-        ></yr-select-picker>
+        <yr-modal-picker v-model="formData.requirementDetails" modal-title="具体要求" />
       </wd-card>
 
       <!-- 联系方式 -->
@@ -123,13 +117,16 @@
       </view>
       <wd-card>
         <!-- 是否公开 -->
-        <wd-cell title="到岗时间">
+        <wd-cell title="职位属性">
           <wd-picker
-            v-model="formData.comeToTime"
-            :columns="availableTimeColumns"
+            v-model="formData.workType"
+            :columns="jobTypeColumns"
             placeholder="请选择"
             prop="status"
           />
+        </wd-cell>
+        <wd-cell title="招聘人数" vertical>
+          <wd-input v-model="formData.headcount" placeholder="请输入" prop="headcount" no-border />
         </wd-cell>
       </wd-card>
     </wd-form>
@@ -156,15 +153,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  educationColumns,
-  experienceColumns,
-  jobTypeColumns,
-  salaryColumns,
-  benefitsOptions,
-  advantageActions,
-  availableTimeColumns,
-} from '@/constant'
+import { educationColumns, experienceColumns, jobTypeColumns, salaryColumns } from '@/constant'
 import { createJob } from '@/service/app'
 import { navigateBack } from '@/utils'
 
@@ -184,7 +173,6 @@ const formData = ref<any>({
   specialty: '',
   contactMobile: '',
   isCertified: '',
-  post: [],
   location: '',
   locationCode: '',
   advantage: '',
@@ -205,20 +193,12 @@ const saveDraft = () => {
   navigateBack()
 }
 const postData = computed(() => {
-  let { post, location, expectedSalary, benefits, requirementDetails, ...restData } = formData.value
+  let { expectedSalary, benefits, requirementDetails, ...restData } = formData.value
   let [salaryMin, salaryMax] = expectedSalary.split('-')
   return {
     ...restData,
-    jobType: post[0],
-    jobDomain: post[1],
-    jobSpecific: post[2],
     salaryMin,
     salaryMax,
-    location: '',
-    benefits: benefits.join(','),
-    requirementDetails: requirementDetails.join(','),
-    status: 1,
-    headcount: 5,
   }
 })
 // 发布求职信息
@@ -231,7 +211,6 @@ const publishJobSeekingInfo = async () => {
     }
 
     loading.value = true
-    console.log(postData.value)
     const res = await createJob({
       body: postData.value,
     })
@@ -246,8 +225,7 @@ const publishJobSeekingInfo = async () => {
     loading.value = false
   }
 }
-onShow(() => {
-  // selectedCategories.value = getCategory()
-  // selectedLocations.value = getLocation()
-})
+const onConfirmLabel = (data) => {
+  formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
+}
 </script>

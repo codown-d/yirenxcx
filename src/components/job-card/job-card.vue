@@ -69,12 +69,11 @@ watch(
 const emit = defineEmits(['click', 'favorite'])
 const handleCardClick = () => {
   emit('click', props.jobData)
-  console.log(props.jobData)
-  navigateToSub(`/job-detail/job-detail?id=${props.jobData.JobId}`)
+  navigateToSub(`/job-detail/job-detail?id=${props.jobData.id}`)
 }
 
 const handleFavorite = () => {
-  changeConnect({ guanZhuJobId: props.jobData.id }, isFavorited.value, () => {
+  changeConnect({ guanZhuJobId: props.jobData.userId }, isFavorited.value, () => {
     isFavorited.value = !isFavorited.value
     emit('favorite', props.jobData, isFavorited.value)
   })

@@ -209,25 +209,25 @@ let getDataFn = async (keyword?: string) => {
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     seekerList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
-      let obj = merge({}, item, info)
+      let { id: userId, ...resInfo } = info || {}
+      let obj = merge({ userId }, item, resInfo)
       return {
         ...obj,
-        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
+        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === info.id),
       }
     })
-    console.log(seekerList.value)
   } else if (role.value === RoleEmu.seeker) {
     let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
-      let obj = merge({}, item, info, { JobId: item.id })
+      let { id: userId, ...resInfo } = info || {}
+      let obj = merge({ userId }, item, resInfo)
       return {
         ...obj,
-        favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
+        favorited: resJob.some((item2) => item2.guanZhuJobId === info.id),
       }
     })
   }
-  console.log(123456, getRole(), userInfo.token)
 }
 
 const handleSearch = (val) => {

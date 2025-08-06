@@ -205,8 +205,8 @@
           "type": "page",
           "layout": "common",
           "style": {
-            "navigationBarTitleText": "我的收藏",
-            "navigationStyle": "custom"
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "我的关注"
           }
         },
         {

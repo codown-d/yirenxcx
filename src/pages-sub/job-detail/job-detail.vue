@@ -171,14 +171,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  createLiJiTouDi,
-  createZuJi,
-  getJob,
-  getJobPage1,
-  getUserByIds,
-  YRZPJobDO,
-} from '@/service/app'
+import { createLiJiTouDi, createZuJi, getJob, getJobPage1, YRZPJobDO } from '@/service/app'
 import { useConnect } from '@/hooks'
 import { merge } from 'lodash'
 import { navigateTo, navigateToSub } from '@/utils'
@@ -206,8 +199,8 @@ let getData = async () => {
   isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobId.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobId.value)
-  let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
 
+  let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
   similarJobList.value = res.data.list.slice(0, 3).map((item) => {
     let info = JSON.parse(item.info || '{}')
     let obj = merge({}, item, info, { jobId: item.id })
@@ -215,7 +208,6 @@ let getData = async () => {
       ...obj,
     }
   })
-  console.log(similarJobList.value)
 }
 // 加载职位详情
 const loadJobDetail = async () => {
@@ -231,13 +223,6 @@ const loadJobDetail = async () => {
     loading.value = false
   }
 }
-const requirementDetails = computed(() => {
-  return jobDetail.value?.requirementDetails?.split(',')
-})
-const benefits = computed(() => {
-  return jobDetail.value?.benefits?.split(',')
-})
-// 切换收藏状态
 
 // 立即联系
 const handleContact = () => {

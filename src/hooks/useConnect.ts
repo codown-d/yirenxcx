@@ -5,6 +5,7 @@ import {
   getGuanZhuJobSeekerParams,
   getJob,
   getJobSeekerByUserId,
+  getUserByIds,
   update,
   updateParams,
 } from '@/service/app'
@@ -36,7 +37,6 @@ export function useConnect() {
       createGuanLianFn(data, fn)
     } else {
       const [key, value] = Object.entries(data)[0]
-
       const result = {
         field: key,
         guanZhuId: Number(value),
@@ -51,7 +51,7 @@ export function useConnect() {
           field: 'guanZhuJobSeekerId',
         },
       })
-      let userInfos = await getJobSeekerByUserId({
+      let userInfos = await getUserByIds({
         params: {
           userIds: res.data.map((e) => e.guanZhuJobSeekerId).join(','),
         },
@@ -63,9 +63,9 @@ export function useConnect() {
           field: 'guanZhuJobId',
         },
       })
-      let jobInfos = await getJob({
+      let jobInfos = await getUserByIds({
         params: {
-          ids: res.data.map((e) => e.guanZhuJobId).join(','),
+          userIds: res.data.map((e) => e.guanZhuJobId).join(','),
         },
       })
       return jobInfos.data
@@ -103,5 +103,6 @@ export function useConnect() {
     changeConnect,
     getGuanZhu,
     getGuanZhuJobSeekerFn,
+    getShouCang,
   }
 }
