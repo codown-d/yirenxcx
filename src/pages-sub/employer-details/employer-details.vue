@@ -29,9 +29,6 @@
                   {{ userInfo?.chengLiTime }}
                 </view>
               </view>
-              <view @click="goToProfileEdit">
-                <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
-              </view>
             </view>
           </view>
           <view class="flex gap-5 mt-2">
@@ -59,23 +56,28 @@
           />
         </wd-cell>
       </wd-card>
-
+      <wd-card custom-class="!mt-4">
+        <view class="flex items-center justify-between mb-3">
+          <text class="text-base font-semibold text-gray-800">团队地址</text>
+        </view>
+        <view>{{ userInfo.xiangXiAddress }}</view>
+      </wd-card>
       <!-- 技能标签 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">福利待遇</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
-      </view>
-      <wd-card>
+
+      <wd-card custom-class="!mt-4" v-if="false">
+        <view class="flex items-center justify-between mb-3">
+          <text class="text-base font-semibold text-gray-800">福利待遇</text>
+        </view>
         <yr-modal-picker v-model="userInfo.benefits" ref="benefitRef" modal-title="福利待遇">
           <view></view>
         </yr-modal-picker>
       </wd-card>
       <!-- 代表作品 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">招聘要求</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addWork" />
-      </view>
-      <wd-card>
+
+      <wd-card custom-class="!mt-4" v-if="false">
+        <view class="flex items-center justify-between mb-3">
+          <text class="text-base font-semibold text-gray-800">招聘要求</text>
+        </view>
         <yr-modal-picker
           v-model="userInfo.recruitment"
           ref="recruitmentRef"
@@ -85,28 +87,52 @@
         </yr-modal-picker>
       </wd-card>
       <!-- 个人展示 -->
-      <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">公司展示</text>
-      </view>
-      <wd-card>
+
+      <wd-card custom-class="!mt-4">
+        <view class="flex items-center justify-between mb-3">
+          <text class="text-base font-semibold text-gray-800">公司展示</text>
+        </view>
         <!-- 个人展示项目 -->
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">公司展示图片 (最多6张)</text>
+            <text class="text-sm font-medium text-gray-700">工作环境照片</text>
           </view>
-          <text class="text-xs text-gray-500 block mb-3">展示演出场景、公司环境等</text>
-          <yr-upload v-model="userInfo.companyImages" :limit="6"></yr-upload>
+          <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
+            <view
+              class="flex-1 h-[101px]"
+              v-for="item in userInfo.companyImages.split(',')"
+              :key="item"
+            >
+              <image
+                class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
+                :src="item"
+                mode="scaleToFill"
+              ></image>
+            </view>
+          </view>
         </view>
+
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">宣传视频 (最多3个)</text>
+            <text class="text-sm font-medium text-gray-700">宣传视频</text>
           </view>
-          <text class="text-xs text-gray-500 block mb-3">展示演出片段、公司介绍等</text>
-          <yr-upload :limit="3" v-model="userInfo.companyVideos" accept="video"></yr-upload>
+          <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
+            <view
+              class="flex-1 h-[101px]"
+              v-for="item in userInfo.companyVideos.split(',')"
+              :key="item"
+            >
+              <video
+                class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
+                :src="item"
+                mode="aspectFill"
+              ></video>
+            </view>
+          </view>
         </view>
       </wd-card>
 
-      <yr-page-footer>
+      <yr-page-footer v-if="false">
         <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
           预览详情
         </wd-button>

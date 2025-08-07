@@ -11,7 +11,7 @@
 <template>
   <view class="px-4 h-[80vh]">
     <!-- 搜索和筛选 -->
-    <view class="flex items-center gap-3">
+    <view class="flex items-center gap-3" v-if="false">
       <view class="flex-1"><search @confirm="handleSearch" /></view>
       <wd-picker
         :columns="filterColumns"
@@ -34,7 +34,7 @@
         class="bg-white rounded-lg p-4 mb-3 shadow-sm"
       >
         <!-- 用户信息和状态 -->
-        <view class="flex items-center justify-between mb-3">
+        <view class="flex items-center justify-between mb-3" v-if="false">
           <view class="flex items-center">
             <text class="text-base font-semibold text-gray-900 mr-2">{{ item.userName }}</text>
             <view
@@ -55,26 +55,28 @@
         <view class="space-y-2">
           <view class="flex items-center">
             <text class="text-sm text-gray-500 w-20">违规编号：</text>
-            <text class="text-sm text-gray-800">{{ item.violationCode }}</text>
+            <text class="text-sm text-gray-800">{{ item.id }}</text>
           </view>
           <view class="flex items-center">
             <text class="text-sm text-gray-500 w-20">违规类型：</text>
-            <text class="text-sm text-red-600">{{ item.violationType }}</text>
+            <text class="text-sm text-red-600">
+              {{ item.minGanCi ? '敏感词违规' : '虚假信息' }}
+            </text>
           </view>
           <view class="flex items-start">
             <text class="text-sm text-gray-500 w-20 flex-shrink-0">违规描述：</text>
-            <text class="text-sm text-gray-800 flex-1">{{ item.description }}</text>
+            <text class="text-sm text-gray-800 flex-1">{{ item.minGanCi }}</text>
           </view>
           <view class="flex items-start">
             <text class="text-sm text-gray-500 w-20 flex-shrink-0">处理结果：</text>
-            <text class="text-sm text-orange-600 flex-1">{{ item.result }}</text>
+            <text class="text-sm text-orange-600 flex-1">{{ '已记录' }}</text>
           </view>
         </view>
-
         <!-- 时间和订正信息 -->
-        <view class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-          <text class="text-xs text-gray-400">举报时间：{{ item.reportTime }}</text>
-          <text class="text-xs text-gray-400">订正：{{ item.correctionCount }}项</text>
+        <view class="flex items-center justify-between mt-3 border-t border-gray-100">
+          <text class="text-xs text-gray-400">
+            举报时间：{{ dayjs(item.createTime).format('YYYY-MM-DD HH:mm') }}
+          </text>
         </view>
       </view>
     </view>
@@ -88,7 +90,7 @@
     <yr-page-footer>
       <view class="flex flex-col justify-center w-full">
         <view class="text-center mb-2">
-          <text class="text-sm text-gray-600">本月共处理违规案例 {{ monthlyStats.total }} 起</text>
+          <text class="text-sm text-gray-600">本月共处理违规案例 {{ total }} 起</text>
         </view>
         <view class="text-center mb-4">
           <text class="text-xs text-gray-500">平台致力于为用户提供安全、诚信的求职招聘环境</text>
@@ -116,6 +118,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { getWeiGuiPage, YRZPWeiGuiRespAppVO } from '@/service/app'
+import dayjs from 'dayjs'
 
 const submitReport = async (params: any) => {
   return {
@@ -163,6 +166,16 @@ const filterColumns = ref([
   ],
 ])
 
+const total = computed(() => {
+  return violationList.value.filter((it) => {
+    const targetTime = dayjs(it.createTime) // 假设你要判断的时间
+
+    const oneMonthAgo = dayjs().subtract(1, 'month')
+
+    const isWithinOneMonth = targetTime.isAfter(oneMonthAgo)
+    return isWithinOneMonth
+  }).length
+})
 // 月度统计
 const monthlyStats = ref<MonthlyStats>({
   total: 3,

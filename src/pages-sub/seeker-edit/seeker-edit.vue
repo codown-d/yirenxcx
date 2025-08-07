@@ -24,7 +24,7 @@
             <view class="flex-1 flex items-center justify-between">
               <view class="flex flex-col gap-">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
-                <view class="">{{ userInfo.age }}岁 · {{ userInfo.teChang }}</view>
+                <view class="">{{ title1 }}</view>
               </view>
               <view @click="goToProfileEdit">
                 <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
@@ -147,7 +147,7 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
+import { getUserInfo, MemberUserDO, updateUser, updateUser1 } from '@/service/app'
 import { jobTypeColumns, salaryColumns } from '@/constant'
 
 // 用户信息数据
@@ -158,7 +158,9 @@ const daiBiaoZuoRef = ref()
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
-
+let title1 = computed(() => {
+  return [`${userInfo.value.age} 岁`, userInfo.value.teChang].filter((el) => !!el).join(' • ')
+})
 // 加载用户数据
 const loadUserData = async () => {
   let res = await getUserInfo({})
@@ -178,7 +180,7 @@ const previewResume = () => {
 }
 
 const saveResume = async () => {
-  await updateUser({
+  await updateUser1({
     body: userInfo.value,
   })
   toast.success('保存成功')

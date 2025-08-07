@@ -147,14 +147,14 @@ export function getSimpleUserList1QueryOptions(options: {
 }
 
 /** 修改用户 PUT /admin-api/system/user/update */
-export function useUpdateUser1Mutation(options?: {
+export function useUpdateUser2Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateUser1,
+    mutationFn: apis.updateUser2,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

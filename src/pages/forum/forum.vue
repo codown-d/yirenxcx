@@ -94,7 +94,13 @@ import { toast } from '@/utils/toast'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 
 import { tabCategory, hotTopics as hotList, postList as pl } from '@/constant'
-import { getForumPost1, getForumPostPage1, YRZPForumPostRespVO } from '@/service/app'
+import {
+  getForumPost,
+  getForumPost1,
+  getForumPostPage,
+  getForumPostPage1,
+  YRZPForumPostRespVO,
+} from '@/service/app'
 import posts from '@/pages/forum/components/posts.vue'
 
 // 临时类型定义，应该从service中获取
@@ -202,7 +208,7 @@ const loadPostList = async (isRefresh = false) => {
       postList.value = []
     }
 
-    const res = await getForumPostPage1({
+    const res = await getForumPostPage({
       params: {
         category: selectedCategory.value,
         page: currentPage.value,

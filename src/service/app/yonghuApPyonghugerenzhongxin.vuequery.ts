@@ -55,14 +55,14 @@ export function useResetUserPasswordMutation(options?: {
 }
 
 /** 修改基本信息 PUT /app-api/member/user/update */
-export function useUpdateUserMutation(options?: {
+export function useUpdateUser1Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateUser,
+    mutationFn: apis.updateUser1,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

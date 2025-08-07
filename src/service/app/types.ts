@@ -1990,6 +1990,27 @@ export type AppMemberUserResetPasswordReqVO = {
   mobile: string;
 };
 
+export type AppMemberUserSetNumVO = {
+  /** userId */
+  userId: number;
+  /** 简历浏览 */
+  jianLiLiuLan?: string;
+  /** 获得关注 */
+  guanZhu?: string;
+  /** 投递简历 */
+  touDiJianLi?: string;
+  /** 面试邀请 */
+  mianShiYaoQing?: string;
+  /** 企业浏览 */
+  qiYeLiuLan?: string;
+  /** 职位浏览 */
+  zhiWeiLiuLan?: string;
+  /** 收到简历 */
+  shouDaoJianLi?: string;
+  /** 面试安排 */
+  mianShiAnPai?: string;
+};
+
 export type AppMemberUserUpdateMobileByWeixinReqVO = {
   /** 手机 code，小程序通过 wx.getPhoneNumber 方法获得 */
   code: string;
@@ -19802,8 +19823,6 @@ export type putCustomerPoolParams = {
 };
 
 export type QiYeRenZhengReqVO = {
-  /** 接收者用户编号 */
-  userId: string;
   licenseNo?: string;
   entName?: string;
   legalPersonName?: string;

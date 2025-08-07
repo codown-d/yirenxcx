@@ -37,14 +37,14 @@ export function getUserPage1QueryOptions(options: {
 }
 
 /** 更新会员用户 PUT /admin-api/member/user/update */
-export function useUpdateUser2Mutation(options?: {
+export function useUpdateUser3Mutation(options?: {
   onSuccess?: (value?: API.CommonResultBoolean) => void;
   onError?: (error?: DefaultError) => void;
 }) {
   const { onSuccess, onError } = options || {};
 
   const response = useMutation({
-    mutationFn: apis.updateUser2,
+    mutationFn: apis.updateUser3,
     onSuccess(data: API.CommonResultBoolean) {
       onSuccess?.(data);
     },

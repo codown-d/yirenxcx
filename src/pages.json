@@ -128,7 +128,17 @@
           }
         },
         {
-          "path": "employer-detail/employer-detail",
+          "path": "employer-details/employer-details",
+          "type": "page",
+          "layout": "default",
+          "style": {
+            "navigationBarTitleText": "公司详情",
+            "navigationStyle": "custom",
+            "className": "bg-bar-white"
+          }
+        },
+        {
+          "path": "employer-edit/employer-edit",
           "type": "page",
           "layout": "default",
           "style": {
@@ -265,22 +275,22 @@
           }
         },
         {
-          "path": "seeker-detail/seeker-detail",
+          "path": "seeker-details/seeker-details",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationBarTitleText": "求职者详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "seeker-edit/seeker-edit",
           "type": "page",
           "layout": "default",
           "style": {
             "navigationBarTitleText": "在线简历",
             "navigationStyle": "custom",
             "className": "bg-bar-white"
-          }
-        },
-        {
-          "path": "user-info/user-info",
-          "type": "page",
-          "layout": "common",
-          "style": {
-            "navigationBarTitleText": "求职者详情",
-            "navigationStyle": "custom"
           }
         },
         {

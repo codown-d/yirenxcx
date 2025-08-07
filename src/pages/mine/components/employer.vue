@@ -39,12 +39,14 @@
         <text class="text-4 text-gray-500">企业浏览</text>
       </view>
       <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">{{ userInfo?.guanZhu || 0 }}</text>
+        <text class="text-6 font-bold text-gray-800 block pb-2">
+          {{ userInfo?.zhiWeiLiuLan || 0 }}
+        </text>
         <text class="text-4 text-gray-500">职位浏览</text>
       </view>
       <view class="text-center flex-1">
         <text class="text-6 font-bold text-gray-800 block pb-2">
-          {{ userInfo?.touDiJianLi || 0 }}
+          {{ userInfo?.shouDaoJianLi || 0 }}
         </text>
         <text class="text-4 text-gray-500">收到简历</text>
       </view>
@@ -124,14 +126,12 @@
   <!-- 其他功能 -->
   <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
     <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
-    <view class="flex justify-between">
-      <navigate-to v-for="item in tools" :to-sub="item.path" :key="item.icon">
-        <view class="flex items-center justify-center flex-col flex-1 gap-2">
-          <image :src="item.icon" mode="scaleToFill" class="w-7 h-7" />
-          <text class="text-[28rpx] text-gray-600 block">{{ item.name }}</text>
-        </view>
-      </navigate-to>
-    </view>
+    <wd-cell
+      :title="item.name"
+      is-link
+      :to="'/pages-sub' + item.path"
+      v-for="item in tools"
+    ></wd-cell>
   </view>
 </template>
 
@@ -147,27 +147,27 @@ const { getUserInfo } = useUserStore()
 const userInfo = ref<MemberUserDO>()
 
 let tools = ref([
-  {
-    name: '我的关注',
-    icon: '/static/images/guanzhu.svg',
-    path: '/my-follows/my-follows',
-  },
+  // {
+  //   name: '我的关注',
+  //   icon: '/static/images/guanzhu.svg',
+  //   path: '/my-follows/my-follows',
+  // },
   {
     name: '违约公示',
     icon: '/static/images/weiyuegongshi.svg',
     path: '/violation-notice/violation-notice',
   },
 
-  {
-    name: '设置',
-    icon: '/static/images/shezhi.svg',
-    path: '/profile-settings/profile-settings',
-  },
-  {
-    name: '联系客服',
-    icon: '/static/images/kefu.svg',
-    path: '',
-  },
+  // {
+  //   name: '设置',
+  //   icon: '/static/images/shezhi.svg',
+  //   path: '/profile-settings/profile-settings',
+  // },
+  // {
+  //   name: '联系客服',
+  //   icon: '/static/images/kefu.svg',
+  //   path: '',
+  // },
 ])
 // 统计数据
 const stats = ref({
@@ -195,7 +195,7 @@ const upgradeVip = () => {
 
 // 跳转到在线简历
 const goToOnlineResume = () => {
-  navigateToSub('/employer-detail/employer-detail')
+  navigateToSub('/employer-edit/employer-edit')
 }
 
 // 预览简历

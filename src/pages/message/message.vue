@@ -19,7 +19,11 @@
     >
       <view class="flex items-center">
         <view class="relative mr-3">
-          <image :src="item.avatar" mode="aspectFill" class="w-12 h-12 rounded-full bg-gray-50" />
+          <image
+            :src="item.userProfile.avatar"
+            mode="aspectFill"
+            class="w-12 h-12 rounded-full bg-gray-50"
+          />
           <view
             v-if="item.unreadCount != 0"
             class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full min-w-5 h-5 flex items-center justify-center px-1"
@@ -72,6 +76,8 @@ import { ref, computed, onMounted } from 'vue'
 import { navigateToSub } from '@/utils'
 import { getConversationList, setMessageRead } from '@/utils/im'
 import { RoleEmu, useRoleStore } from '@/store'
+import { getUserByIds } from '@/service/app'
+import { merge } from 'lodash'
 let { getRole } = useRoleStore()
 
 const conversationList = ref([])
@@ -84,9 +90,41 @@ const isEmployer = computed(() => {
 const getChatList = async () => {
   try {
     let res = await getConversationList()
+    let ids = res.map((item) => {
+      return item.conversationID.split('_').pop()
+    })
+    let infoRes = await getUserByIds({
+      params: {
+        userIds: ids.join(','),
+      },
+    })
+    let infoListMap = infoRes.data.reduce((p, n) => {
+      p[`im_seeker_${n.id}`] = n
+      p[`im_employer_${n.id}`] = n
+      return p
+    }, {})
+
+    console.log(ids, infoRes, infoListMap)
     setTimeout(() => {
-      conversationList.value = res
-      console.log(res)
+      conversationList.value = res.map((item) => {
+        let node = infoListMap[item.userProfile.userID]
+        if (item.conversationID.indexOf('employer') != -1) {
+          return merge(item, {
+            userProfile: {
+              nick: node?.companyName,
+              avatar: node?.logo,
+            },
+          })
+        } else {
+          return merge(item, {
+            userProfile: {
+              nick: node?.name,
+              avatar: node?.avatar,
+            },
+          })
+        }
+      })
+      console.log(conversationList.value)
     }, 500)
   } catch (error) {
     console.error(error)

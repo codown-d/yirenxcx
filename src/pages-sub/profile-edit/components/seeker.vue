@@ -83,7 +83,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/app'
+import { AppMemberUserUpdateReqVO, getUserInfo, updateUser, updateUser1 } from '@/service/app'
 import { SEX, AGE, XUELI, experienceColumns } from '@/constant'
 import { navigateBack } from '@/utils'
 import { merge } from 'lodash'
@@ -104,7 +104,7 @@ const saveProfile = async () => {
   try {
     loading.value = true
     console.log(userForm.value)
-    const res = await updateUser({
+    const res = await updateUser1({
       body: merge({}, userForm.value),
     })
     if (res.code === 0) {

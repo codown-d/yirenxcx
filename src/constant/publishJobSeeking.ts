@@ -219,11 +219,12 @@ export let ALL_CATEGORIES_DISPLAY = [
 ]
 
 export const salaryColumns = [
-  { label: '3-5K', value: '3-5K' },
-  { label: '5-8K', value: '5-8K' },
-  { label: '8-10K', value: '8-10K' },
-  { label: '10K以上', value: '10K以上' },
   { label: '面议', value: '面议' },
+  { label: '3k以下', value: '3k以下' },
+  { label: '3k-8k', value: '3k-8k' },
+  { label: '8k-15k', value: '8k-15k' },
+  { label: '15k-30k', value: '15k-30k' },
+  { label: '30k以上', value: '30k以上' },
 ]
 
 export const jobTypeColumns = [

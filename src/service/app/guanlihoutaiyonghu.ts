@@ -162,7 +162,7 @@ export async function getSimpleUserList1({
 }
 
 /** 修改用户 PUT /admin-api/system/user/update */
-export async function updateUser1({
+export async function updateUser2({
   body,
   options,
 }: {

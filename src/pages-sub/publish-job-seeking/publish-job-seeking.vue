@@ -51,14 +51,13 @@
       </view>
       <wd-card>
         <!-- 期望薪资 -->
-        <wd-cell title="期望薪资">
-          <wd-picker
-            v-model="formData.expectedSalary"
-            :columns="salaryColumns"
-            placeholder="请选择期望薪资"
-            prop="expectedSalary"
-          />
-        </wd-cell>
+        <yr-salary-picker
+          title="期望薪资"
+          placeholder="请选择期望薪资"
+          :salaryMin="formData.salaryMin"
+          :salaryMax="formData.salaryMax"
+          @changeValue="onSalaryChange"
+        />
 
         <!-- 工作性质 -->
         <wd-cell title="工作性质">
@@ -135,10 +134,10 @@
         <text class="text-base font-bold text-gray-900">其他选项</text>
       </view>
       <wd-card>
-        <wd-cell title="公开工作">
+        <wd-cell title="求职类型">
           <wd-picker
-            v-model="formData.status"
-            :columns="experienceColumns"
+            v-model="formData.workType"
+            :columns="jobTypeColumns"
             placeholder="请选择"
             prop="status"
           />
@@ -180,13 +179,13 @@ import { navigateBack } from '@/utils'
 
 // 表单数据
 const formData = ref<any>({
-  title: '',
-  description: '',
+  title: '求职标题',
+  description: '个人简介',
   jobType: '',
   jobDomain: '',
   jobSpecific: '',
-  salaryMin: '',
-  salaryMax: '',
+  salaryMin: 3000,
+  salaryMax: 8000,
   workType: '',
   comeToTime: '',
   experience: '',
@@ -197,7 +196,6 @@ const formData = ref<any>({
   locationCode: '',
   advantage: '',
   other: '',
-  expectedSalary: '',
 })
 
 // 响应式数据
@@ -208,24 +206,13 @@ const loading = ref(false)
 const rules = {
   title: [{ required: true, message: '请输入求职标题' }],
   description: [{ required: true, message: '请输入个人简介' }],
-  expectedSalary: [{ required: true, message: '请选择期望薪资' }],
   contactInfo: [{ required: true, message: '请输入联系方式' }],
 }
 
 const saveDraft = () => {
   navigateBack()
 }
-const postData = computed(() => {
-  let { expectedSalary, ...restData } = formData.value
-  let [salaryMin, salaryMax] = expectedSalary.split('-')
-  return {
-    ...restData,
-    salaryMin,
-    salaryMax,
-    status: 1,
-    headcount: 5,
-  }
-})
+
 // 发布求职信息
 const publishJobSeekingInfo = async () => {
   try {
@@ -233,9 +220,9 @@ const publishJobSeekingInfo = async () => {
     if (!valid) {
       return
     }
-    console.log(postData.value)
+    console.log(formData.value)
     loading.value = true
-    const res = await createJobSeeker({ body: postData.value })
+    const res = await createJobSeeker({ body: formData.value })
     if (res.code === 0) {
       toast.success('发布成功')
       // navigateBack()
@@ -247,6 +234,9 @@ const publishJobSeekingInfo = async () => {
   } finally {
     loading.value = false
   }
+}
+const onSalaryChange = (data) => {
+  formData.value = { ...formData.value, salaryMin: data[0], salaryMax: data[1] }
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }

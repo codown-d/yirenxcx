@@ -25,7 +25,7 @@
               <view class="flex flex-col">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
                 <view class="flex">
-                  {{ userInfo.age }}岁 · {{ userInfo.sex }} · {{ userInfo.gongZuoJingYan }}
+                  {{ title1 }}
                 </view>
               </view>
             </view>
@@ -147,6 +147,8 @@ import { ref } from 'vue'
 import { navigateBack, navigateToSub } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { RoleEmu, useRoleStore } from '@/store'
+import { find } from 'lodash'
+import { SEX } from '@/constant'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -154,7 +156,12 @@ const userInfo = ref<MemberUserDO>({
 })
 const daiBiaoZuo = ref([])
 const tags = ref([])
-
+let title1 = computed(() => {
+  let node = find(SEX, (item) => item.value == userInfo.value.sex)
+  return [`${userInfo.value.age} 岁`, node.label, userInfo.value.teChang]
+    .filter((el) => !!el)
+    .join(' • ')
+})
 watch(
   () => userInfo.value,
   (value) => {

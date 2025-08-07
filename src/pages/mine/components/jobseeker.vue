@@ -141,14 +141,12 @@
   <!-- 其他功能 -->
   <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
     <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
-    <view class="flex justify-between">
-      <navigate-to v-for="item in tools" :to-sub="item.path" :key="item.icon">
-        <view class="flex items-center justify-center flex-col flex-1 gap-2">
-          <image :src="item.icon" mode="scaleToFill" class="w-7 h-7" />
-          <text class="text-[28rpx] text-gray-600 block">{{ item.name }}</text>
-        </view>
-      </navigate-to>
-    </view>
+    <wd-cell
+      :title="item.name"
+      is-link
+      :to="'/pages-sub' + item.path"
+      v-for="item in tools"
+    ></wd-cell>
   </view>
 </template>
 
@@ -164,27 +162,27 @@ const { getUserInfo } = useUserStore()
 const userInfo = ref<MemberUserDO>()
 
 let tools = ref([
-  {
-    name: '我的关注',
-    icon: '/static/images/guanzhu.svg',
-    path: '/my-follows/my-follows',
-  },
+  // {
+  //   name: '我的关注',
+  //   icon: '/static/images/guanzhu.svg',
+  //   path: '/my-follows/my-follows',
+  // },
   {
     name: '违约公示',
     icon: '/static/images/weiyuegongshi.svg',
     path: '/violation-notice/violation-notice',
   },
 
-  {
-    name: '设置',
-    icon: '/static/images/shezhi.svg',
-    path: '/profile-settings/profile-settings',
-  },
-  {
-    name: '联系客服',
-    icon: '/static/images/kefu.svg',
-    path: '',
-  },
+  // {
+  //   name: '设置',
+  //   icon: '/static/images/shezhi.svg',
+  //   path: '/profile-settings/profile-settings',
+  // },
+  // {
+  //   name: '联系客服',
+  //   icon: '/static/images/kefu.svg',
+  //   path: '',
+  // },
 ])
 
 // 加载用户数据
@@ -203,7 +201,7 @@ const upgradeVip = () => {
 
 // 跳转到在线简历
 const goToOnlineResume = () => {
-  navigateToSub('/seeker-detail/seeker-detail')
+  navigateToSub('/seeker-edit/seeker-edit')
 }
 
 // 预览简历

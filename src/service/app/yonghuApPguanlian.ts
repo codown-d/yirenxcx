@@ -47,6 +47,27 @@ export async function getGuanZhuJobSeeker({
   );
 }
 
+/** 更新简历相关数量 PUT /app-api/yirenzhipin/app/guan-lian/setNum */
+export async function updateUser({
+  body,
+  options,
+}: {
+  body: API.AppMemberUserSetNumVO;
+  options?: CustomRequestOptions;
+}) {
+  return request<API.CommonResultBoolean>(
+    '/app-api/yirenzhipin/app/guan-lian/setNum',
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}
+
 /** 取消 PUT /app-api/yirenzhipin/app/guan-lian/update */
 export async function update({
   params,

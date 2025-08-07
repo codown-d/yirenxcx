@@ -73,7 +73,7 @@ const handleCardClick = () => {
 }
 
 const handleFavorite = () => {
-  changeConnect({ guanZhuJobId: props.jobData.userId }, isFavorited.value, () => {
+  changeConnect({ guanZhuJobId: props.jobData.id }, isFavorited.value, () => {
     isFavorited.value = !isFavorited.value
     emit('favorite', props.jobData, isFavorited.value)
   })

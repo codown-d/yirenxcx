@@ -61,13 +61,15 @@
         <view class="flex items-center justify-between mb-3">
           <view class="flex items-center">
             <image
-              :src="jobDetail.logo"
+              :src="jobDetail.info?.logo"
               class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
               mode="aspectFill"
             />
             <view>
-              <text class="text-4 font-bold text-gray-800 block">{{ jobDetail.companyName }}</text>
-              <text class="text-3 text-gray-500">{{ jobDetail.companyInfo }}</text>
+              <text class="text-4 font-bold text-gray-800 block">
+                {{ jobDetail.info?.companyName }}
+              </text>
+              <text class="text-3 text-gray-500">{{ jobDetail.info?.companyInfo }}</text>
             </view>
           </view>
           <wd-icon name="arrow-right" size="16px" color="#999" @click="goToCompany" />
@@ -112,7 +114,7 @@
                   </text>
                   <yr-salary :salaryMax="similarJob.salaryMax" :salaryMin="similarJob.salaryMin" />
                 </view>
-                <yr-img-title url="jigou.svg" :title="similarJob.companyName" />
+                <yr-img-title url="jigou.svg" :title="similarJob.info.companyName" />
               </view>
               <wd-divider
                 custom-class="!px-0"
@@ -171,14 +173,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import { createLiJiTouDi, createZuJi, getJob, getJobPage1, YRZPJobDO } from '@/service/app'
+import {
+  createLiJiTouDi,
+  createZuJi,
+  getJob,
+  getJobPage1,
+  updateUser,
+  YRZPJobDO,
+} from '@/service/app'
 import { useConnect } from '@/hooks'
 import { merge } from 'lodash'
 import { navigateTo, navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
-const loading = ref(false)
 const jobDetail = ref<YRZPJobDO>({})
 const jobId = ref()
 let isFavorited = ref(false)
@@ -190,38 +198,35 @@ onLoad((options) => {
   if (options?.id) {
     jobId.value = options.id
     loadJobDetail()
-    getData()
   }
 })
-let getData = async () => {
-  createZuJi({ body: { jobId: jobId.value } })
+
+// 加载职位详情
+const loadJobDetail = async () => {
+  await createZuJi({ body: { jobId: jobId.value } })
+  const jobInfo = await getJob({
+    params: { ids: jobId.value },
+  })
+  let item = jobInfo.data[0]
+  item['info'] = JSON.parse(item.info)
+  jobDetail.value = item
+  console.log(jobDetail.value)
+
   let resGuanZhu = await getGuanZhuJobSeekerFn({ field: 'guanZhuJobId' })
-  isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobId.value)
+  isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobDetail.value.id)
+  console.log(isFavorited.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobId.value)
 
   let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
   similarJobList.value = res.data.list.slice(0, 3).map((item) => {
-    let info = JSON.parse(item.info || '{}')
-    let obj = merge({}, item, info, { jobId: item.id })
+    item['info'] = JSON.parse(item.info || '{}')
     return {
-      ...obj,
+      ...item,
     }
   })
-}
-// 加载职位详情
-const loadJobDetail = async () => {
-  try {
-    loading.value = true
-    const res = await getJob({
-      params: { ids: jobId.value },
-    })
-    let item = res.data[0]
-    let info = JSON.parse(item.info)
-    jobDetail.value = merge({}, item, info)
-  } finally {
-    loading.value = false
-  }
+
+  await updateUser({ body: { zhiWeiLiuLan: '+1', userId: item.creator } })
 }
 
 // 立即联系
@@ -239,6 +244,7 @@ const handleApply = async () => {
     })
 
     if (res.code === 0) {
+      await updateUser({ body: { shouDaoJianLi: '+1', userId: jobDetail.value.creator } })
       toast.success('申请成功！')
     } else {
       toast.error(res.msg || '申请失败')
@@ -250,18 +256,16 @@ const handleApply = async () => {
 }
 
 const goToCompany = () => {
-  navigateTo(`/company-detail/company-detail?id=${jobDetail.value.companyId}`)
+  navigateToSub(`/employer-details/employer-details?id=${jobDetail.value.info?.id}`)
 }
 
 // 查看相似职位
 const goToJob = (jobId: string) => {
-  uni.navigateTo({
-    url: `/pages-sub/job-detail/job-detail?id=${jobId}`,
-  })
+  navigateToSub(`/job-detail/job-detail?id=${jobId}`)
 }
 //
 const handleCollect = () => {
-  changeConnect({ shouCangJobId: Number(jobId.value) }, collect.value, () => {
+  changeConnect({ shouCangJobId: Number(jobDetail.value.id) }, collect.value, () => {
     collect.value = !collect.value
   })
 }

@@ -48,7 +48,7 @@ export async function getUserPage1({
 }
 
 /** 更新会员用户 PUT /admin-api/member/user/update */
-export async function updateUser2({
+export async function updateUser3({
   body,
   options,
 }: {

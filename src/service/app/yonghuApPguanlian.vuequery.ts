@@ -42,6 +42,26 @@ export function getGuanZhuJobSeekerQueryOptions(options: {
   });
 }
 
+/** 更新简历相关数量 PUT /app-api/yirenzhipin/app/guan-lian/setNum */
+export function useUpdateUserMutation(options?: {
+  onSuccess?: (value?: API.CommonResultBoolean) => void;
+  onError?: (error?: DefaultError) => void;
+}) {
+  const { onSuccess, onError } = options || {};
+
+  const response = useMutation({
+    mutationFn: apis.updateUser,
+    onSuccess(data: API.CommonResultBoolean) {
+      onSuccess?.(data);
+    },
+    onError(error) {
+      onError?.(error);
+    },
+  });
+
+  return response;
+}
+
 /** 取消 PUT /app-api/yirenzhipin/app/guan-lian/update */
 export function useUpdateMutation(options?: {
   onSuccess?: (value?: API.CommonResult) => void;

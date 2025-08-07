@@ -9,90 +9,91 @@
 }
 </route>
 <template>
-  <view
-    class="text-[#252525]"
-    :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'"
-  >
+  <view class="text-[#252525]">
     <scroll-view
       :scroll-y="true"
       class="h-100vh"
       @scroll="handleScroll"
       @scrolltolower="onScrollToLower"
     >
-      <wd-navbar
-        :bordered="false"
-        :left-arrow="false"
-        left-text="意仁直聘"
-        custom-class="font-bold text-primary"
-        fixed
-        safeAreaInsetTop
-        :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
-      ></wd-navbar>
       <view
-        class="bg-transparent pb-4"
-        :style="{
-          paddingTop: safeAreaInsets?.top + 44 + 'px',
-        }"
+        :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'"
       >
-        <view class="px-4">
-          <!-- 搜索栏 -->
-          <search placeholder="请输入职位名称" class-name="mt-2" @confirm="handleSearch" />
-          <!-- 招聘横幅 -->
-          <view class="relative mt-3 rounded-3 overflow-hidden h-40" v-if="swiperList.length">
-            <wd-swiper :list="swiperList" autoplay></wd-swiper>
-          </view>
-          <!-- 筛选标签 -->
-          <scroll-view class="whitespace-nowrap mt-3" scroll-x>
-            <view class="flex items-center justify-between">
-              <view class="flex gap-3">
-                <view
-                  v-for="tag in filterTags"
-                  :key="tag.id"
-                  class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
-                  :class="{
-                    '!bg-primary-100 text-primary': activeFilterTag === tag.id,
-                    'text-gray-600': activeFilterTag !== tag.id,
-                  }"
-                  @click="handleFilterChange(tag.id)"
-                >
-                  <wd-icon name="camera" size="22px"></wd-icon>
-                  <text class="text-sm">{{ tag.label }}</text>
+        <wd-navbar
+          :bordered="false"
+          :left-arrow="false"
+          left-text="意仁直聘"
+          custom-class="font-bold text-primary"
+          fixed
+          safeAreaInsetTop
+          :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
+        ></wd-navbar>
+        <view
+          class="bg-transparent pb-4"
+          :style="{
+            paddingTop: safeAreaInsets?.top + 44 + 'px',
+          }"
+        >
+          <view class="px-4">
+            <!-- 搜索栏 -->
+            <search placeholder="请输入职位名称" class-name="mt-2" @confirm="handleSearch" />
+            <!-- 招聘横幅 -->
+            <view class="relative mt-3 rounded-3 overflow-hidden h-40" v-if="swiperList.length">
+              <wd-swiper :list="swiperList" autoplay></wd-swiper>
+            </view>
+            <!-- 筛选标签 -->
+            <scroll-view class="whitespace-nowrap mt-3" scroll-x>
+              <view class="flex items-center justify-between">
+                <view class="flex gap-3">
+                  <view
+                    v-for="tag in filterTags"
+                    :key="tag.id"
+                    class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
+                    :class="{
+                      '!bg-primary-100 text-primary': activeFilterTag === tag.id,
+                      'text-gray-600': activeFilterTag !== tag.id,
+                    }"
+                    @click="handleFilterChange(tag.id)"
+                  >
+                    <wd-icon name="camera" size="22px"></wd-icon>
+                    <text class="text-sm">{{ tag.label }}</text>
+                  </view>
+                </view>
+                <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
+                  <wd-icon name="filter" size="22px"></wd-icon>
+                  <text class="text-sm" @click="navigateToSub('/job-filter/job-filter')">筛选</text>
                 </view>
               </view>
-              <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
-                <wd-icon name="filter" size="22px"></wd-icon>
-                <text class="text-sm" @click="navigateToSub('/job-filter/job-filter')">筛选</text>
+            </scroll-view>
+            <!-- 推荐招聘职位标题 -->
+            <template v-if="role === RoleEmu.seeker || !userInfo.token">
+              <view class="py-4">
+                <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
               </view>
-            </view>
-          </scroll-view>
-          <!-- 推荐招聘职位标题 -->
-          <template v-if="role === RoleEmu.seeker || !userInfo.token">
-            <view class="py-4">
-              <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
-            </view>
-            <job-card
-              v-for="job in jobList"
-              :key="job.id"
-              :job-data="job"
-              v-if="jobList.length"
-              :favorited="job.favorited"
-            />
-            <yr-nodata v-else></yr-nodata>
-          </template>
-          <!-- 推荐招聘职位标题 -->
-          <template v-if="role === RoleEmu.employer || !userInfo.token">
-            <view class="py-4">
-              <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
-            </view>
-            <seeker-card
-              v-for="seeker in seekerList"
-              :key="seeker.id"
-              :seeker-data="seeker"
-              :favorited="seeker.favorited"
-              v-if="seekerList.length"
-            />
-            <yr-nodata v-else></yr-nodata>
-          </template>
+              <job-card
+                v-for="job in jobList"
+                :key="job.id"
+                :job-data="job"
+                v-if="jobList.length"
+                :favorited="job.favorited"
+              />
+              <yr-nodata v-else></yr-nodata>
+            </template>
+            <!-- 推荐招聘职位标题 -->
+            <template v-if="role === RoleEmu.employer || !userInfo.token">
+              <view class="py-4">
+                <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
+              </view>
+              <seeker-card
+                v-for="seeker in seekerList"
+                :key="seeker.id"
+                :seeker-data="seeker"
+                :favorited="seeker.favorited"
+                v-if="seekerList.length"
+              />
+              <yr-nodata v-else></yr-nodata>
+            </template>
+          </view>
         </view>
       </view>
     </scroll-view>
@@ -154,7 +155,6 @@ import {
   YRZPJobDO,
   YRZPJobSeekerDO,
 } from '@/service/app'
-import { merge } from 'lodash'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -193,38 +193,35 @@ const onScrollToLower = () => {
 }
 const handleFilterChange = (tagId: string) => {
   activeFilterTag.value = tagId
-  console.log('切换筛选标签:', tagId)
 }
 
 const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
-  let resJobSeeker = await getGuanZhuJobSeekerFn({
-    field: 'guanZhuJobSeekerId',
-  })
-  let resJob = await getGuanZhuJobSeekerFn({
-    field: 'guanZhuJobId',
-  })
   let pageSize = !userInfo.token ? 6 : 10
   if (role.value === RoleEmu.employer) {
+    let resJobSeeker = await getGuanZhuJobSeekerFn({
+      field: 'guanZhuJobSeekerId',
+    })
     let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     seekerList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
-      let { id: userId, ...resInfo } = info || {}
-      let obj = merge({ userId }, item, resInfo)
+      item['info'] = info
       return {
-        ...obj,
-        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === info.id),
+        ...item,
+        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
       }
     })
   } else if (role.value === RoleEmu.seeker) {
+    let resJob = await getGuanZhuJobSeekerFn({
+      field: 'guanZhuJobId',
+    })
     let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
     jobList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
-      let { id: userId, ...resInfo } = info || {}
-      let obj = merge({ userId }, item, resInfo)
+      item['info'] = info
       return {
-        ...obj,
-        favorited: resJob.some((item2) => item2.guanZhuJobId === info.id),
+        ...item,
+        favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
       }
     })
   }

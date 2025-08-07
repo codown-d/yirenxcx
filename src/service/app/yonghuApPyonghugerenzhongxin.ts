@@ -60,7 +60,7 @@ export async function resetUserPassword({
 }
 
 /** 修改基本信息 PUT /app-api/member/user/update */
-export async function updateUser({
+export async function updateUser1({
   body,
   options,
 }: {

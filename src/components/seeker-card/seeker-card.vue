@@ -19,7 +19,7 @@
     <view class="flex items-start mb-3 gap-2">
       <!-- 头像 -->
       <wd-img
-        :src="seekerData?.avatar || '/static/images/default-avatar.png'"
+        :src="seekerData.info?.avatar || '/static/images/default-avatar.png'"
         custom-class="w-16 h-16 rounded-full bg-gray-100 overflow-hidden shadow"
       />
       <!-- 基本信息 -->
@@ -28,7 +28,7 @@
           <view class="flex items-center mt-2">
             <text class="text-base font-semibold text-gray-800 mr-2">{{ seekerData.title }}</text>
             <!-- 认证标识 -->
-            <view v-if="seekerData?.isCertified">
+            <view v-if="seekerData?.certificate">
               <wd-tag type="primary" custom-class="!px-[12rpx] !py-[4rpx] !rounded-[2px] !text-3">
                 认证
               </wd-tag>
@@ -48,7 +48,7 @@
         </view>
         <view class="mb-1">
           <text class="text-sm text-gray-600">
-            {{ seekerData.age }}岁 • {{ seekerData.category }} • {{ seekerData.gongZuoJingYan }}
+            {{ title1 }}
           </text>
         </view>
       </view>
@@ -58,7 +58,7 @@
     <view class="flex flex-wrap gap-1.5 mb-2">
       <yr-tag-list v-model="seekerData.advantage" class-name="!bg-[#F5F6FA] !text-[#555555]" />
     </view>
-    <yr-img-title :title="seekerData.biYeYuanXiao" url="school.svg" />
+    <yr-img-title :title="title2" url="school.svg" />
     <view class="flex items-center justify-between text-sm mt-2">
       <yr-img-title :title="seekerData.contactMobile" url="lxdh.svg" />
       <yr-time-now :time="Number(seekerData.createTime)" />
@@ -81,9 +81,19 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
-console.log(props)
-
 const isFavorited = ref(props.favorited)
+let title1 = computed(() => {
+  let { seekerData } = props
+  let node = seekerData.jobSpecific?.split('-').pop()
+  return [`${seekerData.info?.age} 岁`, node, seekerData.info?.gongZuoJingYan]
+    .filter((el) => !!el)
+    .join(' • ')
+})
+let title2 = computed(() => {
+  let { seekerData } = props
+  console.log(seekerData.info)
+  return [seekerData.info?.biYeYuanXiao, seekerData?.education].filter((el) => el).join(' | ')
+})
 
 watch(
   () => props.favorited,
@@ -95,7 +105,7 @@ watch(
 const emit = defineEmits(['click', 'favorite', 'contact'])
 const handleCardClick = () => {
   emit('click', props.seekerData)
-  navigateToSub(`/user-info/user-info?seekerId=${props.seekerData.id}`)
+  navigateToSub(`/seeker-details/seeker-details?seekerId=${props.seekerData.id}`)
 }
 
 const handleFavorite = () => {

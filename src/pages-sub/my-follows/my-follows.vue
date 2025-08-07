@@ -28,12 +28,12 @@
                 </view>
                 <yr-salary :salaryMax="item.salaryMax" :salaryMin="item.salaryMin" />
               </view>
-              <view>{{ item.experienceRequirement }} · {{ item.workType }}</view>
+              <view>{{ getTitle(item) }}</view>
             </view>
             <!-- 标签 -->
             <view class="flex gap-1 my-2">
               <yr-tag-list
-                v-model="item.requirementDetails"
+                v-model="item.advantage"
                 class-name="!bg-[#F5F6FA] !text-[#555555]"
               ></yr-tag-list>
             </view>
@@ -42,7 +42,7 @@
                 {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
                 关注
               </view>
-              <wd-button size="small" @click="unfollowCompany(item.id)">取消关注</wd-button>
+              <wd-button size="small" @click="unfollowCompany(item)">取消关注</wd-button>
             </view>
           </view>
         </view>
@@ -76,10 +76,8 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import dayjs from 'dayjs'
-import { useConnect } from '@/hooks'
+import { useConnect } from '@/hooks/useConnect'
 import { RoleEmu, useRoleStore } from '@/store'
-
-const { getRole } = useRoleStore()
 const { changeConnect, getGuanZhu } = useConnect()
 
 // 页面状态
@@ -91,6 +89,10 @@ onMounted(() => {
   loadFollowList()
 })
 
+let getTitle = (item) => {
+  let node = item.jobSpecific?.split('-').pop()
+  return [item.experience, node, item.workType].filter((item) => item && item.trim()).join('  ·  ')
+}
 // 加载关注列表
 const loadFollowList = async () => {
   if (loading.value) return
@@ -108,8 +110,10 @@ const loadFollowList = async () => {
 // 去发现页面
 const goToDiscover = () => {}
 
+let { role, getRole } = useRoleStore()
 // 取消关注
-const unfollowCompany = (id: any) => {
+const unfollowCompany = (item: any) => {
+  let { id } = item
   if (RoleEmu.employer === getRole()) {
     changeConnect({ guanZhuJobSeekerId: Number(id) }, true, () => {
       loadFollowList()
