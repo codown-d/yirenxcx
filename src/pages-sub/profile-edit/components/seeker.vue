@@ -48,8 +48,19 @@
           :rules="[{ required: true, message: '请填写毕业院校' }]"
         />
       </wd-cell>
+      <wd-cell title="工作经验" vertical>
+        <wd-input
+          v-model="userForm.gongZuoJingYan"
+          placeholder="请输入工作经验"
+          :rules="[{ required: true, message: '请输入工作经验' }]"
+        />
+      </wd-cell>
       <!-- 所在地区 -->
-      <yr-location-picker title="所在地区" v-model="userForm.locationCode"></yr-location-picker>
+      <yr-location-picker
+        title="所在地区"
+        v-model="userForm.locationCode"
+        @confirmLabel="(val) => (userForm.location = val)"
+      ></yr-location-picker>
       <!-- 性别 -->
       <yr-picker v-model="userForm.xueLi" :columns="XUELI" title="学历水平"></yr-picker>
       <!-- 性别 -->
@@ -57,12 +68,6 @@
       <!-- 年龄 -->
       <yr-picker v-model="userForm.age" :columns="AGE" title="年龄"></yr-picker>
       <!-- 年龄 -->
-      <yr-picker
-        class="pb-2"
-        v-model="userForm.gongZuoJingYan"
-        :columns="experienceColumns"
-        title="工作经验"
-      ></yr-picker>
     </wd-form>
   </view>
 

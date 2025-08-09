@@ -235,6 +235,7 @@ const publishJobSeekingInfo = async () => {
     loading.value = false
   }
 }
+
 const onSalaryChange = (data) => {
   formData.value = { ...formData.value, salaryMin: data[0], salaryMax: data[1] }
 }

@@ -117,4 +117,8 @@ image {
 .wd-cell__right {
   flex: none !important;
 }
+.no-padding .wd-cell__wrapper {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 </style>

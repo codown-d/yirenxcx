@@ -1,5 +1,3 @@
-import { useToast } from 'wot-design-uni'
-
 // const wdToast = useToast()
 /**
  * toast 弹窗组件
@@ -13,7 +11,7 @@ interface ToastOptions {
   duration?: number
   position?: 'top' | 'middle' | 'bottom'
   icon?: 'success' | 'error' | 'none' | 'loading' | 'fail' | 'exception'
-  message: string
+  message?: string
 }
 
 export function showToast(options: ToastOptions | string) {

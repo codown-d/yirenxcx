@@ -7737,9 +7737,9 @@ export type CommonResultYRZPForumCommentRespVO = {
   msg?: string;
 };
 
-export type CommonResultYRZPForumPostRespAppVO = {
+export type CommonResultYRZPForumPostDO = {
   code?: number;
-  data?: YRZPForumPostRespAppVO;
+  data?: YRZPForumPostDO;
   msg?: string;
 };
 
@@ -13426,6 +13426,10 @@ export type getForumPostPageParams = {
   userId?: number;
   /** 标题 */
   title?: string;
+  /** 第几个列表 */
+  type?: string;
+  /** 话题 */
+  tags?: string;
   /** 页码，从 1 开始 */
   pageNo: number;
   /** 每页条数，最大值为 100 */
@@ -16000,11 +16004,6 @@ export type KnowledgeSegment = {
 };
 
 export type likeForumCommentParams = {
-  /** 编号 */
-  id: number;
-};
-
-export type likeForumPostParams = {
   /** 编号 */
   id: number;
 };
@@ -21696,6 +21695,7 @@ export type YRZPForumCommentRespAppVO = {
   replyUserId?: number;
   /** 回复用户昵称 */
   replyUserNickname?: string;
+  info?: string;
   /** 创建时间 */
   createTime: string;
 };
@@ -21740,12 +21740,6 @@ export type YRZPForumPostCreateAppReqVO = {
   video?: string;
   /** 位置信息 */
   location?: string;
-  /** 可见性设置 */
-  visibilitySetting?: string;
-  /** 允许评论 */
-  allowed?: number;
-  /** 匿名发布 */
-  anonymity?: number;
 };
 
 export type YRZPForumPostCreateReqVO = {
@@ -21759,6 +21753,28 @@ export type YRZPForumPostCreateReqVO = {
   status: number;
 };
 
+export type YRZPForumPostDO = {
+  createTime?: string;
+  updateTime?: string;
+  creator?: string;
+  updater?: string;
+  deleted?: boolean;
+  id?: number;
+  userId?: number;
+  title?: string;
+  content?: string;
+  tags?: string;
+  viewCount?: number;
+  likeCount?: number;
+  commentCount?: number;
+  shares?: number;
+  status?: number;
+  images?: string;
+  video?: string;
+  location?: string;
+  info?: string;
+};
+
 export type YRZPForumPostRespAppVO = {
   /** 帖子编号 */
   id: number;
@@ -21766,6 +21782,7 @@ export type YRZPForumPostRespAppVO = {
   userId: number;
   /** 用户昵称 */
   userNickname?: string;
+  info?: string;
   /** 用户头像 */
   userAvatar?: string;
   /** 标题 */

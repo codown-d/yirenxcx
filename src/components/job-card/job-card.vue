@@ -32,12 +32,11 @@
       </view>
     </view>
     <view class="flex items-center justify-between">
-      <view class="flex items-center gap-4">
-        <yr-img-title :title="jobData.companyName" url="jigou.svg" />
+      <view class="flex items-center gap-1 flex-wrap w-0 flex-1">
+        <yr-img-title :title="jobData.info?.companyName" url="jigou.svg" class="mr-4" />
         <yr-img-title :title="jobData.location" url="weizhi.svg" />
       </view>
-
-      <yr-time-now :time="Number(jobData.createTime)" />
+      <yr-time-now :time="Number(jobData.createTime)" class="w-[70px] text-right" />
     </view>
   </view>
 </template>

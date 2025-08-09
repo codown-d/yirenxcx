@@ -62,10 +62,7 @@
     </view>
 
     <!-- 空状态 -->
-    <view v-if="conversationList.length === 0" class="text-center py-20 flex flex-col items-center">
-      <image src="/static/images/empty-chat.png" mode="aspectFit" class="w-24 h-24 mx-auto mb-4" />
-      <text class="text-gray-400 text-sm">暂无聊天记录</text>
-    </view>
+    <wd-status-tip image="content" tip="暂无内容" v-if="conversationList.length === 0" />
   </view>
 
   <yr-tab-bar :tab-index="1"></yr-tab-bar>

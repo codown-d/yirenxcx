@@ -32,11 +32,7 @@
         <!-- 职位要求 -->
         <view class="mt-2">
           <text class="text-sm text-gray">演员要求</text>
-          <yr-tag-list
-            v-model="jobDetail.requirementDetails"
-            class="mt-3"
-            class-name="!bg-[#F5F6FA] !text-[#555555]"
-          />
+          <yr-tag-list v-model="jobDetail.requirementDetails" class="mt-3" />
         </view>
         <view class="mt-4">
           <text class="text-sm text-gray">福利/待遇</text>
@@ -216,7 +212,7 @@ const loadJobDetail = async () => {
   isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobDetail.value.id)
   console.log(isFavorited.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
-  collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobId.value)
+  collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobDetail.value.info.id)
 
   let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
   similarJobList.value = res.data.list.slice(0, 3).map((item) => {
@@ -265,7 +261,7 @@ const goToJob = (jobId: string) => {
 }
 //
 const handleCollect = () => {
-  changeConnect({ shouCangJobId: Number(jobDetail.value.id) }, collect.value, () => {
+  changeConnect({ shouCangJobId: Number(jobDetail.value.info.id) }, collect.value, () => {
     collect.value = !collect.value
   })
 }

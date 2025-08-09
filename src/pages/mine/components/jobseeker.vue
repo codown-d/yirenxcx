@@ -11,7 +11,11 @@
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
             <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.name }}</text>
-            <view class="bg-[#FFDD7E] text-[#B16D00] text-[20rpx] px-2 py-1 rounded-full">
+            <view
+              @click.stop="goAttestation"
+              class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
+              :class="[userInfo.attestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+            >
               实名认证
             </view>
           </view>
@@ -230,6 +234,11 @@ const goToSettings = () => {
 // 联系客服
 const contactService = () => {
   toast.info('联系客服')
+}
+const goAttestation = () => {
+  if (userInfo.value.attestation == 0) {
+    navigateToSub('/seeker-authentication/seeker-authentication')
+  }
 }
 onShow(() => {
   loadUserData()

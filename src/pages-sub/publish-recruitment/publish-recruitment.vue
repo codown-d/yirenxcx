@@ -48,25 +48,13 @@
         <text class="text-base font-bold text-gray-900">薪资待遇</text>
       </view>
       <wd-card>
-        <!-- 期望薪资 -->
-        <wd-cell title="薪资范围">
-          <wd-picker
-            v-model="formData.expectedSalary"
-            :columns="salaryColumns"
-            placeholder="请选择薪资范围"
-            prop="expectedSalary"
-          />
-        </wd-cell>
-
-        <!-- 工作性质 -->
-        <wd-cell title="工作性质">
-          <wd-picker
-            v-model="formData.workType"
-            :columns="jobTypeColumns"
-            placeholder="请选择工作性质"
-            prop="jobType"
-          />
-        </wd-cell>
+        <yr-salary-picker
+          title="薪资范围"
+          placeholder="请选择"
+          :salaryMin="formData.salaryMin"
+          :salaryMax="formData.salaryMax"
+          @changeValue="onSalaryChange"
+        />
         <yr-modal-picker v-model="formData.benefits" modal-title="福利待遇" />
       </wd-card>
 
@@ -116,13 +104,13 @@
         <text class="text-base font-bold text-gray-900">其他选项</text>
       </view>
       <wd-card>
-        <!-- 是否公开 -->
-        <wd-cell title="职位属性">
+        <!-- 工作性质 -->
+        <wd-cell title="工作性质">
           <wd-picker
             v-model="formData.workType"
             :columns="jobTypeColumns"
-            placeholder="请选择"
-            prop="status"
+            placeholder="请选择工作性质"
+            prop="jobType"
           />
         </wd-cell>
         <wd-cell title="招聘人数" vertical>
@@ -152,32 +140,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { toast } from '@/utils/toast'
-import { educationColumns, experienceColumns, jobTypeColumns, salaryColumns } from '@/constant'
-import { createJob } from '@/service/app'
+import { educationColumns, experienceColumns, jobTypeColumns } from '@/constant'
 import { navigateBack } from '@/utils'
+import { createJob } from '@/service/app'
+import { toast } from '@/utils/toast'
 
 // 表单数据
 const formData = ref<any>({
-  title: '',
-  description: '',
-  jobType: '',
-  jobDomain: '',
-  jobSpecific: '',
-  salaryMin: '',
-  salaryMax: '',
-  workType: '',
-  comeToTime: '',
-  experience: '',
-  education: '',
-  specialty: '',
-  contactMobile: '',
-  isCertified: '',
-  location: '',
-  locationCode: '',
-  advantage: '',
-  other: '',
-  expectedSalary: '',
+  salaryMin: 3000,
+  salaryMax: 8000,
 })
 const rules = {
   title: [{ required: true, message: '请输入职位标题' }],
@@ -192,15 +163,6 @@ const loading = ref(false)
 const saveDraft = () => {
   navigateBack()
 }
-const postData = computed(() => {
-  let { expectedSalary, benefits, requirementDetails, ...restData } = formData.value
-  let [salaryMin, salaryMax] = expectedSalary.split('-')
-  return {
-    ...restData,
-    salaryMin,
-    salaryMax,
-  }
-})
 // 发布求职信息
 const publishJobSeekingInfo = async () => {
   try {
@@ -209,21 +171,20 @@ const publishJobSeekingInfo = async () => {
     if (!valid) {
       return
     }
-
     loading.value = true
     const res = await createJob({
-      body: postData.value,
+      body: formData.value,
     })
     if (res.code === 0) {
       toast.success('发布成功')
-      // 延迟跳转
       navigateBack()
-    } else {
-      toast.error(res.msg || '发布失败')
     }
   } finally {
     loading.value = false
   }
+}
+const onSalaryChange = (data) => {
+  formData.value = { ...formData.value, salaryMin: Number(data[0]), salaryMax: Number(data[1]) }
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }

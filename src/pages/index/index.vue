@@ -147,7 +147,7 @@
 <script lang="ts" setup>
 import { FILTER_TAGS, FilterTag } from '@/constant/recruitment'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
-import { RoleEmu, useRoleStore, useUserStore } from '@/store'
+import { RoleEmu, useFilterStore, useRoleStore, useUserStore } from '@/store'
 import {
   getBannerList,
   getJobPage1,
@@ -159,6 +159,7 @@ import {
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
 const { getRole, setRole } = useRoleStore()
+let { getFilter } = useFilterStore()
 
 // 响应式数据
 const opacity = ref(0)
@@ -170,6 +171,7 @@ const jobList = ref<YRZPJobDO[]>([])
 const seekerList = ref<YRZPJobSeekerDO[]>()
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)
+let filter = ref(getFilter())
 
 const swiperList = ref([])
 function handleClick(type) {
@@ -236,6 +238,7 @@ onLoad(async () => {
 })
 onShow(() => {
   role.value = getRole()
+  filter.value = getFilter()
   getDataFn()
   seekerList.value = []
   jobList.value = []

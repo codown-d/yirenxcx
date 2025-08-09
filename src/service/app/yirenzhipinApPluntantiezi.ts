@@ -56,34 +56,13 @@ export async function getForumPost({
   params: API.getForumPostParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultYRZPForumPostRespAppVO>(
+  return request<API.CommonResultYRZPForumPostDO>(
     '/app-api/yirenzhipin/forum-post/get',
     {
       method: 'GET',
       params: {
         ...params,
       },
-      ...(options || {}),
-    }
-  );
-}
-
-/** 点赞论坛帖子 POST /app-api/yirenzhipin/forum-post/like/${param0} */
-export async function likeForumPost({
-  params,
-  options,
-}: {
-  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
-  params: API.likeForumPostParams;
-  options?: CustomRequestOptions;
-}) {
-  const { id: param0, ...queryParams } = params;
-
-  return request<API.CommonResultBoolean>(
-    `/app-api/yirenzhipin/forum-post/like/${param0}`,
-    {
-      method: 'POST',
-      params: { ...queryParams },
       ...(options || {}),
     }
   );

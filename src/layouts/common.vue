@@ -20,6 +20,7 @@
           <view
             class="bg-transparent"
             :style="{
+              minHeight: `calc(100vh - ${safeAreaInsets?.top + 44}px)`,
               paddingTop: safeAreaInsets?.top + 44 + 'px',
             }"
           >

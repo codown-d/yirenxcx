@@ -130,11 +130,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { toast } from '@/utils/toast'
-import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
-import { merge } from 'lodash'
-import { useMessage } from 'wot-design-uni'
+import { getUserInfo, MemberUserDO } from '@/service/app'
 import { jobTypeColumns, salaryColumns } from '@/constant'
 
 // 用户信息数据
@@ -151,64 +147,11 @@ watch(
     daiBiaoZuo.value = value.daiBiaoZuo.split(',')
   },
 )
-const goToProfileEdit = () => {
-  navigateToSub('/profile-edit/profile-edit')
-}
 
 // 加载用户数据
 const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data
-}
-
-// 移除技能
-const removeSkill = (index: number) => {
-  tags.value.splice(index, 1)
-}
-const removeDaiBiaoZuo = (index: number) => {
-  daiBiaoZuo.value.splice(index, 1)
-}
-// 添加技能
-let tagValue = ref('')
-const addSkill = async () => {
-  let res = await message.prompt({
-    title: '请输入技能标签',
-    inputValue: tagValue.value,
-    inputPattern: /^(?!\s*$).+/,
-  })
-  tags.value.push(res.value)
-}
-// 添加作品
-const message = useMessage()
-let workValue = ref('')
-const addWork = async () => {
-  let res = await message.prompt({
-    title: '请输入代表作品名称',
-    inputValue: workValue.value,
-    inputPattern: /^(?!\s*$).+/,
-  })
-  daiBiaoZuo.value.push(res.value)
-}
-
-// 预览简历
-const previewResume = () => {
-  toast.info('跳转到简历预览页面')
-  // uni.navigateTo({
-  //   url: '/pages-sub/resume-preview/resume-preview?id=' + userInfo.value.id
-  // })
-}
-
-const saveResume = async () => {
-  await updateUser({
-    body: merge({}, userInfo.value, {
-      tags: tags.value.join(','),
-      daiBiaoZuo: daiBiaoZuo.value.join(','),
-    }),
-  })
-  toast.success('保存成功')
-  setTimeout(() => {
-    navigateBack()
-  }, 500)
 }
 
 onShow(() => {

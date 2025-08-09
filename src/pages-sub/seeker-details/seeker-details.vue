@@ -53,13 +53,7 @@
           <text class="text-[14px] text-gray-800">专业技能</text>
         </view>
         <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(skill, index) in tags"
-            :key="index"
-            class="flex items-center text-[12px] px-[6px] py-[2px] rounded-1 bg-gray-50"
-          >
-            <text>{{ skill }}</text>
-          </view>
+          <yr-tag-list v-model="userInfo.tags" class-name="!bg-[#F5F6FA] !text-[#555555]" />
         </view>
         <!-- 个人简介 -->
         <wd-cell title="自我介绍" vertical custom-class="mt-4 mb-2">
@@ -82,7 +76,7 @@
         <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
           <view
             class="flex-1 h-[101px]"
-            v-for="item in userInfo.jianJieImages.split(',')"
+            v-for="item in userInfo.jianJieImages?.split(',')"
             :key="item"
           >
             <image
@@ -93,10 +87,18 @@
           </view>
           <view
             class="flex-1 h-[101px]"
-            v-for="item in [
-              ...userInfo.jianJieVideos.split(','),
-              ...userInfo.jiNengVideos.split(','),
-            ]"
+            v-for="item in userInfo?.jianJieVideos?.split(',')"
+            :key="item"
+          >
+            <video
+              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
+              :src="item"
+              mode="aspectFill"
+            ></video>
+          </view>
+          <view
+            class="flex-1 h-[101px]"
+            v-for="item in userInfo?.jiNengVideos?.split(',')"
             :key="item"
           >
             <video
@@ -109,19 +111,11 @@
       </wd-card>
       <!-- 代表作品 -->
 
-      <wd-card v-if="daiBiaoZuo.length">
+      <wd-card>
         <view class="flex items-center justify-between mb-3 mt-1">
           <text class="text-base font-semibold text-gray-800">代表作品</text>
         </view>
-        <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(work, index) in daiBiaoZuo"
-            :key="index"
-            class="flex items-center justify-between py-3 px-4 bg-[#E9F7F4] rounded-2 mb-2 last:mb-0 w-full"
-          >
-            <text class="text-sm text-[#248069]">{{ work }}</text>
-          </view>
-        </view>
+        <yr-tag-list v-model="userInfo.daiBiaoZuo" className="w-full justify-between !px-4 !py-3" />
       </wd-card>
       <wd-card>
         <view class="flex items-center justify-between mb-3 mt-1">
@@ -136,7 +130,23 @@
     </wd-form>
   </view>
   <yr-page-footer>
-    <wd-button type="success" block custom-class="flex-1 " :round="false" @click="handleContact">
+    <view class="flex items-center gap-4">
+      <view v-if="false">
+        <wd-icon
+          :name="isFavorited ? 'heart-filled' : 'heart'"
+          :color="isFavorited ? '#ff4757' : '#999'"
+          custom-class="text-6"
+        />
+      </view>
+      <view @click="handleCollect">
+        <wd-icon
+          :name="collect ? 'star-filled' : 'star'"
+          :color="collect ? '#ffd700' : '#999'"
+          custom-class="text-6"
+        />
+      </view>
+    </view>
+    <wd-button type="success" custom-class="flex-1 " :round="false" @click="handleContact">
       立即联系
     </wd-button>
   </yr-page-footer>
@@ -149,31 +159,33 @@ import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { RoleEmu, useRoleStore } from '@/store'
 import { find } from 'lodash'
 import { SEX } from '@/constant'
+const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
   qiWangXinZi: '',
 })
-const daiBiaoZuo = ref([])
-const tags = ref([])
+let isFavorited = ref()
+let collect = ref(false)
 let title1 = computed(() => {
-  let node = find(SEX, (item) => item.value == userInfo.value.sex)
-  return [`${userInfo.value.age} 岁`, node.label, userInfo.value.teChang]
+  let node = find(SEX, (item) => item.value == userInfo.value?.sex)
+  return [`${userInfo.value.age} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')
 })
-watch(
-  () => userInfo.value,
-  (value) => {
-    tags.value = value.tags.split(',')
-    daiBiaoZuo.value = value.daiBiaoZuo.split(',')
-  },
-)
 
 // 加载用户数据
 const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data
+  console.log(userInfo.value)
+  let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobSeekerId' })
+  collect.value = resShouCang.some((item2) => item2.shouCangJobSeekerId == userInfo.value.id)
+}
+const handleCollect = () => {
+  changeConnect({ shouCangJobSeekerId: Number(userInfo.value.id) }, collect.value, () => {
+    collect.value = !collect.value
+  })
 }
 const handleContact = () => {
   navigateToSub(`/chat/chat?toUserID=im_${RoleEmu.seeker}_${userInfo.value.id}`)

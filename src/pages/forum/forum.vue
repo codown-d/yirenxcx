@@ -31,17 +31,10 @@
         }"
       >
         <view class="px-4 pt-2">
-          <view class="flex items-center justify-between">
-            <view class="flex items-center gap-2">
-              <text class="text-4 font-bold text-gray-800">热门话题</text>
-              <wd-img src="/static/images/fire.png" width="13" height="16" />
-            </view>
-            <view class="flex items-center" @click="goToMoreTopics">
-              <text class="text-3 text-[#999]">更多</text>
-              <wd-icon name="arrow-right" custom-class="ml-1 !text-[#999]" />
-            </view>
+          <view class="flex items-center gap-2">
+            <text class="text-4 font-bold text-gray-800">热门话题</text>
+            <wd-img src="/static/images/fire.png" width="13" height="16" />
           </view>
-
           <view class="flex flex-wrap gap-2 mt-3" v-if="hotTopics?.length > 0">
             <scroll-view :scroll-x="true">
               <view class="flex items-center gap-2 w-[600px] flex-wrap">
@@ -61,7 +54,7 @@
             </scroll-view>
           </view>
         </view>
-        <wd-tabs v-model="categoryType">
+        <wd-tabs v-model="categoryType" custom-class="mb-4">
           <block v-for="category in tabCategory" :key="category.id">
             <wd-tab :title="`${category.label}`"></wd-tab>
           </block>
@@ -72,7 +65,6 @@
         <wd-loadmore :state="loading ? 'loading' : 'finished'"></wd-loadmore>
       </view>
     </scroll-view>
-
     <!-- 发布按钮 -->
     <view class="fixed bottom-25 right-4 z-10">
       <wd-button type="primary" round size="medium" @click="goToPublish">
@@ -82,7 +74,6 @@
         </view>
       </wd-button>
     </view>
-
     <!-- 底部导航 -->
     <yr-tab-bar :tab-index="3"></yr-tab-bar>
   </view>

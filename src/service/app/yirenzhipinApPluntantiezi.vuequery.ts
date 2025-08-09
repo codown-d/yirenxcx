@@ -62,26 +62,6 @@ export function getForumPostQueryOptions(options: {
   });
 }
 
-/** 点赞论坛帖子 POST /app-api/yirenzhipin/forum-post/like/${param0} */
-export function useLikeForumPostMutation(options?: {
-  onSuccess?: (value?: API.CommonResultBoolean) => void;
-  onError?: (error?: DefaultError) => void;
-}) {
-  const { onSuccess, onError } = options || {};
-
-  const response = useMutation({
-    mutationFn: apis.likeForumPost,
-    onSuccess(data: API.CommonResultBoolean) {
-      onSuccess?.(data);
-    },
-    onError(error) {
-      onError?.(error);
-    },
-  });
-
-  return response;
-}
-
 /** 获得论坛帖子分页 GET /app-api/yirenzhipin/forum-post/page */
 export function getForumPostPageQueryOptions(options: {
   // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)

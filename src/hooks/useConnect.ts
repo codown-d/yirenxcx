@@ -78,31 +78,39 @@ export function useConnect() {
           field: 'shouCangJobSeekerId',
         },
       })
-      console.log(res)
-      let userInfos = await getJobSeekerByUserId({
+      let seekers = await getUserByIds({
         params: {
-          userIds: res.data.map((e) => e.guanZhuId),
+          userIds: res.data.map((e) => e.shouCangJobSeekerId).join(','),
         },
       })
-      return userInfos.data
+      return seekers.data
     } else {
       let res = await getGuanZhuJobSeeker({
         params: {
           field: 'shouCangJobId',
         },
       })
-      let jobInfos = await getJob({
+      let employers = await getUserByIds({
         params: {
-          ids: res.data.map((e) => e.guanZhuId),
+          userIds: res.data.map((e) => e.shouCangJobId).join(','),
         },
       })
-      return jobInfos.data
+      return employers.data
     }
+  }
+  const getTieZi = async () => {
+    let res = await getGuanZhuJobSeeker({
+      params: {
+        field: 'tieZiId',
+      },
+    })
+    return res.data
   }
   return {
     changeConnect,
     getGuanZhu,
     getGuanZhuJobSeekerFn,
     getShouCang,
+    getTieZi,
   }
 }

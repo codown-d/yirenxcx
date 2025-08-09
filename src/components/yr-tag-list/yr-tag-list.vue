@@ -18,14 +18,14 @@ let props = defineProps({
   },
   modelValue: {
     type: String,
-    required: true,
+    default: '',
   },
   className: {
     type: String,
     default: '',
   },
 })
-let list = ref(props.modelValue?.split(','))
+let list = ref(props.modelValue?.split(',').filter((i) => !!i))
 
 watch(
   () => props.modelValue,

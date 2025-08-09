@@ -48,6 +48,7 @@
         title="所在地区"
         v-model="userForm.locationCode"
         class="pb-2"
+        @confirmLabel="(val) => (userForm.location = val)"
       ></yr-location-picker>
     </wd-form>
   </view>

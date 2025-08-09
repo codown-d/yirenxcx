@@ -52,7 +52,8 @@ const columnChange = ({ selectedItem, resolve, finish }) => {
 watch(
   () => props.modelValue,
   (val) => {
-    const arr = (val || '').split(',').filter((item) => item)
+    console.log(val)
+    const arr = val?.split(',')?.filter((item) => item)
     pickerValue.value = arr
     area.value = [
       colPickerData.map((item) => {
