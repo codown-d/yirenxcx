@@ -1,25 +1,17 @@
 <template>
-  <wd-cell :title="title" :custom-class="className">
-    <wd-picker
-      v-model="selectVal"
-      :columns="columns"
-      :disabled="disabled"
-      @confirm="handleConfirm"
-      custom-class="text-left"
-    ></wd-picker>
-  </wd-cell>
+  <wd-picker
+    v-model="selectVal"
+    :columns="columns"
+    :disabled="disabled"
+    @confirm="handleConfirm"
+  ></wd-picker>
 </template>
 
 <script lang="ts" setup>
-export interface Column {
-  label: string
-  value: string | number
-}
+import { Column } from '@/types'
+
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
+  title: String,
   columns: {
     type: Array as PropType<Column[]>,
     default: () => [],

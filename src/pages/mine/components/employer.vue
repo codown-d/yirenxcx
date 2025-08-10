@@ -14,7 +14,7 @@
             <view
               @click.stop="goAttestation"
               class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
-              :class="[userInfo.attestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+              :class="[userInfo.qiyeAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
             >
               企业认证
             </view>
@@ -111,6 +111,7 @@
   <view class="mx-3 mb-3">
     <view class="flex justify-between gap-2">
       <navigate-to
+        v-if="false"
         class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
         to-sub="/preview-resume/preview-resume"
       >
@@ -124,6 +125,7 @@
         <image src="/static/images/fbqz.png" mode="scaleToFill" class="w-7 h-7" />
         <text>发布招聘</text>
       </navigate-to>
+      <view class="flex-1 flex"></view>
     </view>
   </view>
 
@@ -216,7 +218,7 @@ const goToMyCollections = () => {
 }
 
 const goAttestation = () => {
-  if (userInfo.value.attestation == 0) {
+  if (userInfo.value.qiyeAttestation == 0) {
     navigateToSub('/authentication/authentication')
   }
 }

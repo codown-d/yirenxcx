@@ -60,7 +60,12 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker v-model="userInfo.tags" ref="tagsRef" modal-title="请输入技能标签">
+        <yr-modal-picker
+          v-model="userInfo.tags"
+          prop="tags"
+          ref="tagsRef"
+          modal-title="请输入技能标签"
+        >
           <view></view>
         </yr-modal-picker>
       </wd-card>
@@ -72,6 +77,7 @@
       <wd-card>
         <yr-modal-picker
           v-model="userInfo.daiBiaoZuo"
+          prop="daiBiaoZuo"
           ref="daiBiaoZuoRef"
           modal-title="请输入代表作品"
           className="w-full justify-between !px-4 !py-3"
@@ -118,17 +124,12 @@
         <text class="text-base font-semibold text-gray-800">求职意向</text>
       </view>
       <wd-card>
-        <yr-picker
-          :columns="salaryColumns"
-          v-model="userInfo.qiWangXinZi"
-          title="期望薪资"
-        ></yr-picker>
-
-        <yr-picker
-          :columns="jobTypeColumns"
-          v-model="userInfo.workType"
-          title="工作性质"
-        ></yr-picker>
+        <wd-cell title="期望薪资">
+          <yr-picker :columns="salaryColumns" v-model="userInfo.qiWangXinZi"></yr-picker>
+        </wd-cell>
+        <wd-cell title="工作性质">
+          <yr-picker :columns="jobTypeColumns" v-model="userInfo.workType"></yr-picker>
+        </wd-cell>
       </wd-card>
       <!-- 操作按钮 -->
       <yr-page-footer>

@@ -12,14 +12,14 @@
   <view class="">
     <view class="bg-[#F5F6FA] h-2"></view>
     <view class="pt-2">
-      <yr-location-picker
-        title="位置"
-        v-model="formData.locationCode"
-        @confirmLabel="(val) => (formData.location = val)"
-        class="no-padding"
-      />
-      <post-picker title="职位类别" @confirmLabel="onConfirmLabel" class="no-padding" />
-      <wd-cell title="薪资范围" class="no-padding">
+      <wd-cell title="位置">
+        <yr-location-picker
+          v-model="formData.locationCode"
+          @confirmLabel="(val) => (formData.location = val)"
+        />
+      </wd-cell>
+      <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
+      <wd-cell title="薪资范围">
         <wd-picker :columns="salaryColumns" prop="expectedSalary" size="small" />
       </wd-cell>
     </view>

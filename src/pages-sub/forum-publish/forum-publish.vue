@@ -57,19 +57,22 @@
       </view>
     </view>
     <wd-card custom-class="!mt-4">
-      <yr-picker
-        :columns="categoryActions"
-        v-model="postData.category"
-        title="帖子分类"
-        class="no-padding"
-      />
-      <yr-location-picker
-        title="位置信息"
-        v-model="postData.locationCode"
-        class="no-padding"
-        @confirmLabel="(val) => (postData.location = val)"
-      />
-      <yr-picker v-if="false" :columns="visibilityActions" title="可见性设置" class="no-padding" />
+      <wd-cell title="帖子分类">
+        <yr-picker :columns="categoryActions" v-model="postData.category" />
+      </wd-cell>
+      <wd-cell title="位置信息">
+        <yr-location-picker
+          v-model="postData.locationCode"
+          @confirmLabel="(val) => (postData.location = val)"
+        />
+      </wd-cell>
+      <wd-cell title="可见性设置">
+        <yr-picker
+          v-model="postData.visibilitySetting"
+          :columns="visibilityActions"
+          title="可见性设置"
+        />
+      </wd-cell>
       <view class="pb-2" v-if="false">
         <wd-checkbox-group v-model="postData.allowComments" :inline="true">
           <wd-checkbox :modelValue="1">允许评论</wd-checkbox>
@@ -96,13 +99,15 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { categoryActions, visibilityActions } from '@/constant'
-import { useLocationStore } from '@/store'
+import { useLocationStore, useUserStore } from '@/store'
 import { createForumPost } from '@/service/app'
 import { navigateBack } from '@/utils'
 import { useQueue } from 'wot-design-uni'
 
 const { closeOutside } = useQueue()
 const { getLocation } = useLocationStore()
+const { getUserInfo } = useUserStore()
+
 const mood = [
   '😀',
   '😁',
@@ -162,11 +167,12 @@ const addMood = (mod) => {
   postData.value.content = postData.value.content + mod
   // 分类选项
 }
-// 发布帖子
 const publishPost = async () => {
+  let userInfo = await getUserInfo()
+  console.log(userInfo, postData.value)
   publishing.value = true
   const res = await createForumPost({
-    body: postData.value,
+    body: { ...postData.value, userId: userInfo.data.id },
   })
   publishing.value = false
   if (res.code === 0) {

@@ -98,19 +98,19 @@ export function useConnect() {
       return employers.data
     }
   }
-  const getTieZi = async () => {
+  const getTieZiIds = async () => {
     let res = await getGuanZhuJobSeeker({
       params: {
         field: 'tieZiId',
       },
     })
-    return res.data
+    return res.data.map((item) => item.tieZiId)
   }
   return {
     changeConnect,
     getGuanZhu,
     getGuanZhuJobSeekerFn,
     getShouCang,
-    getTieZi,
+    getTieZiIds,
   }
 }

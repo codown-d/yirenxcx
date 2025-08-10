@@ -90,9 +90,9 @@ image {
   .wd-textarea {
     padding: 0 !important;
   }
-  .wd-cell__wrapper {
+  .wd-cell__wrapper,
+  .wd-picker__cell {
     padding-right: 0px !important;
-    padding: 0rpx !important;
   }
 }
 .wd-cell {
@@ -101,12 +101,6 @@ image {
   }
   .wd-picker__cell {
     padding-right: 0rpx !important;
-  }
-  &.is-small {
-    .wd-cell__wrapper {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
   }
 }
 .wd-calendar__cell,
@@ -117,8 +111,8 @@ image {
 .wd-cell__right {
   flex: none !important;
 }
-.no-padding .wd-cell__wrapper {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+
+.form-item-label .wd-cell__left {
+  min-width: 0px !important;
 }
 </style>

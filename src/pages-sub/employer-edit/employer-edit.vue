@@ -11,7 +11,7 @@
 <template>
   <view class="pb-16 pt-4">
     <!-- 用户基本信息卡片 -->
-    <wd-form ref="form" :model="userInfo">
+    <wd-form ref="form" :model="userInfo" :errorType="'toast'" :rules="rules">
       <wd-card>
         <!-- 头像和基本信息 -->
         <view class="mb-4">
@@ -46,9 +46,14 @@
         <view>
           <wd-divider custom-class="!px-0"></wd-divider>
         </view>
-        <!-- 个人简介 -->
         <wd-cell title="公司介绍" vertical custom-class="mt-4 mb-2">
-          <wd-textarea v-model="userInfo.companyInfo" placeholder="请输入" auto-height no-border />
+          <wd-textarea
+            v-model="userInfo.companyInfo"
+            placeholder="请输入"
+            prop="companyInfo"
+            auto-height
+            no-border
+          />
         </wd-cell>
         <wd-cell title="公司文化" vertical custom-class="mt-4 mb-2">
           <wd-textarea
@@ -56,6 +61,7 @@
             placeholder="请输入"
             auto-height
             no-border
+            prop="companyCulture"
           />
         </wd-cell>
       </wd-card>
@@ -66,7 +72,12 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker v-model="userInfo.benefits" ref="benefitRef" modal-title="福利待遇">
+        <yr-modal-picker
+          prop="benefits"
+          v-model="userInfo.benefits"
+          ref="benefitRef"
+          modal-title="福利待遇"
+        >
           <view></view>
         </yr-modal-picker>
       </wd-card>
@@ -80,6 +91,7 @@
           v-model="userInfo.recruitment"
           ref="recruitmentRef"
           modal-title="请输入招聘要求"
+          prop="recruitment"
         >
           <view></view>
         </yr-modal-picker>
@@ -105,16 +117,15 @@
           <yr-upload :limit="3" v-model="userInfo.companyVideos" accept="video"></yr-upload>
         </view>
       </wd-card>
-
-      <yr-page-footer>
-        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
-          预览详情
-        </wd-button>
-        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
-          保存
-        </wd-button>
-      </yr-page-footer>
     </wd-form>
+    <yr-page-footer>
+      <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
+        预览详情
+      </wd-button>
+      <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
+        保存
+      </wd-button>
+    </yr-page-footer>
   </view>
 </template>
 
@@ -122,12 +133,40 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser, updateUser1 } from '@/service/app'
+import { getUserInfo, MemberUserDO, updateUser1 } from '@/service/app'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })
 const benefitRef = ref()
 const recruitmentRef = ref()
+
+const rules = {
+  companyInfo: [
+    {
+      required: true,
+      message: '请输入公司介绍',
+    },
+  ],
+  companyCulture: [
+    {
+      required: true,
+      message: '请输入公司文化',
+    },
+  ],
+  benefits: [
+    {
+      required: true,
+      message: '请输入福利待遇',
+    },
+  ],
+  recruitment: [
+    {
+      required: true,
+      message: '请输入招聘要求',
+    },
+  ],
+}
+const form = ref()
 
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
@@ -150,6 +189,11 @@ const addWork = async () => {
 }
 
 const saveResume = async () => {
+  let res = await form.value.validate()
+  console.log(res)
+  if (!res.valid) {
+    return
+  }
   await updateUser1({
     body: userInfo.value,
   })

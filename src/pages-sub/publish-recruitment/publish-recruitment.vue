@@ -13,7 +13,7 @@
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">职位信息</text>
     </view>
-    <wd-form ref="formRef" :model="formData" :rules="rules" custom-class="mb-20">
+    <wd-form ref="formRef" :model="formData" errorType="toast" :rules="rules" custom-class="mb-20">
       <wd-card>
         <wd-cell title="职位标题" vertical>
           <wd-input
@@ -21,7 +21,6 @@
             no-border
             placeholder="如：专业古典舞蹈演员求职"
             prop="title"
-            required
           />
         </wd-cell>
         <wd-cell title="职位描述" vertical custom-class="mt-4">
@@ -35,12 +34,20 @@
           />
         </wd-cell>
         <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
-        <yr-location-picker
-          title="工作地点"
-          @confirmLabel="(val) => (formData.location = val)"
-          v-model="formData.locationCode"
-        ></yr-location-picker>
-        <yr-calendar title="报名截止时间" v-model="formData.comeToTime" />
+        <wd-cell title="工作地点">
+          <yr-location-picker
+            title="工作地点"
+            @confirmLabel="(val) => (formData.location = val)"
+            v-model="formData.locationCode"
+            prop="locationCode"
+          />
+        </wd-cell>
+        <wd-cell title="到岗时间">
+          <yr-calendar v-model="formData.comeToTime" prop="comeToTime" />
+        </wd-cell>
+        <wd-cell title="报名截止时间" v-if="false">
+          <yr-calendar v-model="formData.comeToTime" prop="comeToTime" />
+        </wd-cell>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -48,14 +55,16 @@
         <text class="text-base font-bold text-gray-900">薪资待遇</text>
       </view>
       <wd-card>
-        <yr-salary-picker
-          title="薪资范围"
-          placeholder="请选择"
-          :salaryMin="formData.salaryMin"
-          :salaryMax="formData.salaryMax"
-          @changeValue="onSalaryChange"
-        />
-        <yr-modal-picker v-model="formData.benefits" modal-title="福利待遇" />
+        <wd-cell title="薪资范围">
+          <yr-salary-picker
+            title="薪资范围"
+            placeholder="请选择"
+            :salaryMin="formData.salaryMin"
+            :salaryMax="formData.salaryMax"
+            @changeValue="onSalaryChange"
+          />
+        </wd-cell>
+        <yr-modal-picker prop="benefits" v-model="formData.benefits" modal-title="福利待遇" />
       </wd-card>
 
       <!-- 个人背景 -->
@@ -68,7 +77,7 @@
             v-model="formData.experienceRequirement"
             :columns="experienceColumns"
             placeholder="请选择"
-            prop="education"
+            prop="experienceRequirement"
           />
         </wd-cell>
         <!-- 学历水平 -->
@@ -77,10 +86,14 @@
             v-model="formData.educationRequirement"
             :columns="educationColumns"
             placeholder="请选择"
-            prop="education"
+            prop="educationRequirement"
           />
         </wd-cell>
-        <yr-modal-picker v-model="formData.requirementDetails" modal-title="具体要求" />
+        <yr-modal-picker
+          prop="requirementDetails"
+          v-model="formData.requirementDetails"
+          modal-title="具体要求"
+        />
       </wd-card>
 
       <!-- 联系方式 -->
@@ -94,7 +107,7 @@
             no-border
             v-model="formData.phone"
             placeholder="请输入手机号/微信号"
-            prop="contactInfo"
+            prop="phone"
           />
         </wd-cell>
       </wd-card>
@@ -110,7 +123,7 @@
             v-model="formData.workType"
             :columns="jobTypeColumns"
             placeholder="请选择工作性质"
-            prop="jobType"
+            prop="workType"
           />
         </wd-cell>
         <wd-cell title="招聘人数" vertical>
@@ -152,7 +165,15 @@ const formData = ref<any>({
 })
 const rules = {
   title: [{ required: true, message: '请输入职位标题' }],
-  description: [{ required: true, message: '请输入公司简介' }],
+  description: [{ required: true, message: '请输入职位描述' }],
+  locationCode: [{ required: true, message: '请输入工作地点' }],
+  comeToTime: [{ required: true, message: '请输入到岗时间' }],
+  benefits: [{ required: true, message: '请输入福利待遇' }],
+  experienceRequirement: [{ required: true, message: '请输入工作经验' }],
+  educationRequirement: [{ required: true, message: '请输入学历水平' }],
+  requirementDetails: [{ required: true, message: '请输入具体要求' }],
+  phone: [{ required: true, message: '请输入联系方式' }],
+  workType: [{ required: true, message: '请输入工作性质' }],
 }
 
 // 响应式数据
@@ -167,18 +188,16 @@ const saveDraft = () => {
 const publishJobSeekingInfo = async () => {
   try {
     // 表单验证
-    const valid = await formRef.value.validate()
-    if (!valid) {
+    const res = await formRef.value.validate()
+    if (!res.valid) {
       return
     }
     loading.value = true
-    const res = await createJob({
+    await createJob({
       body: formData.value,
     })
-    if (res.code === 0) {
-      toast.success('发布成功')
-      navigateBack()
-    }
+    toast.success('发布成功')
+    navigateBack()
   } finally {
     loading.value = false
   }

@@ -1,29 +1,19 @@
 <template>
-  <wd-cell :title="title" :custom-class="className" title-width="60px">
-    <wd-picker
-      :columns="columns"
-      v-model="value"
-      :column-change="onChangeDistrict"
-      :display-format="displayFormat"
-      @confirm="handleConfirm"
-    />
-  </wd-cell>
+  <wd-picker
+    :columns="columns"
+    v-model="value"
+    :column-change="onChangeDistrict"
+    :display-format="displayFormat"
+    @confirm="handleConfirm"
+  />
 </template>
 <script lang="ts" setup>
 import { ALL_CATEGORIES_DISPLAY } from '@/constant'
 
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
   modelValue: {
     type: Array,
     default: () => [],
-  },
-  className: {
-    type: String,
-    default: '',
   },
 })
 

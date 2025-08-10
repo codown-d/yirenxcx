@@ -9,7 +9,7 @@
 }
 </route>
 <template>
-  <view class="text-[#252525]">
+  <view class="text-[#252525] overflow-hidden">
     <scroll-view
       :scroll-y="true"
       class="h-100vh"
@@ -17,7 +17,7 @@
       @scrolltolower="onScrollToLower"
     >
       <view
-        :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 200rpx,rgba(245, 246, 250, 1) 50%);'"
+        :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 160rpx,rgba(245, 246, 250, 1) 8%);'"
       >
         <wd-navbar
           :bordered="false"
@@ -48,20 +48,32 @@
                   <view
                     v-for="tag in filterTags"
                     :key="tag.id"
-                    class="flex items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
+                    class="flex text-gray-600 items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
                     :class="{
-                      '!bg-primary-100 text-primary': activeFilterTag === tag.id,
-                      'text-gray-600': activeFilterTag !== tag.id,
+                      '!bg-primary-100 !text-primary': activeFilterTag === tag.id,
                     }"
                     @click="handleFilterChange(tag.id)"
                   >
-                    <wd-icon name="camera" size="22px"></wd-icon>
+                    <image
+                      :src="activeFilterTag === tag.id ? tag.urlh : tag.url"
+                      mode="aspectFill"
+                      class="w-[20px] h-[20px]"
+                    />
                     <text class="text-sm">{{ tag.label }}</text>
                   </view>
                 </view>
                 <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
-                  <wd-icon name="filter" size="22px"></wd-icon>
-                  <text class="text-sm" @click="navigateToSub('/job-filter/job-filter')">筛选</text>
+                  <image
+                    src="/static/images/filter.svg"
+                    mode="aspectFill"
+                    class="w-[20px] h-[20px]"
+                  />
+                  <text
+                    class="text-sm text-[#8C8C8C]"
+                    @click="navigateToSub('/job-filter/job-filter')"
+                  >
+                    筛选
+                  </text>
                 </view>
               </view>
             </scroll-view>
@@ -188,7 +200,8 @@ const handleScroll = (e: any) => {
   }
 }
 const onScrollToLower = () => {
-  if (!isShowPopup.value) {
+  let token = uni.getStorageSync('token')
+  if (!isShowPopup.value && !token) {
     show.value = true
     isShowPopup.value = true
   }

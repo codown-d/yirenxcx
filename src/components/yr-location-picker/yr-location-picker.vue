@@ -1,26 +1,26 @@
 <template>
-  <wd-cell :title="title" :custom-class="className" title-width="60px">
-    <wd-col-picker
-      style="--wot-input-disabled-color: #4d4d4d"
-      v-model="pickerValue"
-      :columns="area"
-      :column-change="columnChange"
-      :disabled="disabled"
-      @confirm="handleConfirm"
-    ></wd-col-picker>
-  </wd-cell>
+  <wd-col-picker
+    style="--wot-input-disabled-color: #4d4d4d"
+    v-model="pickerValue"
+    :columns="area"
+    :column-change="columnChange"
+    :disabled="disabled"
+    @confirm="handleConfirm"
+    :prop="prop"
+  />
 </template>
 <script lang="ts" setup>
 import { useColPickerData } from '@/hooks/useColPickerData'
 const { colPickerData, findChildrenByCode } = useColPickerData()
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
+  title: String,
   modelValue: {
     type: String,
     default: () => '',
+  },
+  prop: {
+    type: String,
+    default: '',
   },
   className: {
     type: String,
@@ -31,6 +31,7 @@ const props = defineProps({
     default: false,
   },
 })
+console.log(props)
 const pickerValue = ref([])
 const area = ref<any[]>([])
 const columnChange = ({ selectedItem, resolve, finish }) => {

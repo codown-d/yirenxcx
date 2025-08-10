@@ -1,7 +1,5 @@
 <template>
-  <wd-cell :title="title" :custom-class="className">
-    <wd-calendar v-model="selectVal" :disabled="disabled" @confirm="handleConfirm" />
-  </wd-cell>
+  <wd-calendar v-model="selectVal" :disabled="disabled" @confirm="handleConfirm" />
 </template>
 
 <script lang="ts" setup>
@@ -12,10 +10,6 @@ export interface Column {
   value: string | number
 }
 const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
   modelValue: {
     type: [String, Number],
     default: () => '',
@@ -24,17 +18,13 @@ const props = defineProps({
     type: String,
     default: '请选择',
   },
-  className: {
-    type: String,
-    default: '',
-  },
   disabled: {
     type: Boolean,
     default: false,
   },
 })
 
-let selectVal = ref(dayjs().valueOf())
+let selectVal = ref()
 
 const emit = defineEmits(['update:modelValue'])
 

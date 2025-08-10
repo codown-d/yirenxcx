@@ -9,9 +9,7 @@ import type {
   AppAuthWeixinMiniAppLoginReqVO,
   CommonResultAppAuthLoginRespVO,
 } from '@/service/app/types'
-import { genUserSig, getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
-import { loginIM } from '@/utils/im'
-import { RoleEmu, useRoleStore } from './role'
+import { getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
 import { useIm } from '@/hooks/useIm'
 
 // 用户信息类型定义

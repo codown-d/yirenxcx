@@ -110,13 +110,9 @@
         <text class="text-base font-semibold text-gray-800">求职意向</text>
       </view>
       <wd-card>
-        <yr-picker
-          :columns="salaryColumns"
-          v-model="userInfo.qiWangXinZi"
-          disabled
-          title="期望薪资"
-        ></yr-picker>
-
+        <wd-cell title="期望薪资">
+          <yr-picker :columns="salaryColumns" v-model="userInfo.qiWangXinZi" disabled></yr-picker>
+        </wd-cell>
         <yr-picker
           :columns="jobTypeColumns"
           disabled

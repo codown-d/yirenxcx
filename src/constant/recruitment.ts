@@ -26,13 +26,33 @@ export interface FilterTag {
   id: string
   label: string
   type: 'stage' | 'industry' | 'location' | 'salary'
+  url: string
+  urlh: string
 }
 
 // 筛选标签数据
 export const FILTER_TAGS: FilterTag[] = [
-  { id: 'all', label: '台前', type: 'stage' },
-  { id: 'intern', label: '实习', type: 'stage' },
-  { id: 'fresh', label: '应届', type: 'stage' },
+  {
+    id: 'all',
+    label: '前台',
+    type: 'stage',
+    url: '/static/images/taiqian.svg',
+    urlh: '/static/images/taiqianh.svg',
+  },
+  {
+    id: 'intern',
+    label: '幕后',
+    type: 'stage',
+    url: '/static/images/mohou.svg',
+    urlh: '/static/images/mohouh.svg',
+  },
+  {
+    id: 'fresh',
+    label: '运营',
+    type: 'stage',
+    url: '/static/images/yunying.svg',
+    urlh: '/static/images/yunyingh.svg',
+  },
 ]
 
 // 招聘职位数据

@@ -13,7 +13,7 @@
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">基本信息</text>
     </view>
-    <wd-form ref="formRef" :model="formData" :rules="rules" custom-class="mb-20">
+    <wd-form ref="form" :model="formData" errorType="toast" :rules="rules" custom-class="mb-20">
       <!-- 基本信息 -->
       <wd-card>
         <!-- 求职标题 -->
@@ -37,12 +37,16 @@
             :auto-height="true"
           />
         </wd-cell>
-        <post-picker title="期望职位" @confirmLabel="onConfirmLabel" />
-        <yr-location-picker
-          title="工作地点"
-          v-model="formData.locationCode"
-          @confirmLabel="(val) => (formData.location = val)"
-        ></yr-location-picker>
+        <wd-cell title="期望职位">
+          <post-picker @confirmLabel="onConfirmLabel" />
+        </wd-cell>
+        <wd-cell title="工作地点">
+          <yr-location-picker
+            v-model="formData.locationCode"
+            @confirmLabel="(val) => (formData.location = val)"
+            prop="locationCode"
+          />
+        </wd-cell>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -51,13 +55,15 @@
       </view>
       <wd-card>
         <!-- 期望薪资 -->
-        <yr-salary-picker
-          title="期望薪资"
-          placeholder="请选择期望薪资"
-          :salaryMin="formData.salaryMin"
-          :salaryMax="formData.salaryMax"
-          @changeValue="onSalaryChange"
-        />
+        <wd-cell title="期望薪资">
+          <yr-salary-picker
+            placeholder="请选择期望薪资"
+            :salaryMin="formData.salaryMin"
+            :salaryMax="formData.salaryMax"
+            @changeValue="onSalaryChange"
+            prop="locationCode"
+          />
+        </wd-cell>
 
         <!-- 工作性质 -->
         <wd-cell title="工作性质">
@@ -65,17 +71,7 @@
             v-model="formData.workType"
             :columns="jobTypeColumns"
             placeholder="请选择工作性质"
-            prop="jobType"
-          />
-        </wd-cell>
-
-        <!-- 到岗时间 -->
-        <wd-cell title="到岗时间">
-          <wd-picker
-            v-model="formData.comeToTime"
-            :columns="availableTimeColumns"
-            placeholder="请选择到岗时间"
-            prop="availableTime"
+            prop="workType"
           />
         </wd-cell>
       </wd-card>
@@ -91,7 +87,7 @@
             v-model="formData.experience"
             :columns="experienceColumns"
             placeholder="请选择工作经验"
-            prop="workExperience"
+            prop="experience"
           />
         </wd-cell>
 
@@ -104,14 +100,14 @@
             prop="education"
           />
         </wd-cell>
-
         <yr-modal-picker
+          modalTitle="专业技能"
           v-model="formData.specialty"
-          modal-title="专业技能"
           placeholder="请输入专业技能"
+          prop="specialty"
         />
-
         <yr-modal-picker
+          prop="advantage"
           v-model="formData.advantage"
           modal-title="个人优势"
           placeholder="请输入个人优势"
@@ -125,21 +121,11 @@
       <wd-card>
         <!-- 联系方式 -->
         <wd-cell title="联系方式" vertical>
-          <wd-input no-border v-model="formData.contactMobile" placeholder="请输入手机号/微信号" />
-        </wd-cell>
-      </wd-card>
-
-      <!-- 其他选项 -->
-      <view class="px-3 py-3">
-        <text class="text-base font-bold text-gray-900">其他选项</text>
-      </view>
-      <wd-card>
-        <wd-cell title="求职类型">
-          <wd-picker
-            v-model="formData.workType"
-            :columns="jobTypeColumns"
-            placeholder="请选择"
-            prop="status"
+          <wd-input
+            no-border
+            v-model="formData.contactMobile"
+            placeholder="请输入手机号/微信号"
+            prop="contactMobile"
           />
         </wd-cell>
       </wd-card>
@@ -165,22 +151,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  educationColumns,
-  experienceColumns,
-  jobTypeColumns,
-  availableTimeColumns,
-  salaryColumns,
-} from '@/constant'
+import { educationColumns, experienceColumns, jobTypeColumns } from '@/constant'
 import { createJobSeeker } from '@/service/app'
 import { navigateBack } from '@/utils'
 
 // 表单数据
 const formData = ref<any>({
-  title: '求职标题',
-  description: '个人简介',
+  title: '',
+  description: '',
   jobType: '',
   jobDomain: '',
   jobSpecific: '',
@@ -199,14 +179,21 @@ const formData = ref<any>({
 })
 
 // 响应式数据
-const formRef = ref()
+const form = ref()
 const loading = ref(false)
 
 // 表单验证规则
 const rules = {
   title: [{ required: true, message: '请输入求职标题' }],
   description: [{ required: true, message: '请输入个人简介' }],
-  contactInfo: [{ required: true, message: '请输入联系方式' }],
+  jobSpecific: [{ required: true, message: '请选择期望职位' }],
+  education: [{ required: true, message: '请选择学历水平' }],
+  workType: [{ required: true, message: '请选择工作性质' }],
+  locationCode: [{ required: true, message: '请选择工作地点' }],
+  experience: [{ required: true, message: '请选择工作经验' }],
+  specialty: [{ required: true, message: '请选择专业技能' }],
+  advantage: [{ required: true, message: '请选择个人优势' }],
+  contactMobile: [{ required: true, message: '请选择联系方式' }],
 }
 
 const saveDraft = () => {
@@ -216,21 +203,15 @@ const saveDraft = () => {
 // 发布求职信息
 const publishJobSeekingInfo = async () => {
   try {
-    const valid = await formRef.value.validate()
-    if (!valid) {
+    let res = await form.value.validate()
+    if (!res.valid) {
       return
     }
     console.log(formData.value)
     loading.value = true
-    const res = await createJobSeeker({ body: formData.value })
-    if (res.code === 0) {
-      toast.success('发布成功')
-      // navigateBack()
-    } else {
-      toast.error(res.msg || '发布失败')
-    }
-  } catch (error) {
-    toast.error('网络错误，请稍后重试')
+    await createJobSeeker({ body: formData.value })
+    toast.success('发布成功')
+    navigateBack()
   } finally {
     loading.value = false
   }

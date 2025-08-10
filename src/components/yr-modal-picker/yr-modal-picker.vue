@@ -1,34 +1,32 @@
 <template>
-  <view>
-    <view v-if="!!slots.default"><slot></slot></view>
-    <wd-cell :title="modalTitle" v-else>
-      <view class="flex items-center h-[44px]" @click="addItem">
-        <view class="flex text-[14px] text-[#bfbfbf] pr-2">{{ placeholder }}</view>
-        <wd-icon name="arrow-right" size="16px" custom-class="text-[#bfbfbf]"></wd-icon>
-      </view>
-    </wd-cell>
-    <view class="flex flex-wrap gap-2" v-if="list.length > 0">
-      <view
-        v-for="(item, index) in list"
-        :key="index"
-        :class="className"
-        class="flex items-center bg-[#E9F7F4] text-[#248069] text-sm px-2 py-1 rounded-1 border border-green-200"
-      >
-        <text class="mr-1">{{ item }}</text>
-        <wd-icon name="close" size="14px" @click="removeSkill(index)" />
-      </view>
+  <view v-if="!!slots.default"><slot></slot></view>
+  <wd-form-item :prop="prop" :title="modalTitle" v-else>
+    <view class="flex items-center h-[34px]" @click="addItem">
+      <view class="flex text-[14px] text-[#bfbfbf] pr-2">{{ placeholder }}</view>
+      <wd-icon name="arrow-right" size="16px" custom-class="text-[#bfbfbf]"></wd-icon>
     </view>
-    <wd-message-box />
+  </wd-form-item>
+  <view class="flex flex-wrap gap-2" v-if="list.length > 0">
+    <view
+      v-for="(item, index) in list"
+      :key="index"
+      :class="className"
+      class="flex items-center bg-[#E9F7F4] text-[#248069] text-sm px-2 py-1 rounded-1 border border-green-200"
+    >
+      <text class="mr-1">{{ item }}</text>
+      <wd-icon name="close" size="14px" @click="removeSkill(index)" />
+    </view>
   </view>
+  <wd-message-box />
 </template>
 
 <script lang="ts" setup>
 import { useMessage } from 'wot-design-uni'
-const slots = useSlots()
 const props = defineProps({
-  modelValue: {
+  modelValue: String,
+  prop: {
     type: String,
-    default: () => '',
+    required: true,
   },
   placeholder: {
     type: String,
@@ -49,22 +47,37 @@ const props = defineProps({
 })
 let list = ref([])
 let tagValue = ref(undefined)
-
-const emit = defineEmits(['update:modelValue'])
+const slots = useSlots()
+const emit = defineEmits(['update:modelValue', 'change'])
 const removeSkill = (index) => {
   list.value.splice(index, 1)
   emit('update:modelValue', list.value.join(','))
+  triggerValidate()
+}
+const triggerValidate = () => {
+  nextTick(() => {
+    console.log(getCurrentInstance())
+    let parent = getCurrentInstance()?.proxy.$parent
+    while (parent && !parent.validateField) {
+      parent = parent.$parent
+    }
+    parent?.validateField(props.prop)
+  })
 }
 const message = useMessage()
 const addItem = async () => {
-  let res = await message.prompt({
+  const res = await message.prompt({
     title: `请输入${props.modalTitle}`,
     inputValue: tagValue.value,
     inputPlaceholder: props.modalPlaceholder,
     inputPattern: /^(?!\s*$).+/,
   })
-  list.value.push(res.value)
-  emit('update:modelValue', list.value.join(','))
+  if (res.value) {
+    list.value.push(res.value)
+    emit('update:modelValue', list.value.join(','))
+    emit('change', list.value.join(','))
+    triggerValidate()
+  }
 }
 defineExpose({
   addItem,

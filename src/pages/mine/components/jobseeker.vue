@@ -14,7 +14,7 @@
             <view
               @click.stop="goAttestation"
               class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
-              :class="[userInfo.attestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+              :class="[userInfo.gerenAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
             >
               实名认证
             </view>
@@ -236,7 +236,7 @@ const contactService = () => {
   toast.info('联系客服')
 }
 const goAttestation = () => {
-  if (userInfo.value.attestation == 0) {
+  if (userInfo.value.gerenAttestation == 0) {
     navigateToSub('/seeker-authentication/seeker-authentication')
   }
 }

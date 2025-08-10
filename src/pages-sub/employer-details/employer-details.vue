@@ -11,7 +11,7 @@
 <template>
   <view class="pb-16 pt-4">
     <!-- 用户基本信息卡片 -->
-    <wd-form ref="form" :model="userInfo">
+    <wd-form ref="form" :model="userInfo" :errorType="'toast'" :rules="rules">
       <wd-card>
         <!-- 头像和基本信息 -->
         <view class="mb-4">
@@ -68,7 +68,12 @@
         <view class="flex items-center justify-between mb-3">
           <text class="text-base font-semibold text-gray-800">福利待遇</text>
         </view>
-        <yr-modal-picker v-model="userInfo.benefits" ref="benefitRef" modal-title="福利待遇">
+        <yr-modal-picker
+          v-model="userInfo.benefits"
+          prop="benefits"
+          ref="benefitRef"
+          modal-title="福利待遇"
+        >
           <view></view>
         </yr-modal-picker>
       </wd-card>
@@ -81,7 +86,8 @@
         <yr-modal-picker
           v-model="userInfo.recruitment"
           ref="recruitmentRef"
-          modal-title="请输入招聘要求"
+          prop="recruitment"
+          modal-title="招聘要求"
         >
           <view></view>
         </yr-modal-picker>
@@ -154,7 +160,32 @@ import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 const userInfo = ref<MemberUserDO>({ benefits: '' })
 const benefitRef = ref()
 const recruitmentRef = ref()
-
+const rules = {
+  companyInfo: [
+    {
+      required: true,
+      message: '请输入公司介绍',
+    },
+  ],
+  companyCulture: [
+    {
+      required: true,
+      message: '请输入公司文化',
+    },
+  ],
+  benefits: [
+    {
+      required: true,
+      message: '请输入福利待遇',
+    },
+  ],
+  recruitment: [
+    {
+      required: true,
+      message: '请输入招聘要求',
+    },
+  ],
+}
 const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }

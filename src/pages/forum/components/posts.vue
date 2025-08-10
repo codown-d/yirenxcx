@@ -3,10 +3,14 @@
   <wd-card>
     <view class="flex items-center justify-between mb-3">
       <view class="flex items-center">
-        <image :src="post.avatar" class="w-10 h-10 rounded-full mr-3" mode="aspectFill" />
+        <image
+          :src="post.info.avatar"
+          class="w-10 h-10 rounded-full mr-3 bg-gray-100"
+          mode="aspectFill"
+        />
         <view>
-          <text class="text-3 font-medium text-gray-800 block">{{ post.author.name }}</text>
-          <text class="text-2 text-gray-500">{{ post.author.title }}</text>
+          <text class="text-3 font-medium text-gray-800 block">{{ post.info.name }}</text>
+          <text class="text-2 text-gray-500">{{ post.info.title }}</text>
         </view>
       </view>
       <view class="flex items-center">
@@ -23,13 +27,12 @@
     <!-- 图片展示 -->
     <view v-if="post.images && post.images.length > 0" class="mb-3">
       <view class="flex gap-2">
-        <image
+        <wd-img
           v-for="(image, index) in post.images.slice(0, 3)"
-          :key="index"
+          :width="100"
+          :height="100"
           :src="image"
-          class="w-20 h-20 rounded-2 flex-shrink-0"
-          mode="aspectFill"
-          @click.stop="previewImage(post.images, index)"
+          :enable-preview="true"
         />
       </view>
     </view>
@@ -48,20 +51,16 @@
       <view class="flex items-center gap-4">
         <view class="flex items-center" @click.stop="toggleLike(post.id)">
           <wd-icon
-            :name="post.isLiked ? 'heart-filled' : 'heart'"
-            :color="post.isLiked ? '#ff4757' : '#999'"
-            size="16px"
+            :name="isLiked ? 'heart-filled' : 'heart'"
+            :color="isLiked ? '#ff4757' : '#999'"
+            size="24px"
           />
-          <text class="text-2 text-gray-500 ml-1">{{ post.likeCount }}</text>
+          <text class="text-gray-500 ml-1">{{ post.likeCount }}</text>
         </view>
         <view class="flex items-center" @click.stop="goToComments(post.id)">
-          <wd-icon name="chat" size="16px" color="#999" />
-          <text class="text-2 text-gray-500 ml-1">{{ post.commentCount }}</text>
+          <wd-icon name="chat" size="22px" />
+          <text class="text-gray-500 ml-1">{{ post.commentCount }}</text>
         </view>
-      </view>
-      <view class="flex items-center" @click.stop="sharePost(post.id)">
-        <wd-icon name="share" size="16px" color="#999" />
-        <text class="text-2 text-gray-500 ml-1">{{ post.shareCount }}</text>
       </view>
     </view>
   </wd-card>
@@ -72,26 +71,21 @@ import { ref } from 'vue'
 
 import { useConnect } from '@/hooks'
 
-const { changeConnect, getTieZi } = useConnect()
+const { changeConnect } = useConnect()
 const props = defineProps({
   post: {
     type: Object,
     required: true,
   },
 })
-let isLiked = ref(false)
+const isLiked = ref(props.post.isLiked)
 const toggleLike = (id) => {
   changeConnect({ tieZiId: id }, isLiked.value, () => {
     isLiked.value = !isLiked.value
   })
 }
-
-let getInit = async () => {
-  let res = await getTieZi()
-  console.log(res)
+const goToComments = (val) => {
+  console.log(val)
 }
-onShow(() => {
-  getInit()
-})
-console.log(props.post, 'props post')
+onShow(() => {})
 </script>

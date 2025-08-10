@@ -73,40 +73,10 @@
         <view class="flex items-center justify-between mb-3 mt-1">
           <text class="text-base font-semibold text-gray-800">个人展示</text>
         </view>
-        <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
-          <view
-            class="flex-1 h-[101px]"
-            v-for="item in userInfo.jianJieImages?.split(',')"
-            :key="item"
-          >
-            <image
-              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
-              :src="item"
-              mode="scaleToFill"
-            ></image>
-          </view>
-          <view
-            class="flex-1 h-[101px]"
-            v-for="item in userInfo?.jianJieVideos?.split(',')"
-            :key="item"
-          >
-            <video
-              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
-              :src="item"
-              mode="aspectFill"
-            ></video>
-          </view>
-          <view
-            class="flex-1 h-[101px]"
-            v-for="item in userInfo?.jiNengVideos?.split(',')"
-            :key="item"
-          >
-            <video
-              class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
-              :src="item"
-              mode="aspectFill"
-            ></video>
-          </view>
+        <view class="gap-2 gap-y-3 w-full">
+          <yr-upload v-model="userInfo.jianJieImages" disabled></yr-upload>
+          <yr-upload v-model="userInfo.jianJieVideos" disabled accept="video"></yr-upload>
+          <yr-upload v-model="userInfo.jiNengVideos" disabled accept="video"></yr-upload>
         </view>
       </wd-card>
       <!-- 代表作品 -->

@@ -1,20 +1,14 @@
 <template>
-  <wd-cell :title="title">
-    <wd-picker
-      :columns="columns"
-      v-model="value"
-      @confirm="handleConfirm"
-      :placeholder="placeholder"
-    />
-  </wd-cell>
+  <wd-picker
+    :columns="columns"
+    v-model="value"
+    @confirm="handleConfirm"
+    :placeholder="placeholder"
+  />
 </template>
 
 <script lang="ts" setup>
 const props = defineProps({
-  title: {
-    type: String,
-    default: '期望薪资',
-  },
   salaryMax: {
     type: Number,
     required: 8000,
