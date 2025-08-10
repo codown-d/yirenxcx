@@ -77,7 +77,7 @@ export async function getForumPostPage({
   params: API.getForumPostPageParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultPageResultYRZPForumPostRespAppVO>(
+  return request<API.CommonResultPageResultYRZPForumPostDO>(
     '/app-api/yirenzhipin/forum-post/page',
     {
       method: 'GET',

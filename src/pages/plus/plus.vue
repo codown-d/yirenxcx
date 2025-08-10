@@ -8,6 +8,6 @@
 }
 </route>
 
-<template></template>
+<template><view>plus page</view></template>
 
 <script setup lang="ts"></script>

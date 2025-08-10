@@ -99,13 +99,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { categoryActions, visibilityActions } from '@/constant'
-import { useLocationStore, useUserStore } from '@/store'
+import { useUserStore } from '@/store'
 import { createForumPost } from '@/service/app'
 import { navigateBack } from '@/utils'
 import { useQueue } from 'wot-design-uni'
 
 const { closeOutside } = useQueue()
-const { getLocation } = useLocationStore()
 const { getUserInfo } = useUserStore()
 
 const mood = [
@@ -179,7 +178,5 @@ const publishPost = async () => {
     navigateBack()
   }
 }
-onShow(() => {
-  let item = getLocation()?.[0] || { label: '', value: '' }
-})
+onShow(() => {})
 </script>

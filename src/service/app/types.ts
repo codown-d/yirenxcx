@@ -2133,8 +2133,10 @@ export type AppMemberUserUpdateReqVO = {
   companyImages?: string;
   /** 公司视频 */
   companyVideos?: string;
-  /** 是否已认证 */
-  attestation?: string;
+  /** 企业是否已认证 */
+  qiyeAttestation?: string;
+  /** 个人是否已认证 */
+  gerenAttestation?: string;
   /** 简历浏览 */
   jianLiLiuLan?: number;
   /** 获得关注 */
@@ -7407,9 +7409,9 @@ export type CommonResultPageResultYRZPForumCommentRespVO = {
   msg?: string;
 };
 
-export type CommonResultPageResultYRZPForumPostRespAppVO = {
+export type CommonResultPageResultYRZPForumPostDO = {
   code?: number;
-  data?: PageResultYRZPForumPostRespAppVO;
+  data?: PageResultYRZPForumPostDO;
   msg?: string;
 };
 
@@ -11364,6 +11366,13 @@ export type genUserSigParams = {
   userId: string;
 };
 
+export type GerenrenzhengReqVO = {
+  /** 姓名 */
+  name: string;
+  /** 身份证号 */
+  idNum: string;
+};
+
 export type getAccessTokenPageParams = {
   /** 用户编号 */
   userId: number;
@@ -14972,6 +14981,10 @@ export type getRefundParams = {
   id: number;
 };
 
+export type getResultParams = {
+  eidToken: string;
+};
+
 export type getRewardActivity1Params = {
   /** 编号 */
   id: number;
@@ -16623,7 +16636,8 @@ export type MemberUserDO = {
   companyImages?: string;
   companyVideos?: string;
   logo?: string;
-  attestation?: number;
+  qiyeAttestation?: number;
+  gerenAttestation?: number;
   jianLiLiuLan?: number;
   guanZhu?: number;
   touDiJianLi?: number;
@@ -18277,9 +18291,9 @@ export type PageResultYRZPForumCommentRespVO = {
   total: number;
 };
 
-export type PageResultYRZPForumPostRespAppVO = {
+export type PageResultYRZPForumPostDO = {
   /** 数据 */
-  list: YRZPForumPostRespAppVO[];
+  list: YRZPForumPostDO[];
   /** 总量 */
   total: number;
 };
@@ -21773,30 +21787,6 @@ export type YRZPForumPostDO = {
   video?: string;
   location?: string;
   info?: string;
-};
-
-export type YRZPForumPostRespAppVO = {
-  /** 帖子编号 */
-  id: number;
-  /** 用户编号 */
-  userId: number;
-  /** 用户昵称 */
-  userNickname?: string;
-  info?: string;
-  /** 用户头像 */
-  userAvatar?: string;
-  /** 标题 */
-  title: string;
-  /** 内容 */
-  content: string;
-  /** 浏览量 */
-  viewCount: number;
-  /** 点赞量 */
-  likeCount: number;
-  /** 评论量 */
-  commentCount: number;
-  /** 创建时间 */
-  createTime: string;
 };
 
 export type YRZPForumPostRespVO = {

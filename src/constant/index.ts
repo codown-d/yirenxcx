@@ -24,7 +24,6 @@ export * from './recruitment'
 // 简历相关常量
 export * from './resume'
 export * from './categories'
-export * from './locations'
 export * from './publishJobSeeking'
 
 // 正则表达式常量

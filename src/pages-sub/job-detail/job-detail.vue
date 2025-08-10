@@ -178,7 +178,6 @@ import {
   YRZPJobDO,
 } from '@/service/app'
 import { useConnect } from '@/hooks'
-import { merge } from 'lodash'
 import { navigateTo, navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()

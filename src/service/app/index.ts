@@ -251,6 +251,8 @@ export * from './yirenzhipinApPqiyerenzheng';
 export * from './yirenzhipinApPqiyerenzheng.vuequery';
 export * from './yirenzhipinyonghuApPminganci';
 export * from './yirenzhipinyonghuApPminganci.vuequery';
+export * from './yirenzhipinApPgerenrenzheng';
+export * from './yirenzhipinApPgerenrenzheng.vuequery';
 export * from './yirenzhipinApPluntantiezi';
 export * from './yirenzhipinApPluntantiezi.vuequery';
 export * from './yirenzhipinApPluntanpinglun';

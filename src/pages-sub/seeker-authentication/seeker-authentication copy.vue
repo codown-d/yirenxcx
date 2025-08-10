@@ -2,12 +2,11 @@
 {
   layout: 'default',
   style: {
-    navigationBarTitleText: '个人认证',
+    navigationBarTitleText: '实名认证',
     navigationStyle: 'custom',
   },
 }
 </route>
-
 <template>
   <view class="mx-4 mt-2">
     <!-- 实名认证 -->
@@ -38,56 +37,53 @@
       custom-class="w-full"
       :round="false"
       :loading="loading"
-      @click="goAuth"
+      @click="saveCertification"
     >
       {{ loading ? '提交中...' : '提交认证' }}
     </wd-button>
   </yr-page-footer>
 </template>
-<script setup>
-import { showToast } from '@/utils'
-import { getRequest } from '@/service/app'
+
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { toast } from '@/utils/toast'
+import { navigateBack } from '@/utils'
+import { getRequest, renzheng } from '@/service/app'
+// 假设 API 名称
+
+// 表单数据
 const certForm = ref({
   name: '',
   idNum: '',
   legalPersonName: '',
   legalPersonCertNo: '',
 })
-let loading = ref(false)
 const rules = {
   name: [{ required: true, message: '请输入姓名' }],
   idNum: [{ required: true, message: '请输入身份证号' }],
 }
 const form = ref()
-const goAuth = async () => {
-  let resForm = await form.value.validate()
-  if (!resForm.valid) {
+const loading = ref(false)
+
+// 提交企业认证
+const saveCertification = async () => {
+  let res = await form.value.validate()
+  if (!res.valid) {
     return
   }
-  const res = await getRequest({
-    body: certForm.value,
-  })
-  let { EidToken: token } = JSON.parse(res.data)
-  if (!token) return showToast('获取认证信息失败')
   try {
-    // #ifdef MP-WEIXIN
-    wx.navigateToMiniProgram({
-      appId: 'wxa594b2ab78138935', // 腾讯云实名核验小程序
-      path: `/pages/auth/index?token=${token}`,
-      success() {
-        console.log('已跳转到腾讯云实名核验界面')
-      },
-      fail(err) {
-        console.error('跳转失败', err)
-      },
+    loading.value = true
+    const res = await getRequest({
+      body: certForm.value,
     })
-    // #endif
-
-    // #ifndef MP-WEIXIN
-    showToast('当前平台不支持实名认证')
-    // #endif
-  } catch (err) {
-    showToast('获取认证信息失败')
+    if (res.code === 0) {
+      toast.success('提交成功')
+      setTimeout(() => {
+        navigateBack()
+      }, 500)
+    }
+  } finally {
+    loading.value = false
   }
 }
 </script>
