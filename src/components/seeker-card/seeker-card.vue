@@ -91,7 +91,6 @@ let title1 = computed(() => {
 })
 let title2 = computed(() => {
   let { seekerData } = props
-  console.log(seekerData.info)
   return [seekerData.info?.biYeYuanXiao, seekerData?.education].filter((el) => el).join(' | ')
 })
 

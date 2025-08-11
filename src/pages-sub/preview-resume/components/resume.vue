@@ -14,7 +14,7 @@
             <view class="flex-1 flex items-center justify-between">
               <view class="flex flex-col gap-">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
-                <view class="">{{ userInfo.age }}岁 · {{ userInfo.teChang }}</view>
+                <view class="">{{ title1 }}</view>
               </view>
             </view>
           </view>
@@ -125,9 +125,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getUserInfo, MemberUserDO } from '@/service/app'
-import { jobTypeColumns, salaryColumns } from '@/constant'
+import { ref, computed } from 'vue'
+import { jobTypeColumns, salaryColumns, SEX } from '@/constant'
+import { getUserInfo, MemberUserDO } from '@/service/member'
+import { find } from 'lodash'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -135,7 +136,12 @@ const userInfo = ref<MemberUserDO>({
 })
 const daiBiaoZuo = ref([])
 const tags = ref([])
-
+let title1 = computed(() => {
+  let node = find(SEX, (item) => item.value == userInfo.value?.sex)
+  return [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
+    .filter((el) => !!el)
+    .join(' • ')
+})
 watch(
   () => userInfo.value,
   (value) => {

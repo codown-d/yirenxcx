@@ -9,21 +9,21 @@
 }
 </route>
 <template>
-  <view class="h-full bg-[#F5F6FA] py-2">
-    <wd-navbar :bordered="false" fixed safeAreaInsetTop custom-class="!bg-[#F5F6FA]">
-      <template #capsule>
-        <wd-button
-          hairline
-          size="small"
-          type="info"
-          @click="changeRole"
-          custom-class="flex items-center !bg-[#fff] "
-          icon="translate-bold"
-        >
-          切换为{{ roleLabel }}
-        </wd-button>
-      </template>
-    </wd-navbar>
+  <wd-navbar :bordered="false" fixed safeAreaInsetTop custom-class="!bg-[#F5F6FA]">
+    <template #capsule>
+      <wd-button
+        hairline
+        size="small"
+        type="info"
+        @click="changeRole"
+        custom-class="flex items-center !bg-[#fff] "
+        icon="translate-bold"
+      >
+        切换为{{ roleLabel }}
+      </wd-button>
+    </template>
+  </wd-navbar>
+  <view class="h-full bg-[#F5F6FA] py-2 pt-10px">
     <jobseeker v-if="roleType === RoleEmu.seeker"></jobseeker>
     <employer v-else></employer>
     <yr-margin-footer />

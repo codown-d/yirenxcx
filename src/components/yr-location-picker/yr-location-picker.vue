@@ -22,10 +22,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  className: {
-    type: String,
-    default: '',
-  },
+
   disabled: {
     type: Boolean,
     default: false,
@@ -33,7 +30,14 @@ const props = defineProps({
 })
 console.log(props)
 const pickerValue = ref([])
-const area = ref<any[]>([])
+const area = ref<any[]>([
+  colPickerData.map((item) => {
+    return {
+      value: item.value,
+      label: item.text,
+    }
+  }),
+])
 const columnChange = ({ selectedItem, resolve, finish }) => {
   const areaData = findChildrenByCode(colPickerData, selectedItem.value)
   if (areaData && areaData.length) {
@@ -54,24 +58,26 @@ watch(
   () => props.modelValue,
   (val) => {
     console.log(val)
-    const arr = val?.split(',')?.filter((item) => item)
-    pickerValue.value = arr
-    area.value = [
-      colPickerData.map((item) => {
-        return {
-          value: item.value,
-          label: item.text,
-        }
-      }),
-      ...arr.slice(0, -1).map((item) => {
-        return findChildrenByCode(colPickerData, item)!.map((item) => {
+    if (val) {
+      const arr = val?.split(',')?.filter((item) => item)
+      pickerValue.value = arr
+      area.value = [
+        colPickerData.map((item) => {
           return {
             value: item.value,
             label: item.text,
           }
-        })
-      }),
-    ]
+        }),
+        ...arr.slice(0, -1).map((item) => {
+          return findChildrenByCode(colPickerData, item)!.map((item) => {
+            return {
+              value: item.value,
+              label: item.text,
+            }
+          })
+        }),
+      ]
+    }
   },
   { immediate: true },
 )

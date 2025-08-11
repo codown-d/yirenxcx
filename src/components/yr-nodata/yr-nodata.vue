@@ -1,14 +1,7 @@
 <template>
-  <view class="flex justify-center" :class="className">
+  <view class="flex justify-center">
     <text>暂无数据</text>
   </view>
 </template>
 
-<script lang="ts" setup>
-const props = defineProps({
-  className: {
-    type: String,
-    default: () => '',
-  },
-})
-</script>
+<script lang="ts" setup></script>

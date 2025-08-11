@@ -27,6 +27,7 @@
       type="info"
       size="large"
       :round="false"
+      v-if="false"
       block
       :disabled="loginLoading"
       @click="handlePhoneLogin"

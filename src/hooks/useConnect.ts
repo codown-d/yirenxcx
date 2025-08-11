@@ -4,11 +4,10 @@ import {
   getGuanZhuJobSeeker,
   getGuanZhuJobSeekerParams,
   getJob,
-  getJobSeekerByUserId,
-  getUserByIds,
   update,
   updateParams,
 } from '@/service/app'
+import { getUserByIds } from '@/service/member'
 import { RoleEmu, useRoleStore } from '@/store'
 
 export function useConnect() {

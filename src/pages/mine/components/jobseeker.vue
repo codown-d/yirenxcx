@@ -14,7 +14,7 @@
             <view
               @click.stop="goAttestation"
               class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
-              :class="[userInfo.gerenAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+              :class="[userInfo?.gerenAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
             >
               实名认证
             </view>
@@ -24,13 +24,13 @@
           </view>
         </view>
         <text class="text-[22rpx] text-gray-500 block mb-1" v-if="false">
-          资料完整度{{ userInfo?.completeness || 80 }}%，完善资料获得更多机会
+          资料完整度{{ 80 }}%，完善资料获得更多机会
         </text>
       </view>
     </view>
 
     <!-- 专业信息 -->
-    <view class="mb-2">
+    <view class="mb-2" v-if="userInfo?.teChang">
       <text class="text-4">专业：{{ userInfo?.teChang }}</text>
       <view class="flex flex-wrap gap-2 mb-3 mt-2">
         <wd-tag
@@ -45,12 +45,20 @@
     </view>
 
     <!-- 基本信息 -->
-    <view class="flex items-center text-gray-500 justify-between mb-4">
-      <yr-img-title url="jingyan.svg" :title="userInfo?.gongZuoJingYan" />
-      <yr-img-title url="school.svg" :title="userInfo?.biYeYuanXiao" />
-      <yr-img-title url="weizhi.svg" :title="userInfo?.location" />
+    <view class="flex items-center text-gray-500 justify-between">
+      <yr-img-title
+        url="jingyan.svg"
+        :title="userInfo?.gongZuoJingYan"
+        v-if="userInfo?.gongZuoJingYan"
+      />
+      <yr-img-title
+        url="school.svg"
+        :title="userInfo?.biYeYuanXiao"
+        v-if="userInfo?.biYeYuanXiao"
+      />
+      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
     </view>
-    <wd-divider custom-class="!px-0" />
+    <wd-divider custom-class="!px-0 mt-4" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1" v-if="false">
@@ -159,7 +167,7 @@ import { ref } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { MemberUserDO } from '@/service/app'
+import { MemberUserDO } from '@/service/member'
 
 const { getUserInfo } = useUserStore()
 // 用户信息
@@ -236,7 +244,7 @@ const contactService = () => {
   toast.info('联系客服')
 }
 const goAttestation = () => {
-  if (userInfo.value.gerenAttestation == 0) {
+  if (userInfo.value?.gerenAttestation == 0) {
     navigateToSub('/seeker-authentication/seeker-authentication')
   }
 }

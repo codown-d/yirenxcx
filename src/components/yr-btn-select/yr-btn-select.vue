@@ -3,7 +3,7 @@
     <wd-button
       v-for="(item, index) in columns"
       :key="index"
-      :type="`${selectedItems.includes(item.value) ? 'primary' : 'info'}`"
+      :type="`${selectedItems.includes(item.value + '') ? 'primary' : 'info'}`"
       :size="size"
       :round="round"
       @click="onSelect(item)"
@@ -48,7 +48,7 @@ const props = defineProps({
     default: '',
   },
 })
-let selectedItems = ref([])
+let selectedItems = ref(props.modelValue.split(','))
 const emit = defineEmits(['update:modelValue'])
 const onSelect = (item) => {
   const index = selectedItems.value.indexOf(item.value)

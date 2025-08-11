@@ -14,7 +14,7 @@
             <view
               @click.stop="goAttestation"
               class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
-              :class="[userInfo.qiyeAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+              :class="[userInfo?.qiyeAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
             >
               企业认证
             </view>
@@ -27,13 +27,13 @@
     </view>
 
     <!-- 基本信息 -->
-    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden mb-5">
-      <yr-img-title url="jigou.svg" :title="userInfo?.personNumber" />
-      <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" />
-      <yr-img-title url="weizhi.svg" :title="userInfo?.location" />
-      <yr-img-title url="jingyan.svg" :title="userInfo?.involved" />
+    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden">
+      <yr-img-title url="jigou.svg" :title="userInfo?.personNumber" v-if="userInfo?.personNumber" />
+      <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" v-if="userInfo?.chengLiTime" />
+      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
+      <yr-img-title url="jingyan.svg" :title="userInfo?.involved" v-if="userInfo?.involved" />
     </view>
-    <wd-divider custom-class="!px-0" />
+    <wd-divider custom-class="!px-0 mt-5" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1" v-if="false">
@@ -135,6 +135,7 @@
     <wd-cell
       :title="item.name"
       is-link
+      :key="item.name"
       :to="'/pages-sub' + item.path"
       v-for="item in tools"
     ></wd-cell>
@@ -146,7 +147,7 @@ import { ref } from 'vue'
 import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { MemberUserDO } from '@/service/app'
+import { MemberUserDO } from '@/service/member'
 
 const { getUserInfo } = useUserStore()
 // 用户信息
@@ -218,7 +219,7 @@ const goToMyCollections = () => {
 }
 
 const goAttestation = () => {
-  if (userInfo.value.qiyeAttestation == 0) {
+  if (userInfo.value?.qiyeAttestation == 0) {
     navigateToSub('/authentication/authentication')
   }
 }

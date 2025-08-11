@@ -74,9 +74,13 @@
           <text class="text-base font-semibold text-gray-800">个人展示</text>
         </view>
         <view class="gap-2 gap-y-3 w-full">
-          <yr-upload v-model="userInfo.jianJieImages" disabled></yr-upload>
-          <yr-upload v-model="userInfo.jianJieVideos" disabled accept="video"></yr-upload>
-          <yr-upload v-model="userInfo.jiNengVideos" disabled accept="video"></yr-upload>
+          <view class="mb-4">
+            <yr-img-preview v-model="userInfo.jianJieImages" />
+          </view>
+          <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
+            <yr-video-preview v-model="userInfo.jianJieVideos" />
+            <yr-video-preview v-model="userInfo.jiNengVideos" />
+          </view>
         </view>
       </wd-card>
       <!-- 代表作品 -->
@@ -125,10 +129,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
 import { RoleEmu, useRoleStore } from '@/store'
 import { find } from 'lodash'
 import { SEX } from '@/constant'
+import { getUserInfo, MemberUserDO } from '@/service/member'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
 // 用户信息数据

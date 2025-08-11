@@ -85,9 +85,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { getUserInfo, MemberUserDO, updateUser1 } from '@/service/app'
 import { SEX, AGE, XUELI } from '@/constant'
 import { navigateBack } from '@/utils'
+import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
 
 const userForm = ref<MemberUserDO>({})
 const form = ref()

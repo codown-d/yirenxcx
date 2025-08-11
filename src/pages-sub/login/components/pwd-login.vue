@@ -94,9 +94,9 @@ import { ref, computed } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG, FORM_CONFIG } from '@/constant/login'
-import { AppAuthSmsSendReqVO, CommonResultAppAuthLoginRespVO, sendSmsCode } from '@/service/app'
 import { useUserStore } from '@/store'
 import { switchTab } from '@/utils'
+import { AppAuthSmsSendReqVO, CommonResultAppAuthLoginRespVO, sendSmsCode } from '@/service/member'
 
 const { loginWithPassword, loginWithSms } = useUserStore()
 // 页面状态

@@ -160,13 +160,8 @@
 import { FILTER_TAGS, FilterTag } from '@/constant/recruitment'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 import { RoleEmu, useFilterStore, useRoleStore, useUserStore } from '@/store'
-import {
-  getBannerList,
-  getJobPage1,
-  getJobSeekerPage,
-  YRZPJobDO,
-  YRZPJobSeekerDO,
-} from '@/service/app'
+import { getJobPage1, getJobSeekerPage, YRZPJobDO, YRZPJobSeekerDO } from '@/service/app'
+import { getBannerList } from '@/service/customize'
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo } = useUserStore()
@@ -183,7 +178,7 @@ const jobList = ref<YRZPJobDO[]>([])
 const seekerList = ref<YRZPJobSeekerDO[]>()
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)
-let filter = ref(getFilter())
+const filter = ref(getFilter())
 
 const swiperList = ref([])
 function handleClick(type) {
@@ -217,7 +212,9 @@ let getDataFn = async (keyword?: string) => {
     let resJobSeeker = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobSeekerId',
     })
-    let res = await getJobSeekerPage({ params: { keyword, pageNo: 1, pageSize: pageSize } })
+    let res = await getJobSeekerPage({
+      params: { keyword, pageNo: 1, pageSize: pageSize, ...filter.value },
+    })
     seekerList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
       item['info'] = info
@@ -230,7 +227,9 @@ let getDataFn = async (keyword?: string) => {
     let resJob = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobId',
     })
-    let res = await getJobPage1({ params: { keyword, pageNo: 1, pageSize: pageSize } })
+    let res = await getJobPage1({
+      params: { keyword, pageNo: 1, pageSize: pageSize, ...filter.value },
+    })
     jobList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
       item['info'] = info

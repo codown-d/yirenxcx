@@ -99,9 +99,7 @@ const goBack = () => {
 const showSwitchConfirm = async (role: any) => {
   setRole(currentUserRole.value === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker)
   let res = await getUserInfo()
-  console.log(res)
   await imLogin(res.data.id)
-  switchTab('/index/index')
-  // navigateBack()
+  navigateBack()
 }
 </script>

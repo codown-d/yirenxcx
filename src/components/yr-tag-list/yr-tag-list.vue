@@ -1,6 +1,11 @@
 <template>
   <view class="flex items-center gap-2">
-    <wd-tag :custom-class="`!px-2 !py-1 !rounded-1 ${className}`" :type="type" v-for="item in list">
+    <wd-tag
+      :custom-class="`!px-2 !py-1 !rounded-1 ${className}`"
+      :key="item"
+      :type="type"
+      v-for="item in list"
+    >
       <view class="flex gap-1 items-center text-[24rpx]">
         {{ item }}
       </view>

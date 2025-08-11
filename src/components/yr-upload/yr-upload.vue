@@ -44,12 +44,14 @@ const uploadUrl = computed(() => {
 watch(
   () => props.modelValue,
   (val) => {
-    list.value = val
-      .split(',')
-      .filter((item) => item)
-      .map((item) => {
-        return { url: item }
-      })
+    if (val) {
+      list.value = val
+        .split(',')
+        .filter((item) => item)
+        .map((item) => {
+          return { url: item }
+        })
+    }
   },
 )
 const emit = defineEmits(['update:modelValue'])

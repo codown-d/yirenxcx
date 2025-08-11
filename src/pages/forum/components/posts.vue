@@ -1,7 +1,7 @@
 <template>
   <!-- 用户信息 -->
   <wd-card>
-    <view class="flex items-center justify-between mb-3">
+    <view class="flex items-center justify-between mb-2">
       <view class="flex items-center">
         <image
           :src="post.info.avatar"
@@ -9,8 +9,8 @@
           mode="aspectFill"
         />
         <view>
-          <text class="text-3 font-medium text-gray-800 block">{{ post.info.name }}</text>
-          <text class="text-2 text-gray-500">{{ post.info.title }}</text>
+          <text class="text-3 font-medium text-gray-800 block">{{ post.title }}</text>
+          <text class="text-2 text-gray-500" v-if="false">{{ post.title }}</text>
         </view>
       </view>
       <view class="flex items-center">
@@ -20,31 +20,16 @@
     </view>
 
     <!-- 帖子内容 -->
-    <view class="mb-3">
+    <view class="mb-2">
       <text class="text-3 text-gray-800 leading-relaxed">{{ post.content }}</text>
     </view>
 
     <!-- 图片展示 -->
-    <view v-if="post.images && post.images.length > 0" class="mb-3">
-      <view class="flex gap-2">
-        <wd-img
-          v-for="(image, index) in post.images.slice(0, 3)"
-          :width="100"
-          :height="100"
-          :src="image"
-          :enable-preview="true"
-        />
-      </view>
+    <view class="mb-2">
+      <yr-img-preview v-model="post.images" />
     </view>
-
     <!-- 话题标签 -->
-    <view v-if="post.topics && post.topics.length > 0" class="mb-3">
-      <view class="flex flex-wrap gap-2">
-        <wd-tag v-for="topic in post.topics" :key="topic" type="primary" size="small" plain>
-          {{ topic }}
-        </wd-tag>
-      </view>
-    </view>
+    <yr-tag-list v-model="post.tags" />
 
     <!-- 互动数据 -->
     <view class="flex items-center justify-between">
@@ -87,5 +72,4 @@ const toggleLike = (id) => {
 const goToComments = (val) => {
   console.log(val)
 }
-onShow(() => {})
 </script>

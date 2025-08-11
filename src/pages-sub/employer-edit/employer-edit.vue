@@ -133,7 +133,7 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser1 } from '@/service/app'
+import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })

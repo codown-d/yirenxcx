@@ -158,6 +158,7 @@ const postData = ref({
   allowed: 0,
   /** 匿名发布 */
   anonymity: 0,
+  allowComments: ['1'],
 })
 const canPublish = computed(() => {
   return postData.value.content.trim().length > 0 || postData.value.images

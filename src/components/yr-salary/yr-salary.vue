@@ -1,14 +1,10 @@
 <template>
-  <view :class="`flex ${className}`">
+  <view :class="`flex `">
     <view class="text-[16px] font-bold text-teal-600">{{ text }}</view>
   </view>
 </template>
 <script lang="ts" setup>
 let props = defineProps({
-  className: {
-    type: String,
-    default: '',
-  },
   salaryMax: {
     type: Number,
     default: 0,

@@ -148,8 +148,8 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser, updateUser1 } from '@/service/app'
 import { jobTypeColumns, salaryColumns } from '@/constant'
+import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({})
@@ -160,7 +160,9 @@ const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
 let title1 = computed(() => {
-  return [`${userInfo.value.age} 岁`, userInfo.value.teChang].filter((el) => !!el).join(' • ')
+  return [`${userInfo.value.age || '-'} 岁`, userInfo.value.teChang]
+    .filter((el) => !!el)
+    .join(' • ')
 })
 // 加载用户数据
 const loadUserData = async () => {

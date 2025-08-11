@@ -103,38 +103,14 @@
           <view class="flex items-center justify-between mb-2">
             <text class="text-sm font-medium text-gray-700">工作环境照片</text>
           </view>
-          <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
-            <view
-              class="flex-1 h-[101px]"
-              v-for="item in userInfo.companyImages.split(',')"
-              :key="item"
-            >
-              <image
-                class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
-                :src="item"
-                mode="scaleToFill"
-              ></image>
-            </view>
-          </view>
+          <yr-img-preview v-model="userInfo.companyImages" />
         </view>
 
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
             <text class="text-sm font-medium text-gray-700">宣传视频</text>
           </view>
-          <view class="grid grid-cols-2 gap-2 gap-y-3 w-full">
-            <view
-              class="flex-1 h-[101px]"
-              v-for="item in userInfo.companyVideos.split(',')"
-              :key="item"
-            >
-              <video
-                class="w-full h-full rounded-2 overflow-hidden bg-gray-50"
-                :src="item"
-                mode="aspectFill"
-              ></video>
-            </view>
-          </view>
+          <yr-video-preview v-model="userInfo.companyVideos" />
         </view>
       </wd-card>
 
@@ -154,7 +130,8 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { getUserInfo, MemberUserDO, updateUser } from '@/service/app'
+import { updateUser } from '@/service/app'
+import { MemberUserDO, getUserInfo } from '@/service/member'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })

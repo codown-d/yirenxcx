@@ -35,7 +35,7 @@
           }"
           class="fixed h-[50px] z-10 bg-[#fff] top-0 w-full flex items-center justify-center"
         >
-          <Tool :type="toolType" :chat-object-id="chatObject?.id" />
+          <Tool :type="toolType" :chat-object-id="chatObject?.id" v-if="chatObject"></Tool>
         </view>
         <MessageItem
           v-for="item in messageList"
@@ -60,9 +60,10 @@ import InputBox from './components/InputBox.vue'
 import { getSystemInfoSync, navigateBack } from '@/utils'
 import { RoleEmu, useRoleStore } from '@/store'
 import { getMessageList, sendImageMessage, sendTextMessage, setMsgCallback } from '@/utils/im'
-import { getJobPage, getUserByIds } from '@/service/app'
 import Tool from './components/tool.vue'
-import { find, merge } from 'lodash'
+import { find } from 'lodash'
+import { getJobPage } from '@/service/app'
+import { getUserByIds } from '@/service/member'
 const { safeAreaInsets } = getSystemInfoSync()
 
 const messageList = ref([])
@@ -85,7 +86,7 @@ const scrollToBottom = () => {
   }, 30)
 }
 const title = computed(() => {
-  return toolType.value === RoleEmu.employer
+  return getRole() === RoleEmu.seeker
     ? chatObject.value?.companyName || '招聘方'
     : chatObject.value?.name
 })
@@ -109,7 +110,7 @@ let getMessageListFn = async (toUserID, count = 100) => {
   if (!toUserID) return
   let id = toUserID.split('_')[2] || ''
   let chatUserInfo = await getUserByIds({ params: { userIds: id } })
-  chatObject.value = find(chatUserInfo.data, (v) => v.id == id)
+  chatObject.value = find(chatUserInfo.data, (v) => v.id == Number(id))
   let res = await getMessageList({
     toUserID: toUserID,
     count: count,

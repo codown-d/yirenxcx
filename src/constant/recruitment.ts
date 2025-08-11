@@ -36,7 +36,7 @@ export const FILTER_TAGS: FilterTag[] = [
     id: 'all',
     label: '前台',
     type: 'stage',
-    url: '/static/images/taiqian.svg',
+    url: '/static/images/taiqianh.svg',
     urlh: '/static/images/taiqianh.svg',
   },
   {
@@ -44,14 +44,14 @@ export const FILTER_TAGS: FilterTag[] = [
     label: '幕后',
     type: 'stage',
     url: '/static/images/mohou.svg',
-    urlh: '/static/images/mohouh.svg',
+    urlh: '/static/images/mohou.svg',
   },
   {
     id: 'fresh',
     label: '运营',
     type: 'stage',
     url: '/static/images/yunying.svg',
-    urlh: '/static/images/yunyingh.svg',
+    urlh: '/static/images/yunying.svg',
   },
 ]
 

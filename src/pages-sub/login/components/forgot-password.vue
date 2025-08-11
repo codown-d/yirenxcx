@@ -99,7 +99,6 @@
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { FORM_CONFIG, REGEX_PATTERNS, FORGOT_PASSWORD_CONFIG } from '@/constant'
-import { sendSms } from '@/service/app'
 
 // 类型定义
 interface ResetPasswordRequest {
@@ -189,7 +188,7 @@ const sendSmsCode = async () => {
     }
 
     // 发送短信验证码
-    const res = await sendSms({
+    const res = await checkPhoneExists({
       body: {
         mobile: resetForm.value.phone,
         scene: 2, // 重置密码场景

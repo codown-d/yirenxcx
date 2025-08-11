@@ -73,8 +73,8 @@ import { ref, computed, onMounted } from 'vue'
 import { navigateToSub } from '@/utils'
 import { getConversationList, setMessageRead } from '@/utils/im'
 import { RoleEmu, useRoleStore } from '@/store'
-import { getUserByIds } from '@/service/app'
 import { merge } from 'lodash'
+import { getUserByIds } from '@/service/member'
 let { getRole } = useRoleStore()
 
 const conversationList = ref([])

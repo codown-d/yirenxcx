@@ -2,15 +2,18 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 
-import type {
+import { useIm } from '@/hooks/useIm'
+import {
   AppAuthLoginReqVO,
   AppAuthLoginRespVO,
   AppAuthSmsLoginReqVO,
   AppAuthWeixinMiniAppLoginReqVO,
   CommonResultAppAuthLoginRespVO,
-} from '@/service/app/types'
-import { getUserInfo, login, smsLogin, weixinMiniAppLogin } from '@/service/app'
-import { useIm } from '@/hooks/useIm'
+  getUserInfo,
+  login,
+  smsLogin,
+  weixinMiniAppLogin,
+} from '@/service/member'
 
 // 用户信息类型定义
 interface UserInfo extends AppAuthLoginRespVO {

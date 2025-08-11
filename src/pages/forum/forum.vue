@@ -47,7 +47,7 @@
                 >
                   #
                   <text class="text-[14px] text-primary px-2">{{ topic.name }}</text>
-                  <text class="text-[12px] text-primary">{{ topic.count }}</text>
+                  <text class="text-[12px] text-primary" v-if="false">{{ topic.count }}</text>
                 </wd-tag>
               </view>
             </scroll-view>
@@ -79,10 +79,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
 import { tabCategory, hotTopics as hotList } from '@/constant'
-import { getForumPostPage, YRZPForumPostRespAppVO } from '@/service/app'
+import { getForumPostPage, YRZPForumPostDO } from '@/service/app'
 import { useConnect } from '@/hooks'
 import posts from '@/pages/forum/components/posts.vue'
 const { safeAreaInsets } = getSystemInfoSync()
@@ -96,7 +96,7 @@ const hasMore = ref(true)
 const currentPage = ref(1)
 const pageSize = ref(10)
 const hotTopics = ref(hotList)
-const postList = ref<YRZPForumPostRespAppVO[]>([])
+const postList = ref<YRZPForumPostDO[]>([])
 
 const loadPostList = async (isRefresh = false) => {
   try {
@@ -111,8 +111,8 @@ const loadPostList = async (isRefresh = false) => {
       },
     })
     postList.value = res.data.list.map((item) => {
-      let info = JSON.parse(item?.info ?? '{}')
-      return { ...item, isLiked: ids.includes(item.id), info }
+      // let info = JSON.parse(item?.info ?? '{}')
+      return { ...item, isLiked: ids.includes(item.id), info: {} }
     })
   } finally {
     loading.value = false

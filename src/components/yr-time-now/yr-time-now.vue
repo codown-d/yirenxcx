@@ -1,5 +1,5 @@
 <template>
-  <view :class="`${className}`">
+  <view>
     {{ updateTime(time) }}
   </view>
 </template>
@@ -11,10 +11,6 @@ dayjs.extend(relativeTime)
 dayjs.locale('zh-cn') // 设置为中文（可选）
 
 defineProps({
-  className: {
-    type: String,
-    default: '',
-  },
   time: {
     type: [Number, String],
     required: true,

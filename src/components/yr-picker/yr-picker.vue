@@ -24,10 +24,7 @@ const props = defineProps({
     type: String,
     default: '请输入',
   },
-  className: {
-    type: String,
-    default: '',
-  },
+
   multiple: {
     type: Boolean,
     default: false,

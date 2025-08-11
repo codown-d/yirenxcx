@@ -18,9 +18,16 @@
           @confirmLabel="(val) => (formData.location = val)"
         />
       </wd-cell>
-      <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
+      <wd-cell title="职位类别">
+        <post-picker title="职位类别" v-model="category" @confirmLabel="onConfirmLabel" />
+      </wd-cell>
       <wd-cell title="薪资范围">
-        <wd-picker :columns="salaryColumns" prop="expectedSalary" size="small" />
+        <wd-picker
+          :columns="salaryColumns"
+          v-model="formData.salary"
+          prop="expectedSalary"
+          size="small"
+        />
       </wd-cell>
     </view>
     <view class="bg-white mb-3">
@@ -37,7 +44,7 @@
     </view>
     <yr-page-footer>
       <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">
-        取消
+        清空
       </wd-button>
       <wd-button type="primary" custom-class="flex-1" :round="false" @click="confirmFilter">
         确定
@@ -51,20 +58,27 @@ import { ref } from 'vue'
 import { salaryColumns, jobTypeColumns, benefitsOptions } from '@/constant'
 import { navigateBack, switchTab } from '@/utils'
 import { useFilterStore } from '@/store'
-let { setFilter } = useFilterStore()
+let { setFilter, getFilter } = useFilterStore()
 
-let formData = ref({
-  location: '',
-  locationCode: '',
-  workType: '',
-  jobType: '',
-  jobSpecific: '',
-  jobDomain: '',
-  benefits: '',
-})
+let formData = ref(getFilter() || {})
+
+const category = ref([getFilter()?.jobType, getFilter()?.jobDomain, getFilter()?.jobSpecific])
+console.log(getFilter())
 
 const resetFilter = () => {
-  navigateBack()
+  formData.value = {
+    locationCode: '',
+    location: '',
+    expectedSalary: '',
+    workType: '',
+    benefits: '',
+    jobType: '',
+    jobDomain: '',
+    jobSpecific: '',
+  }
+  category.value = []
+  setFilter(formData.value)
+  switchTab('/index/index')
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }

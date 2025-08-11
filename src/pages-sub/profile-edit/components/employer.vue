@@ -72,8 +72,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { getUserInfo, MemberUserDO, updateUser, updateUser1 } from '@/service/app'
 import { navigateBack } from '@/utils'
+import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
 
 const userForm = ref<MemberUserDO>({ locationCode: '' })
 const form = ref()
