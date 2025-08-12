@@ -43,7 +43,7 @@ import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { switchTab } from '@/utils'
+import { navigateBack, switchTab } from '@/utils'
 
 const { wxLogin } = useUserStore()
 
@@ -65,10 +65,7 @@ const handleWechatPhoneAuth = async (e: any) => {
   }
   const { code } = e.detail
   await wxLogin(code)
-
-  toast.success('授权登录成功')
-  // navigateBack()
-  switchTab('/index/index')
+  navigateBack()
   return
 }
 

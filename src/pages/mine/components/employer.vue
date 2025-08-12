@@ -111,9 +111,8 @@
   <view class="mx-3 mb-3">
     <view class="flex justify-between gap-2">
       <navigate-to
-        v-if="false"
         class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
-        to-sub="/preview-resume/preview-resume"
+        to="/index/index"
       >
         <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
         <text>搜索人才</text>
@@ -125,12 +124,11 @@
         <image src="/static/images/fbqz.png" mode="scaleToFill" class="w-7 h-7" />
         <text>发布招聘</text>
       </navigate-to>
-      <view class="flex-1 flex"></view>
     </view>
   </view>
 
   <!-- 其他功能 -->
-  <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
+  <wd-card>
     <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
     <wd-cell
       :title="item.name"
@@ -139,7 +137,7 @@
       :to="'/pages-sub' + item.path"
       v-for="item in tools"
     ></wd-cell>
-  </view>
+  </wd-card>
 </template>
 
 <script setup lang="ts">

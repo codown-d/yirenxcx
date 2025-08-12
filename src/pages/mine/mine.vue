@@ -23,10 +23,9 @@
       </wd-button>
     </template>
   </wd-navbar>
-  <view class="h-full bg-[#F5F6FA] py-2 pt-10px">
+  <view class="pt-4">
     <jobseeker v-if="roleType === RoleEmu.seeker"></jobseeker>
     <employer v-else></employer>
-    <yr-margin-footer />
   </view>
   <yr-tab-bar :tab-index="4"></yr-tab-bar>
 </template>

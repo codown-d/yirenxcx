@@ -1,7 +1,7 @@
 <template>
   <wd-tabbar
     fixed
-    :model-value="tabbar"
+    v-model="tabbar"
     bordered
     safeAreaInsetBottom
     placeholder
@@ -30,7 +30,7 @@
 import { RoleEmu, useRoleStore } from '@/store'
 import { navigateTo, navigateToSub, switchTab } from '@/utils'
 import { onShow } from '@dcloudio/uni-app'
-let { role, getRole } = useRoleStore()
+let { getRole } = useRoleStore()
 const props = defineProps({
   tabIndex: {
     type: Number,
@@ -88,9 +88,7 @@ const change = ({ value }) => {
       : navigateToSub('/publish-recruitment/publish-recruitment')
   }
   let node = tabList.value[value].pagePath
-  setTimeout(() => {
-    switchTab(node)
-  }, 0)
+  navigateTo(node)
 }
 
 onShow(() => {

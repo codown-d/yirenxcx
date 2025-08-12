@@ -33,7 +33,9 @@
             :auto-height="true"
           />
         </wd-cell>
-        <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
+        <wd-cell title="职位类别">
+          <post-picker title="职位类别" @confirmLabel="onConfirmLabel" />
+        </wd-cell>
         <wd-cell title="工作地点">
           <yr-location-picker
             title="工作地点"
@@ -102,12 +104,13 @@
       </view>
       <wd-card>
         <!-- 联系方式 -->
-        <wd-cell title="联系方式" vertical>
+        <wd-cell title="联系方式">
           <wd-input
             no-border
             v-model="formData.phone"
             placeholder="请输入手机号/微信号"
             prop="phone"
+            custom-class="!text-right pr-24px"
           />
         </wd-cell>
       </wd-card>
@@ -126,8 +129,14 @@
             prop="workType"
           />
         </wd-cell>
-        <wd-cell title="招聘人数" vertical>
-          <wd-input v-model="formData.headcount" placeholder="请输入" prop="headcount" no-border />
+        <wd-cell title="招聘人数">
+          <wd-input
+            v-model="formData.headcount"
+            placeholder="请输入"
+            prop="headcount"
+            no-border
+            custom-class="!text-right pr-24px"
+          />
         </wd-cell>
       </wd-card>
     </wd-form>

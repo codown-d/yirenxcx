@@ -100,25 +100,12 @@ const goBack = () => {
  * @param {any} role - The target role to switch to (currently unused in implementation)
  */
 const showSwitchConfirm = async (targetRole) => {
-  currentUserRole.value = targetRole.key
   let role = targetRole.key === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker
   let res = await getUserInfo()
   let imUserId = `im_${role}_${res.data.id}`
   let resUserSig = await genUserSig({ params: { userId: imUserId } })
-
-  loginIM(imUserId, resUserSig.data)
-    .then((res) => {
-      toast.success('im' + JSON.stringify(res))
-      if (0) {
-        uni.setStorageSync('imUserID', imUserId)
-        uni.setStorageSync('imUserSig', resUserSig.data)
-      }
-      setRole(role)
-      switchTab('/index/index')
-    })
-    .catch((err) => {
-      toast.close()
-      toast.error('失败' + JSON.stringify(err))
-    })
+  await loginIM(imUserId, resUserSig.data)
+  navigateBack()
+  currentUserRole.value = targetRole.key
 }
 </script>

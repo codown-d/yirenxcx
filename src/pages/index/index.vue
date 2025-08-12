@@ -9,104 +9,116 @@
 }
 </route>
 <template>
-  <view class="text-[#252525] overflow-hidden">
-    <scroll-view
-      :scroll-y="true"
-      class="h-100vh"
-      @scroll="handleScroll"
-      @scrolltolower="onScrollToLower"
-    >
+  <view class="text-[#252525]">
+    <scroll-view scroll-y class="h-100vh" @scroll="handleScroll" @scrolltolower="onScrollToLower">
+      <wd-navbar
+        :bordered="false"
+        :left-arrow="false"
+        left-text="意仁直聘"
+        custom-class="font-bold text-primary"
+        fixed
+        safeAreaInsetTop
+        :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
+      ></wd-navbar>
       <view
         :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 160rpx,rgba(245, 246, 250, 1) 8%);'"
       >
-        <wd-navbar
-          :bordered="false"
-          :left-arrow="false"
-          left-text="意仁直聘"
-          custom-class="font-bold text-primary"
-          fixed
-          safeAreaInsetTop
-          :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
-        ></wd-navbar>
         <view
-          class="bg-transparent pb-4"
+          class="bg-transparent px-4"
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',
           }"
         >
-          <view class="px-4">
-            <!-- 搜索栏 -->
-            <search placeholder="请输入职位名称" class-name="mt-2" @confirm="handleSearch" />
-            <!-- 招聘横幅 -->
-            <view class="relative mt-3 rounded-3 overflow-hidden h-40" v-if="swiperList.length">
-              <wd-swiper :list="swiperList" autoplay></wd-swiper>
-            </view>
-            <!-- 筛选标签 -->
-            <scroll-view class="whitespace-nowrap mt-3" scroll-x>
-              <view class="flex items-center justify-between">
-                <view class="flex gap-3">
-                  <view
-                    v-for="tag in filterTags"
-                    :key="tag.id"
-                    class="flex text-gray-600 items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
-                    :class="{
-                      '!bg-primary-100 !text-primary': activeFilterTag === tag.id,
-                    }"
-                    @click="handleFilterChange(tag.id)"
-                  >
-                    <image
-                      :src="activeFilterTag === tag.id ? tag.urlh : tag.url"
-                      mode="aspectFill"
-                      class="w-[20px] h-[20px]"
-                    />
-                    <text class="text-sm">{{ tag.label }}</text>
-                  </view>
-                </view>
-                <view class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1">
+          <!-- 搜索栏 -->
+          <search placeholder="请输入职位名称" class-name="mt-2" @confirm="handleSearch" />
+          <!-- 招聘横幅 -->
+          <view class="relative mt-3 rounded-3 overflow-hidden h-40" v-if="swiperList.length">
+            <wd-swiper :list="swiperList" autoplay></wd-swiper>
+          </view>
+          <view
+            class="flex justify-center mt-3 gap-4 justify-between mt-[10] mb-4"
+            v-if="!isLoggedIn"
+          >
+            <image
+              mode="aspectFill"
+              src="/static/images/lzp.svg"
+              alt=""
+              class="flex-1 h-[57px] rounded-1"
+            />
+            <image
+              mode="aspectFill"
+              src="/static/images/lqz.svg"
+              alt=""
+              class="flex-1 h-[57px] rounded-1"
+            />
+          </view>
+          <!-- 筛选标签 -->
+          <scroll-view class="whitespace-nowrap mt-3" scroll-x>
+            <view class="flex items-center justify-between">
+              <view class="flex gap-3">
+                <view
+                  v-for="tag in filterTags"
+                  :key="tag.id"
+                  class="flex text-gray-600 items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
+                  :class="{
+                    '!bg-primary-100 !text-primary': activeFilterTag === tag.id,
+                  }"
+                  @click="handleFilterChange(tag.id)"
+                >
                   <image
-                    src="/static/images/filter.svg"
+                    :src="activeFilterTag === tag.id ? tag.urlh : tag.url"
                     mode="aspectFill"
                     class="w-[20px] h-[20px]"
                   />
-                  <text
-                    class="text-sm text-[#8C8C8C]"
-                    @click="navigateToSub('/job-filter/job-filter')"
-                  >
-                    筛选
-                  </text>
+                  <text class="text-sm">{{ tag.label }}</text>
                 </view>
               </view>
-            </scroll-view>
-            <!-- 推荐招聘职位标题 -->
-            <template v-if="role === RoleEmu.seeker || !userInfo.token">
-              <view class="py-4">
-                <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
+              <view
+                class="flex items-center rounded-1 bg-white px-3 py-1.5 gap-1 text-[#8C8C8C]"
+                :class="{
+                  '!bg-primary-100 !text-primary': !!hasFilter,
+                }"
+                @click="navigateToSub('/job-filter/job-filter')"
+              >
+                <image
+                  :src="`/static/images/${hasFilter ? 'filterh.svg' : 'filter.svg'}`"
+                  mode="aspectFill"
+                  class="w-[20px] h-[20px]"
+                />
+                <text class="text-sm">筛选</text>
               </view>
-              <job-card
-                v-for="job in jobList"
-                :key="job.id"
-                :job-data="job"
-                v-if="jobList.length"
-                :favorited="job.favorited"
-              />
-              <yr-nodata v-else></yr-nodata>
-            </template>
-            <!-- 推荐招聘职位标题 -->
-            <template v-if="role === RoleEmu.employer || !userInfo.token">
-              <view class="py-4">
-                <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
-              </view>
-              <seeker-card
-                v-for="seeker in seekerList"
-                :key="seeker.id"
-                :seeker-data="seeker"
-                :favorited="seeker.favorited"
-                v-if="seekerList.length"
-              />
-              <yr-nodata v-else></yr-nodata>
-            </template>
-          </view>
+            </view>
+          </scroll-view>
+          <!-- 推荐招聘职位标题 -->
+          <template v-if="role === RoleEmu.seeker || !userInfo.token">
+            <view class="py-4">
+              <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
+            </view>
+            <job-card
+              v-for="job in jobList"
+              :key="job.id"
+              :job-data="job"
+              v-if="jobList.length"
+              :favorited="job.favorited"
+            />
+            <yr-nodata v-else></yr-nodata>
+          </template>
+          <!-- 推荐招聘职位标题 -->
+          <template v-if="role === RoleEmu.employer || !userInfo.token">
+            <view class="py-4">
+              <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
+            </view>
+            <seeker-card
+              v-for="seeker in seekerList"
+              :key="seeker.id"
+              :seeker-data="seeker"
+              :favorited="seeker.favorited"
+              v-if="seekerList.length"
+            />
+            <yr-nodata v-else></yr-nodata>
+          </template>
         </view>
+        <yr-tab-bar :tab-index="0"></yr-tab-bar>
       </view>
     </scroll-view>
   </view>
@@ -153,7 +165,6 @@
       </view>
     </view>
   </wd-popup>
-  <yr-tab-bar :tab-index="0"></yr-tab-bar>
 </template>
 
 <script lang="ts" setup>
@@ -162,9 +173,11 @@ import { getSystemInfoSync, navigateToSub } from '@/utils'
 import { RoleEmu, useFilterStore, useRoleStore, useUserStore } from '@/store'
 import { getJobPage1, getJobSeekerPage, YRZPJobDO, YRZPJobSeekerDO } from '@/service/app'
 import { getBannerList } from '@/service/customize'
+import { keys } from 'lodash'
+import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 
 const { safeAreaInsets } = getSystemInfoSync()
-const { userInfo } = useUserStore()
+const { userInfo, isLoggedIn } = useUserStore()
 const { getRole, setRole } = useRoleStore()
 let { getFilter } = useFilterStore()
 
@@ -187,6 +200,7 @@ function handleClick(type) {
     navigateToSub('/login/login')
   }, 0)
 }
+const hasFilter = computed(() => keys(filter.value).some((tag) => filter.value[tag]))
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {
     opacity.value = 1
@@ -256,5 +270,23 @@ onShow(() => {
   jobList.value = []
   show.value = false
   isShowPopup.value = false
+})
+
+// 右上角分享给好友
+onShareAppMessage(() => {
+  return {
+    title: '薏仁直聘',
+    path: '/pages/index/index?from=share', // 分享后跳转路径
+    imageUrl: '/static/share.png', // 分享图（可选）
+  }
+})
+
+// 右上角分享到朋友圈
+onShareTimeline(() => {
+  return {
+    title: '薏仁直聘',
+    query: 'from=timeline',
+    imageUrl: '/static/share.png',
+  }
 })
 </script>

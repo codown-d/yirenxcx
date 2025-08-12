@@ -18,7 +18,7 @@
       </template>
     </wd-navbar>
     <scroll-view
-      class="h-100vh bg-[#F5F6FA] pt-4"
+      class="h-100vh bg-[#F5F6FA]"
       scroll-y
       :scroll-into-view="scrollToId"
       scroll-with-animation
@@ -41,11 +41,10 @@
         <view id="bottom-anchor" class="h-30"></view>
       </view>
     </scroll-view>
-
-    <yr-page-footer>
-      <InputBox @send="sendMessage" class="flex-1 w-full" @send-file="sendFileFn" />
-    </yr-page-footer>
   </view>
+  <yr-page-footer>
+    <InputBox @send="sendMessage" class="flex-1 w-full" @send-file="sendFileFn" />
+  </yr-page-footer>
 </template>
 
 <script setup lang="ts">
@@ -59,7 +58,6 @@ import Tool from './components/tool.vue'
 import { find } from 'lodash'
 import { getJobPage } from '@/service/app'
 import { getUserByIds } from '@/service/member'
-import { toast } from '@/utils/toast'
 const { safeAreaInsets } = getSystemInfoSync()
 
 const messageList = ref([])
@@ -92,7 +90,6 @@ let selfId = computed(() => {
 })
 const sendMessage = async (text) => {
   let userInfo = uni.getStorageSync('userInfo')
-  console.log('userInfo', userInfo.id)
 
   let res = await getJobPage({
     params: {

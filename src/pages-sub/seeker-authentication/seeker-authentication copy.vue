@@ -66,24 +66,5 @@ const form = ref()
 const loading = ref(false)
 
 // 提交企业认证
-const saveCertification = async () => {
-  let res = await form.value.validate()
-  if (!res.valid) {
-    return
-  }
-  try {
-    loading.value = true
-    const res = await getRequest({
-      body: certForm.value,
-    })
-    if (res.code === 0) {
-      toast.success('提交成功')
-      setTimeout(() => {
-        navigateBack()
-      }, 500)
-    }
-  } finally {
-    loading.value = false
-  }
-}
+const saveCertification = async () => {}
 </script>

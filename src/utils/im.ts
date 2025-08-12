@@ -1,10 +1,6 @@
 // utils/im.ts
 import TIM from 'tim-wx-sdk'
 import TIMUploadPlugin from 'tim-upload-plugin'
-import { toast } from './toast'
-import { getUserInfo } from '@/service/member'
-import { RoleEmu } from '@/store'
-import { genUserSig } from '@/service/app'
 
 // 从环境变量读取 SDKAppID
 const SDKAppID = import.meta.env.VITE_APP_SDKAppID
@@ -59,7 +55,9 @@ function clearCache() {
 
 // ✅ 登录
 async function loginIM(userID: string | number, userSig: string) {
-  return tim.login({ userID, userSig })
+  await tim.login({ userID, userSig })
+  uni.setStorageSync('imUserID', userID)
+  uni.setStorageSync('imUserSig', userSig)
 }
 
 // ✅ 封装：等待 SDK Ready
@@ -85,19 +83,12 @@ function waitUntilReady(timeout = 5000): Promise<void> {
 async function tryAutoLogin() {
   const userID = uni.getStorageSync('imUserID')
   const userSig = uni.getStorageSync('imUserSig')
-  if (!userID || !userSig) {
-    const res = await getUserInfo({})
-    let role = JSON.parse(uni.getStorageSync('role') || JSON.stringify({ role: RoleEmu.seeker }))
-    let imUserId = `im_${role}_${res.data.id}`
-    let resUserSig = await genUserSig({ params: { userId: imUserId } })
-    await loginIM(imUserId, resUserSig.data)
-  } else {
-    try {
-      let res = await loginIM(userID, userSig)
-      console.log(res)
-    } catch (err) {
-      console.warn('[IM] 自动登录失败', err)
-    }
+  if (!userID || !userSig || isSDKReady) return
+  try {
+    let res = await loginIM(userID, userSig)
+    console.log(res)
+  } catch (err) {
+    console.warn('[IM] 自动登录失败', err)
   }
 }
 
@@ -114,7 +105,6 @@ async function sendTextMessage(toUserID: string, text: string, isGroup = false) 
     console.warn('[IM] 消息为空，已拦截')
     return Promise.reject(new Error('消息不能为空'))
   }
-  toast.info(text)
   const message = tim.createTextMessage({
     to: toUserID,
     conversationType: isGroup ? TIM.TYPES.CONV_GROUP : TIM.TYPES.CONV_C2C,
@@ -123,11 +113,9 @@ async function sendTextMessage(toUserID: string, text: string, isGroup = false) 
 
   try {
     const res = await tim.sendMessage(message)
-    toast.info('成功' + JSON.stringify(res))
     console.log('[IM] 文本消息发送成功', res)
     return res
   } catch (err) {
-    toast.info('消息' + JSON.stringify(err))
     console.error('[IM] 文本消息发送失败', err)
     throw err
   }
@@ -168,7 +156,7 @@ async function getMessageList(options: {
   fromUserID: string
 }) {
   await waitUntilReady()
-  const { toUserID, isGroup = false, nextReqMessageID = '', count = 20, fromUserID } = options
+  const { toUserID, isGroup = false, nextReqMessageID = '', count = 20 } = options
   const conversationID = isGroup ? `GROUP${toUserID}` : `C2C${toUserID}`
   try {
     const res = await tim.getMessageList({
@@ -187,7 +175,6 @@ async function getMessageList(options: {
 async function logoutIM() {
   await tim.logout()
   clearCache()
-  console.log('[IM] 已退出登录')
 }
 
 // ✅ 获取当前登录状态

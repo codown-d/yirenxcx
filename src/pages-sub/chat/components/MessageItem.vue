@@ -2,7 +2,7 @@
   <view class="mb-4">
     <view
       :class="[
-        'flex p-[10px]',
+        'flex p-[10px] pb-1',
         isSelf ? 'justify-end gap-2' : 'flex-row-reverse justify-end gap-2',
       ]"
     >
@@ -25,7 +25,7 @@
     </view>
     <yr-time-now
       :time="message.time * 1000"
-      class="flex text-[#8A8D91] text-[14px] px-[60px]"
+      class="flex text-[#8A8D91] text-[12px] px-[60px]"
       :class="[isSelf ? 'justify-end ' : 'justify-start ']"
     ></yr-time-now>
   </view>

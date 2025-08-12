@@ -15,40 +15,6 @@
       "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
     }
   },
-  "tabBar": {
-    "custom": true,
-    "color": "#999999",
-    "selectedColor": "#018d71",
-    "fontSize": "12px",
-    "iconWidth": "30px",
-    "spacing": "3px",
-    "list": [
-      {
-        "iconPath": "static/tabbar/index.png",
-        "selectedIconPath": "static/tabbar/indexH.png",
-        "pagePath": "pages/index/index",
-        "text": "薏仁"
-      },
-      {
-        "iconPath": "static/tabbar/msg.png",
-        "selectedIconPath": "static/tabbar/msgH.png",
-        "pagePath": "pages/message/message",
-        "text": "消息"
-      },
-      {
-        "iconPath": "static/tabbar/luntan.png",
-        "selectedIconPath": "static/tabbar/luntanH.png",
-        "pagePath": "pages/forum/forum",
-        "text": "论坛"
-      },
-      {
-        "iconPath": "static/tabbar/mine.png",
-        "selectedIconPath": "static/tabbar/mineH.png",
-        "pagePath": "pages/mine/mine",
-        "text": "我的"
-      }
-    ]
-  },
   "pages": [
     {
       "path": "pages/index/index",

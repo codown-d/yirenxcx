@@ -116,7 +116,6 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { toast } from '@/utils/toast'
 import { getWeiGuiPage, YRZPWeiGuiRespAppVO } from '@/service/app'
 import dayjs from 'dayjs'
 

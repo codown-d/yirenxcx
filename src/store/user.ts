@@ -105,9 +105,6 @@ export const useUserStore = defineStore(
         } else {
         }
       } catch (error) {
-        console.error('密码登录失败:', error)
-        const errorMessage = error instanceof Error ? error.message : '登录失败'
-        toast.error(errorMessage)
         throw error
       }
     }
@@ -152,9 +149,6 @@ export const useUserStore = defineStore(
           throw new Error(res.msg || '登录失败')
         }
       } catch (error) {
-        console.error('短信登录失败:', error)
-        const errorMessage = error instanceof Error ? error.message : '登录失败'
-        toast.error(errorMessage)
         throw error
       }
     }
@@ -179,8 +173,6 @@ export const useUserStore = defineStore(
         removeUserInfo()
         toast.success('退出登录成功')
       } catch (error) {
-        console.error('退出登录失败:', error)
-        // 即使接口调用失败，也要清除本地数据
         removeUserInfo()
       }
     }
@@ -233,9 +225,6 @@ export const useUserStore = defineStore(
           throw new Error(res.msg || '微信登录失败')
         }
       } catch (error) {
-        console.error('微信登录失败:', error)
-        const errorMessage = error instanceof Error ? error.message : '微信登录失败'
-        toast.error(errorMessage)
         throw error
       }
     }
@@ -243,16 +232,9 @@ export const useUserStore = defineStore(
       let roleInfo = JSON.parse(
         uni.getStorageSync('role') || JSON.stringify({ role: RoleEmu.seeker }),
       )
-      console.log('role', roleInfo)
       let imUserId = `im_${roleInfo.role}_${userId}`
       let resUserSig = await genUserSig({ params: { userId: imUserId } })
-      loginIM(imUserId, resUserSig.data).then((res) => {
-        toast.success('im' + JSON.stringify(res))
-        if (0) {
-          uni.setStorageSync('imUserID', imUserId)
-          uni.setStorageSync('imUserSig', resUserSig.data)
-        }
-      })
+      await loginIM(imUserId, resUserSig.data)
       await getUserInfoFn()
     }
     // 计算属性：是否已登录

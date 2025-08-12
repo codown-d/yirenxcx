@@ -1,11 +1,10 @@
-import { ItemProps } from '@/pages-sub/job-filter/job-filter.vue'
 import { defineStore } from 'pinia'
 
 let VITE_WX_TXMAP = import.meta.env.VITE_WX_TXMAP
 export const useLocationStore = defineStore(
   'locations',
   () => {
-    let locations = ref<ItemProps[]>([])
+    let locations = ref<any[]>([])
     let curLocation = ref({ province: '', city: '', district: '', adcode: '' })
 
     const getCurLocation = () => {
@@ -34,7 +33,7 @@ export const useLocationStore = defineStore(
         },
       })
     }
-    let setLocation = (data: ItemProps[]) => {
+    let setLocation = (data: any[]) => {
       locations.value = data
     }
 
