@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Column } from '@/types'
+import { Column } from '../yr-select-picker/yr-select-picker.vue'
 
 const props = defineProps({
   title: String,
@@ -35,7 +35,7 @@ const props = defineProps({
   },
 })
 
-let selectVal = ref([])
+let selectVal = ref()
 let selectedItems = ref<Column[]>([])
 
 const emit = defineEmits(['update:modelValue'])
@@ -43,16 +43,15 @@ const emit = defineEmits(['update:modelValue'])
 const handleConfirm = ({ selectedItems: items, value }: any) => {
   selectVal.value = value
   selectedItems.value = items
-  console.log(value)
   emit('update:modelValue', selectVal.value)
 }
 
 watch(
   () => props.modelValue,
   (val) => {
-    let arr = [val]
+    let arr = []
     if (typeof val === 'string') {
-      arr = (val + '').split(',').filter((item) => item)
+      arr = val.split(',').filter((item) => item)
     }
     selectVal.value = arr
     selectedItems.value = props.columns.filter((item) => arr.includes(item.value))

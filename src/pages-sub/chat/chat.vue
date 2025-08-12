@@ -37,12 +37,7 @@
         >
           <Tool :type="toolType" :chat-object-id="chatObject?.id" v-if="chatObject"></Tool>
         </view>
-        <MessageItem
-          v-for="item in messageList"
-          :key="item.ID"
-          :message="item"
-          :selfId="item.selfId"
-        />
+        <MessageItem v-for="item in messageList" :key="item.ID" :message="item" />
         <view id="bottom-anchor" class="h-30"></view>
       </view>
     </scroll-view>
@@ -64,6 +59,7 @@ import Tool from './components/tool.vue'
 import { find } from 'lodash'
 import { getJobPage } from '@/service/app'
 import { getUserByIds } from '@/service/member'
+import { toast } from '@/utils/toast'
 const { safeAreaInsets } = getSystemInfoSync()
 
 const messageList = ref([])
@@ -96,6 +92,8 @@ let selfId = computed(() => {
 })
 const sendMessage = async (text) => {
   let userInfo = uni.getStorageSync('userInfo')
+  console.log('userInfo', userInfo.id)
+
   let res = await getJobPage({
     params: {
       str: text,
@@ -121,7 +119,6 @@ let getMessageListFn = async (toUserID, count = 100) => {
 const addMsg = (list) => {
   const mappedMessages = list.map((item) => ({
     ...item,
-    selfId: selfId.value,
   }))
   console.log(mappedMessages)
   messageList.value.push(...mappedMessages)
@@ -134,6 +131,7 @@ const sendFileFn = async () => {
 onLoad((option) => {
   if (option.toUserID) {
     toUserID.value = option.toUserID
+    console.log(toUserID.value)
     setMsgCallback(addMsg)
     getMessageListFn(toUserID.value)
   }

@@ -149,10 +149,10 @@ import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
 import { jobTypeColumns, salaryColumns } from '@/constant'
-import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
+import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
 
 // 用户信息数据
-const userInfo = ref<MemberUserDO>({})
+const userInfo = ref<MemberUserDO>({ workType: '' })
 const tagsRef = ref()
 const daiBiaoZuoRef = ref()
 
@@ -183,7 +183,7 @@ const previewResume = () => {
 }
 
 const saveResume = async () => {
-  await updateUser1({
+  await updateUser({
     body: userInfo.value,
   })
   toast.success('保存成功')

@@ -30,9 +30,9 @@
     </view>
 
     <!-- 专业信息 -->
-    <view class="mb-2" v-if="userInfo?.teChang">
+    <view class="mb-3" v-if="userInfo?.teChang">
       <text class="text-4">专业：{{ userInfo?.teChang }}</text>
-      <view class="flex flex-wrap gap-2 mb-3 mt-2">
+      <view class="flex flex-wrap gap-2 mt-2">
         <wd-tag
           v-for="(tag, index) in tags"
           custom-class="!text-3 !text-[#555555] !px-2 !py-1"
@@ -45,7 +45,7 @@
     </view>
 
     <!-- 基本信息 -->
-    <view class="flex items-center text-gray-500 justify-between">
+    <view class="flex items-center text-gray-500 justify-between mb-5">
       <yr-img-title
         url="jingyan.svg"
         :title="userInfo?.gongZuoJingYan"
@@ -157,6 +157,7 @@
       :title="item.name"
       is-link
       :to="'/pages-sub' + item.path"
+      :key="item.name"
       v-for="item in tools"
     ></wd-cell>
   </view>

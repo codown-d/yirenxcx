@@ -32,15 +32,19 @@
         <!-- 职位要求 -->
         <view class="mt-2">
           <text class="text-sm text-gray">演员要求</text>
-          <yr-tag-list v-model="jobDetail.requirementDetails" class="mt-3" />
+          <view class="mt-3">
+            <yr-tag-list v-model="jobDetail.requirementDetails" />
+          </view>
         </view>
         <view class="mt-4">
           <text class="text-sm text-gray">福利/待遇</text>
-          <yr-tag-list
-            v-model="jobDetail.benefits"
-            class="mt-3"
-            class-name="!bg-[#F5F6FA] !text-[#555555]"
-          />
+          <view class="mt-3">
+            <yr-tag-list
+              v-model="jobDetail.benefits"
+              class="mt-3"
+              class-name="!bg-[#F5F6FA] !text-[#555555]"
+            />
+          </view>
         </view>
       </view>
 
@@ -69,28 +73,6 @@
             </view>
           </view>
           <wd-icon name="arrow-right" size="16px" color="#999" @click="goToCompany" />
-        </view>
-      </view>
-
-      <!-- 即将项目 -->
-      <view class="bg-white mt-3 rounded-3 p-4" v-if="false">
-        <text class="text-4 font-bold text-gray-800 block mb-3">即将项目</text>
-        <view class="space-y-3">
-          <view
-            v-for="project in 2"
-            :key="project.id"
-            class="flex items-center bg-[#EEF5F3] p-[6px] rounded-[6px]"
-          >
-            <image
-              :src="project.image"
-              class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
-              mode="aspectFill"
-            />
-            <view class="flex-1">
-              <text class="text-3 font-medium text-gray-800 block">project.title</text>
-              <text class="text-2 text-gray-500">project.date • project.location</text>
-            </view>
-          </view>
         </view>
       </view>
 
@@ -182,7 +164,7 @@ import { navigateTo, navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
-const jobDetail = ref<YRZPJobDO>({})
+const jobDetail = ref<any>({})
 const jobId = ref()
 let isFavorited = ref(false)
 let collect = ref(false)
@@ -221,7 +203,7 @@ const loadJobDetail = async () => {
     }
   })
 
-  await updateUser({ body: { zhiWeiLiuLan: '+1', userId: item.creator } })
+  await updateUser({ body: { zhiWeiLiuLan: '+1', userId: Number(item.creator) } })
 }
 
 // 立即联系

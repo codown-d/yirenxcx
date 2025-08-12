@@ -27,7 +27,7 @@
     </view>
 
     <!-- 基本信息 -->
-    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden">
+    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden mb-5">
       <yr-img-title url="jigou.svg" :title="userInfo?.personNumber" v-if="userInfo?.personNumber" />
       <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" v-if="userInfo?.chengLiTime" />
       <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />

@@ -107,7 +107,6 @@
     "pinia": "2.0.36",
     "pinia-plugin-persistedstate": "3.2.1",
     "qs": "6.5.3",
-    "tim-js-sdk": "^2.27.6",
     "tim-upload-plugin": "^1.4.3",
     "tim-wx-sdk": "^2.27.6",
     "vue": "^3.5.15",

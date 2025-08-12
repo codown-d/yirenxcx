@@ -2,7 +2,6 @@
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import { navigateTo } from './utils'
-// import TIM from 'tim-wx-sdk'
 import { initIM } from '@/utils/im'
 
 onLaunch(() => {

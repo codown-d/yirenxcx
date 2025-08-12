@@ -39,7 +39,7 @@
 <script lang="ts" setup>
 export interface Column {
   label: string
-  value: string
+  value: string | number
 }
 const props = defineProps({
   title: {

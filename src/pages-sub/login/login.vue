@@ -77,7 +77,7 @@ import WxLogin from './components/wx-login.vue'
 import PwdLogin from './components/pwd-login.vue'
 import RegisterForm from './components/register.vue'
 import ForgotPasswordForm from './components/forgot-password.vue'
-import { navigateBack, switchTab } from '@/utils'
+import { navigateBack } from '@/utils'
 
 // 页面状态
 const showType = ref<'wechat' | 'pwd' | 'register' | 'forgot'>('wechat')

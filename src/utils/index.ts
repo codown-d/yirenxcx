@@ -241,7 +241,12 @@ export const goLogin = () => {
    */
 }
 export const navigateBack = () => {
-  uni.navigateBack()
+  const pages = getCurrentPages()
+  if (pages.length > 1) {
+    uni.navigateBack()
+  } else {
+    uni.redirectTo({ url: '/pages/index/index' })
+  }
 }
 export const navigateTo = (url: string, prefix = '/pages', callback?: (result: any) => void) => {
   console.log(`${prefix}${url}`)

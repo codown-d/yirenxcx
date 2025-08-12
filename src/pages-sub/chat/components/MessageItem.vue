@@ -32,9 +32,10 @@
 </template>
 
 <script setup>
+import { useRoleStore } from '@/store'
+let { getRole } = useRoleStore()
 let props = defineProps({
   message: Object,
-  selfId: String,
 })
 /**
  * 获取图片 URL（取第二种规格或第一种）
@@ -49,5 +50,8 @@ function getImageUrl(message) {
     imageList[0]?.url
   )
 }
-const isSelf = computed(() => props.message.from === props.selfId)
+const isSelf = computed(() => {
+  let userInfo = uni.getStorageSync('userInfo')
+  return props.message.from === `im_${getRole()}_${userInfo.id}`
+})
 </script>

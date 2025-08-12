@@ -133,7 +133,7 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { MemberUserDO, getUserInfo, updateUser1 } from '@/service/member'
+import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })
@@ -194,7 +194,7 @@ const saveResume = async () => {
   if (!res.valid) {
     return
   }
-  await updateUser1({
+  await updateUser({
     body: userInfo.value,
   })
   toast.success('保存成功')

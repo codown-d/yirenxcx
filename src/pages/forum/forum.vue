@@ -111,8 +111,8 @@ const loadPostList = async (isRefresh = false) => {
       },
     })
     postList.value = res.data.list.map((item) => {
-      // let info = JSON.parse(item?.info ?? '{}')
-      return { ...item, isLiked: ids.includes(item.id), info: {} }
+      let info = JSON.parse(item?.info ?? '{}')
+      return { ...item, isLiked: ids.includes(item.id), info }
     })
   } finally {
     loading.value = false

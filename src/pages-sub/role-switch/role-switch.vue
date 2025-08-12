@@ -58,6 +58,7 @@
       </view>
     </view>
   </view>
+  <wd-toast />
 </template>
 
 <script setup lang="ts">
@@ -65,10 +66,12 @@ import { ref, computed, onMounted } from 'vue'
 import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import { navigateBack, switchTab } from '@/utils'
-import { useIm } from '@/hooks'
+import { loginIM } from '@/utils/im'
+import { genUserSig } from '@/service/app'
+import { useToast } from 'wot-design-uni'
+const toast = useToast()
 const { setRole, getRole } = useRoleStore()
 const { getUserInfo } = useUserStore()
-let { imLogin } = useIm()
 const currentUserRole = ref<RoleEmu>(getRole())
 
 // 当前角色信息
@@ -96,10 +99,26 @@ const goBack = () => {
  * Toggles the user's role between 'seeking' and 'employer' and redirects to the index page.
  * @param {any} role - The target role to switch to (currently unused in implementation)
  */
-const showSwitchConfirm = async (role: any) => {
-  setRole(currentUserRole.value === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker)
+const showSwitchConfirm = async (targetRole) => {
+  currentUserRole.value = targetRole.key
+  let role = targetRole.key === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker
   let res = await getUserInfo()
-  await imLogin(res.data.id)
-  navigateBack()
+  let imUserId = `im_${role}_${res.data.id}`
+  let resUserSig = await genUserSig({ params: { userId: imUserId } })
+
+  loginIM(imUserId, resUserSig.data)
+    .then((res) => {
+      toast.success('im' + JSON.stringify(res))
+      if (0) {
+        uni.setStorageSync('imUserID', imUserId)
+        uni.setStorageSync('imUserSig', resUserSig.data)
+      }
+      setRole(role)
+      switchTab('/index/index')
+    })
+    .catch((err) => {
+      toast.close()
+      toast.error('失败' + JSON.stringify(err))
+    })
 }
 </script>

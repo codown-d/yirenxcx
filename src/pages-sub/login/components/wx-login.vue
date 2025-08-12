@@ -27,7 +27,6 @@
       type="info"
       size="large"
       :round="false"
-      v-if="false"
       block
       :disabled="loginLoading"
       @click="handlePhoneLogin"
@@ -68,9 +67,8 @@ const handleWechatPhoneAuth = async (e: any) => {
   await wxLogin(code)
 
   toast.success('授权登录成功')
-  setTimeout(() => {
-    switchTab('/index/index')
-  }, 500)
+  // navigateBack()
+  switchTab('/index/index')
   return
 }
 

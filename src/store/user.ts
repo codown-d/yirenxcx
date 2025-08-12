@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 
-import { useIm } from '@/hooks/useIm'
 import {
   AppAuthLoginReqVO,
   AppAuthLoginRespVO,
@@ -14,6 +13,9 @@ import {
   smsLogin,
   weixinMiniAppLogin,
 } from '@/service/member'
+import { genUserSig } from '@/service/app'
+import { loginIM } from '@/utils/im'
+import { RoleEmu } from './role'
 
 // 用户信息类型定义
 interface UserInfo extends AppAuthLoginRespVO {
@@ -43,7 +45,6 @@ const userInfoState: UserInfo = {
 export const useUserStore = defineStore(
   'user',
   () => {
-    let { imLogin } = useIm()
     // 定义用户信息
     const userInfo = ref<UserInfo>({ ...userInfoState })
 
@@ -98,9 +99,8 @@ export const useUserStore = defineStore(
             expiresTime,
           })
 
+          await loginSuccess(userId)
           toast.success('登录成功')
-          await getUserInfoFn()
-          await imLogin(userId)
           return res
         } else {
         }
@@ -165,7 +165,7 @@ export const useUserStore = defineStore(
       const res = await getUserInfo({})
       if (res.code === 0 && res.data) {
         const userData = res.data
-        // setUserInfo(userData)
+        setUserInfo(userData)
         uni.setStorageSync('userInfo', userData)
         return res
       }
@@ -184,6 +184,7 @@ export const useUserStore = defineStore(
         removeUserInfo()
       }
     }
+
     /**
      * 微信小程序登录
      */
@@ -225,11 +226,8 @@ export const useUserStore = defineStore(
             refreshToken,
             expiresTime,
           })
-
+          await loginSuccess(userId)
           toast.success('微信登录成功')
-          await getUserInfoFn()
-
-          await imLogin(userId)
           return res
         } else {
           throw new Error(res.msg || '微信登录失败')
@@ -240,6 +238,22 @@ export const useUserStore = defineStore(
         toast.error(errorMessage)
         throw error
       }
+    }
+    const loginSuccess = async (userId) => {
+      let roleInfo = JSON.parse(
+        uni.getStorageSync('role') || JSON.stringify({ role: RoleEmu.seeker }),
+      )
+      console.log('role', roleInfo)
+      let imUserId = `im_${roleInfo.role}_${userId}`
+      let resUserSig = await genUserSig({ params: { userId: imUserId } })
+      loginIM(imUserId, resUserSig.data).then((res) => {
+        toast.success('im' + JSON.stringify(res))
+        if (0) {
+          uni.setStorageSync('imUserID', imUserId)
+          uni.setStorageSync('imUserSig', resUserSig.data)
+        }
+      })
+      await getUserInfoFn()
     }
     // 计算属性：是否已登录
     const isLoggedIn = computed(() => !!userInfo.value.token)

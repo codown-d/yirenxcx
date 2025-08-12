@@ -133,6 +133,7 @@ import { find } from 'lodash'
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
   qiWangXinZi: '',
+  workType: '',
 })
 const daiBiaoZuo = ref([])
 const tags = ref([])
