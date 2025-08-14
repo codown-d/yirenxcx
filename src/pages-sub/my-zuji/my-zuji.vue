@@ -3,7 +3,7 @@
   layout: 'common',
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '我的关注',
+    navigationBarTitleText: '我的足迹',
   },
 }
 </route>
@@ -37,13 +37,6 @@
               <view class="flex gap-1 my-2">
                 <yr-tag-list v-model="item.requirementDetails"></yr-tag-list>
               </view>
-              <view class="flex justify-between items-center">
-                <view class="w-[120px] flex">
-                  {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
-                  关注
-                </view>
-                <wd-button size="small" @click="unfollowCompany(item)">取消关注</wd-button>
-              </view>
             </view>
           </view>
           <view class="flex items-start justify-between" v-else>
@@ -74,13 +67,6 @@
                   class-name="!bg-[#F5F6FA] !text-[#555555]"
                 ></yr-tag-list>
               </view>
-              <view class="flex justify-between items-center">
-                <view class="w-[120px] flex">
-                  {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
-                  关注
-                </view>
-                <wd-button size="small" @click="unfollowCompany(item)">取消关注</wd-button>
-              </view>
             </view>
           </view>
         </view>
@@ -92,14 +78,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import dayjs from 'dayjs'
-import { useConnect } from '@/hooks/useConnect'
 import { RoleEmu, useRoleStore } from '@/store'
-let { role, getRole } = useRoleStore()
-const { changeConnect, getGuanZhu } = useConnect()
+import { AppYrzpZuJiRespVO, getJob, getZuJiByJob, getZuJiBySkeer, getZuJiPage } from '@/service/app'
+let { getRole } = useRoleStore()
 
 // 页面状态
-const followList = ref<any[]>([])
+const followList = ref<AppYrzpZuJiRespVO[]>([])
 const loading = ref(false)
 
 // 页面加载
@@ -120,24 +104,20 @@ const loadFollowList = async () => {
   if (loading.value) return
   loading.value = true
   try {
-    let list = await getGuanZhu()
-    followList.value = list
+    if (getRole() === RoleEmu.seeker) {
+      let list = await getZuJiByJob({})
+      let ids = list.data.map((item) => item.jobId).join(',')
+      let jobs = await getJob({ params: { ids } })
+      console.log(jobs)
+      followList.value = jobs.data
+    } else {
+      let list = await getZuJiBySkeer({})
+      let userIds = list.data.map((item) => item.jobId).join(',')
+      let jobs = await getJobSeekerByUserId({ params: { userIds } })
+      followList.value = jobs.data
+    }
   } finally {
     loading.value = false
-  }
-}
-
-// 取消关注
-const unfollowCompany = (item: any) => {
-  let { id } = item
-  if (RoleEmu.employer === getRole()) {
-    changeConnect({ guanZhuJobSeekerId: Number(id) }, true, () => {
-      loadFollowList()
-    })
-  } else {
-    changeConnect({ guanZhuJobId: Number(id) }, true, () => {
-      loadFollowList()
-    })
   }
 }
 </script>

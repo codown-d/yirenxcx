@@ -21,7 +21,7 @@
         class="w-[42px] h-[42px] rounded-full bg-gray-200"
         :src="message.avatar"
         mode="aspectFit"
-      ></image>
+      />
     </view>
     <yr-time-now
       :time="message.time * 1000"

@@ -266,7 +266,7 @@ const validateForm = () => {
 // 注册
 const handleRegister = async () => {
   if (!agreePrivacy.value) {
-    toast.error('请先阅读并同意用户协议和隐私政策')
+    toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
 

@@ -36,7 +36,7 @@
     <wd-divider custom-class="!px-0 mt-5" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
-      <view class="text-center flex-1" v-if="false">
+      <view class="text-center flex-1">
         <text class="text-6 font-bold text-gray-800 block pb-2">
           {{ userInfo?.jianLiLiuLan || 0 }}
         </text>
@@ -76,7 +76,7 @@
     </view>
 
     <wd-divider vertical></wd-divider>
-    <view class="flex items-center gap-2 flex-col">
+    <view class="flex items-center gap-2 flex-col" @click="goToMyZuJi">
       <image class="w-[36px] h-[36px]" src="/static/images/zuji.svg" mode="scaleToFill" />
       <text class="text-4 font-medium text-gray-600">我的足迹</text>
     </view>
@@ -129,7 +129,7 @@
 
   <!-- 其他功能 -->
   <wd-card>
-    <text class="text-4 font-medium text-gray-800 block pb-4">其他功能</text>
+    <text class="text-4 font-medium text-gray-800 block pb-3">其他功能</text>
     <wd-cell
       :title="item.name"
       is-link
@@ -207,7 +207,9 @@ const goToOnlineResume = () => {
 const previewResume = () => {
   toast.info('预览简历')
 }
-
+const goToMyZuJi = () => {
+  navigateToSub('/my-zuji/my-zuji')
+}
 // 跳转到我的关注
 const goToMyFollows = () => {
   navigateToSub('/my-follows/my-follows')

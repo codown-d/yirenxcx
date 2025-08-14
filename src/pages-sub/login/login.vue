@@ -111,8 +111,6 @@ const handleRegisterSuccess = (userInfo: { phone: string; realName: string }) =>
 
   // 注册成功后可以跳转到身份选择或直接登录
   setTimeout(() => {
-    // 这里可以跳转到首页或身份选择页面
-    // switchTab('/index/index')
     navigateBack()
   }, 1500)
 }

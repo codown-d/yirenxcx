@@ -27,6 +27,7 @@
       type="info"
       size="large"
       :round="false"
+      v-if="false"
       block
       :disabled="loginLoading"
       @click="handlePhoneLogin"
@@ -43,7 +44,7 @@ import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { navigateBack, switchTab } from '@/utils'
+import { navigateBack } from '@/utils'
 
 const { wxLogin } = useUserStore()
 
@@ -60,7 +61,7 @@ const loginLoading = ref(false)
 // 微信手机号授权登录（需要用户主动触发）
 const handleWechatPhoneAuth = async (e: any) => {
   if (!agreePrivacy.value) {
-    toast.error('请先阅读并同意用户协议和隐私政策')
+    toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
   const { code } = e.detail

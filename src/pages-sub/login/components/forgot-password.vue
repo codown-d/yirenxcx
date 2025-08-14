@@ -263,7 +263,7 @@ const validateForm = () => {
 // 重置密码
 const handleResetPassword = async () => {
   if (!agreePrivacy.value) {
-    toast.error('请先阅读并同意用户协议和隐私政策')
+    toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
 

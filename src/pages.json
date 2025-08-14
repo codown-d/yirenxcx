@@ -22,7 +22,7 @@
       "layout": "blank",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "意仁直聘"
+        "navigationBarTitleText": "薏仁直聘"
       }
     },
     {
@@ -50,7 +50,7 @@
       "layout": "mine",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "意仁直聘"
+        "navigationBarTitleText": "薏仁直聘"
       },
       "isTab": true
     },
@@ -183,6 +183,15 @@
           "style": {
             "navigationStyle": "custom",
             "navigationBarTitleText": "我的关注"
+          }
+        },
+        {
+          "path": "my-zuji/my-zuji",
+          "type": "page",
+          "layout": "common",
+          "style": {
+            "navigationStyle": "custom",
+            "navigationBarTitleText": "我的足迹"
           }
         },
         {

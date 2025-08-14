@@ -56,7 +56,7 @@ export interface ShowcasePhoto {
   description?: string
 }
 
-// 求职意向接口
+// 求职薏向接口
 export interface JobIntention {
   position: string
   salary: string
@@ -185,7 +185,7 @@ export const RESUME_TEMPLATES = [
   },
   {
     id: 'creative',
-    name: '创意模板',
+    name: '创薏模板',
     description: '设计感强，适合艺术类职位',
     preview: '/static/images/template-creative.jpg',
   },

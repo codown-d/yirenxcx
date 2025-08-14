@@ -95,7 +95,7 @@ import { onLoad } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG, FORM_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { switchTab } from '@/utils'
+import { navigateTo } from '@/utils'
 import { AppAuthSmsSendReqVO, CommonResultAppAuthLoginRespVO, sendSmsCode } from '@/service/member'
 
 const { loginWithPassword, loginWithSms } = useUserStore()
@@ -188,7 +188,7 @@ const sendSmsCodeFn = async () => {
 // 登录
 const handleLogin = async () => {
   if (!agreePrivacy.value) {
-    toast.error('请先阅读并同意用户协议和隐私政策')
+    toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
 
@@ -224,7 +224,7 @@ const handleLogin = async () => {
     } else {
       loginResponse = await loginWithSms(loginForm.value.phone, loginForm.value.smsCode)
     }
-    switchTab('/index/index')
+    navigateTo('/index/index')
   } finally {
     loginLoading.value = false
   }

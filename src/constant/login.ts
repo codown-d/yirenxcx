@@ -5,8 +5,8 @@ import { DEFAULT_AVATARS } from './images'
 
 // 登录页面基础配置
 export const LOGIN_CONFIG = {
-  title: '欢迎登录意仁直聘！',
-  appName: '意仁直聘',
+  title: '欢迎登录薏仁直聘！',
+  appName: '薏仁直聘',
   logo: '/static/logo.png',
   welcomeText: '欢迎登录薏仁直聘',
   subtitle: '求职者的招聘平台',
@@ -39,7 +39,7 @@ export const FORM_CONFIG = {
 
 // 注册页面配置
 export const REGISTER_CONFIG = {
-  title: '欢迎注册意仁直聘！',
+  title: '欢迎注册薏仁直聘！',
   subtitle: '创建您的专属账户',
   passwordPlaceholder: '请设置登录密码',
   confirmPasswordPlaceholder: '请确认登录密码',
@@ -67,7 +67,7 @@ export const ROLE_CONFIG = {
   roles: [
     {
       key: 'jobseeker',
-      name: '意人',
+      name: '薏人',
       description: '找工作 投简历',
       avatar: DEFAULT_AVATARS.jobseeker,
     },
@@ -82,7 +82,7 @@ export const ROLE_CONFIG = {
 
 // 隐私协议配置
 export const PRIVACY_CONFIG = {
-  agreeText: '登录即表示同意',
+  agreeText: '登录即表示同薏',
   userAgreement: '《用户协议》',
   andText: '和',
   privacyPolicy: '《隐私政策》',

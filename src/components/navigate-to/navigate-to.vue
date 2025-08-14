@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { navigateTo, navigateToSub, switchTab } from '@/utils'
+import { navigateTo, navigateToSub } from '@/utils'
 let props = defineProps({
   to: {
     type: String,
@@ -30,7 +30,7 @@ const goToPage = () => {
   } else if (props.toSub) {
     navigateToSub(props.toSub)
   } else if (props.toTab) {
-    switchTab(props.toTab)
+    navigateTo(props.toTab)
   }
 }
 </script>

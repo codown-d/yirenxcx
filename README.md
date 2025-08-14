@@ -43,7 +43,7 @@
 
 ---
 
-注意旧的地址 [codercup](https://github.com/codercup/unibest) 我进不去了，使用新的 [feige996](https://github.com/feige996/unibest)。PR和 issue 也请使用新地址，否则无法合并。
+注薏旧的地址 [codercup](https://github.com/codercup/unibest) 我进不去了，使用新的 [feige996](https://github.com/feige996/unibest)。PR和 issue 也请使用新地址，否则无法合并。
 
 ## 平台兼容性
 
@@ -51,7 +51,7 @@
 | --- | --- | ---- | ---------- | ---------- | ---------- | ------------ | ---------- | ---------- |
 | √   | √   | √    | √          | √          | √          | √            | √          | √          |
 
-注意每种 `UI框架` 支持的平台有所不同，详情请看各 `UI框架` 的官网，也可以看 `unibest` 文档。
+注薏每种 `UI框架` 支持的平台有所不同，详情请看各 `UI框架` 的官网，也可以看 `unibest` 文档。
 
 ## ⚙️ 环境
 

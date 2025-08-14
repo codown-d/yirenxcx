@@ -7,8 +7,9 @@
 
 <script setup lang="ts">
 import { createLiJiTouDi, updateUser } from '@/service/app'
-import { RoleEmu, useUserStore } from '@/store'
+import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import { toast } from '@/utils/toast'
+let { getRole } = useRoleStore()
 
 let props = defineProps({
   type: {
@@ -23,7 +24,7 @@ let props = defineProps({
 
 const userStore = useUserStore()
 let toolProps = computed(() => {
-  return props.type === RoleEmu.seeker
+  return getRole() === RoleEmu.employer
     ? {
         url: '/static/images/yqms.svg',
         title: '邀面试',
@@ -35,7 +36,7 @@ let toolProps = computed(() => {
 })
 const createLiJiTouDiFn = async () => {
   let obj =
-    props.type === RoleEmu.seeker
+    getRole() === RoleEmu.seeker
       ? {
           toSeekerId: props.chatObjectId,
         }
@@ -44,15 +45,14 @@ const createLiJiTouDiFn = async () => {
         }
   let res = await createLiJiTouDi({ body: obj })
   if (res.code === 0) {
-    console.log(userStore.userInfo)
-    if (props.type === RoleEmu.seeker) {
+    if (getRole() === RoleEmu.seeker) {
       await updateUser({ body: { mianShiAnPai: '+1', userId: userStore.userInfo.id } })
       await updateUser({ body: { mianShiYaoQing: '+1', userId: props.chatObjectId } })
     } else {
       await updateUser({ body: { touDiJianLi: '+1', userId: userStore.userInfo.id } })
       await updateUser({ body: { shouDaoJianLi: '+1', userId: props.chatObjectId } })
     }
-    toast.success(props.type === RoleEmu.seeker ? '邀请已发出' : '简历已发送')
+    toast.success(getRole() === RoleEmu.seeker ? '邀请已发出' : '简历已发送')
   }
 }
 </script>

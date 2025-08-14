@@ -13,7 +13,7 @@
       <template #left>
         <view class="flex gap-2 items-center">
           <wd-icon name="arrow-left" size="22px" @click="handleClickLeft"></wd-icon>
-          <view>{{ title }}</view>
+          <view>{{ chatInfo.name }}</view>
         </view>
       </template>
     </wd-navbar>
@@ -79,18 +79,13 @@ const scrollToBottom = () => {
     scrollToId.value = 'bottom-anchor'
   }, 30)
 }
-const title = computed(() => {
+const chatInfo = computed(() => {
   return getRole() === RoleEmu.seeker
-    ? chatObject.value?.companyName || '招聘方'
-    : chatObject.value?.name
-})
-let selfId = computed(() => {
-  let userInfo = uni.getStorageSync('userInfo')
-  return `im_${getRole()}_${userInfo.id}`
+    ? { name: chatObject.value?.companyName || '招聘方', avatar: chatObject.value?.logo }
+    : { name: chatObject.value?.name, avatar: chatObject.value?.avatar }
 })
 const sendMessage = async (text) => {
   let userInfo = uni.getStorageSync('userInfo')
-
   let res = await getJobPage({
     params: {
       str: text,
@@ -103,21 +98,28 @@ const sendMessage = async (text) => {
 }
 let getMessageListFn = async (toUserID, count = 100) => {
   if (!toUserID) return
-  let id = toUserID.split('_')[2] || ''
-  let chatUserInfo = await getUserByIds({ params: { userIds: id } })
-  chatObject.value = find(chatUserInfo.data, (v) => v.id == Number(id))
   let res = await getMessageList({
     toUserID: toUserID,
     count: count,
-    fromUserID: selfId.value,
   })
+  console.log(res.data.messageList, 'res.data.messageList')
   addMsg(res.data.messageList)
 }
-const addMsg = (list) => {
-  const mappedMessages = list.map((item) => ({
-    ...item,
-  }))
-  console.log(mappedMessages)
+const addMsg = async (list) => {
+  const mappedMessages = list.map((item) => {
+    console.log(item)
+    return {
+      ...item,
+      avatar:
+        item.from.indexOf('employer') != -1
+          ? infoMap.value[item.from]?.logo
+          : infoMap.value[item.from]?.avatar,
+      name:
+        item.from.indexOf('employer') != -1
+          ? infoMap.value[item.from]?.companyName
+          : infoMap.value[item.from]?.name,
+    }
+  })
   messageList.value.push(...mappedMessages)
   scrollToBottom()
 }
@@ -125,10 +127,20 @@ const sendFileFn = async () => {
   let res = await sendImageMessage(toUserID.value)
   addMsg([res.data.message])
 }
-onLoad((option) => {
+let infoMap = ref({})
+onLoad(async (option) => {
   if (option.toUserID) {
     toUserID.value = option.toUserID
-    console.log(toUserID.value)
+    let [im, role, id = ''] = option.toUserID.split('_')
+    let chatUserInfo = await getUserByIds({ params: { userIds: id } })
+    chatObject.value = find(chatUserInfo.data, (v) => v.id == Number(id))
+
+    infoMap.value[option.toUserID] = chatObject.value
+    let userInfo = uni.getStorageSync('userInfo')
+    infoMap.value[`im_${RoleEmu.seeker}_${userInfo.id}`] = userInfo
+    infoMap.value[`im_${RoleEmu.employer}_${userInfo.id}`] = userInfo
+
+    console.log(infoMap, 'infoMap')
     setMsgCallback(addMsg)
     getMessageListFn(toUserID.value)
   }

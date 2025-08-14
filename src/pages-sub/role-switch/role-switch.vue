@@ -62,15 +62,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { navigateBack, switchTab } from '@/utils'
+import { navigateBack, navigateTo } from '@/utils'
 import { loginIM } from '@/utils/im'
 import { genUserSig } from '@/service/app'
-import { useToast } from 'wot-design-uni'
-const toast = useToast()
-const { setRole, getRole } = useRoleStore()
+const { getRole, setRole } = useRoleStore()
 const { getUserInfo } = useUserStore()
 const currentUserRole = ref<RoleEmu>(getRole())
 
@@ -91,7 +89,9 @@ const targetRole = computed(() => {
 
 // 返回上一页
 const goBack = () => {
-  navigateBack()
+  setTimeout(() => {
+    navigateTo('/mine/mine')
+  }, 0)
 }
 
 // 显示切换确认
@@ -100,12 +100,14 @@ const goBack = () => {
  * @param {any} role - The target role to switch to (currently unused in implementation)
  */
 const showSwitchConfirm = async (targetRole) => {
-  let role = targetRole.key === RoleEmu.seeker ? RoleEmu.employer : RoleEmu.seeker
+  let role = targetRole.key
   let res = await getUserInfo()
   let imUserId = `im_${role}_${res.data.id}`
   let resUserSig = await genUserSig({ params: { userId: imUserId } })
   await loginIM(imUserId, resUserSig.data)
-  navigateBack()
   currentUserRole.value = targetRole.key
+  console.log(role)
+  setRole(role)
+  goBack()
 }
 </script>

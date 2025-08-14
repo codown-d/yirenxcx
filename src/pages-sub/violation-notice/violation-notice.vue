@@ -161,7 +161,7 @@ const filterColumns = ref([
     { label: '处理中', value: 'processing' },
     { label: '待处理', value: 'pending' },
     { label: '虚假信息', value: 'fake_info' },
-    { label: '恶意行为', value: 'malicious' },
+    { label: '恶薏行为', value: 'malicious' },
   ],
 ])
 

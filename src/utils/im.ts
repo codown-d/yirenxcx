@@ -153,7 +153,6 @@ async function getMessageList(options: {
   isGroup?: boolean
   nextReqMessageID?: string
   count?: number
-  fromUserID: string
 }) {
   await waitUntilReady()
   const { toUserID, isGroup = false, nextReqMessageID = '', count = 20 } = options

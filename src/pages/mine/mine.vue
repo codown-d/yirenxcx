@@ -3,7 +3,7 @@
   layout: 'mine',
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '意仁直聘',
+    navigationBarTitleText: '薏仁直聘',
   },
   isTab: true,
 }

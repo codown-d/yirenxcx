@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { salaryColumns, jobTypeColumns, benefitsOptions } from '@/constant'
-import { navigateBack, switchTab } from '@/utils'
+import { navigateBack, navigateTo } from '@/utils'
 import { useFilterStore } from '@/store'
 let { setFilter, getFilter } = useFilterStore()
 
@@ -78,13 +78,13 @@ const resetFilter = () => {
   }
   category.value = []
   setFilter(formData.value)
-  switchTab('/index/index')
+  navigateTo('/index/index')
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
 }
 const confirmFilter = () => {
   setFilter(formData.value)
-  switchTab('/index/index')
+  navigateTo('/index/index')
 }
 </script>

@@ -28,7 +28,7 @@
 
 <script lang="ts" setup>
 import { RoleEmu, useRoleStore } from '@/store'
-import { navigateTo, navigateToSub, switchTab } from '@/utils'
+import { navigateTo, navigateToSub } from '@/utils'
 import { onShow } from '@dcloudio/uni-app'
 let { getRole } = useRoleStore()
 const props = defineProps({

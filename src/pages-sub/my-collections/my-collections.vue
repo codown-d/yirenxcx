@@ -8,7 +8,7 @@
 }
 </route>
 <template>
-  <view class="px-4 min-h-screen">
+  <view class="px-4">
     <view v-if="followList.length !== 0">
       <!-- 统计信息 -->
       <view class="py-3 text-3 text-gray-500 text-right">共{{ followList.length }}条记录</view>
