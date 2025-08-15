@@ -4,7 +4,6 @@
   style: {
     navigationBarTitleText: '基本信息',
     navigationStyle: 'custom',
-    className: 'bg-bar-white',
   },
 }
 </route>

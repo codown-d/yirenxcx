@@ -113,7 +113,7 @@ async function sendTextMessage(toUserID: string, text: string, isGroup = false) 
 
   try {
     const res = await tim.sendMessage(message)
-    console.log('[IM] 文本消息发送成功', res)
+    console.log('[IM] 文本消息发送成功', res, toUserID)
     return res
   } catch (err) {
     console.error('[IM] 文本消息发送失败', err)

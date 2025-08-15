@@ -4,7 +4,6 @@
   style: {
     navigationBarTitleText: '在线简历',
     navigationStyle: 'custom',
-    className: 'bg-bar-white',
   },
 }
 </route>
