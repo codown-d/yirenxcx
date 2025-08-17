@@ -74,6 +74,9 @@ importers:
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
       pinia:
         specifier: 2.0.36
         version: 2.0.36(typescript@5.7.2)(vue@3.5.15(typescript@5.7.2))
@@ -1063,6 +1066,7 @@ packages:
   '@esbuild/darwin-arm64@0.25.5':
     resolution: {integrity: sha512-GtaBgammVvdF7aPIgH2jxMDdivezgFu6iKpmT+48+F8Hhg5J/sfnDieg0aeG/jfSvkYQU2/pceFPDKlqZzwnfQ==}
     engines: {node: '>=18'}
+    cpu: [arm64]
     os: [darwin]
 
   '@esbuild/darwin-x64@0.20.2':
@@ -1074,6 +1078,7 @@ packages:
   '@esbuild/darwin-x64@0.25.5':
     resolution: {integrity: sha512-1iT4FVL0dJ76/q1wd7XDsXrSW+oLoquptvh4CLR4kITDtqi2e/xwXwdCVH8hVHU43wgJdsq7Gxuzcs6Iq/7bxQ==}
     engines: {node: '>=18'}
+    cpu: [x64]
     os: [darwin]
 
   '@esbuild/freebsd-arm64@0.20.2':
@@ -1771,6 +1776,7 @@ packages:
 
   '@rollup/rollup-darwin-x64@4.28.0':
     resolution: {integrity: sha512-8hxgfReVs7k9Js1uAIhS6zq3I+wKQETInnWQtgzt8JfGx51R1N6DRVy3F4o0lQwumbErRz52YqwjfvuwRxGv1w==}
+    cpu: [x64]
     os: [darwin]
 
   '@rollup/rollup-darwin-x64@4.41.1':

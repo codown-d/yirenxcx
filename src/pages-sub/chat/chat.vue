@@ -55,7 +55,7 @@ import { getSystemInfoSync, navigateBack } from '@/utils'
 import { RoleEmu, useRoleStore } from '@/store'
 import { getMessageList, sendImageMessage, sendTextMessage, setMsgCallback } from '@/utils/im'
 import Tool from './components/tool.vue'
-import { find } from 'lodash'
+import { find } from 'lodash-es'
 import { getJobPage } from '@/service/app'
 import { getUserByIds } from '@/service/member'
 const { safeAreaInsets } = getSystemInfoSync()

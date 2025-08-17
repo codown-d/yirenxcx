@@ -12,8 +12,6 @@
   </view>
 </template>
 <script lang="ts" setup>
-import { template } from 'lodash'
-
 let baseUrl = import.meta.env.VITE_SERVER_BASEURL
 let props = defineProps({
   className: {

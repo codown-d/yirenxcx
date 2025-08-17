@@ -9,7 +9,6 @@
 
 <script lang="ts" setup>
 import { onLoad, onReachBottom } from '@dcloudio/uni-app'
-import { template } from 'lodash'
 import { LoadMoreState } from 'wot-design-uni/components/wd-loadmore/types'
 
 const state = ref<LoadMoreState>('loading')

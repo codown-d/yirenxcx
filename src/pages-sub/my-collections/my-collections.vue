@@ -77,7 +77,7 @@ import { ref, onMounted } from 'vue'
 import dayjs from 'dayjs'
 import { useConnect } from '@/hooks/useConnect'
 import { RoleEmu, useRoleStore } from '@/store'
-import { find } from 'lodash'
+import { find } from 'lodash-es'
 const { changeConnect, getShouCang } = useConnect()
 const { getRole } = useRoleStore()
 import { useDictData } from '@/hooks'

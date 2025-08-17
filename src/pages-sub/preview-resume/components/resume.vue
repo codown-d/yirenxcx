@@ -131,7 +131,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { getUserInfo, MemberUserDO } from '@/service/member'
-import { find } from 'lodash'
+import { find } from 'lodash-es'
 import { useDictData } from '@/hooks'
 let { dictData } = useDictData()
 

@@ -126,7 +126,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useDictData } from '@/hooks'
-import { merge } from 'lodash'
+import { merge } from 'lodash-es'
 let { dictData } = useDictData()
 
 // 表单数据

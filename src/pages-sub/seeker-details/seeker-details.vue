@@ -130,7 +130,7 @@
 import { ref } from 'vue'
 import { navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
-import { find } from 'lodash'
+import { find } from 'lodash-es'
 import { getUserInfo, MemberUserDO } from '@/service/member'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 import { useDictData } from '@/hooks'

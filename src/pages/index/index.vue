@@ -180,7 +180,7 @@ import { getSystemInfoSync, navigateToSub } from '@/utils'
 import { RoleEmu, useFilterStore, useRoleStore, useUserStore } from '@/store'
 import { getJobPage1, getJobSeekerPage, YRZPJobDO, YRZPJobSeekerDO } from '@/service/app'
 import { getBannerList } from '@/service/customize'
-import { keys } from 'lodash'
+import { keys } from 'lodash-es'
 import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { useDictData } from '@/hooks'
 let { dictData } = useDictData()
