@@ -209,9 +209,28 @@ export const timeFormat = (time: number, format = 'YYYY年MM月DD HH:mm:ss') => 
 }
 
 export const switchTab = (url: string) => {
-  uni.switchTab({
-    url: `/pages${url}`,
-  })
+  switch (url) {
+    case '/index/index':
+      uni.setStorageSync('tabbar', 0)
+      break
+    case '/message/message':
+      uni.setStorageSync('tabbar', 1)
+      break
+    case '/plus/plus':
+      uni.setStorageSync('tabbar', 2)
+      break
+    case '/forum/forum':
+      uni.setStorageSync('tabbar', 3)
+      break
+    case '/mine/mine':
+      uni.setStorageSync('tabbar', 4)
+      break
+  }
+  setTimeout(() => {
+    uni.switchTab({
+      url: `/pages${url}`,
+    })
+  }, 0)
 }
 /**
  * Re-launches the application to the specified page URL.

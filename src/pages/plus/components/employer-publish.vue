@@ -37,9 +37,6 @@
         <wd-cell title="到岗时间">
           <yr-calendar v-model="formData.comeToTime" prop="comeToTime" />
         </wd-cell>
-        <wd-cell title="报名截止时间" v-if="false">
-          <yr-calendar v-model="formData.comeToTime" prop="comeToTime" />
-        </wd-cell>
       </wd-card>
 
       <!-- 求职期望 -->
@@ -48,13 +45,7 @@
       </view>
       <wd-card>
         <wd-cell title="薪资范围">
-          <yr-salary-picker
-            title="薪资范围"
-            placeholder="请选择"
-            :salaryMin="formData.salaryMin"
-            :salaryMax="formData.salaryMax"
-            @changeValue="onSalaryChange"
-          />
+          <yr-salary-picker title="薪资范围" placeholder="请选择" @changeValue="onSalaryChange" />
         </wd-cell>
         <yr-modal-picker prop="benefits" v-model="formData.benefits" modal-title="福利待遇" />
       </wd-card>
@@ -67,7 +58,7 @@
         <wd-cell title="工作经验">
           <wd-picker
             v-model="formData.experienceRequirement"
-            :columns="experienceColumns"
+            :columns="dictData.EXPERIENCE_LEVELS"
             placeholder="请选择"
             prop="experienceRequirement"
           />
@@ -76,7 +67,7 @@
         <wd-cell title="学历水平">
           <wd-picker
             v-model="formData.educationRequirement"
-            :columns="educationColumns"
+            :columns="dictData.EDUCATION_LEVELS"
             placeholder="请选择"
             prop="educationRequirement"
           />
@@ -97,6 +88,7 @@
         <wd-cell title="联系方式">
           <wd-input
             no-border
+            inputmode="tel"
             v-model="formData.phone"
             placeholder="请输入手机号/微信号"
             prop="phone"
@@ -114,7 +106,7 @@
         <wd-cell title="工作性质">
           <wd-picker
             v-model="formData.workType"
-            :columns="jobTypeColumns"
+            :columns="dictData.WORK_TYPES"
             placeholder="请选择工作性质"
             prop="workType"
           />
@@ -135,7 +127,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { educationColumns, experienceColumns, jobTypeColumns } from '@/constant'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 表单数据
 const formData = ref<any>({
@@ -170,5 +163,8 @@ defineExpose({
     }
     return formData.value
   },
+})
+onShow(() => {
+  formData.value = {}
 })
 </script>

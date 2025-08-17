@@ -1,11 +1,12 @@
 <template>
   <view v-if="!!slots.default"><slot></slot></view>
-  <wd-form-item :prop="prop" :title="modalTitle" v-else>
+  <wd-cell :title="modalTitle">
+    <wd-input :prop="prop" v-model="dataVal" custom-class="hidden"></wd-input>
     <view class="flex items-center h-[34px]" @click="addItem">
       <view class="flex text-[14px] text-[#bfbfbf] pr-2">{{ placeholder }}</view>
       <wd-icon name="arrow-right" size="16px" custom-class="text-[#bfbfbf]"></wd-icon>
     </view>
-  </wd-form-item>
+  </wd-cell>
   <view class="flex flex-wrap gap-2" v-if="list.length > 0">
     <view
       v-for="(item, index) in list"
@@ -45,6 +46,7 @@ const props = defineProps({
     default: '',
   },
 })
+let dataVal = ref('')
 let list = ref([])
 let tagValue = ref(undefined)
 const slots = useSlots()
@@ -74,8 +76,9 @@ const addItem = async () => {
   })
   if (res.value) {
     list.value.push(res.value)
-    emit('update:modelValue', list.value.join(','))
-    emit('change', list.value.join(','))
+    dataVal.value = list.value.join(',')
+    emit('update:modelValue', dataVal.value)
+    emit('change', dataVal.value)
     triggerValidate()
   }
 }

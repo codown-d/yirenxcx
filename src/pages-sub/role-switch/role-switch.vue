@@ -106,10 +106,10 @@ const showSwitchConfirm = async (targetRole) => {
   currentUserRole.value = targetRole.key
   console.log(role)
   setRole(role)
-  uni.setTabBarItem({
-    index: 0,
-    text: role === RoleEmu.employer ? '薏人' : '求职',
-  })
-  goBack()
+  // uni.setTabBarItem({
+  //   index: 0,
+  //   text: role === RoleEmu.employer ? '薏人' : '求职',
+  // })
+  switchTab('/mine/mine')
 }
 </script>

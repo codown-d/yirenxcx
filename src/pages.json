@@ -16,27 +16,42 @@
     }
   },
   "tabBar": {
-    "custom": false,
+    "custom": true,
     "color": "#999999",
     "selectedColor": "#018d71",
-    "backgroundColor": "#F8F8F8",
-    "borderStyle": "black",
-    "height": "50px",
-    "fontSize": "10px",
-    "iconWidth": "24px",
+    "fontSize": "12px",
+    "iconWidth": "30px",
     "spacing": "3px",
     "list": [
       {
-        "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/homeHL.png",
+        "iconPath": "static/tabbar/index.png",
+        "selectedIconPath": "static/tabbar/indexH.png",
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "薏仁"
       },
       {
-        "iconPath": "static/tabbar/example.png",
-        "selectedIconPath": "static/tabbar/exampleHL.png",
-        "pagePath": "pages/about/about",
-        "text": "关于"
+        "iconPath": "static/tabbar/msg.png",
+        "selectedIconPath": "static/tabbar/msgH.png",
+        "pagePath": "pages/message/message",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/plus/plus",
+        "iconPath": "static/tabbar/add.png",
+        "selectedIconPath": "static/tabbar/addH.png",
+        "text": ""
+      },
+      {
+        "iconPath": "static/tabbar/luntan.png",
+        "selectedIconPath": "static/tabbar/luntanH.png",
+        "pagePath": "pages/forum/forum",
+        "text": "论坛"
+      },
+      {
+        "iconPath": "static/tabbar/mine.png",
+        "selectedIconPath": "static/tabbar/mineH.png",
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   },
@@ -82,11 +97,12 @@
     {
       "path": "pages/plus/plus",
       "type": "page",
-      "layout": "mine",
+      "layout": "default",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "论坛"
-      }
+        "navigationBarTitleText": "发布信息"
+      },
+      "isTab": true
     },
     {
       "path": "pages/index/job-seeking/job-seeking",

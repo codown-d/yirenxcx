@@ -48,8 +48,6 @@
         <wd-cell title="期望薪资">
           <yr-salary-picker
             placeholder="请选择期望薪资"
-            :salaryMin="formData.salaryMin"
-            :salaryMax="formData.salaryMax"
             @changeValue="onSalaryChange"
             prop="locationCode"
           />
@@ -59,7 +57,7 @@
         <wd-cell title="工作性质">
           <wd-picker
             v-model="formData.workType"
-            :columns="jobTypeColumns"
+            :columns="dictData.WORK_TYPES"
             placeholder="请选择工作性质"
             prop="workType"
           />
@@ -75,7 +73,7 @@
         <wd-cell title="工作经验">
           <wd-picker
             v-model="formData.experience"
-            :columns="experienceColumns"
+            :columns="dictData.EXPERIENCE_LEVELS"
             placeholder="请选择工作经验"
             prop="experience"
           />
@@ -85,27 +83,23 @@
         <wd-cell title="学历水平">
           <wd-picker
             v-model="formData.education"
-            :columns="educationColumns"
+            :columns="dictData.EDUCATION_LEVELS"
             placeholder="请选择学历水平"
             prop="education"
           />
         </wd-cell>
-        <wd-cell title="专业技能">
-          <yr-modal-picker
-            modalTitle="专业技能"
-            v-model="formData.specialty"
-            placeholder="请输入专业技能"
-            prop="specialty"
-          />
-        </wd-cell>
-        <wd-cell title="个人优势">
-          <yr-modal-picker
-            prop="advantage"
-            v-model="formData.advantage"
-            modal-title="个人优势"
-            placeholder="请输入个人优势"
-          />
-        </wd-cell>
+        <yr-modal-picker
+          modalTitle="专业技能"
+          v-model="formData.specialty"
+          placeholder="请输入专业技能"
+          prop="specialty"
+        />
+        <yr-modal-picker
+          prop="advantage"
+          v-model="formData.advantage"
+          modal-title="个人优势"
+          placeholder="请输入个人优势"
+        />
       </wd-card>
 
       <!-- 联系方式 -->
@@ -117,6 +111,7 @@
         <wd-cell title="联系方式" vertical>
           <wd-input
             no-border
+            inputmode="tel"
             v-model="formData.contactMobile"
             placeholder="请输入手机号/微信号"
             prop="contactMobile"
@@ -129,7 +124,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { educationColumns, experienceColumns, jobTypeColumns } from '@/constant'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 表单数据
 const formData = ref<any>({
@@ -184,4 +180,7 @@ const onSalaryChange = (data) => {
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
 }
+onShow(() => {
+  formData.value = {}
+})
 </script>

@@ -1,13 +1,5 @@
 <template>
-  <wd-tabbar
-    fixed
-    v-model="tabbar"
-    bordered
-    safeAreaInsetBottom
-    placeholder
-    @change="change"
-    custom-class="!z-1000"
-  >
+  <wd-tabbar fixed v-model="tabbar" bordered safeAreaInsetBottom placeholder @change="change">
     <wd-tabbar-item
       v-for="tab in tabList"
       :key="tab.pagePath"
@@ -28,7 +20,7 @@
 
 <script lang="ts" setup>
 import { RoleEmu, useRoleStore } from '@/store'
-import { navigateTo, navigateToSub } from '@/utils'
+import { switchTab } from '@/utils'
 import { onShow } from '@dcloudio/uni-app'
 let { getRole } = useRoleStore()
 const props = defineProps({
@@ -56,7 +48,7 @@ let tabList = ref([
   {
     iconPath: '/static/tabbar/add.png',
     selectedIconPath: '/static/tabbar/addH.png',
-    pagePath: '/publish-job-seeking/publish-job-seeking',
+    pagePath: '/plus/plus',
     value: 2,
     text: '',
   },
@@ -77,21 +69,13 @@ let tabList = ref([
 ])
 
 const change = ({ value }) => {
-  console.log(value)
-  if (value === 2) {
-    if (!uni.getStorageSync('token')) {
-      navigateToSub('/login/login')
-      return
-    }
-    return getRole() === RoleEmu.seeker
-      ? navigateToSub('/publish-job-seeking/publish-job-seeking')
-      : navigateToSub('/publish-recruitment/publish-recruitment')
-  }
+  tabbar.value = value
   let node = tabList.value[value].pagePath
-  navigateTo(node)
+  switchTab(node)
 }
 
 onShow(() => {
+  tabbar.value = uni.getStorageSync('tabbar')
   tabList.value[0].text = !uni.getStorageSync('token')
     ? '薏仁'
     : getRole() === RoleEmu.employer

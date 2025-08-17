@@ -27,6 +27,7 @@
     <jobseeker v-if="roleType === RoleEmu.seeker"></jobseeker>
     <employer v-else></employer>
   </view>
+  <yr-tab-bar :tabIndex="4"></yr-tab-bar>
 </template>
 
 <script lang="ts" setup>

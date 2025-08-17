@@ -52,13 +52,18 @@
           />
         </wd-cell>
         <wd-cell title="学历水平">
-          <yr-picker :required="false" v-model="userForm.xueLi" :columns="XUELI" prop="xueLi" />
+          <yr-picker
+            :required="false"
+            v-model="userForm.xueLi"
+            :columns="dictData.EDUCATION_LEVELS"
+            prop="xueLi"
+          />
         </wd-cell>
         <wd-cell title="性别">
-          <yr-picker v-model="userForm.sex" :columns="SEX" prop="sex"></yr-picker>
+          <yr-picker v-model="userForm.sex" :columns="dictData.SEX" prop="sex"></yr-picker>
         </wd-cell>
         <wd-cell title="年龄">
-          <yr-picker v-model="userForm.age" :columns="AGE" prop="age"></yr-picker>
+          <yr-picker v-model="userForm.age" :columns="dictData.AGE" prop="age"></yr-picker>
         </wd-cell>
       </wd-card>
     </wd-form>
@@ -81,11 +86,12 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { SEX, AGE, XUELI } from '@/constant'
 import { navigateBack } from '@/utils'
-import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
+import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/member'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
-const userForm = ref<MemberUserDO>({})
+const userForm = ref<AppMemberUserUpdateReqVO>()
 const form = ref()
 const loading = ref(false)
 
@@ -108,8 +114,7 @@ const rules = {
   age: [{ required: true, message: '请选择年龄' }],
 }
 const loadUserInfo = async () => {
-  const res = await getUserInfo({})
-  console.log(res.data)
+  const res: any = await getUserInfo({})
   userForm.value = { ...res.data }
 }
 

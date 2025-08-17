@@ -28,7 +28,6 @@ const props = defineProps({
     default: false,
   },
 })
-console.log(props)
 const pickerValue = ref([])
 const area = ref<any[]>([
   colPickerData.map((item) => {

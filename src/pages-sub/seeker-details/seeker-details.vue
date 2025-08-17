@@ -128,12 +128,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { navigateBack, navigateToSub } from '@/utils'
-import { RoleEmu, useRoleStore } from '@/store'
+import { navigateToSub } from '@/utils'
+import { RoleEmu } from '@/store'
 import { find } from 'lodash'
-import { SEX } from '@/constant'
 import { getUserInfo, MemberUserDO } from '@/service/member'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -142,7 +143,7 @@ const userInfo = ref<MemberUserDO>({
 let isFavorited = ref()
 let collect = ref(false)
 let title1 = computed(() => {
-  let node = find(SEX, (item) => item.value == userInfo.value?.sex)
+  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sex)
   return [`${userInfo.value.age} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')

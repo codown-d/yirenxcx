@@ -81,6 +81,8 @@ import { find } from 'lodash'
 import { SEX } from '@/constant'
 const { changeConnect, getShouCang } = useConnect()
 const { getRole } = useRoleStore()
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 页面状态
 const followList = ref<any[]>([])
@@ -103,7 +105,7 @@ const loadFollowList = async () => {
   }
 }
 let getTitle = (item) => {
-  let node = find(SEX, (it) => it.value == item.sex)
+  let node = find(dictData.value.SEX, (it) => it.value == item.sex)
   return [`${item.age} 岁`, node?.label, item.gongZuoJingYan].filter((el) => !!el).join(' • ')
 }
 // 取消关注

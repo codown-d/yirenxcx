@@ -58,7 +58,7 @@
     </view>
     <wd-card custom-class="!mt-4">
       <wd-cell title="帖子分类">
-        <yr-picker :columns="categoryActions" v-model="postData.category" />
+        <yr-picker :columns="dictData.PostCategory" v-model="postData.category" />
       </wd-cell>
       <wd-cell title="位置信息">
         <yr-location-picker
@@ -69,19 +69,12 @@
       <wd-cell title="可见性设置">
         <yr-picker
           v-model="postData.visibilitySetting"
-          :columns="visibilityActions"
+          :columns="dictData.visibilitySetting"
           title="可见性设置"
         />
       </wd-cell>
-      <view class="pb-2" v-if="false">
-        <wd-checkbox-group v-model="postData.allowComments" :inline="true">
-          <wd-checkbox :modelValue="1">允许评论</wd-checkbox>
-          <wd-checkbox :modelValue="2">匿名发布</wd-checkbox>
-        </wd-checkbox-group>
-      </view>
     </wd-card>
-    <!-- 底部发布按钮 -->
-    <view class="fixed bottom-0 left-0 right-0 bg-white p-4 border-t border-gray-100">
+    <yr-page-footer>
       <wd-button
         type="primary"
         :round="false"
@@ -92,17 +85,18 @@
       >
         {{ publishing ? '发布中...' : '发布' }}
       </wd-button>
-    </view>
+    </yr-page-footer>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { categoryActions, visibilityActions } from '@/constant'
 import { useUserStore } from '@/store'
 import { createForumPost } from '@/service/app'
 import { navigateBack } from '@/utils'
 import { useQueue } from 'wot-design-uni'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 const { closeOutside } = useQueue()
 const { getUserInfo } = useUserStore()

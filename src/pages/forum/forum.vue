@@ -74,6 +74,8 @@
       </wd-button>
     </view>
     <!-- 底部导航 -->
+
+    <yr-tab-bar :tabIndex="3"></yr-tab-bar>
   </view>
 </template>
 

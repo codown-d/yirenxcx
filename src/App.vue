@@ -4,6 +4,7 @@ import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import { initIM } from '@/utils/im'
 
 onLaunch(() => {
+  uni.setStorageSync('tabbar', 0)
   initIM()
 })
 onShow(() => {

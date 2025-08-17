@@ -171,6 +171,7 @@
       </view>
     </view>
   </wd-popup>
+  <yr-tab-bar :tabIndex="0"></yr-tab-bar>
 </template>
 
 <script lang="ts" setup>

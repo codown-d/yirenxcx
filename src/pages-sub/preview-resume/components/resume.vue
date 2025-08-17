@@ -111,10 +111,14 @@
       </view>
       <wd-card>
         <wd-cell title="期望薪资">
-          <yr-picker :columns="salaryColumns" v-model="userInfo.qiWangXinZi" disabled></yr-picker>
+          <yr-picker
+            :columns="dictData.salaryColumns"
+            v-model="userInfo.qiWangXinZi"
+            disabled
+          ></yr-picker>
         </wd-cell>
         <yr-picker
-          :columns="jobTypeColumns"
+          :columns="dictData.WORK_TYPES"
           disabled
           v-model="userInfo.workType"
           title="工作性质"
@@ -126,9 +130,10 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { jobTypeColumns, salaryColumns, SEX } from '@/constant'
 import { getUserInfo, MemberUserDO } from '@/service/member'
 import { find } from 'lodash'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({
@@ -138,7 +143,7 @@ const userInfo = ref<MemberUserDO>({
 const daiBiaoZuo = ref([])
 const tags = ref([])
 let title1 = computed(() => {
-  let node = find(SEX, (item) => item.value == userInfo.value?.sex)
+  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sex)
   return [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')
