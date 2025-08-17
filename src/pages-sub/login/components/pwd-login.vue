@@ -95,7 +95,7 @@ import { onLoad } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG, FORM_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { navigateTo } from '@/utils'
+import { navigateTo, switchTab } from '@/utils'
 import { AppAuthSmsSendReqVO, CommonResultAppAuthLoginRespVO, sendSmsCode } from '@/service/member'
 
 const { loginWithPassword, loginWithSms } = useUserStore()
@@ -224,7 +224,7 @@ const handleLogin = async () => {
     } else {
       loginResponse = await loginWithSms(loginForm.value.phone, loginForm.value.smsCode)
     }
-    navigateTo('/index/index')
+    switchTab('/index/index')
   } finally {
     loginLoading.value = false
   }

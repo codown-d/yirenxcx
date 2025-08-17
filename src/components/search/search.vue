@@ -4,7 +4,7 @@
   >
     <wd-icon name="search" size="22px"></wd-icon>
     <wd-input
-      custom-class="flex-1 text-sm text-gray-800 bg-transparent outline-none"
+      custom-class="flex-1 text-sm text-gray-800 bg-transparent outline-none !bg-transparent bg-opacity-0"
       :placeholder="placeholder"
       v-model="searchKeyword"
       no-border

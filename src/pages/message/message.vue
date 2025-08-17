@@ -64,8 +64,6 @@
     <!-- 空状态 -->
     <wd-status-tip image="content" tip="暂无内容" v-if="conversationList.length === 0" />
   </view>
-
-  <yr-tab-bar :tab-index="1"></yr-tab-bar>
 </template>
 
 <script setup lang="ts">

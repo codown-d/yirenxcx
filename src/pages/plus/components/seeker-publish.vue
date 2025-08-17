@@ -1,19 +1,9 @@
-<route lang="json5" type="page">
-{
-  layout: 'common',
-  style: {
-    navigationBarTitleText: '发布求职信息',
-    navigationStyle: 'custom',
-  },
-}
-</route>
-
 <template>
-  <view class="min-h-screen overflow-hidden">
+  <view class="overflow-hidden">
     <view class="py-3 px-3">
       <text class="text-base font-bold text-gray-900">基本信息</text>
     </view>
-    <wd-form ref="form" :model="formData" errorType="toast" :rules="rules" custom-class="mb-20">
+    <wd-form ref="form" :model="formData" errorType="toast" :rules="rules">
       <!-- 基本信息 -->
       <wd-card>
         <!-- 求职标题 -->
@@ -100,18 +90,22 @@
             prop="education"
           />
         </wd-cell>
-        <yr-modal-picker
-          modalTitle="专业技能"
-          v-model="formData.specialty"
-          placeholder="请输入专业技能"
-          prop="specialty"
-        />
-        <yr-modal-picker
-          prop="advantage"
-          v-model="formData.advantage"
-          modal-title="个人优势"
-          placeholder="请输入个人优势"
-        />
+        <wd-cell title="专业技能">
+          <yr-modal-picker
+            modalTitle="专业技能"
+            v-model="formData.specialty"
+            placeholder="请输入专业技能"
+            prop="specialty"
+          />
+        </wd-cell>
+        <wd-cell title="个人优势">
+          <yr-modal-picker
+            prop="advantage"
+            v-model="formData.advantage"
+            modal-title="个人优势"
+            placeholder="请输入个人优势"
+          />
+        </wd-cell>
       </wd-card>
 
       <!-- 联系方式 -->
@@ -130,32 +124,12 @@
         </wd-cell>
       </wd-card>
     </wd-form>
-
-    <!-- 底部按钮 -->
-
-    <yr-page-footer>
-      <wd-button type="info" custom-class="w-[33%]" :round="false" @click="saveDraft">
-        取消
-      </wd-button>
-      <wd-button
-        type="primary"
-        custom-class="flex-1"
-        :round="false"
-        :disabled="loading"
-        @click="publishJobSeekingInfo"
-      >
-        {{ loading ? '发布中...' : '发布' }}
-      </wd-button>
-    </yr-page-footer>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { toast } from '@/utils/toast'
 import { educationColumns, experienceColumns, jobTypeColumns } from '@/constant'
-import { createJobSeeker } from '@/service/app'
-import { navigateBack } from '@/utils'
 
 // 表单数据
 const formData = ref<any>({
@@ -180,7 +154,6 @@ const formData = ref<any>({
 
 // 响应式数据
 const form = ref()
-const loading = ref(false)
 
 // 表单验证规则
 const rules = {
@@ -196,27 +169,15 @@ const rules = {
   contactMobile: [{ required: true, message: '请选择联系方式' }],
 }
 
-const saveDraft = () => {
-  navigateBack()
-}
-
-// 发布求职信息
-const publishJobSeekingInfo = async () => {
-  try {
+defineExpose({
+  getFormData: async () => {
     let res = await form.value.validate()
     if (!res.valid) {
-      return
+      return null
     }
-    console.log(formData.value)
-    loading.value = true
-    await createJobSeeker({ body: formData.value })
-    toast.success('发布成功')
-    navigateBack()
-  } finally {
-    loading.value = false
-  }
-}
-
+    return formData.value
+  },
+})
 const onSalaryChange = (data) => {
   formData.value = { ...formData.value, salaryMin: data[0], salaryMax: data[1] }
 }

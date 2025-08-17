@@ -10,7 +10,12 @@
 </route>
 <template>
   <view class="text-[#252525]">
-    <scroll-view scroll-y class="h-100vh" @scroll="handleScroll" @scrolltolower="onScrollToLower">
+    <scroll-view
+      scroll-y
+      style="height: calc(100vh - 50px)"
+      @scroll="handleScroll"
+      @scrolltolower="onScrollToLower"
+    >
       <wd-navbar
         :bordered="false"
         :left-arrow="false"
@@ -20,11 +25,13 @@
         safeAreaInsetTop
         :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
       ></wd-navbar>
-      <view
-        :style="'background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 160rpx,rgba(245, 246, 250, 1) 8%);'"
-      >
+      <view class="relative">
         <view
-          class="bg-transparent px-4"
+          class="absolute top-0 h-full w-full z-0"
+          :style="'z-index:-1;background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 160rpx,rgba(245, 246, 250, 1) 20%);'"
+        ></view>
+        <view
+          class="bg-transparent px-4 pb-4 min-h-screen"
           :style="{
             paddingTop: safeAreaInsets?.top + 44 + 'px',
           }"
@@ -58,15 +65,15 @@
               <view class="flex gap-3">
                 <view
                   v-for="tag in filterTags"
-                  :key="tag.id"
+                  :key="tag.value"
                   class="flex text-gray-600 items-center gap-1 px-2 py-1.5 rounded-1 bg-white"
                   :class="{
-                    '!bg-primary-100 !text-primary': activeFilterTag === tag.id,
+                    '!bg-primary-100 !text-primary': activeFilterTag === tag.value,
                   }"
-                  @click="handleFilterChange(tag.id)"
+                  @click="handleFilterChange(tag.value)"
                 >
                   <image
-                    :src="activeFilterTag === tag.id ? tag.urlh : tag.url"
+                    :src="activeFilterTag === tag.value ? tag.urlh : tag.url"
                     mode="aspectFill"
                     class="w-[20px] h-[20px]"
                   />
@@ -92,7 +99,7 @@
           <!-- 推荐招聘职位标题 -->
           <template v-if="role === RoleEmu.seeker || !userInfo.token">
             <view class="py-4">
-              <text class="text-lg font-semibold text-gray-800">推荐招聘职位</text>
+              <text class="text-lg font-semibold">推荐招聘职位</text>
             </view>
             <job-card
               v-for="job in jobList"
@@ -106,7 +113,7 @@
           <!-- 推荐招聘职位标题 -->
           <template v-if="role === RoleEmu.employer || !userInfo.token">
             <view class="py-4">
-              <text class="text-lg font-semibold text-gray-800">推荐求职薏仁</text>
+              <text class="text-lg font-semibold">推荐求职薏仁</text>
             </view>
             <seeker-card
               v-for="seeker in seekerList"
@@ -118,7 +125,6 @@
             <yr-nodata v-else></yr-nodata>
           </template>
         </view>
-        <yr-tab-bar :tab-index="0"></yr-tab-bar>
       </view>
     </scroll-view>
   </view>
@@ -175,6 +181,8 @@ import { getJobPage1, getJobSeekerPage, YRZPJobDO, YRZPJobSeekerDO } from '@/ser
 import { getBannerList } from '@/service/customize'
 import { keys } from 'lodash'
 import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 const { safeAreaInsets } = getSystemInfoSync()
 const { userInfo, isLoggedIn } = useUserStore()
@@ -186,7 +194,7 @@ const opacity = ref(0)
 
 const show = ref(false)
 let role = ref(getRole())
-const activeFilterTag = ref('all')
+const activeFilterTag = ref()
 const jobList = ref<YRZPJobDO[]>([])
 const seekerList = ref<YRZPJobSeekerDO[]>()
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
@@ -215,19 +223,36 @@ const onScrollToLower = () => {
     isShowPopup.value = true
   }
 }
-const handleFilterChange = (tagId: string) => {
-  activeFilterTag.value = tagId
+const handleFilterChange = (type: string) => {
+  activeFilterTag.value = type === activeFilterTag.value ? '' : type
+  getDataFn()
 }
 
+// watch(
+//   () => dictData.value.ALL_CATEGORIES_DISPLAY,
+//   (val) => {
+//     if (!val || val?.length == 0) return
+//     let arr = val.filter((item) => item.value.split('-').length == 1)
+//     console.log(arr)
+//   },
+//   { immediate: true, deep: true },
+// )
 const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
+  console.log(dictData)
   let pageSize = !userInfo.token ? 6 : 10
   if (role.value === RoleEmu.employer) {
     let resJobSeeker = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobSeekerId',
     })
     let res = await getJobSeekerPage({
-      params: { keyword, pageNo: 1, pageSize: pageSize, ...filter.value },
+      params: {
+        keyword,
+        pageNo: 1,
+        pageSize: pageSize,
+        ...filter.value,
+        jobType: activeFilterTag.value,
+      },
     })
     seekerList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
@@ -242,7 +267,13 @@ let getDataFn = async (keyword?: string) => {
       field: 'guanZhuJobId',
     })
     let res = await getJobPage1({
-      params: { keyword, pageNo: 1, pageSize: pageSize, ...filter.value },
+      params: {
+        keyword,
+        pageNo: 1,
+        pageSize: pageSize,
+        ...filter.value,
+        jobType: activeFilterTag.value,
+      },
     })
     jobList.value = res.data.list.map((item) => {
       let info = JSON.parse(item.info || '{}')
@@ -264,6 +295,8 @@ onLoad(async () => {
 })
 onShow(() => {
   role.value = getRole()
+  console.log(getRole(), role.value, getFilter())
+  console.log(getFilter())
   filter.value = getFilter()
   getDataFn()
   seekerList.value = []

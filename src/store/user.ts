@@ -60,11 +60,6 @@ export const useUserStore = defineStore(
     // 删除用户信息
     const removeUserInfo = () => {
       userInfo.value = { ...userInfoState }
-      uni.removeStorageSync('userInfo')
-      uni.removeStorageSync('token')
-      uni.removeStorageSync('refreshToken')
-      uni.removeStorageSync('userId')
-      uni.removeStorageSync('expiresTime')
     }
     /**
      * 密码登录

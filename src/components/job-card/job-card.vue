@@ -4,9 +4,9 @@
     @click="handleCardClick"
   >
     <!-- 顶部描述信息 -->
-    <view v-if="jobData.description" class="flex items-center mb-3">
+    <view v-if="jobData.description" class="flex mb-3">
       <text class="text-orange-500 text-sm mr-2">🎭</text>
-      <text class="text-3 text-gray-600 flex-1">{{ jobData.description }}</text>
+      <text class="text-3 text-gray-600 flex-1 ellipsis-2">{{ jobData.description }}</text>
     </view>
 
     <!-- 职位标题和急聘标签 -->
@@ -20,9 +20,11 @@
       <yr-salary :salaryMin="jobData.salaryMin" :salaryMax="jobData.salaryMax" />
     </view>
 
-    <yr-tag-list v-model="jobData.requirementDetails" />
     <view class="flex items-center justify-between gap-3 mb-3 mt-3">
-      <yr-tag-list v-model="jobData.benefits" class-name="!bg-[#F5F6FA] !text-[#555555]" />
+      <view>
+        <yr-tag-list v-model="jobData.requirementDetails" />
+        <yr-tag-list v-model="jobData.benefits" class-name="!bg-[#F5F6FA] !text-[#555555] mt-2" />
+      </view>
       <view class="active:opacity-70 transition-opacity duration-200" @click.stop="handleFavorite">
         <wd-icon
           :name="isFavorited ? 'heart-filled' : 'heart'"
@@ -33,10 +35,15 @@
     </view>
     <view class="flex items-center justify-between">
       <view class="flex items-center gap-1 flex-wrap w-0 flex-1">
-        <yr-img-title :title="jobData.info?.companyName" url="jigou.svg" class="mr-4" />
-        <yr-img-title :title="jobData.location" url="weizhi.svg" />
+        <yr-img-title
+          :title="jobData.info?.companyName"
+          url="jigou.svg"
+          class="mr-4"
+          v-if="jobData.info?.companyName"
+        />
+        <yr-img-title :title="jobData.location" url="weizhi.svg" v-if="jobData.location" />
       </view>
-      <yr-time-now :time="Number(jobData.createTime)" class="w-[70px] text-right" />
+      <yr-time-now :time="Number(jobData.createTime)" class="w-[70px] text-right text-[12px]" />
     </view>
   </view>
 </template>

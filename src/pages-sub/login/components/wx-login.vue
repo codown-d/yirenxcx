@@ -11,15 +11,18 @@
   <view class="px-12 space-y-4 mt-11">
     <!-- 微信手机号一键登录 -->
     <!-- #ifdef MP-WEIXIN -->
-    <button
-      class="bg-primary text-white rounded-2"
+    <wd-button
+      type="primary"
+      size="large"
+      :round="false"
       :disabled="loginLoading"
       block
       open-type="getPhoneNumber"
       @getphonenumber="handleWechatPhoneAuth"
     >
       {{ loginLoading ? '授权中...' : LOGIN_CONFIG.wechatAuthText }}
-    </button>
+    </wd-button>
+
     <!-- #endif -->
 
     <!-- 手机号登录 -->
@@ -27,7 +30,6 @@
       type="info"
       size="large"
       :round="false"
-      v-if="false"
       block
       :disabled="loginLoading"
       @click="handlePhoneLogin"
@@ -64,12 +66,16 @@ const handleWechatPhoneAuth = async (e: any) => {
     toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
-  const { code } = e.detail
+  console.log(e, 'detail.encryptedData')
+  const { code } = e
+  console.log(code, 'code')
   await wxLogin(code)
   navigateBack()
   return
 }
-
+const phoneNumber = computed(() => {
+  return uni.getStorageSync('userPhone')
+})
 let agreePrivacy = computed(() => props.agreePrivacy)
 
 // 手机号登录

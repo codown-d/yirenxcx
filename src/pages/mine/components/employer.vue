@@ -112,7 +112,7 @@
     <view class="flex justify-between gap-2">
       <navigate-to
         class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
-        to="/index/index"
+        toTab="/index/index"
       >
         <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
         <text>搜索人才</text>

@@ -11,9 +11,11 @@
       <text class="text-white text-xs font-medium">VIP</text>
     </view>
     <!-- 描述信息 -->
-    <view v-if="seekerData.description" class="mb-3">
+    <view v-if="seekerData.description" class="mb-3 flex">
       <wd-img src="/static/images/img1.png" width="12" height="12" custom-class="mt-[2rpx] mr-1" />
-      <text class="text-[24rpx] text-[#999999]">{{ seekerData.description }}</text>
+      <view class="text-[24rpx] text-[#999999] ellipsis-2 flex-1 w-0">
+        {{ seekerData.description }}
+      </view>
     </view>
     <!-- 头像和基本信息 -->
     <view class="flex items-start mb-3 gap-2">
@@ -58,10 +60,17 @@
     <view class="flex flex-wrap gap-1.5 mb-2">
       <yr-tag-list v-model="seekerData.advantage" class-name="!bg-[#F5F6FA] !text-[#555555]" />
     </view>
-    <yr-img-title :title="title2" url="school.svg" />
     <view class="flex items-center justify-between text-sm mt-2">
-      <yr-img-title :title="seekerData.contactMobile" url="lxdh.svg" />
-      <yr-time-now :time="Number(seekerData.createTime)" />
+      <view>
+        <yr-img-title :title="title2" url="school.svg" />
+        <yr-img-title
+          class="mt-3"
+          :title="seekerData.contactMobile"
+          url="lxdh.svg"
+          v-if="seekerData.contactMobile"
+        />
+      </view>
+      <yr-time-now :time="Number(seekerData.createTime)" class="w-[70px] text-right text-[12px]" />
     </view>
   </view>
 </template>

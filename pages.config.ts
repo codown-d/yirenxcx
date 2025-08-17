@@ -1,4 +1,5 @@
 import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
+import { tabBar } from './src/tabbar/config'
 
 export default defineUniPages({
   globalStyle: {
@@ -19,4 +20,5 @@ export default defineUniPages({
     },
   },
   // 如果不需要tabBar，推荐使用 spa 模板。（pnpm create xxx -t spa）
+  tabBar: tabBar as any,
 })

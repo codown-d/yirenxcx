@@ -1,47 +1,65 @@
 <template>
   <wd-picker
     :columns="columns"
-    v-model="value"
+    v-model="dataVal"
     :column-change="onChangeDistrict"
     :display-format="displayFormat"
     @confirm="handleConfirm"
   />
 </template>
 <script lang="ts" setup>
-import { ALL_CATEGORIES_DISPLAY } from '@/constant'
-
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 const props = defineProps({
-  modelValue: {
-    type: Array,
-    default: () => [],
+  jobType: {
+    type: String,
+    default: '',
+  },
+  jobDomain: {
+    type: String,
+    default: '',
+  },
+  jobSpecific: {
+    type: String,
+    default: '',
   },
 })
 
-const value = ref([])
-
-const columns = ref([
-  [
-    {
-      label: '台前',
-      value: '台前',
-    },
-    {
-      label: '幕后',
-      value: '幕后',
-    },
-    {
-      label: '运营',
-      value: '运营',
-    },
-  ],
-  ALL_CATEGORIES_DISPLAY.filter(
-    (category) => category.value.startsWith('台前-') && category.value.split('-').length == 2,
-  ),
-  ALL_CATEGORIES_DISPLAY.filter((category) => category.value.startsWith('台前-演员-')),
-])
-
+const dataVal = ref<any>([])
+const columns = ref([])
+watch(
+  () => dictData.value.ALL_CATEGORIES_DISPLAY,
+  (val) => {
+    console.log(12347777, val)
+    if (!val || val?.length == 0) {
+      columns.value = []
+    } else {
+      columns.value = [
+        [
+          {
+            label: '台前',
+            value: '台前',
+          },
+          {
+            label: '幕后',
+            value: '幕后',
+          },
+          {
+            label: '运营',
+            value: '运营',
+          },
+        ],
+        val?.filter(
+          (category) => category.value.startsWith('台前-') && category.value.split('-').length == 2,
+        ),
+        val?.filter((category) => category.value.startsWith('台前-演员-')),
+      ]
+    }
+  },
+  { immediate: true, deep: true },
+)
 let getColumn = (value) => {
-  let arr = ALL_CATEGORIES_DISPLAY.filter((data) => data.value.indexOf(value) === 0)
+  let arr = dictData.value.ALL_CATEGORIES_DISPLAY?.filter((data) => data.value.indexOf(value) === 0)
   return arr.reduce(
     (pre, current) => {
       let len = current.value.split('-').length - 1
@@ -63,6 +81,7 @@ let getColumn = (value) => {
   )
 }
 const onChangeDistrict = (pickerView, item, columnIndex, resolve) => {
+  console.log(pickerView, item, columnIndex, 23456)
   let arr = getColumn(item[columnIndex].value)
   if (columnIndex === 0) {
     pickerView.setColumnData(1, arr[1])
@@ -80,13 +99,20 @@ const displayFormat = (items) => {
     })
     .join('-')
 }
-// watch(
-//   () => props.modelValue,
-//   (val) => {
-//     value.value = val
-//   },
-//   { immediate: true },
-// )
+
+watch(
+  () => props,
+  (val) => {
+    let { jobType, jobDomain, jobSpecific } = val
+    console.log(jobType, jobDomain, jobSpecific)
+    if (jobType && jobDomain && jobSpecific) {
+      nextTick(() => {
+        dataVal.value = [jobType, jobDomain, jobSpecific]
+      })
+    }
+  },
+  { immediate: true },
+)
 
 const emit = defineEmits(['confirmLabel'])
 

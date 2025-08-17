@@ -65,7 +65,7 @@
 import { ref, computed } from 'vue'
 import { ROLE_SWITCH_CONFIG, USER_ROLES } from '@/constant/role-switch'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { navigateBack, navigateTo } from '@/utils'
+import { switchTab } from '@/utils'
 import { loginIM } from '@/utils/im'
 import { genUserSig } from '@/service/app'
 const { getRole, setRole } = useRoleStore()
@@ -89,9 +89,7 @@ const targetRole = computed(() => {
 
 // 返回上一页
 const goBack = () => {
-  setTimeout(() => {
-    navigateTo('/mine/mine')
-  }, 0)
+  switchTab('/index/index')
 }
 
 // 显示切换确认
@@ -108,6 +106,10 @@ const showSwitchConfirm = async (targetRole) => {
   currentUserRole.value = targetRole.key
   console.log(role)
   setRole(role)
+  uni.setTabBarItem({
+    index: 0,
+    text: role === RoleEmu.employer ? '薏人' : '求职',
+  })
   goBack()
 }
 </script>

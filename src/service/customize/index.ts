@@ -22,3 +22,16 @@ export async function getBannerList({ params, options }: { params: any; options?
     ...(options || {}),
   })
 }
+
+export async function listAllSimple({ params, options }) {
+  return request<any>('/admin-api/system/dict-data/list-all-simple', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  })
+}

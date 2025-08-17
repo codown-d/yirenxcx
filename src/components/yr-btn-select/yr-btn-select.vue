@@ -1,11 +1,12 @@
 <template>
-  <view class="grid grid-cols-3 gap-3 px-4 pb-2">
+  <view class="grid grid-cols-3 gap-4 pb-4 px-4">
     <wd-button
       v-for="(item, index) in columns"
       :key="index"
       :type="`${selectedItems.includes(item.value + '') ? 'primary' : 'info'}`"
       :size="size"
       :round="round"
+      custom-class="!min-w-[80px]"
       @click="onSelect(item)"
     >
       {{ item.label }}
@@ -48,7 +49,7 @@ const props = defineProps({
     default: '',
   },
 })
-let selectedItems = ref(props.modelValue.split(','))
+let selectedItems = ref(props.modelValue.split(',').filter((item) => !!item))
 const emit = defineEmits(['update:modelValue'])
 const onSelect = (item) => {
   const index = selectedItems.value.indexOf(item.value)
@@ -59,6 +60,7 @@ const onSelect = (item) => {
     // 已存在 → 移除
     selectedItems.value = selectedItems.value.filter((v) => v !== item.value)
   }
+  console.log(selectedItems.value, 123456)
   emit('update:modelValue', selectedItems.value.join(','))
 }
 watch(

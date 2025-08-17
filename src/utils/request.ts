@@ -1,6 +1,7 @@
 import { CustomRequestOptions } from '@/interceptors/request'
 import { useUserStore } from '@/store'
-import { navigateToSub } from '.'
+import { goLogin, navigateToSub } from '.'
+import { refreshToken } from '@/service/member'
 
 export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
 /**
@@ -10,7 +11,7 @@ export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
  */
 const http = <T>(options: CustomRequestOptions) => {
   // 1. 获取用户信息
-  const { removeUserInfo } = useUserStore()
+  const { removeUserInfo, setUserInfo } = useUserStore()
   // 1. 返回 Promise 对象
   return new Promise<T>((resolve, reject) => {
     uni.request({
@@ -20,7 +21,7 @@ const http = <T>(options: CustomRequestOptions) => {
       responseType: 'json',
       // #endif
       // 响应成功
-      success(res) {
+      async success(res) {
         // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300 && res.data.code === 0) {
           // 2.1 提取核心数据 res.data
@@ -28,12 +29,28 @@ const http = <T>(options: CustomRequestOptions) => {
         } else if (res.statusCode === 401 || res.data.code === 401) {
           // 401错误  -> 清理用户信息，跳转到登录页
           removeUserInfo()
-          navigateToSub('/login/login')
-          uni.showToast({
-            icon: 'none',
-            title: '登录已失效',
-          })
-          reject(res)
+          try {
+            let res = await refreshToken({
+              params: { refreshToken: uni.getStorageSync('refreshToken') },
+            })
+            const { accessToken, userId, expiresTime } = res.data
+            uni.setStorageSync('token', accessToken)
+            uni.setStorageSync('refreshToken', res.data.refreshToken)
+            uni.setStorageSync('userId', userId)
+            uni.setStorageSync('expiresTime', expiresTime)
+            setUserInfo({
+              token: accessToken,
+              refreshToken: res.data.refreshToken,
+              expiresTime,
+            })
+          } catch (error) {
+            goLogin()
+            uni.showToast({
+              icon: 'none',
+              title: '登录已失效',
+            })
+            reject(res)
+          }
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
           !options.hideErrorToast &&
@@ -78,7 +95,9 @@ export default function request<T = unknown>(
   requestOptions.header = {
     ...options.headers,
     'tenant-id': 1,
-    Authorization: `Bearer ${uni.getStorageSync('token')}`,
+  }
+  if (url.indexOf('list-all-simple') == -1) {
+    requestOptions.header['Authorization'] = `Bearer ${uni.getStorageSync('token')}`
   }
   delete requestOptions.headers
 

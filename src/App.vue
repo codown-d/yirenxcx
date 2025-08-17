@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
-import { navigateTo } from './utils'
 import { initIM } from '@/utils/im'
 
 onLaunch(() => {
   initIM()
 })
 onShow(() => {
-  uni?.onTabBarMidButtonTap?.(() => {
-    navigateTo('/publish-info/publish-info')
-  })
+  console.log(123456)
 })
 onHide(() => {
   console.log('App Hide')
@@ -18,11 +15,6 @@ onHide(() => {
 </script>
 
 <style lang="scss">
-/* stylelint-disable selector-type-no-unknown */
-button::after {
-  border: none;
-}
-
 swiper,
 scroll-view {
   flex: 1;

@@ -19,28 +19,29 @@
         />
       </wd-cell>
       <wd-cell title="职位类别">
-        <post-picker title="职位类别" v-model="category" @confirmLabel="onConfirmLabel" />
+        <post-picker
+          title="职位类别"
+          :jobType="formData.jobType"
+          :jobDomain="formData.jobDomain"
+          :jobSpecific="formData.jobSpecific"
+          @confirmLabel="onConfirmLabel"
+        />
       </wd-cell>
       <wd-cell title="薪资范围">
-        <wd-picker
-          :columns="salaryColumns"
-          v-model="formData.salary"
-          prop="expectedSalary"
-          size="small"
-        />
+        <wd-picker :columns="dictData.salaryColumns" v-model="formData.salary" />
       </wd-cell>
     </view>
     <view class="bg-white mb-3">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">工作类型</text>
       </view>
-      <yr-btn-select :columns="jobTypeColumns" v-model="formData.workType" />
+      <yr-btn-select :columns="dictData.WORK_TYPES" v-model="formData.workType" />
     </view>
     <view class="bg-white mb-6">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">福利待遇</text>
       </view>
-      <yr-btn-select :columns="benefitsOptions" v-model="formData.benefits" />
+      <yr-btn-select :columns="dictData.benefitsOptions" v-model="formData.benefits" />
     </view>
     <yr-page-footer>
       <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">
@@ -55,21 +56,22 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { salaryColumns, jobTypeColumns, benefitsOptions } from '@/constant'
-import { navigateBack, navigateTo } from '@/utils'
+import { switchTab } from '@/utils'
 import { useFilterStore } from '@/store'
+import { useDictData } from '@/hooks'
+
+let { dictData } = useDictData()
 let { setFilter, getFilter } = useFilterStore()
 
 let formData = ref(getFilter() || {})
 
 const category = ref([getFilter()?.jobType, getFilter()?.jobDomain, getFilter()?.jobSpecific])
-console.log(getFilter())
 
 const resetFilter = () => {
   formData.value = {
     locationCode: '',
     location: '',
-    expectedSalary: '',
+    salary: '',
     workType: '',
     benefits: '',
     jobType: '',
@@ -78,13 +80,13 @@ const resetFilter = () => {
   }
   category.value = []
   setFilter(formData.value)
-  navigateTo('/index/index')
+  switchTab('/index/index')
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
 }
 const confirmFilter = () => {
   setFilter(formData.value)
-  navigateTo('/index/index')
+  switchTab('/index/index')
 }
 </script>

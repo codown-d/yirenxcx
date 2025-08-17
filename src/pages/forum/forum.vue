@@ -63,7 +63,6 @@
         </template>
         <wd-loadmore :state="loading ? 'loading' : 'finished'"></wd-loadmore>
       </view>
-      <yr-tab-bar :tab-index="3"></yr-tab-bar>
     </scroll-view>
     <!-- 发布按钮 -->
     <view class="fixed bottom-25 right-4 z-10">

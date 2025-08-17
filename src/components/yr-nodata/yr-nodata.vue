@@ -1,7 +1,5 @@
 <template>
-  <view class="flex justify-center">
-    <text>暂无数据</text>
-  </view>
+  <wd-status-tip image="search" tip="当前搜索无结果" />
 </template>
 
 <script lang="ts" setup></script>
