@@ -78,7 +78,6 @@ import dayjs from 'dayjs'
 import { useConnect } from '@/hooks/useConnect'
 import { RoleEmu, useRoleStore } from '@/store'
 import { find } from 'lodash'
-import { SEX } from '@/constant'
 const { changeConnect, getShouCang } = useConnect()
 const { getRole } = useRoleStore()
 import { useDictData } from '@/hooks'

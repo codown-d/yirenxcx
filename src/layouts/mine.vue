@@ -21,7 +21,6 @@ import { themeVars } from '@/constant'
 import type { ConfigProviderThemeVars } from 'wot-design-uni'
 import { getSystemInfoSync } from '@/utils'
 import { useNavigation } from '@/hooks'
-import { navigateBack } from '@/utils'
 
 const theme: ConfigProviderThemeVars = { ...themeVars }
 
@@ -29,9 +28,6 @@ const { safeAreaInsets } = getSystemInfoSync()
 const { title, getCurrentPage } = useNavigation()
 const { isTab = false, style } = getCurrentPage()
 console.log(style, title)
-const handleClickLeft = () => {
-  navigateBack()
-}
 const opacity = ref(0)
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {

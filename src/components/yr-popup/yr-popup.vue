@@ -11,13 +11,13 @@
       </view>
       <view class="flex flex-wrap gap-2 mb-4">
         <wd-tag
-          v-for="topic in availableTopics"
-          :key="topic"
-          :custom-class="`${selectedTopics.includes(topic) ? '!bg-[#E9F7F4] !text-primary' : ''}`"
+          v-for="topic in dictData.availableTopics"
+          :key="topic.value"
+          :custom-class="`${selectedTopics.includes(topic.value) ? '!bg-[#E9F7F4] !text-primary' : ''}`"
           round
-          @click="toggleTopic(topic)"
+          @click="toggleTopic(topic.value)"
         >
-          {{ topic }}
+          {{ topic.label }}
         </wd-tag>
       </view>
       <wd-button type="primary" block @click="handleConfirm">确定</wd-button>
@@ -25,8 +25,9 @@
   </wd-popup>
 </template>
 <script lang="ts" setup>
-import { availableTopics, availableMoods } from '@/constant'
 import { toast } from '@/utils/toast'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 let props = defineProps({
   modelValue: {
@@ -37,9 +38,9 @@ let props = defineProps({
 
 // 弹窗状态
 const showTopicModal = ref(false)
-const selectedTopics = ref<string[]>([])
+const selectedTopics = ref<any>([])
 // 切换话题选择
-const toggleTopic = (topic: string) => {
+const toggleTopic = (topic: any) => {
   const index = selectedTopics.value.indexOf(topic)
   if (index > -1) {
     selectedTopics.value.splice(index, 1)

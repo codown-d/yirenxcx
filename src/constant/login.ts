@@ -1,8 +1,3 @@
-/**
- * 登录页面相关常量配置
- */
-import { DEFAULT_AVATARS } from './images'
-
 // 登录页面基础配置
 export const LOGIN_CONFIG = {
   title: '欢迎登录薏仁直聘！',
@@ -59,27 +54,6 @@ export const FORGOT_PASSWORD_CONFIG = {
   backToLoginText: '立即登录',
 }
 
-// 身份选择配置
-export const ROLE_CONFIG = {
-  title: '请选择您当前身份',
-  note: '选择身份后，您将看到对应身份的功能和内容，您可以随时在个人中心切换身份。',
-  confirmText: '确认',
-  roles: [
-    {
-      key: 'jobseeker',
-      name: '薏人',
-      description: '找工作 投简历',
-      avatar: DEFAULT_AVATARS.jobseeker,
-    },
-    {
-      key: 'employer',
-      name: '老板',
-      description: '招人才 发职位',
-      avatar: DEFAULT_AVATARS.employer,
-    },
-  ],
-}
-
 // 隐私协议配置
 export const PRIVACY_CONFIG = {
   agreeText: '登录即表示同薏',
@@ -121,17 +95,3 @@ export type LoginType = 'wechat' | 'phone'
 
 // 登录选项卡类型
 export type LoginTab = 'password' | 'sms'
-// 分类数据
-export const tabCategory = ref([
-  { id: '1', label: '热门', value: 'hot', postCount: 0, isDefault: true },
-  { id: '2', label: '最新', value: 'latest', postCount: 0, isDefault: false },
-  { id: '3', label: '关注', value: 'follow', postCount: 0, isDefault: false },
-  { id: '4', label: '我的', value: 'mine', postCount: 0, isDefault: false },
-])
-// 热门话题数据
-export const hotTopics = [
-  { id: '1', name: '舞蹈技巧', description: '', count: 1233, isHot: true, isFollowed: false },
-  { id: '2', name: '招聘信息', description: '', count: 1233, isHot: true, isFollowed: false },
-  { id: '3', name: '招聘信息', description: '', count: 1233, isHot: true, isFollowed: false },
-  { id: '4', name: '武术交流', description: '', count: 1233, isHot: true, isFollowed: false },
-] // 帖子列表数据

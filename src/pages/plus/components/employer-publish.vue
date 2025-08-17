@@ -44,9 +44,13 @@
         <text class="text-base font-bold text-gray-900">薪资待遇</text>
       </view>
       <wd-card>
-        <wd-cell title="薪资范围">
-          <yr-salary-picker title="薪资范围" placeholder="请选择" @changeValue="onSalaryChange" />
-        </wd-cell>
+        <yr-salary-picker
+          prop="salary"
+          v-model="formData.salary"
+          placeholder="请选择"
+          title="薪资范围"
+          @changeValue="onSalaryChange"
+        />
         <yr-modal-picker prop="benefits" v-model="formData.benefits" modal-title="福利待遇" />
       </wd-card>
 
@@ -56,19 +60,17 @@
       </view>
       <wd-card>
         <wd-cell title="工作经验">
-          <wd-picker
+          <yr-picker
             v-model="formData.experienceRequirement"
             :columns="dictData.EXPERIENCE_LEVELS"
-            placeholder="请选择"
             prop="experienceRequirement"
           />
         </wd-cell>
         <!-- 学历水平 -->
         <wd-cell title="学历水平">
-          <wd-picker
+          <yr-picker
             v-model="formData.educationRequirement"
             :columns="dictData.EDUCATION_LEVELS"
-            placeholder="请选择"
             prop="educationRequirement"
           />
         </wd-cell>
@@ -88,7 +90,7 @@
         <wd-cell title="联系方式">
           <wd-input
             no-border
-            inputmode="tel"
+            type="number"
             v-model="formData.phone"
             placeholder="请输入手机号/微信号"
             prop="phone"
@@ -104,18 +106,14 @@
       <wd-card>
         <!-- 工作性质 -->
         <wd-cell title="工作性质">
-          <wd-picker
-            v-model="formData.workType"
-            :columns="dictData.WORK_TYPES"
-            placeholder="请选择工作性质"
-            prop="workType"
-          />
+          <yr-picker v-model="formData.workType" :columns="dictData.WORK_TYPES" prop="workType" />
         </wd-cell>
         <wd-cell title="招聘人数">
           <wd-input
             v-model="formData.headcount"
             placeholder="请输入"
             prop="headcount"
+            type="number"
             no-border
             custom-class="!text-right pr-24px"
           />
@@ -128,18 +126,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useDictData } from '@/hooks'
+import { merge } from 'lodash'
 let { dictData } = useDictData()
 
 // 表单数据
 const formData = ref<any>({
-  salaryMin: 3000,
-  salaryMax: 8000,
+  comeToTime: '',
+  headcount: 0,
 })
 const rules = {
   title: [{ required: true, message: '请输入职位标题' }],
   description: [{ required: true, message: '请输入职位描述' }],
   locationCode: [{ required: true, message: '请输入工作地点' }],
   comeToTime: [{ required: true, message: '请输入到岗时间' }],
+  salary: [{ required: true, message: '请选择薪资范围' }],
   benefits: [{ required: true, message: '请输入福利待遇' }],
   experienceRequirement: [{ required: true, message: '请输入工作经验' }],
   educationRequirement: [{ required: true, message: '请输入学历水平' }],
@@ -150,7 +150,12 @@ const rules = {
 const formRef = ref()
 
 const onSalaryChange = (data) => {
-  formData.value = { ...formData.value, salaryMin: Number(data[0]), salaryMax: Number(data[1]) }
+  console.log(data)
+  formData.value = {
+    ...formData.value,
+    salaryMin: data[0],
+    salaryMax: data[1],
+  }
 }
 const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
@@ -161,7 +166,7 @@ defineExpose({
     if (!res.valid) {
       return null
     }
-    return formData.value
+    return merge({}, formData.value, { headcount: Number(formData.value.headcount) })
   },
 })
 onShow(() => {

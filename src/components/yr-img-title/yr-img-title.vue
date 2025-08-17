@@ -3,7 +3,7 @@
     <view class="w-[18px] h-[16px] relative mr-1">
       <image class="w-[18px] h-[16px] absolute top-0" :src="imgUrl" mode="scaleToFill" v-if="url" />
     </view>
-    <text class="text-[14px] text-[#8C8C8C] h-[20px] leading-[24px]" v-if="title">
+    <text class="text-[14px] text-[#8C8C8C] h-[20px] leading-[24px] ellipsis" v-if="title">
       {{ title || '-' }}
     </text>
     <template v-else>

@@ -9,23 +9,22 @@
           mode="aspectFill"
         />
         <view>
-          <text class="text-3 font-medium text-gray-800 block">{{ post.title }}</text>
+          <text class="font-medium text-gray-800 block text-[16px]">{{ post.title }}</text>
           <text class="text-2 text-gray-500" v-if="false">{{ post.title }}</text>
         </view>
       </view>
       <view class="flex items-center">
-        <text class="text-2 text-gray-400">{{ post.publishTime }}</text>
-        <wd-icon name="more-horizontal" size="16px" color="#ccc" class="ml-2" />
+        <yr-time-now :time="post.createTime"></yr-time-now>
       </view>
     </view>
 
     <!-- 帖子内容 -->
     <view class="mb-2">
-      <text class="text-3 text-gray-800 leading-relaxed">{{ post.content }}</text>
+      <text class="text-gray-800 leading-relaxed text-[14px]">{{ post.content }}</text>
     </view>
 
     <!-- 图片展示 -->
-    <view class="mb-2">
+    <view class="mb-2" v-if="post.images">
       <yr-img-preview v-model="post.images" />
     </view>
     <!-- 话题标签 -->
@@ -36,15 +35,15 @@
       <view class="flex items-center gap-4">
         <view class="flex items-center" @click.stop="toggleLike(post.id)">
           <wd-icon
+            custom-class="text-[26px]"
             :name="isLiked ? 'heart-filled' : 'heart'"
             :color="isLiked ? '#ff4757' : '#999'"
-            size="24px"
           />
-          <text class="text-gray-500 ml-1">{{ post.likeCount }}</text>
+          <text class="text-gray-500 ml-1 text-[16px]">{{ post.likeCount }}</text>
         </view>
-        <view class="flex items-center" @click.stop="goToComments(post.id)">
-          <wd-icon name="chat" size="22px" />
-          <text class="text-gray-500 ml-1">{{ post.commentCount }}</text>
+        <view class="flex items-center" @click.stop="goToComments(post.id)" v-if="false">
+          <wd-icon name="chat" custom-class="text-[26px]" />
+          <text class="text-gray-500 ml-1 text-[16px]">{{ post.commentCount }}</text>
         </view>
       </view>
     </view>
@@ -64,9 +63,12 @@ const props = defineProps({
   },
 })
 const isLiked = ref(props.post.isLiked)
+
+const emit = defineEmits(['favorite'])
 const toggleLike = (id) => {
   changeConnect({ tieZiId: id }, isLiked.value, () => {
     isLiked.value = !isLiked.value
+    emit('favorite', isLiked.value)
   })
 }
 const goToComments = (val) => {

@@ -3,7 +3,7 @@
     class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-9 p-safe"
     :style="{ bottom: keyboardHeight + 'px' }"
   >
-    <view class="flex gap-3 p-4" :style="pb">
+    <view class="flex p-4" :style="pb">
       <slot />
     </view>
   </view>

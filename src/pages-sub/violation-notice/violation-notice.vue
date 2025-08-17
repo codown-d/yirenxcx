@@ -18,6 +18,7 @@
         v-model="filterText"
         use-default-slot
         @confirm="confirmFilter"
+        :z-index="9999999"
       >
         <view class="flex items-center justify-end">
           <text class="text-sm text-gray-600 mr-1">{{ filterText }}</text>

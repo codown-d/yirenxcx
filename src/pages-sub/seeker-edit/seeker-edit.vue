@@ -59,12 +59,7 @@
         <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker
-          v-model="userInfo.tags"
-          prop="tags"
-          ref="tagsRef"
-          modal-title="请输入技能标签"
-        >
+        <yr-modal-picker v-model="userInfo.tags" prop="tags" ref="tagsRef" modal-title="技能标签">
           <view></view>
         </yr-modal-picker>
       </wd-card>
@@ -78,7 +73,7 @@
           v-model="userInfo.daiBiaoZuo"
           prop="daiBiaoZuo"
           ref="daiBiaoZuoRef"
-          modal-title="请输入代表作品"
+          modal-title="代表作品"
           className="w-full justify-between !px-4 !py-3"
         >
           <view></view>
@@ -124,10 +119,10 @@
       </view>
       <wd-card>
         <wd-cell title="期望薪资">
-          <yr-picker :columns="salaryColumns" v-model="userInfo.qiWangXinZi"></yr-picker>
+          <yr-picker :columns="dictData.salaryColumns" v-model="userInfo.qiWangXinZi"></yr-picker>
         </wd-cell>
         <wd-cell title="工作性质">
-          <yr-picker :columns="jobTypeColumns" v-model="userInfo.workType"></yr-picker>
+          <yr-picker :columns="dictData.WORK_TYPES" v-model="userInfo.workType"></yr-picker>
         </wd-cell>
       </wd-card>
       <!-- 操作按钮 -->
@@ -147,8 +142,9 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
-import { jobTypeColumns, salaryColumns } from '@/constant'
 import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ workType: '' })

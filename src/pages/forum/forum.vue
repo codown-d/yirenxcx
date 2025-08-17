@@ -35,31 +35,34 @@
             <text class="text-4 font-bold text-gray-800">热门话题</text>
             <wd-img src="/static/images/fire.png" width="13" height="16" />
           </view>
-          <view class="flex flex-wrap gap-2 mt-3" v-if="hotTopics?.length > 0">
+          <view class="flex flex-wrap gap-2 mt-3" v-if="dictData.availableTopics?.length > 0">
             <scroll-view :scroll-x="true">
               <view class="flex items-center gap-2 w-[600px] flex-wrap py-2">
                 <wd-tag
-                  v-for="topic in hotTopics"
-                  :key="topic.id"
+                  v-for="topic in dictData.availableTopics"
+                  :key="topic.value"
                   type="primary"
                   round
-                  :bg-color="'#cce9e3'"
+                  bg-color="#cce9e3"
+                  @click="toggleTopic(topic.value)"
                 >
                   #
-                  <text class="text-[14px] text-primary px-2">{{ topic.name }}</text>
-                  <text class="text-[12px] text-primary" v-if="false">{{ topic.count }}</text>
+                  <text class="text-[14px] text-primary px-2">{{ topic.value }}</text>
                 </wd-tag>
               </view>
             </scroll-view>
           </view>
         </view>
-        <wd-tabs v-model="categoryType" custom-class="mb-4">
-          <block v-for="category in tabCategory" :key="category.id">
-            <wd-tab :title="`${category.label}`"></wd-tab>
-          </block>
+        <wd-tabs v-model="categoryType" custom-class="mb-4" @change="onChange">
+          <wd-tab
+            v-for="category in tabCategory"
+            :title="`${category.label}`"
+            :key="category.value"
+            :name="category.value"
+          ></wd-tab>
         </wd-tabs>
         <template v-for="item in postList" :key="item.id">
-          <posts :post="item"></posts>
+          <posts :post="item" @favorite="loadPostList"></posts>
         </template>
         <wd-loadmore :state="loading ? 'loading' : 'finished'"></wd-loadmore>
       </view>
@@ -82,31 +85,48 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getSystemInfoSync, navigateToSub } from '@/utils'
-import { tabCategory, hotTopics as hotList } from '@/constant'
 import { getForumPostPage, YRZPForumPostDO } from '@/service/app'
 import { useConnect } from '@/hooks'
 import posts from '@/pages/forum/components/posts.vue'
+
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
+
 const { safeAreaInsets } = getSystemInfoSync()
 const { getTieZiIds } = useConnect()
-
+// 分类数据
+const tabCategory = ref([
+  { id: '1', label: '热门', value: '1', postCount: 0, isDefault: true },
+  { id: '2', label: '最新', value: '2', postCount: 0, isDefault: false },
+  { id: '3', label: '关注', value: '3', postCount: 0, isDefault: false },
+  { id: '4', label: '我的', value: '4', postCount: 0, isDefault: false },
+])
 // 页面状态
 const opacity = ref(0)
-const categoryType = ref('hot')
+const categoryType = ref('1')
+const tags = ref()
 const loading = ref(false)
 const hasMore = ref(true)
 const currentPage = ref(1)
 const pageSize = ref(10)
-const hotTopics = ref(hotList)
 const postList = ref<YRZPForumPostDO[]>([])
 
+const onChange = ({ index, name }) => {
+  categoryType.value = name
+  loadPostList()
+}
+const toggleTopic = (val) => {
+  tags.value = val
+  loadPostList()
+}
 const loadPostList = async (isRefresh = false) => {
   try {
     let ids = await getTieZiIds()
     const res = await getForumPostPage({
       params: {
         title: '',
-        tags: '',
-        type: '',
+        tags: tags.value,
+        type: categoryType.value,
         pageNo: currentPage.value,
         pageSize: pageSize.value,
       },

@@ -1,5 +1,10 @@
 <template>
-  <wd-calendar v-model="selectVal" :disabled="disabled" @confirm="handleConfirm" />
+  <wd-calendar
+    v-model="selectVal"
+    :disabled="disabled"
+    @confirm="handleConfirm"
+    :z-index="999999999"
+  />
 </template>
 
 <script lang="ts" setup>

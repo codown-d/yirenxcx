@@ -79,6 +79,7 @@
         type="primary"
         :round="false"
         block
+        custom-class="w-full"
         :loading="publishing"
         :disabled="!canPublish"
         @click="publishPost"

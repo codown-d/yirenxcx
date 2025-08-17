@@ -89,7 +89,7 @@
         <yr-modal-picker
           v-model="userInfo.recruitment"
           ref="recruitmentRef"
-          modal-title="请输入招聘要求"
+          modal-title="招聘要求"
           prop="recruitment"
         >
           <view></view>
@@ -180,7 +180,6 @@ const loadUserData = async () => {
 }
 
 const addSkill = async () => {
-  console.log(benefitRef.value)
   benefitRef.value.addItem()
 }
 const addWork = async () => {

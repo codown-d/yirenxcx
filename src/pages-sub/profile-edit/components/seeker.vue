@@ -14,11 +14,6 @@
           <wd-input v-model="userForm.name" placeholder="请输入姓名" prop="name" />
         </wd-cell>
 
-        <!-- 专业特长 -->
-        <wd-cell title="专业特长" vertical>
-          <wd-input v-model="userForm.teChang" placeholder="请输入专业特长" prop="teChang" />
-        </wd-cell>
-
         <!-- 手机号 -->
         <wd-cell title="手机号" vertical>
           <wd-input v-model="userForm.mobile" placeholder="请输入手机号" prop="mobile" />
@@ -36,14 +31,16 @@
             prop="biYeYuanXiao"
           />
         </wd-cell>
-        <wd-cell title="工作经验" vertical>
-          <wd-input
+        <wd-cell title="专业特长" vertical>
+          <wd-input v-model="userForm.teChang" placeholder="请输入专业特长" prop="teChang" />
+        </wd-cell>
+        <wd-cell title="工作经验">
+          <yr-picker
             v-model="userForm.gongZuoJingYan"
-            placeholder="请输入工作经验"
+            :columns="dictData.EXPERIENCE_LEVELS"
             prop="gongZuoJingYan"
           />
         </wd-cell>
-        <!-- 所在地区 -->
         <wd-cell title="所在地区">
           <yr-location-picker
             v-model="userForm.locationCode"

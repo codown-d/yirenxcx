@@ -1,8 +1,9 @@
 import { listAllSimple } from '@/service/customize'
+import { Column } from '@/types'
 import { groupBy } from 'lodash'
 
 export function useDictData() {
-  let dictData = ref<any>({})
+  let dictData = ref<Record<string, Column[]>>({})
   const getDictData = async () => {
     let res = await listAllSimple({})
     dictData.value = groupBy(res.data, 'dictType')

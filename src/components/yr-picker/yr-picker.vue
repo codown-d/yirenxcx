@@ -4,6 +4,10 @@
     :columns="columns"
     :disabled="disabled"
     @confirm="handleConfirm"
+    :z-index="999999999"
+    placeholder="请选择"
+    :title="title"
+    :prop="prop"
   ></wd-picker>
 </template>
 
@@ -24,7 +28,10 @@ const props = defineProps({
     type: String,
     default: '请输入',
   },
-
+  prop: {
+    type: String,
+    default: '',
+  },
   multiple: {
     type: Boolean,
     default: false,

@@ -229,15 +229,6 @@ const handleFilterChange = (type: string) => {
   getDataFn()
 }
 
-// watch(
-//   () => dictData.value.ALL_CATEGORIES_DISPLAY,
-//   (val) => {
-//     if (!val || val?.length == 0) return
-//     let arr = val.filter((item) => item.value.split('-').length == 1)
-//     console.log(arr)
-//   },
-//   { immediate: true, deep: true },
-// )
 const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
   console.log(dictData)
@@ -311,7 +302,6 @@ onShareAppMessage(() => {
   return {
     title: '薏仁直聘',
     path: '/pages/index/index?from=share', // 分享后跳转路径
-    imageUrl: '/static/share.png', // 分享图（可选）
   }
 })
 
@@ -320,7 +310,6 @@ onShareTimeline(() => {
   return {
     title: '薏仁直聘',
     query: 'from=timeline',
-    imageUrl: '/static/share.png',
   }
 })
 </script>

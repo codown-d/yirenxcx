@@ -28,7 +28,7 @@
         />
       </wd-cell>
       <wd-cell title="薪资范围">
-        <wd-picker :columns="dictData.salaryColumns" v-model="formData.salary" />
+        <yr-picker :columns="dictData.salaryColumns" prop="salary" v-model="formData.salary" />
       </wd-cell>
     </view>
     <view class="bg-white mb-3">
@@ -59,7 +59,6 @@ import { ref } from 'vue'
 import { switchTab } from '@/utils'
 import { useFilterStore } from '@/store'
 import { useDictData } from '@/hooks'
-
 let { dictData } = useDictData()
 let { setFilter, getFilter } = useFilterStore()
 

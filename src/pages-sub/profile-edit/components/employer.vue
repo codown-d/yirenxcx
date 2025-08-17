@@ -11,33 +11,36 @@
 
         <!-- 姓名 -->
         <wd-cell title="公司名称" vertical>
-          <wd-input v-model="userForm.companyName" placeholder="请输入姓名" prop="companyName" />
+          <wd-input v-model="userForm.companyName" placeholder="请输入" prop="companyName" />
         </wd-cell>
         <wd-cell title="联系人姓名" vertical>
-          <wd-input v-model="userForm.name" placeholder="请输入联系人姓名" prop="name" />
+          <wd-input v-model="userForm.name" placeholder="请输入" prop="name" />
         </wd-cell>
-        <wd-cell title="联系人职位" vertical>
-          <wd-input v-model="userForm.teChang" placeholder="请输入联系人职位" prop="teChang" />
-        </wd-cell>
-        <wd-cell title="公司规模" vertical>
-          <wd-input
-            v-model="userForm.personNumber"
-            placeholder="请输入公司规模"
-            prop="personNumber"
-          />
-        </wd-cell>
-        <wd-cell title="所属行业" vertical>
-          <wd-input v-model="userForm.involved" placeholder="请输入所属行业" prop="involved" />
+        <wd-cell title="联系人职位" vertical v-if="false">
+          <wd-input v-model="userForm.teChang" placeholder="请输入" prop="teChang" />
         </wd-cell>
         <wd-cell title="成立年份" vertical>
-          <wd-input v-model="userForm.chengLiTime" placeholder="请输入时间" prop="chengLiTime" />
+          <wd-input v-model="userForm.chengLiTime" placeholder="请输入" prop="chengLiTime" />
         </wd-cell>
         <!-- 手机号 -->
         <wd-cell title="联系电话" vertical>
-          <wd-input v-model="userForm.mobile" placeholder="请输入手机号" prop="mobile" />
+          <wd-input v-model="userForm.mobile" placeholder="请输入" prop="mobile" />
         </wd-cell>
         <wd-cell title="邮箱地址" vertical>
-          <wd-input v-model="userForm.email" placeholder="请输入邮箱地址" prop="email" />
+          <wd-input v-model="userForm.email" placeholder="请输入" prop="email" />
+        </wd-cell>
+        <wd-cell title="公司性质">
+          <yr-picker v-model="userForm.gongsixingzhi" :columns="dictData.COMPANY_TYPES" />
+        </wd-cell>
+        <wd-cell title="公司规模">
+          <yr-picker
+            v-model="userForm.personNumber"
+            prop="personNumber"
+            :columns="dictData.COMPANY_SIZES"
+          />
+        </wd-cell>
+        <wd-cell title="所属行业">
+          <yr-picker v-model="userForm.involved" prop="involved" :columns="dictData.involved" />
         </wd-cell>
         <wd-cell title="所在地区">
           <yr-location-picker
@@ -70,8 +73,10 @@ import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack } from '@/utils'
 import { getUserInfo, MemberUserDO, updateUser } from '@/service/member'
+import { useDictData } from '@/hooks'
+let { dictData } = useDictData()
 
-const userForm = ref<MemberUserDO>({ locationCode: '' })
+const userForm = ref<MemberUserDO>({ locationCode: '', involved: '', personNumber: '' })
 const form = ref()
 const loading = ref(false)
 
@@ -79,17 +84,13 @@ const rules = {
   logo: [{ required: true, message: '请填写头像' }],
   companyName: [{ required: true, message: '请填写公司名称' }],
   name: [{ required: true, message: '请填写联系人姓名' }],
-  teChang: [{ required: true, message: '请填写联系人职位' }],
-  personNumber: [{ required: true, message: '请填写公司规模' }],
-  involved: [{ required: true, message: '请填写所属行业' }],
+  // teChang: [{ required: true, message: '请填写联系人职位' }],
   chengLiTime: [{ required: true, message: '请填写成立年份' }],
   mobile: [{ required: true, message: '请填写联系电话' }],
-  email: [
-    {
-      required: true,
-      message: '请填写邮箱',
-    },
-  ],
+  email: [{ required: true, message: '请填写邮箱' }],
+  personNumber: [{ required: true, message: '请选择公司规模' }],
+  gongsixingzhi: [{ required: true, message: '请选择公司性质' }],
+  involved: [{ required: true, message: '请选择所属行业' }],
   locationCode: [{ required: true, message: '请选择所在地区' }],
 }
 const loadUserInfo = async () => {

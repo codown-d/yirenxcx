@@ -7,6 +7,7 @@
     :disabled="disabled"
     @confirm="handleConfirm"
     :prop="prop"
+    :z-index="999999999"
   />
 </template>
 <script lang="ts" setup>

@@ -49,18 +49,13 @@
           <yr-salary-picker
             placeholder="请选择期望薪资"
             @changeValue="onSalaryChange"
-            prop="locationCode"
+            prop="salary"
           />
         </wd-cell>
 
         <!-- 工作性质 -->
         <wd-cell title="工作性质">
-          <wd-picker
-            v-model="formData.workType"
-            :columns="dictData.WORK_TYPES"
-            placeholder="请选择工作性质"
-            prop="workType"
-          />
+          <yr-picker v-model="formData.workType" :columns="dictData.WORK_TYPES" prop="workType" />
         </wd-cell>
       </wd-card>
 
@@ -71,20 +66,18 @@
       <wd-card>
         <!-- 工作经验 -->
         <wd-cell title="工作经验">
-          <wd-picker
+          <yr-picker
             v-model="formData.experience"
             :columns="dictData.EXPERIENCE_LEVELS"
-            placeholder="请选择工作经验"
             prop="experience"
           />
         </wd-cell>
 
         <!-- 学历水平 -->
         <wd-cell title="学历水平">
-          <wd-picker
+          <yr-picker
             v-model="formData.education"
             :columns="dictData.EDUCATION_LEVELS"
-            placeholder="请选择学历水平"
             prop="education"
           />
         </wd-cell>
@@ -111,7 +104,7 @@
         <wd-cell title="联系方式" vertical>
           <wd-input
             no-border
-            inputmode="tel"
+            type="number"
             v-model="formData.contactMobile"
             placeholder="请输入手机号/微信号"
             prop="contactMobile"
