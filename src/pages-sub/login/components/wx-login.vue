@@ -30,6 +30,7 @@
       type="info"
       size="large"
       :round="false"
+      v-if="false"
       block
       :disabled="loginLoading"
       @click="handlePhoneLogin"
@@ -46,7 +47,7 @@ import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { navigateBack } from '@/utils'
+import { navigateBack, switchTab } from '@/utils'
 
 const { wxLogin } = useUserStore()
 
@@ -66,16 +67,10 @@ const handleWechatPhoneAuth = async (e: any) => {
     toast.error('请先阅读并同薏用户协议和隐私政策')
     return
   }
-  console.log(e, 'detail.encryptedData')
   const { code } = e
-  console.log(code, 'code')
   await wxLogin(code)
-  navigateBack()
-  return
+  switchTab('/index/index')
 }
-const phoneNumber = computed(() => {
-  return uni.getStorageSync('userPhone')
-})
 let agreePrivacy = computed(() => props.agreePrivacy)
 
 // 手机号登录

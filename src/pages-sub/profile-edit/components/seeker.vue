@@ -57,7 +57,7 @@
           />
         </wd-cell>
         <wd-cell title="性别">
-          <yr-picker v-model="userForm.sex" :columns="dictData.SEX" prop="sex"></yr-picker>
+          <yr-picker v-model="userForm.sexName" :columns="dictData.SEX" prop="sex"></yr-picker>
         </wd-cell>
         <wd-cell title="年龄">
           <yr-picker v-model="userForm.age" :columns="dictData.AGE" prop="age"></yr-picker>
@@ -107,7 +107,7 @@ const rules = {
   gongZuoJingYan: [{ required: true, message: '请输入工作经验' }],
   locationCode: [{ required: true, message: '请选择所在地区' }],
   xueLi: [{ required: true, message: '请选择学历水平' }],
-  sex: [{ required: true, message: '请选择性别' }],
+  sexName: [{ required: true, message: '请选择性别' }],
   age: [{ required: true, message: '请选择年龄' }],
 }
 const loadUserInfo = async () => {
@@ -123,7 +123,6 @@ const saveProfile = async () => {
   }
   try {
     loading.value = true
-    console.log(userForm.value)
     const res = await updateUser({
       body: userForm.value,
     })

@@ -108,7 +108,6 @@ const loadFollowList = async () => {
       let list = await getZuJiByJob({})
       let ids = list.data.map((item) => item.jobId).join(',')
       let jobs = await getJob({ params: { ids } })
-      console.log(jobs)
       followList.value = jobs.data
     } else {
       let list = await getZuJiBySkeer({})

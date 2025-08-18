@@ -29,7 +29,7 @@
     </wd-button>
   </view>
 
-  <yr-tab-bar :tabIndex="2"></yr-tab-bar>
+  <!-- <yr-tab-bar :tabIndex="2"></yr-tab-bar> -->
 </template>
 
 <script setup lang="ts">

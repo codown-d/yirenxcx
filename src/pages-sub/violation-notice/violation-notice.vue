@@ -263,7 +263,6 @@ const handleSearch = (val) => {
   loadViolationList(true)
 }
 const confirmFilter = ({ value }) => {
-  console.log(value)
   filter.value = { ...filter.value, type: value }
   loadViolationList(true)
 }

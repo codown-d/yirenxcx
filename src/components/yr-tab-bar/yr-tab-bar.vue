@@ -1,5 +1,5 @@
 <template>
-  <wd-tabbar fixed v-model="tabbar" bordered safeAreaInsetBottom placeholder @change="change">
+  <wd-tabbar fixed v-model="tabbar" safeAreaInsetBottom placeholder @change="change">
     <wd-tabbar-item
       v-for="tab in tabList"
       :key="tab.pagePath"
@@ -36,7 +36,7 @@ let tabList = ref([
     selectedIconPath: '/static/tabbar/indexH.png',
     pagePath: '/index/index',
     value: 0,
-    text: !uni.getStorageSync('token') ? '薏仁' : getRole() === RoleEmu.employer ? '薏人' : '招聘',
+    text: '薏人',
   },
   {
     iconPath: '/static/tabbar/msg.png',
@@ -72,14 +72,12 @@ const change = ({ value }) => {
   tabbar.value = value
   let node = tabList.value[value].pagePath
   switchTab(node)
+  uni.$emit('tabPageShow', value)
 }
 
 onShow(() => {
   tabbar.value = uni.getStorageSync('tabbar')
-  tabList.value[0].text = !uni.getStorageSync('token')
-    ? '薏仁'
-    : getRole() === RoleEmu.employer
-      ? '薏人'
-      : '求职'
+  console.log(123456789, tabbar.value)
+  tabList.value[0].text = getRole() === RoleEmu.employer ? '薏人' : '求职'
 })
 </script>

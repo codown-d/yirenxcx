@@ -15,11 +15,7 @@
         <!-- 头像和基本信息 -->
         <view class="mb-4">
           <view class="flex items-center">
-            <image
-              :src="userInfo.avatar"
-              mode="aspectFill"
-              class="bg-gray-100 w-16 h-16 rounded-full mr-4"
-            />
+            <yr-avatar-img :img="userInfo?.avatar" />
             <view class="flex-1 flex items-center justify-between">
               <view class="flex flex-col gap-">
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>

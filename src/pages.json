@@ -16,7 +16,6 @@
     }
   },
   "tabBar": {
-    "custom": true,
     "color": "#999999",
     "selectedColor": "#018d71",
     "fontSize": "12px",
@@ -27,7 +26,7 @@
         "iconPath": "static/tabbar/index.png",
         "selectedIconPath": "static/tabbar/indexH.png",
         "pagePath": "pages/index/index",
-        "text": "薏仁"
+        "text": "薏人"
       },
       {
         "iconPath": "static/tabbar/msg.png",
@@ -62,7 +61,7 @@
       "layout": "blank",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "薏仁直聘"
+        "navigationBarTitleText": "薏人直聘"
       }
     },
     {
@@ -90,7 +89,7 @@
       "layout": "mine",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "薏仁直聘"
+        "navigationBarTitleText": "薏人直聘"
       },
       "isTab": true
     },

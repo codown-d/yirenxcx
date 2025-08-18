@@ -1,15 +1,16 @@
 <template>
   <wd-config-provider :themeVars="theme">
     <view class="text-[#252525] bg-[#F5F6FA]">
-      <scroll-view @scroll="handleScroll" scroll-y class="h-100vh">
-        <view
-          :style="{
-            paddingTop: safeAreaInsets?.top + 44 + 'px',
-          }"
-        >
+      <view
+        class="h-100vh"
+        :style="{
+          paddingTop: safeAreaInsets?.top + 44 + 'px',
+        }"
+      >
+        <scroll-view @scroll="handleScroll" scroll-y class="h-100vh">
           <slot></slot>
-        </view>
-      </scroll-view>
+        </scroll-view>
+      </view>
     </view>
     <wd-toast />
     <wd-message-box />

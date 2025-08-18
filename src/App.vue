@@ -8,7 +8,7 @@ onLaunch(() => {
   initIM()
 })
 onShow(() => {
-  console.log(123456)
+  console.log('App show')
 })
 onHide(() => {
   console.log('App Hide')

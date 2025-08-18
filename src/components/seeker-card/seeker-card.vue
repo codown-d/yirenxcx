@@ -21,7 +21,7 @@
     <view class="flex items-start mb-3 gap-2">
       <!-- 头像 -->
       <wd-img
-        :src="seekerData.info?.avatar || '/static/images/default-avatar.png'"
+        :src="seekerData.info?.avatar"
         custom-class="w-16 h-16 rounded-full bg-gray-100 overflow-hidden shadow"
       />
       <!-- 基本信息 -->

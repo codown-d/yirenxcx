@@ -104,7 +104,7 @@ const loadFollowList = async () => {
   }
 }
 let getTitle = (item) => {
-  let node = find(dictData.value.SEX, (it) => it.value == item.sex)
+  let node = find(dictData.value.SEX, (it) => it.value == item.sexName)
   return [`${item.age} 岁`, node?.label, item.gongZuoJingYan].filter((el) => !!el).join(' • ')
 }
 // 取消关注

@@ -143,7 +143,7 @@ const userInfo = ref<MemberUserDO>({
 let isFavorited = ref()
 let collect = ref(false)
 let title1 = computed(() => {
-  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sex)
+  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
   return [`${userInfo.value.age} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')
@@ -153,7 +153,6 @@ let title1 = computed(() => {
 const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data
-  console.log(userInfo.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobSeekerId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobSeekerId == userInfo.value.id)
 }

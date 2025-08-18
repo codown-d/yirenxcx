@@ -4,28 +4,23 @@
   layout: 'blank',
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '薏仁直聘',
+    navigationBarTitleText: '薏人直聘',
   },
 }
 </route>
 <template>
+  <wd-navbar
+    :bordered="false"
+    :left-arrow="false"
+    left-text="薏人直聘"
+    custom-class="font-bold text-primary"
+    fixed
+    safeAreaInsetTop
+    :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
+  ></wd-navbar>
   <view class="text-[#252525]">
-    <scroll-view
-      scroll-y
-      style="height: calc(100vh - 50px)"
-      @scroll="handleScroll"
-      @scrolltolower="onScrollToLower"
-    >
-      <wd-navbar
-        :bordered="false"
-        :left-arrow="false"
-        left-text="薏仁直聘"
-        custom-class="font-bold text-primary"
-        fixed
-        safeAreaInsetTop
-        :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
-      ></wd-navbar>
-      <view class="relative">
+    <scroll-view scroll-y @scroll="handleScroll" @scrolltolower="onScrollToLower">
+      <view class="relative pb-10">
         <view
           class="absolute top-0 h-full w-full z-0"
           :style="'z-index:-1;background: linear-gradient( 180deg,rgba(56, 200, 164, 0.25) 0%,rgba(56, 200, 164, 0) 160rpx,rgba(245, 246, 250, 1) 20%);'"
@@ -45,6 +40,7 @@
           <view
             class="flex justify-center mt-3 gap-4 justify-between mt-[10] mb-4"
             v-if="!isLoggedIn"
+            @click="onClick"
           >
             <image
               mode="aspectFill"
@@ -97,7 +93,7 @@
             </view>
           </scroll-view>
           <!-- 推荐招聘职位标题 -->
-          <template v-if="role === RoleEmu.seeker || !userInfo.token">
+          <template v-if="role === RoleEmu.seeker || !isLoggedIn">
             <view class="py-4">
               <text class="text-lg font-semibold">推荐招聘职位</text>
             </view>
@@ -111,9 +107,9 @@
             <yr-nodata v-else></yr-nodata>
           </template>
           <!-- 推荐招聘职位标题 -->
-          <template v-if="role === RoleEmu.employer || !userInfo.token">
+          <template v-if="role === RoleEmu.employer || !isLoggedIn">
             <view class="py-4">
-              <text class="text-lg font-semibold">推荐求职薏仁</text>
+              <text class="text-lg font-semibold">推荐求职薏人</text>
             </view>
             <seeker-card
               v-for="seeker in seekerList"
@@ -171,7 +167,7 @@
       </view>
     </view>
   </wd-popup>
-  <yr-tab-bar :tabIndex="0"></yr-tab-bar>
+  <!-- <yr-tab-bar :tabIndex="0"></yr-tab-bar> -->
 </template>
 
 <script lang="ts" setup>
@@ -182,17 +178,14 @@ import { getJobPage1, getJobSeekerPage, YRZPJobDO, YRZPJobSeekerDO } from '@/ser
 import { getBannerList } from '@/service/customize'
 import { keys } from 'lodash-es'
 import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
-import { useDictData } from '@/hooks'
-let { dictData } = useDictData()
+import { toast } from '@/utils/toast'
 
 const { safeAreaInsets } = getSystemInfoSync()
-const { userInfo, isLoggedIn } = useUserStore()
+const { getLoggedIn } = useUserStore()
 const { getRole, setRole } = useRoleStore()
 let { getFilter } = useFilterStore()
 
-// 响应式数据
 const opacity = ref(0)
-
 const show = ref(false)
 let role = ref(getRole())
 const activeFilterTag = ref()
@@ -201,6 +194,7 @@ const seekerList = ref<YRZPJobSeekerDO[]>()
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)
 const filter = ref(getFilter())
+const isLoggedIn = ref(false)
 
 const swiperList = ref([])
 function handleClick(type) {
@@ -209,6 +203,13 @@ function handleClick(type) {
     navigateToSub('/login/login')
   }, 0)
 }
+const onClick = () => {
+  toast.info('您还未登录，请先进行登录')
+  setTimeout(() => {
+    navigateToSub('/login/login')
+  }, 1000)
+}
+
 const hasFilter = computed(() => keys(filter.value).some((tag) => filter.value[tag]))
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {
@@ -231,9 +232,8 @@ const handleFilterChange = (type: string) => {
 
 const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
-  console.log(dictData)
-  let pageSize = !userInfo.token ? 6 : 10
-  if (role.value === RoleEmu.employer) {
+  let pageSize = !isLoggedIn.value ? 6 : 10
+  if (!isLoggedIn.value || role.value === RoleEmu.employer) {
     let resJobSeeker = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobSeekerId',
     })
@@ -254,7 +254,8 @@ let getDataFn = async (keyword?: string) => {
         favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
       }
     })
-  } else if (role.value === RoleEmu.seeker) {
+  }
+  if (!isLoggedIn.value || role.value === RoleEmu.seeker) {
     let resJob = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobId',
     })
@@ -286,21 +287,20 @@ onLoad(async () => {
   swiperList.value = res.data.map((item) => item.picUrl)
 })
 onShow(() => {
-  role.value = getRole()
-  console.log(getRole(), role.value, getFilter())
-  console.log(getFilter())
-  filter.value = getFilter()
-  getDataFn()
   seekerList.value = []
   jobList.value = []
   show.value = false
   isShowPopup.value = false
+  isLoggedIn.value = getLoggedIn()
+  role.value = getRole()
+  filter.value = getFilter()
+  getDataFn()
 })
 
 // 右上角分享给好友
 onShareAppMessage(() => {
   return {
-    title: '薏仁直聘',
+    title: '薏人直聘',
     path: '/pages/index/index?from=share', // 分享后跳转路径
   }
 })
@@ -308,7 +308,7 @@ onShareAppMessage(() => {
 // 右上角分享到朋友圈
 onShareTimeline(() => {
   return {
-    title: '薏仁直聘',
+    title: '薏人直聘',
     query: 'from=timeline',
   }
 })

@@ -11,7 +11,7 @@ export const tenantId = import.meta.env.VITE_APP_SHOPRO_TENANT_ID
  */
 const http = <T>(options: CustomRequestOptions) => {
   // 1. 获取用户信息
-  const { removeUserInfo, setUserInfo } = useUserStore()
+  const { removeUserInfo, getUserInfoFn } = useUserStore()
   // 1. 返回 Promise 对象
   return new Promise<T>((resolve, reject) => {
     uni.request({
@@ -21,7 +21,7 @@ const http = <T>(options: CustomRequestOptions) => {
       responseType: 'json',
       // #endif
       // 响应成功
-      async success(res) {
+      async success(res: any) {
         // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300 && res.data.code === 0) {
           // 2.1 提取核心数据 res.data
@@ -38,11 +38,7 @@ const http = <T>(options: CustomRequestOptions) => {
             uni.setStorageSync('refreshToken', res.data.refreshToken)
             uni.setStorageSync('userId', userId)
             uni.setStorageSync('expiresTime', expiresTime)
-            setUserInfo({
-              token: accessToken,
-              refreshToken: res.data.refreshToken,
-              expiresTime,
-            })
+            await getUserInfoFn()
           } catch (error) {
             goLogin()
             uni.showToast({

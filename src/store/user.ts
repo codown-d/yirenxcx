@@ -4,12 +4,12 @@ import { toast } from '@/utils/toast'
 
 import {
   AppAuthLoginReqVO,
-  AppAuthLoginRespVO,
   AppAuthSmsLoginReqVO,
   AppAuthWeixinMiniAppLoginReqVO,
   CommonResultAppAuthLoginRespVO,
-  getUserInfo,
+  getUserInfo as getUserInfoResp,
   login,
+  MemberUserDO,
   smsLogin,
   weixinMiniAppLogin,
 } from '@/service/member'
@@ -17,48 +17,28 @@ import { genUserSig } from '@/service/app'
 import { loginIM } from '@/utils/im'
 import { RoleEmu } from './role'
 
-// 用户信息类型定义
-interface UserInfo extends AppAuthLoginRespVO {
-  token: string
-  refreshToken: string
-  expiresTime: string
-  userId: number
-  avatar: string
-  nickname: string
-}
-
 // 初始化状态
-const userInfoState: UserInfo = {
-  userId: 0,
-  nickname: '',
+const userInfoState: MemberUserDO = {
+  id: 0,
+  name: '',
   avatar: '/static/images/default-avatar.png',
-  mobile: '',
-  sex: 1,
+  sexName: '男',
   point: 0,
   experience: 0,
-  brokerageEnabled: false,
-  token: '',
-  refreshToken: '',
-  expiresTime: '',
 }
 
 export const useUserStore = defineStore(
   'user',
   () => {
-    // 定义用户信息
-    const userInfo = ref<UserInfo>({ ...userInfoState })
-
-    // 设置用户信息
-    const setUserInfo = (val: Partial<UserInfo>) => {
-      console.log('设置用户信息', val)
-      // 若头像为空 则使用默认头像
+    const userInfo = ref<MemberUserDO>({ ...userInfoState })
+    const setUserInfo = (val: Partial<MemberUserDO>) => {
       if (!val.avatar) {
         val.avatar = userInfoState.avatar
       }
       userInfo.value = { ...userInfo.value, ...val }
     }
-    // 删除用户信息
     const removeUserInfo = () => {
+      uni.clearStorageSync()
       userInfo.value = { ...userInfoState }
     }
     /**
@@ -66,7 +46,7 @@ export const useUserStore = defineStore(
      */
     const loginWithPassword = async (mobile: string, password: string) => {
       try {
-        const loginData: AppAuthLoginReqVO = {
+        const loginData: any = {
           mobile,
           password,
           // socialType: 0, // 非社交登录
@@ -80,19 +60,11 @@ export const useUserStore = defineStore(
 
         if (res.code === 0 && res.data) {
           const { accessToken, userId, refreshToken, expiresTime } = res.data
-
           // 保存登录信息
           uni.setStorageSync('token', accessToken)
           uni.setStorageSync('refreshToken', refreshToken)
           uni.setStorageSync('userId', userId)
           uni.setStorageSync('expiresTime', expiresTime)
-
-          // 更新用户信息中的token
-          setUserInfo({
-            token: accessToken,
-            refreshToken,
-            expiresTime,
-          })
 
           await loginSuccess(userId)
           toast.success('登录成功')
@@ -109,7 +81,7 @@ export const useUserStore = defineStore(
      */
     const loginWithSms = async (mobile: string, code: string) => {
       try {
-        const smsLoginData: AppAuthSmsLoginReqVO = {
+        const smsLoginData: any = {
           mobile,
           code,
           // socialType: 0, // 非社交登录
@@ -123,20 +95,11 @@ export const useUserStore = defineStore(
 
         if (res.code === 0 && res.data) {
           const { accessToken, userId, refreshToken, expiresTime } = res.data
-
           // 保存登录信息
           uni.setStorageSync('token', accessToken)
           uni.setStorageSync('refreshToken', refreshToken)
           uni.setStorageSync('userId', userId)
           uni.setStorageSync('expiresTime', expiresTime)
-
-          // 更新用户信息中的token
-          setUserInfo({
-            token: accessToken,
-            refreshToken,
-            expiresTime,
-          })
-
           toast.success('登录成功')
           await getUserInfoFn()
           return res
@@ -150,12 +113,16 @@ export const useUserStore = defineStore(
     /**
      * 获取用户信息
      */
+    const getUserInfo = () => {
+      return userInfo.value
+    }
+    /**
+     * 获取用户信息
+     */
     const getUserInfoFn = async () => {
-      const res = await getUserInfo({})
+      const res = await getUserInfoResp({})
       if (res.code === 0 && res.data) {
-        const userData = res.data
-        setUserInfo(userData)
-        uni.setStorageSync('userInfo', userData)
+        setUserInfo(res.data)
         return res
       }
     }
@@ -163,13 +130,8 @@ export const useUserStore = defineStore(
      * 退出登录
      */
     const logout = async () => {
-      try {
-        // await apiLogout({})
-        removeUserInfo()
-        toast.success('退出登录成功')
-      } catch (error) {
-        removeUserInfo()
-      }
+      removeUserInfo()
+      toast.success('退出登录成功')
     }
 
     /**
@@ -185,8 +147,6 @@ export const useUserStore = defineStore(
             fail: reject,
           })
         })
-
-        console.log('微信登录code', wxLoginRes.code, code)
 
         const loginData: AppAuthWeixinMiniAppLoginReqVO = {
           loginCode: wxLoginRes.code,
@@ -207,12 +167,6 @@ export const useUserStore = defineStore(
           uni.setStorageSync('userId', userId)
           uni.setStorageSync('expiresTime', expiresTime)
 
-          // 更新用户信息中的token
-          setUserInfo({
-            token: accessToken,
-            refreshToken,
-            expiresTime,
-          })
           await loginSuccess(userId)
           toast.success('微信登录成功')
           return res
@@ -232,44 +186,21 @@ export const useUserStore = defineStore(
       await loginIM(imUserId, resUserSig.data)
       await getUserInfoFn()
     }
-    // 计算属性：是否已登录
-    const isLoggedIn = computed(() => !!userInfo.value.token)
 
-    // 初始化时从本地存储恢复用户信息
-    const initUserInfo = () => {
-      try {
-        const storedUserInfo = uni.getStorageSync('userInfo')
-        const storedToken = uni.getStorageSync('token')
-        const storedRefreshToken = uni.getStorageSync('refreshToken')
-        const storedExpiresTime = uni.getStorageSync('expiresTime')
-
-        if (storedUserInfo && storedToken) {
-          setUserInfo({
-            ...storedUserInfo,
-            token: storedToken,
-            refreshToken: storedRefreshToken,
-            expiresTime: storedExpiresTime,
-          })
-        }
-      } catch (error) {
-        console.error('初始化用户信息失败:', error)
-      }
+    let getLoggedIn = () => {
+      return !!uni.getStorageSync('token')
     }
-
-    // 页面加载时初始化用户信息
-    initUserInfo()
 
     return {
       userInfo,
       loginWithPassword,
       loginWithSms,
       wxLogin,
-      getUserInfo: getUserInfoFn,
+      getUserInfo,
+      getUserInfoFn,
       logout,
-      setUserInfo,
       removeUserInfo,
-      isLoggedIn,
-      initUserInfo,
+      getLoggedIn,
     }
   },
   {

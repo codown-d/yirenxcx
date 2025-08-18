@@ -6,7 +6,6 @@ export const useCategoriesStore = defineStore(
   () => {
     const categories = ref([])
     let setCategory = (data) => {
-      console.log('设置职业类别', data)
       categories.value = data
     }
     const clearCategory = () => {
@@ -21,7 +20,6 @@ export const useCategoriesStore = defineStore(
       return categories.value
     }
     const removeCategory = (value: string) => {
-      console.log()
       const index = categories.value.findIndex((cat) => cat.value === value)
       if (index > -1) {
         categories.value.splice(index, 1)

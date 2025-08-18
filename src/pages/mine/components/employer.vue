@@ -2,11 +2,7 @@
   <!-- 用户信息卡片 -->
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
-      <image
-        :src="userInfo?.logo"
-        mode="aspectFill"
-        class="mr-4 w-20 h-20 rounded-full bg-[#F5F6FA]"
-      />
+      <yr-logo-img :img="userInfo?.logo" />
       <view class="flex-1">
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
@@ -19,10 +15,12 @@
               企业认证
             </view>
           </view>
-          <view class="flex items-center gap-2">
+          <view class="flex items-center text-[12px]">
+            公司信息
             <wd-icon name="arrow-right" size="22px"></wd-icon>
           </view>
         </view>
+        <text class="text-[12px] text-gray-500 block mb-1">id:{{ userInfo?.id }}</text>
       </view>
     </view>
 
@@ -147,7 +145,7 @@ import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
 import { MemberUserDO } from '@/service/member'
 
-const { getUserInfo } = useUserStore()
+const { getUserInfoFn } = useUserStore()
 // 用户信息
 const userInfo = ref<MemberUserDO>()
 
@@ -174,19 +172,11 @@ let tools = ref([
   //   path: '',
   // },
 ])
-// 统计数据
-const stats = ref({
-  browsed: 156,
-  followed: 156,
-  applied: 156,
-  interviewed: 156,
-})
 
 // 加载用户数据
 const loadUserData = async () => {
-  let res = await getUserInfo()
+  let res = await getUserInfoFn()
   userInfo.value = res.data
-  console.log(res)
   console.log(res.data)
 }
 const tags = computed(() => {

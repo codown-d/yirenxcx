@@ -1,9 +1,9 @@
 // 登录页面基础配置
 export const LOGIN_CONFIG = {
-  title: '欢迎登录薏仁直聘！',
-  appName: '薏仁直聘',
+  title: '欢迎登录薏人直聘！',
+  appName: '薏人直聘',
   logo: '/static/logo.png',
-  welcomeText: '欢迎登录薏仁直聘',
+  welcomeText: '欢迎登录薏人直聘',
   subtitle: '求职者的招聘平台',
   wechatAuthText: '微信授权登录',
   phoneLoginText: '手机号登录',
@@ -34,7 +34,7 @@ export const FORM_CONFIG = {
 
 // 注册页面配置
 export const REGISTER_CONFIG = {
-  title: '欢迎注册薏仁直聘！',
+  title: '欢迎注册薏人直聘！',
   subtitle: '创建您的专属账户',
   passwordPlaceholder: '请设置登录密码',
   confirmPasswordPlaceholder: '请确认登录密码',

@@ -2,11 +2,8 @@
   <!-- 用户信息卡片 -->
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
-      <image
-        :src="userInfo?.avatar"
-        mode="aspectFill"
-        class="mr-4 w-20 h-20 rounded-full bg-[#F5F6FA]"
-      />
+      <yr-avatar-img :img="userInfo?.avatar" />
+
       <view class="flex-1">
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
@@ -19,10 +16,12 @@
               实名认证
             </view>
           </view>
-          <view class="flex items-center gap-2">
+          <view class="flex items-center text-[12px]">
+            个人信息
             <wd-icon name="arrow-right" size="22px"></wd-icon>
           </view>
         </view>
+        <text class="text-[12px] text-gray-500 block mb-1">id:{{ userInfo?.id }}</text>
         <text class="text-[22rpx] text-gray-500 block mb-1" v-if="false">
           资料完整度{{ 80 }}%，完善资料获得更多机会
         </text>
@@ -165,12 +164,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useUserStore } from '@/store/user'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
-import { MemberUserDO } from '@/service/member'
+import { getUserInfo, MemberUserDO } from '@/service/member'
 
-const { getUserInfo } = useUserStore()
 // 用户信息
 const userInfo = ref<MemberUserDO>()
 
@@ -200,7 +197,7 @@ let tools = ref([
 
 // 加载用户数据
 const loadUserData = async () => {
-  let res = await getUserInfo()
+  let res = await getUserInfo({})
   userInfo.value = res.data
 }
 const tags = computed(() => {

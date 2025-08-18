@@ -1,5 +1,4 @@
 import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
-import { tabBar } from './src/tabbar/config'
 
 export default defineUniPages({
   globalStyle: {
@@ -21,7 +20,6 @@ export default defineUniPages({
   },
   // 如果不需要tabBar，推荐使用 spa 模板。（pnpm create xxx -t spa）
   tabBar: {
-    custom: true,
     color: '#999999',
     selectedColor: '#018d71',
     fontSize: '12px',
@@ -32,7 +30,7 @@ export default defineUniPages({
         iconPath: 'static/tabbar/index.png',
         selectedIconPath: 'static/tabbar/indexH.png',
         pagePath: 'pages/index/index',
-        text: '薏仁',
+        text: '薏人',
       },
       {
         iconPath: 'static/tabbar/msg.png',

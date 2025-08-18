@@ -143,7 +143,7 @@ const userInfo = ref<MemberUserDO>({
 const daiBiaoZuo = ref([])
 const tags = ref([])
 let title1 = computed(() => {
-  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sex)
+  let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
   return [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')

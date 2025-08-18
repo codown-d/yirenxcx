@@ -68,8 +68,8 @@ import { RoleEmu, useRoleStore, useUserStore } from '@/store'
 import { switchTab } from '@/utils'
 import { loginIM } from '@/utils/im'
 import { genUserSig } from '@/service/app'
+import { getUserInfo } from '@/service/member'
 const { getRole, setRole } = useRoleStore()
-const { getUserInfo } = useUserStore()
 const currentUserRole = ref<RoleEmu>(getRole())
 
 // 当前角色信息
@@ -89,7 +89,7 @@ const targetRole = computed(() => {
 
 // 返回上一页
 const goBack = () => {
-  switchTab('/index/index')
+  switchTab('/mine/mine')
 }
 
 // 显示切换确认
@@ -99,17 +99,16 @@ const goBack = () => {
  */
 const showSwitchConfirm = async (targetRole) => {
   let role = targetRole.key
-  let res = await getUserInfo()
+  let res = await getUserInfo({})
   let imUserId = `im_${role}_${res.data.id}`
   let resUserSig = await genUserSig({ params: { userId: imUserId } })
   await loginIM(imUserId, resUserSig.data)
   currentUserRole.value = targetRole.key
-  console.log(role)
   setRole(role)
-  // uni.setTabBarItem({
-  //   index: 0,
-  //   text: role === RoleEmu.employer ? '薏人' : '求职',
-  // })
-  switchTab('/mine/mine')
+  uni.setTabBarItem({
+    index: 0,
+    text: role === RoleEmu.employer ? '薏人' : '求职',
+  })
+  switchTab('/index/index')
 }
 </script>

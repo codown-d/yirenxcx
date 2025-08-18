@@ -100,7 +100,7 @@ import { useDictData } from '@/hooks'
 let { dictData } = useDictData()
 
 const { closeOutside } = useQueue()
-const { getUserInfo } = useUserStore()
+const { getUserInfoFn } = useUserStore()
 
 const mood = [
   '😀',
@@ -163,7 +163,7 @@ const addMood = (mod) => {
   // 分类选项
 }
 const publishPost = async () => {
-  let userInfo = await getUserInfo()
+  let userInfo = await getUserInfoFn()
   console.log(userInfo, postData.value)
   publishing.value = true
   const res = await createForumPost({

@@ -58,13 +58,8 @@ export const isTableBar = (path: string) => {
 export const currRoute = () => {
   const lastPage = getLastPage()
   const currRoute = (lastPage as any).$page
-  // console.log('lastPage.$page:', currRoute)
-  // console.log('lastPage.$page.fullpath:', currRoute.fullPath)
-  // console.log('lastPage.$page.options:', currRoute.options)
-  // console.log('lastPage.options:', (lastPage as any).options)
   // 经过多端测试，只有 fullPath 靠谱，其他都不靠谱
   const { fullPath } = currRoute as { fullPath: string }
-  // console.log(fullPath)
   // eg: /pages/login/index?redirect=%2Fpages%2Fdemo%2Fbase%2Froute-interceptor (小程序)
   // eg: /pages/login/index?redirect=%2Fpages%2Froute-interceptor%2Findex%3Fname%3Dfeige%26age%3D30(h5)
   return getUrlObj(fullPath)
@@ -83,7 +78,6 @@ const ensureDecodeURIComponent = (url: string) => {
  */
 export const getUrlObj = (url: string) => {
   const [path, queryStr] = url.split('?')
-  // console.log(path, queryStr)
 
   if (!queryStr) {
     return {
@@ -94,7 +88,6 @@ export const getUrlObj = (url: string) => {
   const query: Record<string, string> = {}
   queryStr.split('&').forEach((item) => {
     const [key, value] = item.split('=')
-    // console.log(key, value)
     query[key] = ensureDecodeURIComponent(value) // 这里需要统一 decodeURIComponent 一下，可以兼容h5和微信y
   })
   return { path, query }
@@ -117,7 +110,6 @@ export const getAllPages = (key = 'needLogin') => {
   // 这里处理分包
   const subPages: any[] = []
   subPackages.forEach((subPageObj) => {
-    // console.log(subPageObj)
     const { root } = subPageObj
 
     subPageObj.pages
@@ -130,7 +122,6 @@ export const getAllPages = (key = 'needLogin') => {
       })
   })
   const result = [...mainPages, ...subPages]
-  // console.log(`getAllPages by ${key} result: `, result)
   return result
 }
 
@@ -263,7 +254,6 @@ export const navigateBack = () => {
   uni.navigateBack()
 }
 export const navigateTo = (url: string, prefix = '/pages', callback?: (result: any) => void) => {
-  console.log(`${prefix}${url}`)
   uni.navigateTo({
     url: `${prefix}${url}`,
     success: (res) => {

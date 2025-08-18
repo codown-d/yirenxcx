@@ -86,7 +86,6 @@ async function tryAutoLogin() {
   if (!userID || !userSig || isSDKReady) return
   try {
     let res = await loginIM(userID, userSig)
-    console.log(res)
   } catch (err) {
     console.warn('[IM] 自动登录失败', err)
   }

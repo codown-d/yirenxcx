@@ -6,6 +6,7 @@
     image-mode="aspectFill"
     :action="uploadUrl"
     :accept="accept"
+    :header="{ 'tenant-id': 1 }"
     @change="handleChange"
   ></wd-upload>
 </template>

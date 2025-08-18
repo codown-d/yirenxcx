@@ -245,6 +245,7 @@ export type AppMemberUserUpdateReqVO = {
   logo?: string
   /** 性别 */
   sex: number
+  sexName: string
   /** 手机号 */
   mobile?: string
   /** 加密后的密码 */
@@ -1162,6 +1163,7 @@ export type MemberUserDO = {
   avatar?: string
   name?: string
   sex?: number
+  sexName?: string
   birthday?: string
   areaId?: number
   mark?: string
@@ -1227,6 +1229,7 @@ export type MemberUserRespVO = {
   name?: string
   /** 用户性别 */
   sex?: number
+  sexName?: string
   /** 所在地编号 */
   areaId?: number
   /** 所在地全程 */
@@ -1294,6 +1297,7 @@ export type MemberUserUpdateReqVO = {
   name?: string
   /** 用户性别 */
   sex?: number
+  sexName?: string
   /** 所在地编号 */
   areaId?: number
   /** 所在地全程 */
