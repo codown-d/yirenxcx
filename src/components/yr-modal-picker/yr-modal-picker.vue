@@ -58,7 +58,6 @@ const removeSkill = (index) => {
 }
 const triggerValidate = () => {
   nextTick(() => {
-    console.log(getCurrentInstance())
     let parent = getCurrentInstance()?.proxy.$parent
     while (parent && !parent.validateField) {
       parent = parent.$parent

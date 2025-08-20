@@ -150,7 +150,6 @@ const rules = {
 const formRef = ref()
 
 const onSalaryChange = (data) => {
-  console.log(data)
   formData.value = {
     ...formData.value,
     salaryMin: data[0],

@@ -217,11 +217,9 @@ export const switchTab = (url: string) => {
       uni.setStorageSync('tabbar', 4)
       break
   }
-  setTimeout(() => {
-    uni.switchTab({
-      url: `/pages${url}`,
-    })
-  }, 0)
+  uni.switchTab({
+    url: `/pages${url}`,
+  })
 }
 /**
  * Re-launches the application to the specified page URL.

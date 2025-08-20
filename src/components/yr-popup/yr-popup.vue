@@ -64,7 +64,6 @@ const showTopicPicker = () => {
 const emit = defineEmits(['update:modelValue'])
 
 const handleConfirm = () => {
-  console.log(selectedTopics.value)
   emit('update:modelValue', selectedTopics.value.join(','))
   showTopicModal.value = false
 }

@@ -79,11 +79,18 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RoleEmu, useRoleStore } from '@/store'
-import { AppYrzpZuJiRespVO, getJob, getZuJiByJob, getZuJiBySkeer, getZuJiPage } from '@/service/app'
+import {
+  AppYrzpZuJiRespVO,
+  getJob,
+  getZuJiByJob,
+  getZuJiBySkeer,
+  getJobSeekerByUserId,
+} from '@/service/app'
+import { uniq } from 'lodash-es'
 let { getRole } = useRoleStore()
 
 // 页面状态
-const followList = ref<AppYrzpZuJiRespVO[]>([])
+const followList = ref<any>([])
 const loading = ref(false)
 
 // 页面加载
@@ -106,12 +113,12 @@ const loadFollowList = async () => {
   try {
     if (getRole() === RoleEmu.seeker) {
       let list = await getZuJiByJob({})
-      let ids = list.data.map((item) => item.jobId).join(',')
+      let ids = uniq(list.data.map((item) => item.jobId)).join(',')
       let jobs = await getJob({ params: { ids } })
       followList.value = jobs.data
     } else {
       let list = await getZuJiBySkeer({})
-      let userIds = list.data.map((item) => item.jobId).join(',')
+      let userIds = uniq(list.data.map((item) => item.skeerId)).join(',')
       let jobs = await getJobSeekerByUserId({ params: { userIds } })
       followList.value = jobs.data
     }

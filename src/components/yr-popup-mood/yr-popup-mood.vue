@@ -64,7 +64,6 @@ const showPicker = () => {
 const emit = defineEmits(['update:modelValue'])
 
 const handleConfirm = () => {
-  console.log(selected.value)
   emit('update:modelValue', selected.value.join(','))
   showModal.value = false
 }

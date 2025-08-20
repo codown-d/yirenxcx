@@ -73,7 +73,10 @@
         <view class="flex items-center justify-between mb-3 mt-1">
           <text class="text-base font-semibold text-gray-800">个人展示</text>
         </view>
-        <view class="gap-2 gap-y-3 w-full">
+        <view
+          class="gap-2 gap-y-3 w-full"
+          v-if="userInfo.jianJieImages + userInfo.jianJieVideos + userInfo.jiNengVideos"
+        >
           <view class="mb-4">
             <yr-img-preview v-model="userInfo.jianJieImages" />
           </view>
@@ -82,6 +85,7 @@
             <yr-video-preview v-model="userInfo.jiNengVideos" />
           </view>
         </view>
+        <wd-status-tip image="content" tip="暂无内容" v-else />
       </wd-card>
       <!-- 代表作品 -->
 
@@ -89,7 +93,12 @@
         <view class="flex items-center justify-between mb-3 mt-1">
           <text class="text-base font-semibold text-gray-800">代表作品</text>
         </view>
-        <yr-tag-list v-model="userInfo.daiBiaoZuo" className="w-full justify-between !px-4 !py-3" />
+        <yr-tag-list
+          v-model="userInfo.daiBiaoZuo"
+          v-if="userInfo.daiBiaoZuo"
+          className="w-full justify-between !px-4 !py-3"
+        />
+        <wd-status-tip image="content" tip="暂无内容" v-else />
       </wd-card>
       <wd-card>
         <view class="flex items-center justify-between mb-3 mt-1">
@@ -105,22 +114,19 @@
   </view>
   <yr-page-footer>
     <view class="flex items-center gap-4">
-      <view v-if="false">
-        <wd-icon
-          :name="isFavorited ? 'heart-filled' : 'heart'"
-          :color="isFavorited ? '#ff4757' : '#999'"
-          custom-class="text-6"
-        />
-      </view>
-      <view @click="handleCollect">
-        <wd-icon
-          :name="collect ? 'star-filled' : 'star'"
-          :color="collect ? '#ffd700' : '#999'"
-          custom-class="text-6"
-        />
-      </view>
+      <wd-icon
+        :name="isFavorited ? 'heart-filled' : 'heart'"
+        :color="isFavorited ? '#ff4757' : '#999'"
+        custom-class="text-6"
+      />
+      <wd-icon
+        @click="handleCollect"
+        :name="collect ? 'star-filled' : 'star'"
+        :color="collect ? '#ffd700' : '#999'"
+        custom-class="text-6"
+      />
     </view>
-    <wd-button type="success" custom-class="flex-1 " :round="false" @click="handleContact">
+    <wd-button type="success" custom-class="flex-1 !ml-4" :round="false" @click="handleContact">
       立即联系
     </wd-button>
   </yr-page-footer>
@@ -131,9 +137,10 @@ import { ref } from 'vue'
 import { navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
 import { find } from 'lodash-es'
-import { getUserInfo, MemberUserDO } from '@/service/member'
+import { getUserByIds, getUserInfo, MemberUserDO } from '@/service/member'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 import { useDictData } from '@/hooks'
+import { createZuJi, updateUser } from '@/service/app'
 let { dictData } = useDictData()
 
 // 用户信息数据
@@ -148,11 +155,13 @@ let title1 = computed(() => {
     .filter((el) => !!el)
     .join(' • ')
 })
-
+let userId = ref()
 // 加载用户数据
 const loadUserData = async () => {
-  let res = await getUserInfo({})
-  userInfo.value = res.data
+  await updateUser({ body: { userId: userId.value, jianLiLiuLan: '+1' } })
+  await createZuJi({ body: { skeerId: userId.value } })
+  let res = await getUserByIds({ params: { userIds: userId.value } })
+  userInfo.value = res.data[0]
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobSeekerId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobSeekerId == userInfo.value.id)
 }
@@ -164,7 +173,10 @@ const handleCollect = () => {
 const handleContact = () => {
   navigateToSub(`/chat/chat?toUserID=im_${RoleEmu.seeker}_${userInfo.value.id}`)
 }
-onShow(() => {
-  loadUserData()
+onLoad((options) => {
+  if (options?.seekerId) {
+    userId.value = options.seekerId
+    loadUserData()
+  }
 })
 </script>

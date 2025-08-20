@@ -105,10 +105,6 @@ const showSwitchConfirm = async (targetRole) => {
   await loginIM(imUserId, resUserSig.data)
   currentUserRole.value = targetRole.key
   setRole(role)
-  uni.setTabBarItem({
-    index: 0,
-    text: role === RoleEmu.employer ? '薏人' : '求职',
-  })
   switchTab('/index/index')
 }
 </script>

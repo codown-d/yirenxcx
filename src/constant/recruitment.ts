@@ -11,8 +11,8 @@ export interface FilterTag {
 export const FILTER_TAGS: FilterTag[] = [
   {
     id: 'all',
-    label: '前台',
-    value: '前台',
+    label: '台前',
+    value: '台前',
     url: '/static/images/taiqian.svg',
     urlh: '/static/images/taiqianh.svg',
   },

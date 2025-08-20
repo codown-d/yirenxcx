@@ -36,7 +36,6 @@ const props = defineProps({
     default: 'image',
   },
 })
-console.log(props)
 
 const list = ref([])
 const uploadUrl = computed(() => {

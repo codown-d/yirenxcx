@@ -55,9 +55,13 @@ function clearCache() {
 
 // ✅ 登录
 async function loginIM(userID: string | number, userSig: string) {
-  await tim.login({ userID, userSig })
-  uni.setStorageSync('imUserID', userID)
-  uni.setStorageSync('imUserSig', userSig)
+  try {
+    await tim.logout()
+  } finally {
+    await tim.login({ userID, userSig })
+    uni.setStorageSync('imUserID', userID)
+    uni.setStorageSync('imUserSig', userSig)
+  }
 }
 
 // ✅ 封装：等待 SDK Ready

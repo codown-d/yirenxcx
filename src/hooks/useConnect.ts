@@ -6,6 +6,7 @@ import {
   getJob,
   update,
   updateParams,
+  getJobSeekerByUserId,
 } from '@/service/app'
 import { getUserByIds } from '@/service/member'
 import { RoleEmu, useRoleStore } from '@/store'

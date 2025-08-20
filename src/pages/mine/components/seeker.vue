@@ -1,59 +1,81 @@
 <template>
-  <!-- 用户信息卡片 -->
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
-      <yr-logo-img :img="userInfo?.logo" />
+      <yr-avatar-img :img="userInfo?.avatar" />
+
       <view class="flex-1">
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
-            <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.companyName }}</text>
+            <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.name }}</text>
             <view
               @click.stop="goAttestation"
               class="bg-[#eee] text-[20rpx] px-2 py-1 rounded-full"
-              :class="[userInfo?.qiyeAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
+              :class="[userInfo?.gerenAttestation == 1 ? 'bg-[#FFDD7E] text-[#B16D00]' : '']"
             >
-              企业认证
+              实名认证
             </view>
           </view>
           <view class="flex items-center text-[12px]">
-            公司信息
+            个人信息
             <wd-icon name="arrow-right" size="22px"></wd-icon>
           </view>
         </view>
         <text class="text-[12px] text-gray-500 block mb-1">id:{{ userInfo?.id }}</text>
+        <text class="text-[22rpx] text-gray-500 block mb-1" v-if="false">
+          资料完整度{{ 80 }}%，完善资料获得更多机会
+        </text>
       </view>
     </view>
-    <!-- 基本信息 -->
-    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden mb-5">
-      <yr-img-title url="jigou.svg" :title="userInfo?.personNumber" v-if="userInfo?.personNumber" />
-      <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" v-if="userInfo?.chengLiTime" />
-      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
-      <yr-img-title url="jingyan.svg" :title="userInfo?.involved" v-if="userInfo?.involved" />
+
+    <!-- 专业信息 -->
+    <view class="mb-2">
+      <text class="text-4" v-if="userInfo?.shenGao">
+        {{ userInfo?.shenGao }} cm&nbsp;&nbsp;•&nbsp;&nbsp;
+      </text>
+      <text class="text-4" v-if="userInfo?.tiZhong">
+        {{ userInfo?.tiZhong }} kg&nbsp;&nbsp;•&nbsp;&nbsp;
+      </text>
+      <text class="text-4" v-if="userInfo?.teChang">{{ userInfo?.teChang }}</text>
     </view>
-    <wd-divider custom-class="!px-0 mt-5" />
+    <view class="flex flex-wrap gap-2 mb-3">
+      <yr-tag-list v-model="userInfo.tags" class-name="!text-[14px]"></yr-tag-list>
+    </view>
+    <!-- 基本信息 -->
+    <view class="flex items-center text-gray-500 justify-between mb-5">
+      <yr-img-title
+        url="jingyan.svg"
+        :title="userInfo?.gongZuoJingYan"
+        v-if="userInfo?.gongZuoJingYan"
+      />
+      <yr-img-title
+        url="school.svg"
+        :title="userInfo?.biYeYuanXiao"
+        v-if="userInfo?.biYeYuanXiao"
+      />
+      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
+    </view>
+    <wd-divider custom-class="!px-0 mt-4" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1">
         <text class="text-6 font-bold text-gray-800 block pb-2">
-          {{ userInfo?.qiYeLiuLan || 0 }}
+          {{ userInfo?.jianLiLiuLan || 0 }}
         </text>
-        <text class="text-4 text-gray-500">企业浏览</text>
+        <text class="text-4 text-gray-500">简历浏览</text>
+      </view>
+      <view class="text-center flex-1">
+        <text class="text-6 font-bold text-gray-800 block pb-2">{{ userInfo?.guanZhu || 0 }}</text>
+        <text class="text-4 text-gray-500">获得关注</text>
       </view>
       <view class="text-center flex-1">
         <text class="text-6 font-bold text-gray-800 block pb-2">
-          {{ userInfo?.zhiWeiLiuLan || 0 }}
+          {{ userInfo?.touDiJianLi || 0 }}
         </text>
-        <text class="text-4 text-gray-500">职位浏览</text>
+        <text class="text-4 text-gray-500">投递简历</text>
       </view>
       <view class="text-center flex-1">
         <text class="text-6 font-bold text-gray-800 block pb-2">
-          {{ userInfo?.shouDaoJianLi || 0 }}
-        </text>
-        <text class="text-4 text-gray-500">收到简历</text>
-      </view>
-      <view class="text-center flex-1">
-        <text class="text-6 font-bold text-gray-800 block pb-2">
-          {{ userInfo?.mianShiAnPai || 0 }}
+          {{ userInfo?.mianShiYaoQing || 0 }}
         </text>
         <text class="text-4 text-gray-500">面试邀请</text>
       </view>
@@ -109,32 +131,32 @@
     <view class="flex justify-between gap-2">
       <navigate-to
         class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
-        toTab="/index/index"
+        to-sub="/preview-resume/preview-resume"
       >
         <image src="/static/images/yljl.png" mode="scaleToFill" class="w-7 h-7" />
-        <text>搜索人才</text>
+        <text>在线简历</text>
       </navigate-to>
       <navigate-to
         class="flex-1 flex items-center bg-linear-100 h-14 rounded-2 text-4 gap-3 pl-5"
         to-tab="/plus/plus"
       >
         <image src="/static/images/fbqz.png" mode="scaleToFill" class="w-7 h-7" />
-        <text>发布招聘</text>
+        <text>发布求职</text>
       </navigate-to>
     </view>
   </view>
 
   <!-- 其他功能 -->
-  <wd-card>
+  <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
     <text class="text-4 font-medium text-gray-800 block pb-3">其他功能</text>
     <wd-cell
       :title="item.name"
       is-link
-      :key="item.name"
       :to="'/pages-sub' + item.path"
+      :key="item.name"
       v-for="item in tools"
     ></wd-cell>
-  </wd-card>
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -149,7 +171,7 @@ let props = defineProps({
     default: () => {},
   },
 })
-
+console.log(props)
 let tools = ref([
   // {
   //   name: '我的关注',
@@ -173,7 +195,6 @@ let tools = ref([
   //   path: '',
   // },
 ])
-
 // 升级VIP
 const upgradeVip = () => {
   toast.info('跳转到VIP升级页面')
@@ -181,16 +202,9 @@ const upgradeVip = () => {
 
 // 跳转到在线简历
 const goToOnlineResume = () => {
-  navigateToSub('/employer-edit/employer-edit')
+  navigateToSub('/seeker-edit/seeker-edit')
 }
 
-// 预览简历
-const previewResume = () => {
-  toast.info('预览简历')
-}
-const goToMyZuJi = () => {
-  navigateToSub('/my-zuji/my-zuji')
-}
 // 跳转到我的关注
 const goToMyFollows = () => {
   navigateToSub('/my-follows/my-follows')
@@ -199,9 +213,23 @@ const goToMyCollections = () => {
   navigateToSub('/my-collections/my-collections')
 }
 
+// 违约公示
+const goToContract = () => {
+  navigateToSub('/violation-notice/violation-notice')
+}
+
+// 设置
+const goToMyZuJi = () => {
+  navigateToSub('/my-zuji/my-zuji')
+}
+
+// 联系客服
+const contactService = () => {
+  toast.info('联系客服')
+}
 const goAttestation = () => {
-  if (props.userInfo?.qiyeAttestation == 0) {
-    navigateToSub('/authentication/authentication')
+  if (props.userInfo?.gerenAttestation == 0) {
+    navigateToSub('/seeker-authentication/seeker-authentication')
   }
 }
 </script>

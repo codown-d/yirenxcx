@@ -31,7 +31,6 @@ const columns = ref([])
 watch(
   () => dictData.value.ALL_CATEGORIES_DISPLAY,
   (val) => {
-    console.log(12347777, val)
     if (!val || val?.length == 0) {
       columns.value = []
     } else {
@@ -82,7 +81,6 @@ let getColumn = (value) => {
   )
 }
 const onChangeDistrict = (pickerView, item, columnIndex, resolve) => {
-  console.log(pickerView, item, columnIndex, 23456)
   let arr = getColumn(item[columnIndex].value)
   if (columnIndex === 0) {
     pickerView.setColumnData(1, arr[1])
@@ -105,7 +103,6 @@ watch(
   () => props,
   (val) => {
     let { jobType, jobDomain, jobSpecific } = val
-    console.log(jobType, jobDomain, jobSpecific)
     if (jobType && jobDomain && jobSpecific) {
       nextTick(() => {
         dataVal.value = [jobType, jobDomain, jobSpecific]

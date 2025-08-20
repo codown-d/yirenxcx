@@ -164,7 +164,6 @@ const addMood = (mod) => {
 }
 const publishPost = async () => {
   let userInfo = await getUserInfoFn()
-  console.log(userInfo, postData.value)
   publishing.value = true
   const res = await createForumPost({
     body: { ...postData.value, userId: userInfo.data.id },

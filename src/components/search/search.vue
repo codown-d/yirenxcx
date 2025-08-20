@@ -44,7 +44,6 @@ const onConfirm = () => {
   emit('confirm', searchKeyword.value)
 }
 const onInput = (e) => {
-  console.log(e)
   searchKeyword.value = e.value
   emit('input', searchKeyword.value)
 }

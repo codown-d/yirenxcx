@@ -1,6 +1,5 @@
 <template>
   <view class="mt-2">
-    <!-- 基本信息 -->
     <text class="text-base font-semibold text-gray-900 block mx-4 mb-4">基本信息</text>
     <wd-form ref="form" :model="userForm" :errorType="'toast'" :rules="rules">
       <wd-card>
@@ -18,7 +17,20 @@
         <wd-cell title="手机号" vertical>
           <wd-input v-model="userForm.mobile" placeholder="请输入手机号" prop="mobile" />
         </wd-cell>
-
+        <wd-cell title="身高" vertical>
+          <wd-input v-model="userForm.shenGao" placeholder="请输入身高" prop="shenGao">
+            <template #suffix>
+              <text>cm</text>
+            </template>
+          </wd-input>
+        </wd-cell>
+        <wd-cell title="体重" vertical>
+          <wd-input v-model="userForm.tiZhong" placeholder="请输入体重" prop="tiZhong">
+            <template #suffix>
+              <text>kg</text>
+            </template>
+          </wd-input>
+        </wd-cell>
         <!-- 邮箱地址 -->
         <wd-cell title="邮箱地址" vertical>
           <wd-input v-model="userForm.email" placeholder="请输入邮箱地址" prop="email" />
@@ -84,11 +96,23 @@
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack } from '@/utils'
-import { AppMemberUserUpdateReqVO, getUserInfo, updateUser } from '@/service/member'
+import { getUserInfo, MemberUserDO, updateUser } from '@/service/member'
 import { useDictData } from '@/hooks'
 let { dictData } = useDictData()
 
-const userForm = ref<AppMemberUserUpdateReqVO>()
+const userForm = ref<MemberUserDO>({
+  avatar: '',
+  name: '',
+  teChang: '',
+  mobile: '',
+  email: '',
+  biYeYuanXiao: '',
+  gongZuoJingYan: '',
+  locationCode: '',
+  xueLi: '',
+  sexName: '',
+  qiWangXinZi: '',
+})
 const form = ref()
 const loading = ref(false)
 
@@ -97,6 +121,8 @@ const rules = {
   name: [{ required: true, message: '请填写姓名' }],
   teChang: [{ required: true, message: '请填写专业特长' }],
   mobile: [{ required: true, message: '请填写手机号' }],
+  shenGao: [{ required: true, message: '请填写身高' }],
+  tiZhong: [{ required: true, message: '请填写体重' }],
   email: [
     {
       required: true,

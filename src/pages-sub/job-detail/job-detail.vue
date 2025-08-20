@@ -186,15 +186,12 @@ const loadJobDetail = async () => {
   })
   let item = jobInfo.data[0]
   item['info'] = JSON.parse(item.info)
+  await updateUser({ body: { userId: item.employerId, zhiWeiLiuLan: '+1' } })
   jobDetail.value = item
-  console.log(jobDetail.value)
-
   let resGuanZhu = await getGuanZhuJobSeekerFn({ field: 'guanZhuJobId' })
   isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobDetail.value.id)
-  console.log(isFavorited.value)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
   collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobDetail.value.info.id)
-
   let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
   similarJobList.value = res.data.list.slice(0, 3).map((item) => {
     item['info'] = JSON.parse(item.info || '{}')
@@ -233,7 +230,7 @@ const handleApply = async () => {
 }
 
 const goToCompany = () => {
-  navigateToSub(`/employer-details/employer-details?id=${jobDetail.value.info?.id}`)
+  navigateToSub(`/employer-details/employer-details?companyId=${jobDetail.value.companyId}`)
 }
 
 // 查看相似职位

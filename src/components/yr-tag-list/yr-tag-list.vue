@@ -1,12 +1,12 @@
 <template>
   <view class="flex items-center gap-2">
     <wd-tag
-      :custom-class="`!px-2 !py-1 !rounded-1 ${className}`"
+      :custom-class="`!px-2 !py-1 !rounded-1 text-[24rpx] ${className}`"
       :key="item"
       :type="type"
       v-for="item in list"
     >
-      <view class="flex gap-1 items-center text-[24rpx]">
+      <view class="flex gap-1 items-center">
         {{ item }}
       </view>
     </wd-tag>
@@ -31,7 +31,6 @@ let props = defineProps({
   },
 })
 let list = ref(props.modelValue?.split(',').filter((i) => !!i))
-
 watch(
   () => props.modelValue,
   (val) => {
@@ -43,7 +42,6 @@ const emit = defineEmits(['update:modelValue'])
 // const handleConfirm = ({ selectedItems: items, value }: any) => {
 //   selectVal.value = value
 //   selectedItems.value = items
-//   console.log(value)
 //   emit('update:modelValue', selectVal.value)
 // }
 </script>

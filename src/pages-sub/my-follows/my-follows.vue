@@ -38,7 +38,7 @@
                 <yr-tag-list v-model="item.requirementDetails"></yr-tag-list>
               </view>
               <view class="flex justify-between items-center">
-                <view class="w-[120px] flex">
+                <view class="flex-1 flex">
                   {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
                   关注
                 </view>
@@ -75,7 +75,7 @@
                 ></yr-tag-list>
               </view>
               <view class="flex justify-between items-center">
-                <view class="w-[120px] flex">
+                <view class="flex-1 flex">
                   {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
                   关注
                 </view>

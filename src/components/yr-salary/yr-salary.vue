@@ -13,11 +13,17 @@ let props = defineProps({
     type: Number,
     default: 0,
   },
+  salary: {
+    type: String,
+    default: '',
+  },
 })
 const text = computed(() => {
-  if (!props.salaryMax) {
+  if (props.salary) {
+    return props.salary
+  } else if (!props.salaryMax && props.salaryMin) {
     return `${props.salaryMin}元/月以上`
-  } else if (!props.salaryMin) {
+  } else if (!props.salaryMin && props.salaryMax) {
     return `${props.salaryMax}元/月以下`
   } else if (props.salaryMin && props.salaryMax) {
     return `${props.salaryMin} - ${props.salaryMax}元/月`

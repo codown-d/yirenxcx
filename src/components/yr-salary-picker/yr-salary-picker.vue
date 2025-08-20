@@ -29,7 +29,6 @@ const props = defineProps({
     default: '',
   },
 })
-console.log(props)
 const salaryValue = ref()
 const emit = defineEmits(['changeValue', 'update:modelValue'])
 function parseSalary(str) {

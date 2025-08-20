@@ -72,7 +72,7 @@ import { ref, computed, onMounted } from 'vue'
 import { navigateToSub } from '@/utils'
 import { getConversationList, setMessageRead } from '@/utils/im'
 import { RoleEmu, useRoleStore } from '@/store'
-import { merge } from 'lodash-es'
+import { merge, uniq } from 'lodash-es'
 import { getUserByIds } from '@/service/member'
 let { getRole } = useRoleStore()
 
@@ -86,9 +86,11 @@ const isEmployer = computed(() => {
 const getChatList = async () => {
   try {
     let res = await getConversationList()
-    let ids = res.map((item) => {
-      return item.conversationID.split('_').pop()
-    })
+    let ids = uniq(
+      res.map((item) => {
+        return item.conversationID.split('_').pop()
+      }),
+    )
     let infoRes = await getUserByIds({
       params: {
         userIds: ids.join(','),
@@ -100,11 +102,10 @@ const getChatList = async () => {
       return p
     }, {})
 
-    console.log(ids, infoRes, infoListMap)
     setTimeout(() => {
       conversationList.value = res.map((item) => {
         let node = infoListMap[item.userProfile.userID]
-        if (item.conversationID.indexOf('employer') != -1) {
+        if (item.userProfile.userID.indexOf('employer') != -1) {
           return merge(item, {
             userProfile: {
               nick: node?.companyName,
@@ -120,17 +121,15 @@ const getChatList = async () => {
           })
         }
       })
-      console.log(conversationList.value)
     }, 500)
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 }
 const openChat = async (item: any) => {
   setMessageRead(item.conversationID)
   navigateToSub(`/chat/chat?toUserID=${item.userProfile.userID}`)
 }
 onShow(() => {
+  conversationList.value = []
   getChatList()
 })
 </script>

@@ -77,7 +77,6 @@ const change = ({ value }) => {
 
 onShow(() => {
   tabbar.value = uni.getStorageSync('tabbar')
-  console.log(123456789, tabbar.value)
   tabList.value[0].text = getRole() === RoleEmu.employer ? '薏人' : '求职'
 })
 </script>

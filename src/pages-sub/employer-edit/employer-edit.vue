@@ -184,7 +184,6 @@ const addWork = async () => {
 
 const saveResume = async () => {
   let res = await form.value.validate()
-  console.log(res)
   if (!res.valid) {
     return
   }

@@ -85,11 +85,11 @@ const chatInfo = computed(() => {
     : { name: chatObject.value?.name, avatar: chatObject.value?.avatar }
 })
 const sendMessage = async (text) => {
-  let userInfo = uni.getStorageSync('userInfo')
+  let userId = uni.getStorageSync('userId')
   let res = await getJobPage({
     params: {
       str: text,
-      userId: userInfo.id,
+      userId: userId,
       userType: getRole(),
     },
   })
@@ -102,12 +102,10 @@ let getMessageListFn = async (toUserID, count = 100) => {
     toUserID: toUserID,
     count: count,
   })
-  console.log(res.data.messageList, 'res.data.messageList')
   addMsg(res.data.messageList)
 }
 const addMsg = async (list) => {
   const mappedMessages = list.map((item) => {
-    console.log(item)
     return {
       ...item,
       avatar:
@@ -140,7 +138,6 @@ onLoad(async (option) => {
     infoMap.value[`im_${RoleEmu.seeker}_${userInfo.id}`] = userInfo
     infoMap.value[`im_${RoleEmu.employer}_${userInfo.id}`] = userInfo
 
-    console.log(infoMap, 'infoMap')
     setMsgCallback(addMsg)
     getMessageListFn(toUserID.value)
   }

@@ -24,8 +24,8 @@
     </template>
   </wd-navbar>
   <view class="pt-4 pb-4">
-    <jobseeker v-if="roleType === RoleEmu.seeker"></jobseeker>
-    <employer v-else></employer>
+    <Seeker v-if="roleType === RoleEmu.seeker" :userInfo="userInfo" />
+    <Employer v-if="roleType === RoleEmu.employer" :userInfo="userInfo" />
     <view class="px-4">
       <wd-button @click="logoutFn" type="info" :round="false" custom-class="mt-4" block>
         退出登录
@@ -36,27 +36,33 @@
 </template>
 
 <script lang="ts" setup>
+import { getUserInfo } from '@/service/member'
 import { RoleEmu, useRoleStore, useUserStore } from '@/store'
-import { navigateToSub } from '@/utils'
-import jobseeker from './components/jobseeker.vue'
-import employer from './components/employer.vue'
+import Employer from './components/employer.vue'
+import Seeker from './components/seeker.vue'
+import { navigateToSub, switchTab } from '@/utils'
 const { logout } = useUserStore()
+import { onShow } from '@dcloudio/uni-app'
 
-const { role, getRole } = useRoleStore()
-let roleType = ref(role)
+const { getRole } = useRoleStore()
+let roleType = ref('')
 const changeRole = () => {
   navigateToSub('/role-switch/role-switch')
 }
 const logoutFn = () => {
   logout()
-  navigateToSub('/login/login')
+  switchTab('/index/index')
 }
 const roleLabel = computed(() => {
   return getRole() === RoleEmu.seeker ? '招聘方' : '求职者'
 })
-console.log(123456)
+const userInfo = ref({})
+const loadUserData = async () => {
+  let res = await getUserInfo({})
+  userInfo.value = res.data
+}
 onShow(() => {
+  loadUserData()
   roleType.value = getRole()
-  console.log('onShow', roleType.value)
 })
 </script>

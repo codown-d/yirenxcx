@@ -46,30 +46,24 @@
         <text class="text-base font-semibold text-gray-800">技能标签</text>
       </view>
       <wd-card>
-        <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(skill, index) in tags"
-            :key="index"
-            class="flex items-center bg-green-50 text-green-600 text-sm px-2 py-1 rounded-1 border border-green-200"
-          >
-            <text class="mr-1">{{ skill }}</text>
-          </view>
-        </view>
+        <yr-tag-list
+          v-if="userInfo.tags"
+          v-model="userInfo.tags"
+          className="!bg-green-50 !text-green-600 !text-sm !px-2 !py-1"
+        />
+        <wd-status-tip image="content" tip="暂无内容" v-else />
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">代表作品</text>
       </view>
-      <wd-card v-if="daiBiaoZuo.length">
-        <view class="flex flex-wrap gap-2">
-          <view
-            v-for="(work, index) in daiBiaoZuo"
-            :key="index"
-            class="flex items-center justify-between py-3 px-4 bg-[#E9F7F4] rounded-2 mb-2 last:mb-0 w-full"
-          >
-            <text class="text-sm text-[#248069]">{{ work }}</text>
-          </view>
-        </view>
+      <wd-card>
+        <yr-tag-list
+          v-if="userInfo.daiBiaoZuo"
+          v-model="userInfo.daiBiaoZuo"
+          className="w-full justify-between !px-4 !py-3"
+        />
+        <wd-status-tip image="content" tip="暂无内容" v-else />
       </wd-card>
       <!-- 个人展示 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
@@ -79,30 +73,27 @@
         <!-- 个人展示项目 -->
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">个人展示图片 (最多4张)</text>
+            <text class="text-sm font-medium text-gray-700">个人展示图片</text>
           </view>
           <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
-
-          <!-- 图片展示区域 -->
-          <yr-upload v-model="userInfo.jianJieImages" disabled></yr-upload>
+          <yr-img-preview v-model="userInfo.jianJieImages" v-if="userInfo.jiNengVideos" />
+          <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">自我介绍视频 (1个)</text>
+            <text class="text-sm font-medium text-gray-700">自我介绍视频</text>
           </view>
           <text class="text-xs text-gray-500 block mb-3">展示您的形象、舞台风采或专业照片</text>
-
-          <!-- 图片展示区域 -->
-          <yr-upload v-model="userInfo.jianJieVideos" disabled accept="video"></yr-upload>
+          <yr-img-preview v-model="userInfo.jianJieVideos" v-if="userInfo.jianJieVideos" />
+          <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
-            <text class="text-sm font-medium text-gray-700">专业技能视频 (最多3个)</text>
+            <text class="text-sm font-medium text-gray-700">专业技能视频</text>
           </view>
           <text class="text-xs text-gray-500 block mb-3">展示您的专业技能、表演片段或作品集锦</text>
-
-          <!-- 图片展示区域 -->
-          <yr-upload accept="video" disabled v-model="userInfo.jiNengVideos"></yr-upload>
+          <yr-video-preview v-model="userInfo.jiNengVideos" v-if="userInfo.jiNengVideos" />
+          <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
       </wd-card>
       <!-- 求职薏向 -->
@@ -117,12 +108,13 @@
             disabled
           ></yr-picker>
         </wd-cell>
-        <yr-picker
-          :columns="dictData.WORK_TYPES"
-          disabled
-          v-model="userInfo.workType"
-          title="工作性质"
-        ></yr-picker>
+        <wd-cell title="工作性质">
+          <yr-picker
+            :columns="dictData.WORK_TYPES"
+            disabled
+            v-model="userInfo.workType"
+          ></yr-picker>
+        </wd-cell>
       </wd-card>
     </wd-form>
   </view>
@@ -136,27 +128,13 @@ import { useDictData } from '@/hooks'
 let { dictData } = useDictData()
 
 // 用户信息数据
-const userInfo = ref<MemberUserDO>({
-  qiWangXinZi: '',
-  workType: '',
-})
-const daiBiaoZuo = ref([])
-const tags = ref([])
+const userInfo = ref<MemberUserDO>()
 let title1 = computed(() => {
   let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
   return [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
     .filter((el) => !!el)
     .join(' • ')
 })
-watch(
-  () => userInfo.value,
-  (value) => {
-    tags.value = value.tags.split(',')
-    daiBiaoZuo.value = value.daiBiaoZuo.split(',')
-  },
-)
-
-// 加载用户数据
 const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data

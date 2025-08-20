@@ -19,7 +19,7 @@
     :custom-style="`background-color: rgba(255,255,255, ${opacity})!important`"
   ></wd-navbar>
   <view class="text-[#252525]">
-    <scroll-view scroll-y @scroll="handleScroll" @scrolltolower="onScrollToLower">
+    <scroll-view scroll-y @scroll="handleScroll" @scrolltolower="onScrollToLower" class="h-100vh">
       <view class="relative pb-10">
         <view
           class="absolute top-0 h-full w-full z-0"
@@ -295,6 +295,10 @@ onShow(() => {
   role.value = getRole()
   filter.value = getFilter()
   getDataFn()
+  uni.setTabBarItem({
+    index: 0,
+    text: role.value === RoleEmu.employer ? '薏人' : '求职',
+  })
 })
 
 // 右上角分享给好友

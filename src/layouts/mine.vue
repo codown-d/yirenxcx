@@ -28,7 +28,6 @@ const theme: ConfigProviderThemeVars = { ...themeVars }
 const { safeAreaInsets } = getSystemInfoSync()
 const { title, getCurrentPage } = useNavigation()
 const { isTab = false, style } = getCurrentPage()
-console.log(style, title)
 const opacity = ref(0)
 const handleScroll = (e: any) => {
   if (e.detail.scrollTop > 100) {

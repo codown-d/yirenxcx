@@ -43,7 +43,6 @@ const theme: ConfigProviderThemeVars = { ...themeVars }
 const { safeAreaInsets } = getSystemInfoSync()
 const { title, getCurrentPage } = useNavigation()
 const { isTab = false, style } = getCurrentPage()
-console.log(style, title)
 const handleClickLeft = () => {
   navigateBack()
 }

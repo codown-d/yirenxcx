@@ -57,7 +57,7 @@
               </view>
 
               <view class="flex justify-between items-center">
-                <view class="w-[120px] flex">
+                <view class="flex">
                   {{ dayjs(item.updateAt).format('YYYY/MM/DD') }}
                   收藏
                 </view>

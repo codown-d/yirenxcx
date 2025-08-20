@@ -60,7 +60,6 @@ const onSelect = (item) => {
     // 已存在 → 移除
     selectedItems.value = selectedItems.value.filter((v) => v !== item.value)
   }
-  console.log(selectedItems.value, 123456)
   emit('update:modelValue', selectedItems.value.join(','))
 }
 watch(

@@ -71,7 +71,5 @@ const toggleLike = (id) => {
     emit('favorite', isLiked.value)
   })
 }
-const goToComments = (val) => {
-  console.log(val)
-}
+const goToComments = (val) => {}
 </script>

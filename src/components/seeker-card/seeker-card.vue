@@ -21,7 +21,7 @@
     <view class="flex items-start mb-3 gap-2">
       <!-- 头像 -->
       <wd-img
-        :src="seekerData.info?.avatar"
+        :src="seekerData.info?.avatar || '/static/images/yiren.png'"
         custom-class="w-16 h-16 rounded-full bg-gray-100 overflow-hidden shadow"
       />
       <!-- 基本信息 -->
@@ -36,7 +36,6 @@
               </wd-tag>
             </view>
           </view>
-          <!-- 收藏按钮 -->
           <view
             class="active:opacity-70 transition-opacity duration-200"
             @click.stop="handleFavorite"
@@ -78,7 +77,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { useConnect } from '@/hooks'
-import { YRZPJobSeekerDO } from '@/service/app'
+import { updateUser, YRZPJobSeekerDO } from '@/service/app'
 import { navigateToSub } from '@/utils'
 const { changeConnect } = useConnect()
 
@@ -113,12 +112,15 @@ watch(
 const emit = defineEmits(['click', 'favorite', 'contact'])
 const handleCardClick = () => {
   emit('click', props.seekerData)
-  navigateToSub(`/seeker-details/seeker-details?seekerId=${props.seekerData.id}`)
+  navigateToSub(`/seeker-details/seeker-details?seekerId=${props.seekerData.userId}`)
 }
 
 const handleFavorite = () => {
-  changeConnect({ guanZhuJobSeekerId: props.seekerData.id }, isFavorited.value, () => {
+  changeConnect({ guanZhuJobSeekerId: props.seekerData.id }, isFavorited.value, async () => {
     isFavorited.value = !isFavorited.value
+    await updateUser({
+      body: { userId: props.seekerData.userId, guanZhu: isFavorited.value ? '+1' : '-1' },
+    })
     emit('favorite', isFavorited.value)
   })
 }

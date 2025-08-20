@@ -45,14 +45,15 @@ const createLiJiTouDiFn = async () => {
         }
   let res = await createLiJiTouDi({ body: obj })
   if (res.code === 0) {
+    let userId = uni.getStorageSync('userId')
     if (getRole() === RoleEmu.seeker) {
-      await updateUser({ body: { mianShiAnPai: '+1', userId: userStore.userInfo.id } })
-      await updateUser({ body: { mianShiYaoQing: '+1', userId: props.chatObjectId } })
+      await updateUser({ body: { touDiJianLi: '+1', userId: props.chatObjectId } })
+      await updateUser({ body: { shouDaoJianLi: '+1', userId: userId } })
     } else {
-      await updateUser({ body: { touDiJianLi: '+1', userId: userStore.userInfo.id } })
-      await updateUser({ body: { shouDaoJianLi: '+1', userId: props.chatObjectId } })
+      await updateUser({ body: { mianShiYaoQing: '+1', userId: props.chatObjectId } })
+      await updateUser({ body: { mianShiAnPai: '+1', userId: userId } })
     }
-    toast.success(getRole() === RoleEmu.seeker ? '邀请已发出' : '简历已发送')
+    toast.success(getRole() === RoleEmu.seeker ? '简历已发送' : '邀请已发出')
   }
 }
 </script>

@@ -5,7 +5,6 @@
 let props = defineProps({
   modelValue: String,
 })
-console.log(props)
 let imgList = ref([])
 watch(
   () => props.modelValue,

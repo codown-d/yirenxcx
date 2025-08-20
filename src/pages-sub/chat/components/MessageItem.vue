@@ -51,8 +51,7 @@ function getImageUrl(message) {
   )
 }
 const isSelf = computed(() => {
-  let userInfo = uni.getStorageSync('userInfo')
-  console.log(props.message.from, `im_${getRole()}_${userInfo.id}`)
-  return props.message.from === `im_${getRole()}_${userInfo.id}`
+  let userId = uni.getStorageSync('userId')
+  return props.message.from === `im_${getRole()}_${userId}`
 })
 </script>

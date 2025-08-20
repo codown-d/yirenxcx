@@ -76,7 +76,6 @@ const handleConfirm = ({ selectedItems: items, value }: any) => {
 }
 
 const handleClose = (item) => {
-  console.log(item)
   selectedItems.value = selectedItems.value.filter((i) => i.value !== item.value)
   selectVal.value = selectedItems.value.map((i) => i.value)
   emit('update:modelValue', selectVal.value)
@@ -85,7 +84,6 @@ watch(
   () => props.modelValue,
   (val) => {
     selectVal.value = val
-    console.log(val)
     selectedItems.value = props.columns.filter((item) => val.includes(item.value))
   },
 )

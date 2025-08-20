@@ -7,7 +7,6 @@ export function useDictData() {
   const getDictData = async () => {
     let res = await listAllSimple({})
     dictData.value = groupBy(res.data, 'dictType')
-    console.log(dictData.value)
   }
   onMounted(() => {
     getDictData()

@@ -59,39 +59,10 @@
         <view class="flex items-center justify-between mb-3">
           <text class="text-base font-semibold text-gray-800">团队地址</text>
         </view>
-        <view>{{ userInfo.xiangXiAddress }}</view>
+        <view v-if="userInfo.xiangXiAddress">{{ userInfo.xiangXiAddress }}</view>
+        <wd-status-tip image="content" tip="暂无内容" v-else />
       </wd-card>
       <!-- 技能标签 -->
-
-      <wd-card custom-class="!mt-4" v-if="false">
-        <view class="flex items-center justify-between mb-3">
-          <text class="text-base font-semibold text-gray-800">福利待遇</text>
-        </view>
-        <yr-modal-picker
-          v-model="userInfo.benefits"
-          prop="benefits"
-          ref="benefitRef"
-          modal-title="福利待遇"
-        >
-          <view></view>
-        </yr-modal-picker>
-      </wd-card>
-      <!-- 代表作品 -->
-
-      <wd-card custom-class="!mt-4" v-if="false">
-        <view class="flex items-center justify-between mb-3">
-          <text class="text-base font-semibold text-gray-800">招聘要求</text>
-        </view>
-        <yr-modal-picker
-          v-model="userInfo.recruitment"
-          ref="recruitmentRef"
-          prop="recruitment"
-          modal-title="招聘要求"
-        >
-          <view></view>
-        </yr-modal-picker>
-      </wd-card>
-      <!-- 个人展示 -->
 
       <wd-card custom-class="!mt-4">
         <view class="flex items-center justify-between mb-3">
@@ -102,25 +73,18 @@
           <view class="flex items-center justify-between mb-2">
             <text class="text-sm font-medium text-gray-700">工作环境照片</text>
           </view>
-          <yr-img-preview v-model="userInfo.companyImages" />
+          <yr-img-preview v-model="userInfo.companyImages" v-if="userInfo.companyImages" />
+          <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
 
         <view class="mb-4 last:mb-0">
           <view class="flex items-center justify-between mb-2">
             <text class="text-sm font-medium text-gray-700">宣传视频</text>
           </view>
-          <yr-video-preview v-model="userInfo.companyVideos" />
+          <yr-video-preview v-model="userInfo.companyVideos" v-if="userInfo.companyVideos" />
+          <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
       </wd-card>
-
-      <yr-page-footer v-if="false">
-        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
-          预览详情
-        </wd-button>
-        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
-          保存
-        </wd-button>
-      </yr-page-footer>
     </wd-form>
   </view>
 </template>
@@ -130,12 +94,10 @@ import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
 import { updateUser } from '@/service/app'
-import { MemberUserDO, getUserInfo } from '@/service/member'
+import { MemberUserDO, getUserByIds } from '@/service/member'
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })
-const benefitRef = ref()
-const recruitmentRef = ref()
 const rules = {
   companyInfo: [
     {
@@ -162,37 +124,18 @@ const rules = {
     },
   ],
 }
-const goToProfileEdit = () => {
-  navigateToSub('/profile-edit/profile-edit')
-}
-const previewResume = () => {
-  navigateToSub('/preview-resume/preview-resume?id=' + userInfo.value.id)
-}
 
 const loadUserData = async () => {
-  let res = await getUserInfo({})
-  userInfo.value = res.data
+  await updateUser({ body: { userId: companyId.value, qiYeLiuLan: '+1' } })
+  let res = await getUserByIds({ params: { userIds: companyId.value } })
+  userInfo.value = res.data[0]
 }
 
-const addSkill = async () => {
-  console.log(benefitRef.value)
-  benefitRef.value.addItem()
-}
-const addWork = async () => {
-  recruitmentRef.value.addItem()
-}
-
-const saveResume = async () => {
-  await updateUser({
-    body: userInfo.value,
-  })
-  toast.success('保存成功')
-  setTimeout(() => {
-    navigateBack()
-  }, 500)
-}
-
-onShow(() => {
-  loadUserData()
+let companyId = ref()
+onLoad((options) => {
+  if (options?.companyId) {
+    companyId.value = options.companyId
+    loadUserData()
+  }
 })
 </script>
