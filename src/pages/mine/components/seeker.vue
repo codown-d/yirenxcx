@@ -29,13 +29,7 @@
 
     <!-- 专业信息 -->
     <view class="mb-2">
-      <text class="text-4" v-if="userInfo?.shenGao">
-        {{ userInfo?.shenGao }} cm&nbsp;&nbsp;•&nbsp;&nbsp;
-      </text>
-      <text class="text-4" v-if="userInfo?.tiZhong">
-        {{ userInfo?.tiZhong }} kg&nbsp;&nbsp;•&nbsp;&nbsp;
-      </text>
-      <text class="text-4" v-if="userInfo?.teChang">{{ userInfo?.teChang }}</text>
+      {{ title1 }}
     </view>
     <view class="flex flex-wrap gap-2 mb-3">
       <yr-tag-list v-model="userInfo.tags" class-name="!text-[14px]"></yr-tag-list>
@@ -163,6 +157,8 @@
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateToSub } from '@/utils'
+import { useUserInfoTitle } from '@/hooks'
+let { getTitle } = useUserInfoTitle()
 
 // 用户信息
 let props = defineProps({
@@ -171,7 +167,14 @@ let props = defineProps({
     default: () => {},
   },
 })
-console.log(props)
+let title1 = computed(() => {
+  return getTitle([
+    {
+      preUnit: '专业：',
+      value: props.userInfo.teChang,
+    },
+  ])
+})
 let tools = ref([
   // {
   //   name: '我的关注',

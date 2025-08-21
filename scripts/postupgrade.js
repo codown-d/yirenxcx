@@ -26,11 +26,8 @@ const dependencies = [
 exec(`pnpm un ${dependencies.join(' ')}`, (error, stdout, stderr) => {
   if (error) {
     // 如果有错误，打印错误信息
-    console.error(`执行出错: ${error}`)
     return
   }
   // 打印正常输出
-  console.log(`stdout: ${stdout}`)
   // 如果有错误输出，也打印出来
-  console.error(`stderr: ${stderr}`)
 })

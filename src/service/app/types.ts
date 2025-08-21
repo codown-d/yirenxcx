@@ -1547,6 +1547,7 @@ export type YRZPJobDO = {
   location?: string;
   locationCode?: string;
   phone?: string;
+  salary?: string;
   salaryMin?: number;
   salaryMax?: number;
   workType?: string;

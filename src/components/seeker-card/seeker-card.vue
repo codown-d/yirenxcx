@@ -93,9 +93,13 @@ const isFavorited = ref(props.favorited)
 let title1 = computed(() => {
   let { seekerData } = props
   let node = seekerData.jobSpecific?.split('-').pop()
-  return [`${seekerData.info?.age} 岁`, node, seekerData.info?.gongZuoJingYan]
-    .filter((el) => !!el)
-    .join(' • ')
+  let arr = []
+  if (seekerData.info?.age) {
+    arr = [`${seekerData.info?.age} 岁`, node, seekerData.info?.gongZuoJingYan]
+  } else {
+    arr = [node, seekerData.info?.gongZuoJingYan]
+  }
+  return arr.filter((el) => !!el).join(' • ')
 })
 let title2 = computed(() => {
   let { seekerData } = props

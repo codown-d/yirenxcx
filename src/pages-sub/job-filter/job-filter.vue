@@ -11,7 +11,7 @@
 <template>
   <view class="">
     <view class="bg-[#F5F6FA] h-2"></view>
-    <view class="pt-2">
+    <view class="pt-2 mb-3">
       <wd-cell title="位置">
         <yr-location-picker
           v-model="formData.locationCode"
@@ -31,13 +31,31 @@
         <yr-picker :columns="dictData.salaryColumns" prop="salary" v-model="formData.salary" />
       </wd-cell>
     </view>
+    <view class="bg-white mb-3" v-if="getRole() == RoleEmu.employer">
+      <view class="px-4 py-3 border-b border-gray-100">
+        <text class="text-base font-medium text-gray-900">学历水平</text>
+      </view>
+      <yr-btn-select :columns="dictData.EDUCATION_LEVELS" v-model="formData.EDUCATION_LEVELS" />
+    </view>
+    <view class="bg-white mb-3" v-if="getRole() == RoleEmu.employer">
+      <view class="px-4 py-3 border-b border-gray-100">
+        <text class="text-base font-medium text-gray-900">工作经验</text>
+      </view>
+      <yr-btn-select :columns="dictData.EXPERIENCE_LEVELS" v-model="formData.EXPERIENCE_LEVELS" />
+    </view>
     <view class="bg-white mb-3">
       <view class="px-4 py-3 border-b border-gray-100">
-        <text class="text-base font-medium text-gray-900">工作类型</text>
+        <text class="text-base font-medium text-gray-900">工作性质</text>
       </view>
       <yr-btn-select :columns="dictData.WORK_TYPES" v-model="formData.workType" />
     </view>
-    <view class="bg-white mb-6">
+    <view class="bg-white mb-3" v-if="getRole() == RoleEmu.seeker">
+      <view class="px-4 py-3 border-b border-gray-100">
+        <text class="text-base font-medium text-gray-900">公司规模</text>
+      </view>
+      <yr-btn-select :columns="dictData.COMPANY_SIZES" v-model="formData.COMPANY_SIZES" />
+    </view>
+    <view class="bg-white mb-6" v-if="getRole() == RoleEmu.seeker">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">福利待遇</text>
       </view>
@@ -47,7 +65,7 @@
       <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">
         清空
       </wd-button>
-      <wd-button type="primary" custom-class="flex-1" :round="false" @click="confirmFilter">
+      <wd-button type="primary" custom-class="flex-1 !ml-4" :round="false" @click="confirmFilter">
         确定
       </wd-button>
     </yr-page-footer>
@@ -57,15 +75,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { switchTab } from '@/utils'
-import { useFilterStore } from '@/store'
+import { useFilterStore, useRoleStore, RoleEmu } from '@/store'
 import { useDictData } from '@/hooks'
+let { getRole } = useRoleStore()
 let { dictData } = useDictData()
 let { setFilter, getFilter } = useFilterStore()
-
 let formData = ref(getFilter() || {})
-
 const category = ref([getFilter()?.jobType, getFilter()?.jobDomain, getFilter()?.jobSpecific])
-
 const resetFilter = () => {
   formData.value = {
     locationCode: '',
@@ -85,6 +101,7 @@ const onConfirmLabel = (data) => {
   formData.value = { ...formData.value, jobType: data[0], jobDomain: data[1], jobSpecific: data[2] }
 }
 const confirmFilter = () => {
+  console.log(formData.value)
   setFilter(formData.value)
   switchTab('/index/index')
 }

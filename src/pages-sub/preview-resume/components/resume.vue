@@ -131,9 +131,13 @@ let { dictData } = useDictData()
 const userInfo = ref<MemberUserDO>()
 let title1 = computed(() => {
   let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
-  return [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
-    .filter((el) => !!el)
-    .join(' • ')
+  let arr = []
+  if (userInfo.value.age) {
+    arr = [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
+  } else {
+    arr = [node?.label, userInfo.value.teChang]
+  }
+  return arr.filter((el) => !!el).join(' • ')
 })
 const loadUserData = async () => {
   let res = await getUserInfo({})

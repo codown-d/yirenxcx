@@ -20,7 +20,7 @@
       <view class="flex items-center">
         <view class="relative mr-3">
           <image
-            :src="item.userProfile.avatar"
+            :src="avatar(item.userProfile)"
             mode="aspectFill"
             class="w-12 h-12 rounded-full bg-gray-50"
           />
@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { navigateToSub } from '@/utils'
 import { getConversationList, setMessageRead } from '@/utils/im'
 import { RoleEmu, useRoleStore } from '@/store'
@@ -83,6 +83,13 @@ const conversationList = ref([])
 const isEmployer = computed(() => {
   return getRole() === RoleEmu.seeker
 })
+let avatar = (userProfile) => {
+  if (userProfile.userID.indexOf(RoleEmu.employer) !== -1) {
+    return userProfile.avatar || '/static/images/zp.png'
+  } else {
+    return userProfile.avatar || '/static/images/yiren.png'
+  }
+}
 const getChatList = async () => {
   try {
     let res = await getConversationList()

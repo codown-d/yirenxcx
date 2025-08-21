@@ -47,7 +47,7 @@ import { ref, computed } from 'vue'
 import { toast } from '@/utils/toast'
 import { LOGIN_CONFIG } from '@/constant/login'
 import { useUserStore } from '@/store'
-import { navigateBack, switchTab } from '@/utils'
+import { switchTab } from '@/utils'
 
 const { wxLogin } = useUserStore()
 

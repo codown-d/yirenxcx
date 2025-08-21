@@ -41,8 +41,9 @@ const props = defineProps({
     default: false,
   },
 })
+console.log(props)
 
-let selectVal = ref()
+let selectVal = ref(props.modelValue)
 let selectedItems = ref<Column[]>([])
 
 const emit = defineEmits(['update:modelValue'])

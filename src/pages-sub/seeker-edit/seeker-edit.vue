@@ -21,7 +21,8 @@
                 <text class="text-lg font-bold text-gray-800 mr-2">{{ userInfo.name }}</text>
                 <view class="">{{ title1 }}</view>
               </view>
-              <view @click="goToProfileEdit">
+              <view @click="goToProfileEdit" class="text-[14px]">
+                编辑
                 <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
               </view>
             </view>
@@ -139,9 +140,9 @@ import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
 import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
-import { useDictData } from '@/hooks'
+import { useDictData, useUserInfoTitle } from '@/hooks'
 let { dictData } = useDictData()
-
+let { getTitle } = useUserInfoTitle()
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ workType: '' })
 const tagsRef = ref()
@@ -151,9 +152,20 @@ const goToProfileEdit = () => {
   navigateToSub('/profile-edit/profile-edit')
 }
 let title1 = computed(() => {
-  return [`${userInfo.value.age || '-'} 岁`, userInfo.value.teChang]
-    .filter((el) => !!el)
-    .join(' • ')
+  return getTitle([
+    {
+      value: userInfo.value.age,
+      unit: '岁',
+    },
+    {
+      value: userInfo.value.shenGao,
+      unit: 'cm',
+    },
+    {
+      value: userInfo.value.tiZhong,
+      unit: 'kg',
+    },
+  ])
 })
 // 加载用户数据
 const loadUserData = async () => {

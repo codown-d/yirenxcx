@@ -29,7 +29,7 @@
                       {{ item.workType }}
                     </wd-tag>
                   </view>
-                  <yr-salary :salaryMax="item.salaryMax" :salaryMin="item.salaryMin" />
+                  <yr-salary :salary="item.salary" />
                 </view>
                 <view>{{ getEmployerTitle(item) }}</view>
               </view>
@@ -63,7 +63,7 @@
                       {{ item.workType }}
                     </wd-tag>
                   </view>
-                  <yr-salary :salaryMax="item.salaryMax" :salaryMin="item.salaryMin" />
+                  <yr-salary :salary="item.salary" />
                 </view>
                 <view>{{ getTitle(item) }}</view>
               </view>

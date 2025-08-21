@@ -17,7 +17,7 @@
           {{ jobData.workType }}
         </view>
       </view>
-      <yr-salary :salaryMin="jobData.salaryMin" :salaryMax="jobData.salaryMax" />
+      <yr-salary :salary="jobData.salary" />
     </view>
 
     <view class="flex items-center justify-between gap-3 mb-3 mt-3">

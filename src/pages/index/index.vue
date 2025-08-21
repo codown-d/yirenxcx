@@ -4,7 +4,7 @@
   layout: 'blank',
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '薏人直聘',
+    navigationBarTitleText: '薏仁直聘',
   },
 }
 </route>
@@ -12,7 +12,7 @@
   <wd-navbar
     :bordered="false"
     :left-arrow="false"
-    left-text="薏人直聘"
+    left-text="薏仁直聘"
     custom-class="font-bold text-primary"
     fixed
     safeAreaInsetTop

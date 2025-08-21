@@ -25,6 +25,7 @@
                 </view>
               </view>
               <view @click="goToProfileEdit">
+                编辑公司信息
                 <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
               </view>
             </view>

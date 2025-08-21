@@ -17,11 +17,7 @@
         </text>
         <image v-else class="w-50vw" mode="widthFix" :src="getImageUrl(message)" />
       </view>
-      <image
-        class="w-[42px] h-[42px] rounded-full bg-gray-200"
-        :src="message.avatar"
-        mode="aspectFit"
-      />
+      <image class="w-[42px] h-[42px] rounded-full bg-gray-200" :src="avatar" mode="aspectFit" />
     </view>
     <yr-time-now
       :time="message.time * 1000"
@@ -32,7 +28,7 @@
 </template>
 
 <script setup>
-import { useRoleStore } from '@/store'
+import { RoleEmu, useRoleStore } from '@/store'
 let { getRole } = useRoleStore()
 let props = defineProps({
   message: Object,
@@ -40,6 +36,13 @@ let props = defineProps({
 /**
  * 获取图片 URL（取第二种规格或第一种）
  */
+let avatar = computed(() => {
+  if (props.message.from.indexOf(RoleEmu.employer) !== -1) {
+    return props.message.avatar || '/static/images/zp.png'
+  } else {
+    return props.message.avatar || '/static/images/yiren.png'
+  }
+})
 function getImageUrl(message) {
   const imageList = message.payload?.imageInfoArray
   if (!imageList || imageList.length === 0) return ''

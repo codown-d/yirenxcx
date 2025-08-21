@@ -15,7 +15,7 @@
       <view class="bg-white rounded-2 p-4">
         <view class="flex items-center justify-between mb-3">
           <text class="text-5 font-bold text-gray-800 block mb-2">{{ jobDetail.title }}</text>
-          <yr-salary :salaryMax="jobDetail.salaryMax" :salaryMin="jobDetail.salaryMin" />
+          <yr-salary :salary="jobDetail.salary" />
         </view>
 
         <!-- 职位标签 -->
@@ -90,7 +90,7 @@
                   <text class="text-4 font-medium text-gray-800 flex-1">
                     {{ similarJob.title }}
                   </text>
-                  <yr-salary :salaryMax="similarJob.salaryMax" :salaryMin="similarJob.salaryMin" />
+                  <yr-salary :salary="similarJob.salary" />
                 </view>
                 <yr-img-title url="jigou.svg" :title="similarJob.info.companyName" />
               </view>
@@ -151,16 +151,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toast } from '@/utils/toast'
-import {
-  createLiJiTouDi,
-  createZuJi,
-  getJob,
-  getJobPage1,
-  updateUser,
-  YRZPJobDO,
-} from '@/service/app'
+import { createLiJiTouDi, createZuJi, getJob, getJobPage1, updateUser } from '@/service/app'
 import { useConnect } from '@/hooks'
-import { navigateTo, navigateToSub } from '@/utils'
+import { navigateToSub } from '@/utils'
 import { RoleEmu } from '@/store'
 const { changeConnect, getGuanZhuJobSeekerFn } = useConnect()
 
