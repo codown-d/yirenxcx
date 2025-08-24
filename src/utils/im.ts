@@ -55,13 +55,21 @@ function clearCache() {
 
 // ✅ 登录
 async function loginIM(userID: string | number, userSig: string) {
-  try {
-    await tim.logout()
-  } finally {
-    await tim.login({ userID, userSig })
-    uni.setStorageSync('imUserID', userID)
-    uni.setStorageSync('imUserSig', userSig)
-  }
+  return new Promise(async (resolve, reject) => {
+    tim.logout().finally(() => {
+      tim
+        .login({ userID, userSig })
+        .then(() => {
+          uni.setStorageSync('imUserID', userID)
+          uni.setStorageSync('imUserSig', userSig)
+          resolve('登录成功')
+        })
+        .catch((err) => {
+          console.error('[IM] 登录失败', err)
+          reject(err)
+        })
+    })
+  })
 }
 
 // ✅ 封装：等待 SDK Ready

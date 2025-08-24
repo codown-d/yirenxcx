@@ -25,7 +25,7 @@
                 </view>
               </view>
               <view @click="goToProfileEdit">
-                编辑公司信息
+                编辑
                 <wd-icon name="arrow-right" custom-class="text-4"></wd-icon>
               </view>
             </view>
@@ -115,7 +115,7 @@
       </wd-card>
     </wd-form>
     <yr-page-footer>
-      <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
+      <wd-button type="info" :round="false" custom-class="flex-1 !mr-4" @click="previewResume">
         预览详情
       </wd-button>
       <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">

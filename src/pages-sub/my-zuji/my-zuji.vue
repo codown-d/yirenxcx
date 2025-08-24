@@ -25,7 +25,12 @@
                 <view class="flex items-center justify-between">
                   <view class="flex items-center mb-[6px]">
                     <text class="text-4 font-bold text-gray-800 mr-2">{{ item.title }}</text>
-                    <wd-tag custom-class="!text-[12px]  font-bold " type="primary" mark>
+                    <wd-tag
+                      custom-class="!text-[12px]  font-bold "
+                      type="primary"
+                      mark
+                      v-if="item.workType"
+                    >
                       {{ item.workType }}
                     </wd-tag>
                   </view>
@@ -79,12 +84,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { RoleEmu, useRoleStore } from '@/store'
-import {
-  getJob,
-  getZuJiByJob,
-  getZuJiBySkeer,
-  getJobSeekerByUserId,
-} from '@/service/app'
+import { getJob, getZuJiByJob, getZuJiBySkeer, getJobSeekerByUserId } from '@/service/app'
 import { uniq } from 'lodash-es'
 let { getRole } = useRoleStore()
 

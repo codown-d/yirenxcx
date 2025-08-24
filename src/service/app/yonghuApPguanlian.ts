@@ -88,3 +88,60 @@ export async function update({
     }
   );
 }
+export async function getPostDetail({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: any
+  options?: CustomRequestOptions;
+}) {
+  return request<any>(
+    '/app-api/yirenzhipin/forum-post/get',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+export async function getReplies({
+  params,
+  options,
+}: {
+  // 叠加生成的Param类型 (非body参数openapi默认没有生成对象)
+  params: any
+  options?: CustomRequestOptions;
+}) {
+  return request<any>(
+    '/app-api/yirenzhipin/forum-comment/page',
+    {
+      method: 'GET',
+      params: {
+        ...params,
+      },
+      ...(options || {}),
+    }
+  );
+}
+export async function sendReplyApi({
+  body,
+  options,
+}: {
+  body: any;
+  options?: CustomRequestOptions;
+}) {
+  return request<any>(
+    '/app-api/yirenzhipin/forum-comment/create',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: body,
+      ...(options || {}),
+    }
+  );
+}

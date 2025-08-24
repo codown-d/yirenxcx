@@ -173,17 +173,22 @@ onLoad((options) => {
 
 // 加载职位详情
 const loadJobDetail = async () => {
+  console.log(123)
   await createZuJi({ body: { jobId: jobId.value } })
+  console.log(1233, jobId.value)
   const jobInfo = await getJob({
     params: { ids: jobId.value },
   })
+  console.log(jobInfo)
   let item = jobInfo.data[0]
   item['info'] = JSON.parse(item.info)
+  console.log(1233)
   await updateUser({ body: { userId: item.employerId, zhiWeiLiuLan: '+1' } })
   jobDetail.value = item
   let resGuanZhu = await getGuanZhuJobSeekerFn({ field: 'guanZhuJobId' })
   isFavorited.value = resGuanZhu.some((item2) => item2.guanZhuJobId == jobDetail.value.id)
   let resShouCang = await getGuanZhuJobSeekerFn({ field: 'shouCangJobId' })
+  console.log(1233)
   collect.value = resShouCang.some((item2) => item2.shouCangJobId == jobDetail.value.info.id)
   let res = await getJobPage1({ params: { pageNo: 1, pageSize: 99 } })
   similarJobList.value = res.data.list.slice(0, 3).map((item) => {

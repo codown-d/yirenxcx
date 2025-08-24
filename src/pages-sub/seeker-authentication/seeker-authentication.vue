@@ -1,25 +1,18 @@
 <route lang="json5" type="page">
 {
-  layout: 'default',
+  layout: 'blank',
   style: {
     navigationBarTitleText: '个人认证',
-    navigationStyle: 'custom',
   },
 }
 </route>
 
 <template>
-  <view class="mx-4 mt-2">
+  <view class="bg-[#F5F6FA] h-screen">
     <!-- 实名认证 -->
-    <text class="text-base font-semibold text-gray-900 block mb-4">个人实名认证</text>
-    <ws-card>
-      <wd-form
-        ref="form"
-        :model="certForm"
-        errorType="toast"
-        :rules="rules"
-        custom-class="rounded-2 overflow-hidden py-4 bg-white "
-      >
+    <text class="mx-4 text-base font-semibold text-gray-900 block mb-3">个人实名认证</text>
+    <wd-card>
+      <wd-form ref="form" :model="certForm" errorType="toast" :rules="rules">
         <wd-cell title="姓名" vertical>
           <wd-input v-model="certForm.name" placeholder="请输入姓名" prop="name" />
         </wd-cell>
@@ -27,7 +20,7 @@
           <wd-input v-model="certForm.idNum" placeholder="请输入身份证号" prop="idNum" />
         </wd-cell>
       </wd-form>
-    </ws-card>
+    </wd-card>
   </view>
 
   <!-- 底部保存按钮 -->
@@ -47,11 +40,10 @@
 <script setup>
 import { showToast } from '@/utils'
 import { getRequest } from '@/service/app'
+import { startEid } from '../../pages/mp_ecard_sdk/main'
 const certForm = ref({
   name: '',
   idNum: '',
-  legalPersonName: '',
-  legalPersonCertNo: '',
 })
 let loading = ref(false)
 const rules = {
@@ -67,27 +59,31 @@ const goAuth = async () => {
   const res = await getRequest({
     body: certForm.value,
   })
-  let { EidToken: token } = JSON.parse(res.data)
-  if (!token) return showToast('获取认证信息失败')
-  try {
-    // #ifdef MP-WEIXIN
-    wx.navigateToMiniProgram({
-      appId: 'wxa594b2ab78138935', // 腾讯云实名核验小程序
-      path: `/pages/auth/index?token=${token}`,
-      success() {
-        console.log('已跳转到腾讯云实名核验界面')
-      },
-      fail(err) {
-        console.error('跳转失败', err)
-      },
-    })
-    // #endif
-
-    // #ifndef MP-WEIXIN
-    showToast('当前平台不支持实名认证')
-    // #endif
-  } catch (err) {
-    showToast('获取认证信息失败')
-  }
+  let { EidToken } = JSON.parse(res.data)
+  if (!EidToken) return showToast('获取认证信息失败')
+  startEid({
+    data: { token: EidToken },
+    verifyDoneCallback: async (res) => {
+      const { token, verifyDone } = res
+      if (verifyDone === true && token) {
+        let res = await getUserInfo({})
+        userInfo.value = res.data
+        await updateUser({
+          body: merge(res.data, { gerenAttestation: 1 }),
+        })
+        setTimeout(() => {
+          navigateBack()
+        }, 500)
+      }
+    },
+  })
 }
+onShow(() => {
+  // setTimeout(() => {
+  //   uni.setNavigationBarColor({
+  //     frontColor: '#ffffff', // 文字颜色，仅支持 #ffffff 和 #000000
+  //     backgroundColor: '#ff0000', // 背景色
+  //   })
+  // }, 2000)
+})
 </script>

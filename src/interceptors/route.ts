@@ -4,16 +4,10 @@
  * 可以设置路由白名单，或者黑名单，看业务需要选哪一个
  * 我这里应为大部分都可以随便进入，所以使用黑名单
  */
-import { useUserStore } from '@/store'
 import { needLoginPages as _needLoginPages, getNeedLoginPages, getLastPage } from '@/utils'
 
 // TODO Check
 const loginRoute = '/pages/login/index'
-
-const isLogined = () => {
-  const userStore = useUserStore()
-  return !!userStore.userInfo.username
-}
 
 const isDev = import.meta.env.DEV
 
@@ -44,8 +38,8 @@ const navigateToInterceptor = {
     if (!isNeedLogin) {
       return true
     }
-    const hasLogin = isLogined()
-    if (hasLogin) {
+    let token = uni.getStorageSync('token')
+    if (token) {
       return true
     }
     const redirectRoute = `${loginRoute}?redirect=${encodeURIComponent(url)}`

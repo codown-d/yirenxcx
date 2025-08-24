@@ -1,10 +1,10 @@
 {
   "globalStyle": {
     "navigationStyle": "default",
-    "navigationBarTitleText": "unibest",
-    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "薏仁直聘",
+    "navigationBarBackgroundColor": "#F5F6FA",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#FFFFFF"
+    "backgroundColor": "#F5F6FA"
   },
   "easycom": {
     "autoscan": true,
@@ -61,7 +61,8 @@
       "layout": "blank",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "薏仁直聘"
+        "navigationBarTitleText": "薏仁直聘",
+        "enableShareAppMessage": true
       }
     },
     {
@@ -118,6 +119,10 @@
         "navigationBarTitleText": "招聘",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/mp_ecard_sdk/index/index",
+      "type": "page"
     }
   ],
   "subPackages": [
@@ -233,6 +238,14 @@
           }
         },
         {
+          "path": "post-details/post-details",
+          "type": "page",
+          "layout": "blank",
+          "style": {
+            "navigationBarTitleText": "论坛"
+          }
+        },
+        {
           "path": "preview-resume/preview-resume",
           "type": "page",
           "layout": "common",
@@ -260,21 +273,11 @@
           }
         },
         {
-          "path": "seeker-authentication/seeker-authentication copy",
-          "type": "page",
-          "layout": "default",
-          "style": {
-            "navigationBarTitleText": "实名认证",
-            "navigationStyle": "custom"
-          }
-        },
-        {
           "path": "seeker-authentication/seeker-authentication",
           "type": "page",
-          "layout": "default",
+          "layout": "blank",
           "style": {
-            "navigationBarTitleText": "个人认证",
-            "navigationStyle": "custom"
+            "navigationBarTitleText": "个人认证"
           }
         },
         {

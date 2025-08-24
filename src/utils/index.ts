@@ -234,19 +234,13 @@ export const reLaunch = (url: string) => {
 export const redirectTo = (url: string, prefix = '/pages') => {
   uni.redirectTo({ url: `${prefix}${url}` })
 }
-export const isLogined = () => {
-  const userStore = useUserStore()
-  return userStore.isLogined
-}
 
 export const goLogin = () => {
-  navigateToSub('/login/login')
-  /**
-   * Navigates to a specified page with optional prefix and callback.
-   * @param url - The target page path (without prefix)
-   * @param [prefix='/pages'] - Optional path prefix (defaults to '/pages')
-   * @param [callback] - Optional success callback function
-   */
+  const pages = getCurrentPages() // 获取当前页面栈
+  const currentPage = pages[pages.length - 1] // 当前页面对象
+  if (!['pages/mine/mine'].includes(currentPage.route)) {
+    navigateToSub('/login/login')
+  }
 }
 export const navigateBack = () => {
   uni.navigateBack()
@@ -285,10 +279,6 @@ export function formatNumber(data: number, fixed = 2): { num: string; unit: stri
   }
 }
 
-export const getAccessToken = () => {
-  const { userInfo } = useUserStore()
-  return userInfo.token
-}
 export const TerminalEnum = {
   UNKNOWN: 0, // 未知, 目的：在无法解析到 terminal 时，使用它
   WECHAT_MINI_PROGRAM: 10, //微信小程序

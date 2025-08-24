@@ -3,13 +3,13 @@
     <view
       :class="[
         'flex p-[10px] pb-1',
-        isSelf ? 'justify-end gap-2' : 'flex-row-reverse justify-end gap-2',
+        message.isSelf ? 'justify-end gap-2' : 'flex-row-reverse justify-end gap-2',
       ]"
     >
       <view
         :class="[
           'bubble p-4 py-2 rounded-xl shadow-sm text-sm max-w-[60%] break-words',
-          isSelf ? 'bg-[#248069]  text-[#FFFFFF]' : 'bg-[#fff] text-[#252525]',
+          message.isSelf ? 'bg-[#248069]  text-[#FFFFFF]' : 'bg-[#fff] text-[#252525]',
         ]"
       >
         <text v-if="message.type === 'TIMTextElem'">
@@ -22,7 +22,7 @@
     <yr-time-now
       :time="message.time * 1000"
       class="flex text-[#8A8D91] text-[12px] px-[60px]"
-      :class="[isSelf ? 'justify-end ' : 'justify-start ']"
+      :class="[message.isSelf ? 'justify-end ' : 'justify-start ']"
     ></yr-time-now>
   </view>
 </template>
@@ -53,8 +53,4 @@ function getImageUrl(message) {
     imageList[0]?.url
   )
 }
-const isSelf = computed(() => {
-  let userId = uni.getStorageSync('userId')
-  return props.message.from === `im_${getRole()}_${userId}`
-})
 </script>

@@ -5,6 +5,7 @@
   style: {
     navigationStyle: 'custom',
     navigationBarTitleText: '薏仁直聘',
+    enableShareAppMessage: true,
   },
 }
 </route>
@@ -99,7 +100,7 @@
             </view>
             <job-card
               v-for="job in jobList"
-              :key="job.id"
+              :key="job.id + '_job'"
               :job-data="job"
               v-if="jobList.length"
               :favorited="job.favorited"
@@ -113,13 +114,14 @@
             </view>
             <seeker-card
               v-for="seeker in seekerList"
-              :key="seeker.id"
+              :key="seeker.id + '_seeker'"
               :seeker-data="seeker"
               :favorited="seeker.favorited"
               v-if="seekerList.length"
             />
             <yr-nodata v-else></yr-nodata>
           </template>
+          <div v-if="noMoreData" class="text-center text-gray-400 mt-4">暂无更多数据</div>
         </view>
       </view>
     </scroll-view>
@@ -168,6 +170,30 @@
     </view>
   </wd-popup>
   <!-- <yr-tab-bar :tabIndex="0"></yr-tab-bar> -->
+  <wd-popup v-model="showSharePopup" custom-class="!bg-transparent" closable>
+    <view class="flex flex-col gap-3 rounded-3 bg-white p-5 w-[280px]">
+      <!-- 标题 -->
+      <view class="text-primary font-bold text-4 text-center">邀请好友，获取更多福利</view>
+      <!-- 内容 -->
+      <view class="text-[#666] text-3 text-center leading-[20px]">
+        分享给好友即可获得更多职位推荐和专属优惠
+      </view>
+      <!-- 分享按钮 -->
+      <view
+        class="flex justify-center mt-4 py-2 rounded-[6px] bg-primary text-white text-center"
+        @click="handleShare"
+      >
+        点击右上角分享
+      </view>
+      <!-- 取消按钮 -->
+      <view
+        class="flex justify-center mt-2 py-2 rounded-[6px] bg-[#F5F6FA] text-[#666] text-center"
+        @click="showSharePopup = false"
+      >
+        取消
+      </view>
+    </view>
+  </wd-popup>
 </template>
 
 <script lang="ts" setup>
@@ -181,7 +207,6 @@ import { onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app'
 import { toast } from '@/utils/toast'
 
 const { safeAreaInsets } = getSystemInfoSync()
-const { getLoggedIn } = useUserStore()
 const { getRole, setRole } = useRoleStore()
 let { getFilter } = useFilterStore()
 
@@ -189,12 +214,12 @@ const opacity = ref(0)
 const show = ref(false)
 let role = ref(getRole())
 const activeFilterTag = ref()
-const jobList = ref<YRZPJobDO[]>([])
-const seekerList = ref<YRZPJobSeekerDO[]>()
+const jobList = ref<any[]>([])
+const seekerList = ref<any[]>([])
 const filterTags = ref<FilterTag[]>(FILTER_TAGS)
 const isShowPopup = ref(false)
 const filter = ref(getFilter())
-const isLoggedIn = ref(false)
+const isLoggedIn = ref(!!uni.getStorageSync('token'))
 
 const swiperList = ref([])
 function handleClick(type) {
@@ -218,21 +243,17 @@ const handleScroll = (e: any) => {
     opacity.value = e.detail.scrollTop / 100
   }
 }
-const onScrollToLower = () => {
-  let token = uni.getStorageSync('token')
-  if (!isShowPopup.value && !token) {
-    show.value = true
-    isShowPopup.value = true
-  }
-}
+
 const handleFilterChange = (type: string) => {
   activeFilterTag.value = type === activeFilterTag.value ? '' : type
   getDataFn()
 }
-
+let pageNo = ref(1)
+let pageSize = ref(10)
+let noMoreData = ref(false)
 const { getGuanZhuJobSeekerFn } = useConnect()
 let getDataFn = async (keyword?: string) => {
-  let pageSize = !isLoggedIn.value ? 6 : 10
+  if (noMoreData.value) return
   if (!isLoggedIn.value || role.value === RoleEmu.employer) {
     let resJobSeeker = await getGuanZhuJobSeekerFn({
       field: 'guanZhuJobSeekerId',
@@ -240,20 +261,28 @@ let getDataFn = async (keyword?: string) => {
     let res = await getJobSeekerPage({
       params: {
         keyword,
-        pageNo: 1,
-        pageSize: pageSize,
+        pageNo: pageNo.value,
+        pageSize: !isLoggedIn.value ? 6 : pageSize.value,
         ...filter.value,
         jobType: activeFilterTag.value,
       },
     })
-    seekerList.value = res.data.list.map((item) => {
-      let info = JSON.parse(item.info || '{}')
-      item['info'] = info
-      return {
-        ...item,
-        favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
-      }
-    })
+    if (pageSize.value == res.data.list.length) {
+      pageNo.value++
+    } else {
+      noMoreData.value = true
+    }
+    seekerList.value = [
+      ...seekerList.value,
+      ...res.data.list.map((item) => {
+        let info = JSON.parse(item.info || '{}')
+        item['info'] = info
+        return {
+          ...item,
+          favorited: resJobSeeker.some((item2) => item2.guanZhuJobSeekerId === item.id),
+        }
+      }),
+    ]
   }
   if (!isLoggedIn.value || role.value === RoleEmu.seeker) {
     let resJob = await getGuanZhuJobSeekerFn({
@@ -262,23 +291,44 @@ let getDataFn = async (keyword?: string) => {
     let res = await getJobPage1({
       params: {
         keyword,
-        pageNo: 1,
-        pageSize: pageSize,
+        pageNo: pageNo.value,
+        pageSize: !isLoggedIn.value ? 6 : pageSize.value,
         ...filter.value,
         jobType: activeFilterTag.value,
       },
     })
-    jobList.value = res.data.list.map((item) => {
-      let info = JSON.parse(item.info || '{}')
-      item['info'] = info
-      return {
-        ...item,
-        favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
-      }
-    })
+    if (pageSize.value == res.data.list.length) {
+      pageNo.value++
+    } else {
+      noMoreData.value = true
+    }
+    jobList.value = [
+      ...jobList.value,
+      ...res.data.list.map((item) => {
+        let info = JSON.parse(item.info || '{}')
+        item['info'] = info
+        return {
+          ...item,
+          favorited: resJob.some((item2) => item2.guanZhuJobId === item.id),
+        }
+      }),
+    ]
+    console.log()
   }
 }
-
+let showSharePopup = ref(false)
+const onScrollToLower = () => {
+  let token = uni.getStorageSync('token')
+  let isShare = uni.getStorageSync('isShare')
+  if (!isShowPopup.value && !token) {
+    show.value = true
+    isShowPopup.value = true
+  } else if (isShare != 1) {
+    showSharePopup.value = true
+  } else {
+    getDataFn()
+  }
+}
 const handleSearch = (val) => {
   getDataFn(val)
 }
@@ -287,11 +337,13 @@ onLoad(async () => {
   swiperList.value = res.data.map((item) => item.picUrl)
 })
 onShow(() => {
+  noMoreData.value = false
+  pageNo.value = 1
   seekerList.value = []
   jobList.value = []
   show.value = false
   isShowPopup.value = false
-  isLoggedIn.value = getLoggedIn()
+  isLoggedIn.value = !!uni.getStorageSync('token')
   role.value = getRole()
   filter.value = getFilter()
   getDataFn()
@@ -300,9 +352,17 @@ onShow(() => {
     text: role.value === RoleEmu.employer ? '薏人' : '求职',
   })
 })
-
+const handleShare = () => {
+  showSharePopup.value = false
+}
 // 右上角分享给好友
-onShareAppMessage(() => {
+onShareAppMessage((res) => {
+  uni.setStorageSync('isShare', '1')
+  if (res.from === 'button') {
+    console.log('用户点击了页面内转发按钮')
+  } else if (res.from === 'menu') {
+    console.log('用户通过右上角菜单分享')
+  }
   return {
     title: '薏人直聘',
     path: '/pages/index/index?from=share', // 分享后跳转路径

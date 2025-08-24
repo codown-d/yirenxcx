@@ -51,24 +51,28 @@ export function useConnect() {
           field: 'guanZhuJobSeekerId',
         },
       })
-      let userInfos = await getJobSeekerByUserId({
-        params: {
-          userIds: res.data.map((e) => e.guanZhuJobSeekerId).join(','),
-        },
-      })
-      return userInfos.data
+      let userIds = res.data.map((e) => e.guanZhuJobSeekerId).join(',')
+      if (userIds) {
+        let userInfos = await getJobSeekerByUserId({
+          params: { userIds },
+        })
+        return userInfos.data
+      }
+      return []
     } else {
       let res = await getGuanZhuJobSeeker({
         params: {
           field: 'guanZhuJobId',
         },
       })
-      let jobInfos = await getJob({
-        params: {
-          ids: res.data.map((e) => e.guanZhuJobId).join(','),
-        },
-      })
-      return jobInfos.data
+      let ids = res.data.map((e) => e.guanZhuJobId).join(',')
+      if (ids) {
+        let jobInfos = await getJob({
+          params: { ids },
+        })
+        return jobInfos.data
+      }
+      return []
     }
   }
   const getShouCang = async () => {
@@ -78,24 +82,33 @@ export function useConnect() {
           field: 'shouCangJobSeekerId',
         },
       })
-      let seekers = await getUserByIds({
-        params: {
-          userIds: res.data.map((e) => e.shouCangJobSeekerId).join(','),
-        },
-      })
-      return seekers.data
+      let userIds = res.data.map((e) => e.shouCangJobSeekerId).join(',')
+      console.log(userIds)
+      if (userIds) {
+        let seekers = await getUserByIds({
+          params: {
+            userIds: userIds,
+          },
+        })
+        return seekers.data
+      }
+      return []
     } else {
       let res = await getGuanZhuJobSeeker({
         params: {
           field: 'shouCangJobId',
         },
       })
-      let employers = await getUserByIds({
-        params: {
-          userIds: res.data.map((e) => e.shouCangJobId).join(','),
-        },
-      })
-      return employers.data
+      let userIds = res.data.map((e) => e.shouCangJobId).join(',')
+      if (userIds) {
+        let employers = await getUserByIds({
+          params: {
+            userIds: userIds,
+          },
+        })
+        return employers.data
+      }
+      return []
     }
   }
   const getTieZiIds = async () => {

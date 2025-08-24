@@ -22,14 +22,11 @@ const http = <T>(options: CustomRequestOptions) => {
       // #endif
       // 响应成功
       async success(res: any) {
-        // 状态码 2xx，参考 axios 的设计
         if (res.statusCode >= 200 && res.statusCode < 300 && res.data.code === 0) {
-          // 2.1 提取核心数据 res.data
           resolve(res.data as T)
         } else if (res.statusCode === 401 || res.data.code === 401) {
-          // 401错误  -> 清理用户信息，跳转到登录页
-          removeUserInfo()
-          try {
+          let refreshToken = uni.getStorageSync('refreshToken')
+          if (refreshToken) {
             let res = await refreshToken({
               params: { refreshToken: uni.getStorageSync('refreshToken') },
             })
@@ -39,14 +36,9 @@ const http = <T>(options: CustomRequestOptions) => {
             uni.setStorageSync('userId', userId)
             uni.setStorageSync('expiresTime', expiresTime)
             await getUserInfoFn()
-          } catch (error) {
-            goLogin()
-            uni.showToast({
-              icon: 'none',
-              title: '登录已失效',
-            })
-            reject(res)
           }
+          removeUserInfo()
+          goLogin()
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
           !options.hideErrorToast &&

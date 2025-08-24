@@ -3,10 +3,10 @@ import { defineUniPages } from '@uni-helper/vite-plugin-uni-pages'
 export default defineUniPages({
   globalStyle: {
     navigationStyle: 'default',
-    navigationBarTitleText: 'unibest',
-    navigationBarBackgroundColor: '#f8f8f8',
+    navigationBarTitleText: '薏仁直聘',
+    navigationBarBackgroundColor: '#F5F6FA',
     navigationBarTextStyle: 'black',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5F6FA',
   },
   easycom: {
     autoscan: true,

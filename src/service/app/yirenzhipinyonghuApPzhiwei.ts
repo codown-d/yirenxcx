@@ -50,16 +50,16 @@ export async function getJob({
   params: API.getJobParams;
   options?: CustomRequestOptions;
 }) {
-  return request<API.CommonResultListYRZPJobDO>(
-    '/app-api/yirenzhipin/job/get',
-    {
-      method: 'GET',
-      params: {
-        ...params,
-      },
-      ...(options || {}),
-    }
-  );
+    return request<API.CommonResultListYRZPJobDO>(
+      '/app-api/yirenzhipin/job/get',
+      {
+        method: 'GET',
+        params: {
+          ...params,
+        },
+        ...(options || {}),
+      }
+    );
 }
 
 /** 获得职位分页 GET /app-api/yirenzhipin/job/page */

@@ -1,10 +1,8 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 
 import {
-  AppAuthLoginReqVO,
-  AppAuthSmsLoginReqVO,
   AppAuthWeixinMiniAppLoginReqVO,
   CommonResultAppAuthLoginRespVO,
   getUserInfo as getUserInfoResp,

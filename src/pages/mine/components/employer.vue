@@ -3,7 +3,10 @@
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
       <yr-logo-img :img="userInfo?.logo" />
-      <view class="flex-1">
+      <wd-button type="text" v-if="userInfo.qiyeAttestation == -1 && !token" @click="goToLogin">
+        请点击授权登录
+      </wd-button>
+      <view class="flex-1" v-else>
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
             <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.companyName }}</text>
@@ -23,14 +26,20 @@
         <text class="text-[12px] text-gray-500 block mb-1">id:{{ userInfo?.id }}</text>
       </view>
     </view>
-    <!-- 基本信息 -->
-    <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden mb-5">
-      <yr-img-title url="jigou.svg" :title="userInfo?.personNumber" v-if="userInfo?.personNumber" />
-      <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" v-if="userInfo?.chengLiTime" />
-      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
-      <yr-img-title url="jingyan.svg" :title="userInfo?.involved" v-if="userInfo?.involved" />
+    <view v-if="userInfo.qiyeAttestation !== -1 && token">
+      <!-- 基本信息 -->
+      <view class="text-gray-500 grid grid-cols-2 gap-3 overflow-hidden mb-5">
+        <yr-img-title
+          url="jigou.svg"
+          :title="userInfo?.personNumber"
+          v-if="userInfo?.personNumber"
+        />
+        <yr-img-title url="time.svg" :title="userInfo?.chengLiTime" v-if="userInfo?.chengLiTime" />
+        <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
+        <yr-img-title url="jingyan.svg" :title="userInfo?.involved" v-if="userInfo?.involved" />
+      </view>
+      <wd-divider custom-class="!px-0 mt-5" />
     </view>
-    <wd-divider custom-class="!px-0 mt-5" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1">
@@ -146,10 +155,13 @@ import { navigateToSub } from '@/utils'
 let props = defineProps({
   userInfo: {
     type: Object,
-    default: () => {},
+    default: () => ({
+      gerenAttestation: -1,
+    }),
   },
 })
 
+let token = ref(uni.getStorageSync('token'))
 let tools = ref([
   // {
   //   name: '我的关注',
@@ -178,7 +190,9 @@ let tools = ref([
 const upgradeVip = () => {
   toast.info('跳转到VIP升级页面')
 }
-
+const goToLogin = () => {
+  navigateToSub('/login/login')
+}
 // 跳转到在线简历
 const goToOnlineResume = () => {
   navigateToSub('/employer-edit/employer-edit')

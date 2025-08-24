@@ -93,6 +93,7 @@ const sendMessage = async (text) => {
       userType: getRole(),
     },
   })
+  console.log('toUserID', toUserID.value)
   let resText = await sendTextMessage(toUserID.value, res.data)
   addMsg([resText.data.message])
 }
@@ -104,10 +105,13 @@ let getMessageListFn = async (toUserID, count = 100) => {
   })
   addMsg(res.data.messageList)
 }
+
 const addMsg = async (list) => {
   const mappedMessages = list.map((item) => {
+    let isSelf = `im_${getRole()}_${uni.getStorageSync('userId')}`
     return {
       ...item,
+      isSelf: item.from == isSelf,
       avatar:
         item.from.indexOf('employer') != -1
           ? infoMap.value[item.from]?.logo
@@ -119,6 +123,7 @@ const addMsg = async (list) => {
     }
   })
   messageList.value.push(...mappedMessages)
+  console.log(messageList.value)
   scrollToBottom()
 }
 const sendFileFn = async () => {
@@ -128,6 +133,7 @@ const sendFileFn = async () => {
 let infoMap = ref({})
 onLoad(async (option) => {
   if (option.toUserID) {
+    console.log('option', option.toUserID)
     toUserID.value = option.toUserID
     let [im, role, id = ''] = option.toUserID.split('_')
     let chatUserInfo = await getUserByIds({ params: { userIds: id } })

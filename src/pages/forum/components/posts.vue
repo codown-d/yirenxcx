@@ -41,7 +41,7 @@
           />
           <text class="text-gray-500 ml-1 text-[16px]">{{ post.likeCount }}</text>
         </view>
-        <view class="flex items-center" @click.stop="goToComments(post.id)" v-if="false">
+        <view class="flex items-center" @click.stop="goToComments(post.id)">
           <wd-icon name="chat" custom-class="text-[26px]" />
           <text class="text-gray-500 ml-1 text-[16px]">{{ post.commentCount }}</text>
         </view>
@@ -54,6 +54,7 @@
 import { ref } from 'vue'
 
 import { useConnect } from '@/hooks'
+import { navigateToSub } from '@/utils'
 
 const { changeConnect } = useConnect()
 const props = defineProps({
@@ -71,5 +72,7 @@ const toggleLike = (id) => {
     emit('favorite', isLiked.value)
   })
 }
-const goToComments = (val) => {}
+const goToComments = (postId) => {
+  navigateToSub('/post-details/post-details?postId=' + postId)
+}
 </script>

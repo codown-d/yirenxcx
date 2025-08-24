@@ -2,8 +2,10 @@
   <view class="mx-3 mb-3 rounded-2 p-4 shadow-sm bg-linear">
     <view class="flex items-center mb-4">
       <yr-avatar-img :img="userInfo?.avatar" />
-
-      <view class="flex-1">
+      <wd-button type="text" v-if="userInfo.gerenAttestation == -1 && !token" @click="goToLogin">
+        请点击授权登录
+      </wd-button>
+      <view class="flex-1" v-else>
         <view class="flex items-center justify-between mb-2" @click="goToOnlineResume">
           <view class="flex items-center">
             <text class="text-4 font-bold text-gray-800 mr-2">{{ userInfo?.name }}</text>
@@ -26,29 +28,30 @@
         </text>
       </view>
     </view>
-
-    <!-- 专业信息 -->
-    <view class="mb-2">
-      {{ title1 }}
+    <view v-if="userInfo.gerenAttestation !== -1 && token">
+      <!-- 专业信息 -->
+      <view class="mb-2">
+        {{ title1 }}
+      </view>
+      <view class="flex flex-wrap gap-2 mb-3">
+        <yr-tag-list v-model="userInfo.tags" class-name="!text-[14px]"></yr-tag-list>
+      </view>
+      <!-- 基本信息 -->
+      <view class="flex items-center text-gray-500 justify-between mb-5">
+        <yr-img-title
+          url="jingyan.svg"
+          :title="userInfo?.gongZuoJingYan"
+          v-if="userInfo?.gongZuoJingYan"
+        />
+        <yr-img-title
+          url="school.svg"
+          :title="userInfo?.biYeYuanXiao"
+          v-if="userInfo?.biYeYuanXiao"
+        />
+        <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
+      </view>
+      <wd-divider custom-class="!px-0 mt-4" />
     </view>
-    <view class="flex flex-wrap gap-2 mb-3">
-      <yr-tag-list v-model="userInfo.tags" class-name="!text-[14px]"></yr-tag-list>
-    </view>
-    <!-- 基本信息 -->
-    <view class="flex items-center text-gray-500 justify-between mb-5">
-      <yr-img-title
-        url="jingyan.svg"
-        :title="userInfo?.gongZuoJingYan"
-        v-if="userInfo?.gongZuoJingYan"
-      />
-      <yr-img-title
-        url="school.svg"
-        :title="userInfo?.biYeYuanXiao"
-        v-if="userInfo?.biYeYuanXiao"
-      />
-      <yr-img-title url="weizhi.svg" :title="userInfo?.location" v-if="userInfo?.location" />
-    </view>
-    <wd-divider custom-class="!px-0 mt-4" />
     <!-- 统计数据 -->
     <view class="flex justify-between mt-4">
       <view class="text-center flex-1">
@@ -141,7 +144,7 @@
   </view>
 
   <!-- 其他功能 -->
-  <view class="mx-3 bg-white rounded-2 shadow-sm p-3">
+  <wd-card>
     <text class="text-4 font-medium text-gray-800 block pb-3">其他功能</text>
     <wd-cell
       :title="item.name"
@@ -150,7 +153,7 @@
       :key="item.name"
       v-for="item in tools"
     ></wd-cell>
-  </view>
+  </wd-card>
 </template>
 
 <script setup lang="ts">
@@ -164,9 +167,12 @@ let { getTitle } = useUserInfoTitle()
 let props = defineProps({
   userInfo: {
     type: Object,
-    default: () => {},
+    default: () => ({
+      gerenAttestation: -1,
+    }),
   },
 })
+let token = ref(uni.getStorageSync('token'))
 let title1 = computed(() => {
   return getTitle([
     {
@@ -202,7 +208,9 @@ let tools = ref([
 const upgradeVip = () => {
   toast.info('跳转到VIP升级页面')
 }
-
+const goToLogin = () => {
+  navigateToSub('/login/login')
+}
 // 跳转到在线简历
 const goToOnlineResume = () => {
   navigateToSub('/seeker-edit/seeker-edit')
@@ -235,4 +243,13 @@ const goAttestation = () => {
     navigateToSub('/seeker-authentication/seeker-authentication')
   }
 }
+watch(
+  () => props.userInfo,
+  () => {
+    console.log(123456)
+  },
+)
+onShow(() => {
+  console.log(props.userInfo, 'onShow')
+})
 </script>

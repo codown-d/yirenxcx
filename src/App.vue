@@ -2,10 +2,12 @@
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import { initIM } from '@/utils/im'
+import { initEid } from './pages/mp_ecard_sdk/main'
 
 onLaunch(() => {
   uni.setStorageSync('tabbar', 0)
   initIM()
+  initEid()
 })
 onShow(() => {
   console.log('App show')

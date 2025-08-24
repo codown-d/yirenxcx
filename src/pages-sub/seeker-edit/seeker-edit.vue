@@ -124,10 +124,10 @@
       </wd-card>
       <!-- 操作按钮 -->
       <yr-page-footer>
-        <wd-button type="info" :round="false" custom-class="flex-1" @click="previewResume">
+        <wd-button type="info" :round="false" custom-class="flex-1 !mr-2" @click="previewResume">
           预览简历
         </wd-button>
-        <wd-button type="primary" :round="false" custom-class="flex-1" @click="saveResume">
+        <wd-button type="primary" :round="false" custom-class="flex-1 !ml-2" @click="saveResume">
           保存
         </wd-button>
       </yr-page-footer>

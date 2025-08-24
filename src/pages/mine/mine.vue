@@ -26,13 +26,12 @@
   <view class="pt-4 pb-4">
     <Seeker v-if="roleType === RoleEmu.seeker" :userInfo="userInfo" />
     <Employer v-if="roleType === RoleEmu.employer" :userInfo="userInfo" />
-    <view class="px-4">
+    <view class="px-4" v-if="token">
       <wd-button @click="logoutFn" type="info" :round="false" custom-class="mt-4" block>
         退出登录
       </wd-button>
     </view>
   </view>
-  <!-- <yr-tab-bar :tabIndex="4" @tabPageShow="onTabItemTap"></yr-tab-bar> -->
 </template>
 
 <script lang="ts" setup>
@@ -56,13 +55,16 @@ const logoutFn = () => {
 const roleLabel = computed(() => {
   return getRole() === RoleEmu.seeker ? '招聘方' : '求职者'
 })
-const userInfo = ref({})
+let token = ref(uni.getStorageSync('token'))
+const userInfo = ref<any>()
 const loadUserData = async () => {
   let res = await getUserInfo({})
   userInfo.value = res.data
 }
 onShow(() => {
+  userInfo.value = { gerenAttestation: -1, qiyeAttestation: -1 }
   loadUserData()
   roleType.value = getRole()
+  token.value = uni.getStorageSync('token')
 })
 </script>

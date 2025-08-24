@@ -19,7 +19,7 @@ watch(
   () => props.modelValue,
   (val) => {
     if (val) {
-      imgList.value = val.split(',')?.filter((item) => !!item.trim())
+      imgList.value = val?.split(',')?.filter((item) => !!item.trim())
     }
   },
 )
