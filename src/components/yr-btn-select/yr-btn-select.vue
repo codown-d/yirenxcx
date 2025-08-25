@@ -1,9 +1,9 @@
 <template>
-  <view class="grid grid-cols-3 gap-4 pb-4 px-4">
+  <view class="grid grid-cols-3 gap-4 pb-4">
     <wd-button
       v-for="(item, index) in columns"
       :key="index"
-      :type="`${selectedItems.includes(item.value + '') ? 'primary' : 'info'}`"
+      :type="`${selectedItems?.includes(item.value + '') ? 'primary' : 'info'}`"
       :size="size"
       :round="round"
       custom-class="!min-w-[80px]"
@@ -49,9 +49,11 @@ const props = defineProps({
     default: '',
   },
 })
+console.log(props, 123)
 let selectedItems = ref(props.modelValue.split(',').filter((item) => !!item))
 const emit = defineEmits(['update:modelValue'])
 const onSelect = (item) => {
+  console.log(selectedItems, 123)
   const index = selectedItems.value.indexOf(item.value)
   if (index === -1) {
     // 不存在 → 添加

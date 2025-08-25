@@ -62,6 +62,18 @@ async function loginIM(userID: string | number, userSig: string) {
         .then(() => {
           uni.setStorageSync('imUserID', userID)
           uni.setStorageSync('imUserSig', userSig)
+          setTimeout(async () => {
+            let res = await getConversationList()
+            let unreadCount = res.reduce((pre, item) => {
+              return (pre += item.unreadCount)
+            }, 0)
+            if (unreadCount) {
+              uni.setTabBarBadge({
+                index: 1, // tabBar 的索引
+                text: unreadCount + '', // 显示的文字，最多 3 个字符
+              })
+            }
+          }, 1000)
           resolve('登录成功')
         })
         .catch((err) => {

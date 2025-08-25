@@ -35,31 +35,41 @@
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">学历水平</text>
       </view>
-      <yr-btn-select :columns="dictData.EDUCATION_LEVELS" v-model="formData.EDUCATION_LEVELS" />
+      <wd-card>
+        <yr-btn-select :columns="dictData.EDUCATION_LEVELS" v-model="formData.EDUCATION_LEVELS" />
+      </wd-card>
     </view>
     <view class="bg-white mb-3" v-if="getRole() == RoleEmu.employer">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">工作经验</text>
       </view>
-      <yr-btn-select :columns="dictData.EXPERIENCE_LEVELS" v-model="formData.EXPERIENCE_LEVELS" />
+      <wd-card>
+        <yr-btn-select :columns="dictData.EXPERIENCE_LEVELS" v-model="formData.EXPERIENCE_LEVELS" />
+      </wd-card>
     </view>
     <view class="bg-white mb-3">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">工作性质</text>
       </view>
-      <yr-btn-select :columns="dictData.WORK_TYPES" v-model="formData.workType" />
+      <wd-card>
+        <yr-btn-select :columns="dictData.WORK_TYPES" v-model="formData.workType" />
+      </wd-card>
     </view>
     <view class="bg-white mb-3" v-if="getRole() == RoleEmu.seeker">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">公司规模</text>
       </view>
-      <yr-btn-select :columns="dictData.COMPANY_SIZES" v-model="formData.COMPANY_SIZES" />
+      <wd-card>
+        <yr-btn-select :columns="dictData.COMPANY_SIZES" v-model="formData.COMPANY_SIZES" />
+      </wd-card>
     </view>
     <view class="bg-white mb-6" v-if="getRole() == RoleEmu.seeker">
       <view class="px-4 py-3 border-b border-gray-100">
         <text class="text-base font-medium text-gray-900">福利待遇</text>
       </view>
-      <yr-btn-select :columns="dictData.benefitsOptions" v-model="formData.benefits" />
+      <wd-card>
+        <yr-btn-select :columns="dictData.benefitsOptions" v-model="formData.benefits" />
+      </wd-card>
     </view>
     <yr-page-footer>
       <wd-button type="info" custom-class="w-[33%]" :round="false" @click="resetFilter">

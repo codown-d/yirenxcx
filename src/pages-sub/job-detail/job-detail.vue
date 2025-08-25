@@ -61,7 +61,7 @@
         <view class="flex items-center justify-between mb-3">
           <view class="flex items-center">
             <image
-              :src="jobDetail.info?.logo"
+              :src="jobDetail.info?.logo || '/static/images/zp.png'"
               class="w-12 h-12 rounded-2 mr-3 bg-gray-50"
               mode="aspectFill"
             />

@@ -110,9 +110,8 @@
           <yr-upload :limit="3" accept="video" v-model="userInfo.jiNengVideos"></yr-upload>
         </view>
       </wd-card>
-      <!-- 求职薏向 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">求职薏向</text>
+        <text class="text-base font-semibold text-gray-800">求职意向</text>
       </view>
       <wd-card>
         <wd-cell title="期望薪资">

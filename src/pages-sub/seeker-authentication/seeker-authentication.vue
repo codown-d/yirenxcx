@@ -38,9 +38,10 @@
   </yr-page-footer>
 </template>
 <script setup>
-import { showToast } from '@/utils'
+import { showToast, switchTab } from '@/utils'
 import { getRequest } from '@/service/app'
 import { startEid } from '../../pages/mp_ecard_sdk/main'
+import { toast } from '@/utils/toast'
 const certForm = ref({
   name: '',
   idNum: '',
@@ -66,13 +67,13 @@ const goAuth = async () => {
     verifyDoneCallback: async (res) => {
       const { token, verifyDone } = res
       if (verifyDone === true && token) {
+        toast.success('认证成功')
         let res = await getUserInfo({})
-        userInfo.value = res.data
         await updateUser({
           body: merge(res.data, { gerenAttestation: 1 }),
         })
         setTimeout(() => {
-          navigateBack()
+          switchTab('/index/index')
         }, 500)
       }
     },

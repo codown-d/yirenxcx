@@ -106,9 +106,11 @@ let getMessageListFn = async (toUserID, count = 100) => {
   addMsg(res.data.messageList)
 }
 
+let infoMap = ref({})
 const addMsg = async (list) => {
   const mappedMessages = list.map((item) => {
     let isSelf = `im_${getRole()}_${uni.getStorageSync('userId')}`
+    console.log(infoMap.value, 'infoMap')
     return {
       ...item,
       isSelf: item.from == isSelf,
@@ -130,19 +132,18 @@ const sendFileFn = async () => {
   let res = await sendImageMessage(toUserID.value)
   addMsg([res.data.message])
 }
-let infoMap = ref({})
 onLoad(async (option) => {
   if (option.toUserID) {
-    console.log('option', option.toUserID)
+    console.log('infoMap', option.toUserID)
     toUserID.value = option.toUserID
     let [im, role, id = ''] = option.toUserID.split('_')
-    let chatUserInfo = await getUserByIds({ params: { userIds: id } })
+    let userId = uni.getStorageSync('userId')
+    let chatUserInfo = await getUserByIds({ params: { userIds: [userId, id].join(',') } })
     chatObject.value = find(chatUserInfo.data, (v) => v.id == Number(id))
-
     infoMap.value[option.toUserID] = chatObject.value
-    let userInfo = uni.getStorageSync('userInfo')
-    infoMap.value[`im_${RoleEmu.seeker}_${userInfo.id}`] = userInfo
-    infoMap.value[`im_${RoleEmu.employer}_${userInfo.id}`] = userInfo
+    let userInfo = find(chatUserInfo.data, (v) => v.id == Number(userId))
+    infoMap.value[`im_${RoleEmu.seeker}_${userId}`] = userInfo
+    infoMap.value[`im_${RoleEmu.employer}_${userId}`] = userInfo
 
     setMsgCallback(addMsg)
     getMessageListFn(toUserID.value)

@@ -90,16 +90,25 @@ const props = withDefaults(defineProps<Props>(), {
   favorited: false,
 })
 const isFavorited = ref(props.favorited)
+
+let { getTitle } = useUserInfoTitle()
 let title1 = computed(() => {
   let { seekerData } = props
   let node = seekerData.jobSpecific?.split('-').pop()
-  let arr = []
-  if (seekerData.info?.age) {
-    arr = [`${seekerData.info?.age} 岁`, node, seekerData.info?.gongZuoJingYan]
-  } else {
-    arr = [node, seekerData.info?.gongZuoJingYan]
-  }
-  return arr.filter((el) => !!el).join(' • ')
+  return getTitle([
+    {
+      value: seekerData.info?.age,
+      unit: '岁',
+    },
+    {
+      value: node?.label,
+      unit: '',
+    },
+    {
+      value: seekerData.info?.gongZuoJingYan,
+      unit: '',
+    },
+  ])
 })
 let title2 = computed(() => {
   let { seekerData } = props

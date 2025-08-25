@@ -65,32 +65,16 @@
       <!-- 技能标签 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">福利待遇</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addSkill" />
       </view>
       <wd-card>
-        <yr-modal-picker
-          prop="benefits"
-          v-model="userInfo.benefits"
-          ref="benefitRef"
-          modal-title="福利待遇"
-        >
-          <view></view>
-        </yr-modal-picker>
+        <yr-btn-select :columns="dictData.benefitsOptions" v-model="userInfo.benefits" />
       </wd-card>
       <!-- 代表作品 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
         <text class="text-base font-semibold text-gray-800">招聘要求</text>
-        <wd-icon name="add-circle" custom-class="text-5" @click="addWork" />
       </view>
       <wd-card>
-        <yr-modal-picker
-          v-model="userInfo.recruitment"
-          ref="recruitmentRef"
-          modal-title="招聘要求"
-          prop="recruitment"
-        >
-          <view></view>
-        </yr-modal-picker>
+        <yr-btn-select :columns="dictData.zhaopingyaoqiu" v-model="userInfo.recruitment" />
       </wd-card>
       <!-- 个人展示 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
@@ -130,11 +114,10 @@ import { ref } from 'vue'
 import { toast } from '@/utils/toast'
 import { navigateBack, navigateToSub } from '@/utils'
 import { MemberUserDO, getUserInfo, updateUser } from '@/service/member'
+let { dictData } = useDictData()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>({ benefits: '' })
-const benefitRef = ref()
-const recruitmentRef = ref()
 
 const rules = {
   companyInfo: [
@@ -173,14 +156,12 @@ const previewResume = () => {
 
 const loadUserData = async () => {
   let res = await getUserInfo({})
-  userInfo.value = res.data
-}
 
-const addSkill = async () => {
-  benefitRef.value.addItem()
-}
-const addWork = async () => {
-  recruitmentRef.value.addItem()
+  userInfo.value = {
+    ...res.data,
+    benefits: typeof res.data.benefits === 'string' ? res.data.benefits : '',
+    recruitment: typeof res.data.recruitment === 'string' ? res.data.recruitment : '',
+  }
 }
 
 const saveResume = async () => {

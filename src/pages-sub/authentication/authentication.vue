@@ -68,7 +68,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { toast } from '@/utils/toast'
-import { navigateBack } from '@/utils'
+import { navigateBack, switchTab } from '@/utils'
 import { renzheng } from '@/service/app'
 // 假设 API 名称
 
@@ -100,9 +100,9 @@ const saveCertification = async () => {
       body: certForm.value,
     })
     if (res.code === 0) {
-      toast.success('提交成功')
+      toast.success('认证成功')
       setTimeout(() => {
-        navigateBack()
+        switchTab('/index/index')
       }, 500)
     }
   } finally {

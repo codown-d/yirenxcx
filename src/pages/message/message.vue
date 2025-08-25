@@ -108,9 +108,9 @@ const getChatList = async () => {
       p[`im_employer_${n.id}`] = n
       return p
     }, {})
-
+    console.log(infoListMap)
     setTimeout(() => {
-      conversationList.value = res.map((item) => {
+      let arr = res.map((item) => {
         let node = infoListMap[item.userProfile.userID]
         if (item.userProfile.userID.indexOf('employer') != -1) {
           return merge(item, {
@@ -128,6 +128,8 @@ const getChatList = async () => {
           })
         }
       })
+      console.log(arr)
+      conversationList.value = arr
     }, 500)
   } catch (error) {}
 }

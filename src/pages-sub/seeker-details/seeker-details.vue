@@ -149,15 +149,23 @@ const userInfo = ref<MemberUserDO>({
 })
 let isFavorited = ref()
 let collect = ref(false)
+let { getTitle } = useUserInfoTitle()
 let title1 = computed(() => {
   let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
-  let arr = []
-  if (userInfo.value.age) {
-    arr = [`${userInfo.value.age} 岁`, node?.label, userInfo.value.teChang]
-  } else {
-    arr = [node?.label, userInfo.value.teChang]
-  }
-  return arr.filter((el) => !!el).join(' • ')
+  return getTitle([
+    {
+      value: userInfo.value.age,
+      unit: '岁',
+    },
+    {
+      value: node?.label,
+      unit: '',
+    },
+    {
+      value: userInfo.value.teChang,
+      unit: '',
+    },
+  ])
 })
 let userId = ref()
 // 加载用户数据

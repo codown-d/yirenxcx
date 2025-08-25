@@ -96,9 +96,8 @@
           <wd-status-tip image="content" tip="暂无内容" v-else />
         </view>
       </wd-card>
-      <!-- 求职薏向 -->
       <view class="flex items-center justify-between mb-3 px-4 mt-1">
-        <text class="text-base font-semibold text-gray-800">求职薏向</text>
+        <text class="text-base font-semibold text-gray-800">求职意向</text>
       </view>
       <wd-card>
         <wd-cell title="期望薪资">
@@ -129,15 +128,24 @@ let { dictData } = useDictData()
 
 // 用户信息数据
 const userInfo = ref<MemberUserDO>()
+
+let { getTitle } = useUserInfoTitle()
 let title1 = computed(() => {
   let node = find(dictData.value.SEX, (item) => item.value == userInfo.value?.sexName)
-  let arr = []
-  if (userInfo.value.age) {
-    arr = [`${userInfo.value.age || '-'} 岁`, node?.label, userInfo.value.teChang]
-  } else {
-    arr = [node?.label, userInfo.value.teChang]
-  }
-  return arr.filter((el) => !!el).join(' • ')
+  return getTitle([
+    {
+      value: userInfo.value.age,
+      unit: '岁',
+    },
+    {
+      value: node?.label,
+      unit: '',
+    },
+    {
+      value: userInfo.value.teChang,
+      unit: '',
+    },
+  ])
 })
 const loadUserData = async () => {
   let res = await getUserInfo({})

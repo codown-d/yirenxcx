@@ -8,7 +8,7 @@
           class="w-10 h-10 rounded-full mr-3 bg-gray-100"
           mode="aspectFill"
         />
-        <view>
+        <view @click.stop="goToComments(post.id)">
           <text class="font-medium text-gray-800 block text-[16px]">{{ post.title }}</text>
           <text class="text-2 text-gray-500" v-if="false">{{ post.title }}</text>
         </view>
